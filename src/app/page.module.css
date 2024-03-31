@@ -4,5 +4,17 @@
   justify-content: space-between;
   min-height: calc(100vh - 38px - 38px);
   padding: 10px 30px;
+}
 
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
