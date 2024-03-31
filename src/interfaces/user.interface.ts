@@ -11,3 +11,8 @@ export interface IUserData {
   firstName?: string;
   lastName?: string;
 }
+
+export interface ICreateUser {
+  email: string;
+  password: string;
+}
