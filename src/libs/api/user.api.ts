@@ -2,7 +2,7 @@
 
 import { ICreateUser, IUserData } from "@/interfaces/user.interface";
 import prisma from "@/libs/client/prisma.client";
-import { compare, compareSync, hash } from "bcrypt";
+import { compare, hash } from "bcrypt";
 
 export const getUserByEmail = async (email: string) => {
   try {
