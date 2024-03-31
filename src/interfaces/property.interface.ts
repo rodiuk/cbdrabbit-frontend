@@ -1,6 +1,7 @@
 export interface IPropertyCreate {
   label: string;
   imgUrl: string;
+  lang: string;
 }
 
 export interface IPropertyUpdate {

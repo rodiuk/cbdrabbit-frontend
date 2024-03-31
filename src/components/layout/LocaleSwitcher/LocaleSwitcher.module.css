@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+}
+
+.locale {
+  padding: 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.active {
+  color: teal;
+}

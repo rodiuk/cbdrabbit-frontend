@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 30px;
   min-height: calc(100vh - 38px - 38px);
   padding: 10px 30px;
 }
