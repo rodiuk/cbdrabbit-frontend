@@ -6,9 +6,13 @@ import {
 } from "@/interfaces/property.interface";
 import prisma from "@/libs/client/prisma.client";
 
-export const getAllProperties = async () => {
+export const getAllProperties = async (lang: string) => {
   try {
-    const properties = await prisma.property.findMany();
+    const properties = await prisma.property.findMany({
+      where: {
+        locale: lang,
+      },
+    });
 
     return properties;
   } catch (error) {
@@ -16,11 +20,12 @@ export const getAllProperties = async () => {
   }
 };
 
-export const getPropertyById = async (id: string) => {
+export const getPropertyById = async (id: string, lang: string) => {
   try {
     const property = await prisma.property.findUnique({
       where: {
         id,
+        locale: lang,
       },
     });
 
@@ -35,6 +40,7 @@ export const createProperty = async (propertyData: IPropertyCreate) => {
     const property = await prisma.property.create({
       data: {
         label: propertyData.label,
+        locale: propertyData.lang,
         image: {
           create: {
             url: propertyData.imgUrl,

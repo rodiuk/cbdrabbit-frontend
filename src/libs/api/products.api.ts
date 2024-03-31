@@ -4,9 +4,12 @@ import { IProductCreate } from "@/interfaces/product.interface";
 import prisma from "@/libs/client/prisma.client";
 import { productSelect } from "./selects/product.select";
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (lang: string) => {
   try {
     const product = await prisma.product.findMany({
+      where: {
+        locale: lang,
+      },
       select: productSelect,
     });
 
@@ -16,11 +19,12 @@ export const getAllProducts = async () => {
   }
 };
 
-export const getProductById = async (id: string) => {
+export const getProductById = async (id: string, lang: string) => {
   try {
     const product = await prisma.product.findUnique({
       where: {
         id,
+        locale: lang,
       },
       select: productSelect,
     });
@@ -39,6 +43,7 @@ export const createProduct = async (productData: IProductCreate) => {
           productName: productData.productName,
           description: productData.description,
           price: productData.price,
+          locale: productData.lang,
           images: {
             createMany: {
               data: productData?.images.map(imageUrl => ({

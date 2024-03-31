@@ -4,6 +4,8 @@ import { appConfig } from "@/configs/app.config";
 import { Scripts } from "@/components/layout/Scripts";
 import { Header } from "@/components/layout/Header/Header";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { i18n } from "../../../i18n.config";
+import { IPageProps } from "@/interfaces/page.interface";
 
 import { fonts } from "./fonts";
 import "./globals.css";
@@ -15,15 +17,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(appConfig.DOMAIN),
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ lang: locale }));
+}
+
+export default function RootLayout({ children, params }: Readonly<IPageProps>) {
   const isProduction = process.env.NODE_ENV === "production";
 
   return (
-    <html lang="uk">
+    <html lang={params.lang}>
       <body className={fonts.roboto.variable}>
         <Providers>
           <Header />
