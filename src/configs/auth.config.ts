@@ -2,18 +2,9 @@ import type { AuthOptions } from "next-auth";
 import bcrypt from "bcrypt";
 import Provider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { IUser } from "@/interfaces/user.interface";
 import { appConfig } from "./app.config";
-
-const userMock = [
-  {
-    id: "1",
-    email: "pam@i.ua",
-    password: "12344321",
-    firstName: "Pam",
-    lastName: "Pam",
-  },
-];
+import { createGoogleUser, getUserByEmail } from "@/libs/api/user.api";
+import { User } from "@prisma/client";
 
 export const authConfig: AuthOptions = {
   providers: [
@@ -21,13 +12,24 @@ export const authConfig: AuthOptions = {
       clientId: appConfig.GOOGLE_CLIENT_ID,
       clientSecret: appConfig.GOOGLE_CLIENT_SECRET,
       async profile(profile) {
-        const user = userMock.find((u) => u.email === profile.email);
+        let user: User | undefined | null = null;
+        user = await getUserByEmail(profile.email);
 
-        if (!user) return null;
+        if (!user) {
+          user = await createGoogleUser({
+            email: profile.email,
+            firstName: profile.given_name,
+            lastName: profile.family_name,
+          });
+        }
 
         return {
           ...profile,
           id: user.id,
+          email: user.email,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          role: user?.role,
         };
       },
     }),
@@ -41,7 +43,7 @@ export const authConfig: AuthOptions = {
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const user = userMock.find((u) => u.email === credentials.email);
+        const user = await getUserByEmail(credentials.email);
 
         if (user && user?.password) {
           const match = await bcrypt.compare(
@@ -54,7 +56,9 @@ export const authConfig: AuthOptions = {
           return {
             id: user.id,
             email: user.email,
-            name: user.firstName + " " + user.lastName,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+            role: user?.role,
           };
         }
 
@@ -65,13 +69,15 @@ export const authConfig: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = (user as IUser).id;
+        token.id = user.id;
+        token.role = user.role;
       }
       return token;
     },
     async session({ session, token }) {
       if (session?.user) {
-        (session.user as IUser).id = token.id as string;
+        session.user.role = token.role as string;
+        session.user.id = token.id as string;
       }
       return session;
     },
