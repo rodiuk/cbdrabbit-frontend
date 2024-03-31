@@ -65,8 +65,7 @@ model Order {
   id       String  @id @default(uuid())
   totalSum Float
   comment  String?
-
-  userId String
+  userId   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,6 +93,7 @@ model Product {
   productName String
   description String
   price       Float
+  locale      String @default("uk")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -104,8 +104,9 @@ model Product {
 }
 
 model Property {
-  id    String @id @default(uuid())
-  label String
+  id     String @id @default(uuid())
+  label  String
+  locale String @default("uk")
 
   imageId String
 
