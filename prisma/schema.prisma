@@ -129,3 +129,15 @@ model Image {
   product  Product?   @relation(fields: [productId], references: [id])
   property Property[]
 }
+
+model Post {
+  id      String @id @default(uuid())
+  title   String
+  content String
+
+  metaTitle       String?
+  metaDescription String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
