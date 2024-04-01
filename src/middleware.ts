@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-export { default } from "next-auth/middleware";
+import { withAuth } from "next-auth/middleware";
 import Negotiator from "negotiator";
+
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 
 import { i18n } from "../i18n.config";
@@ -19,7 +20,7 @@ function getLocale(request: NextRequest): string | undefined {
   return locale;
 }
 
-export function middleware(request: NextRequest) {
+function intlMiddleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   const pathnameIsMissingLocale = i18n.locales.every(
@@ -28,7 +29,6 @@ export function middleware(request: NextRequest) {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    console.log("redirecting, locale is missing");
     const locale = getLocale(request);
     return NextResponse.redirect(
       new URL(
@@ -39,10 +39,35 @@ export function middleware(request: NextRequest) {
   }
 }
 
+const authMiddleware = withAuth(
+  function onSuccess(req) {
+    return intlMiddleware(req);
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      // signIn: "/auth/login",
+    },
+  }
+);
+
+export function middleware(request: NextRequest) {
+  const excludePattern =
+    "^(/(" + i18n.locales.join("|") + "))?/(profile|orders)/?.*?$";
+  const publicPathnameRegex = RegExp(excludePattern, "i");
+  const isPublicPage = !publicPathnameRegex.test(request.nextUrl.pathname);
+
+  if (isPublicPage) {
+    return intlMiddleware(request);
+  } else {
+    return (authMiddleware as any)(request);
+  }
+}
+
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|next.svg|vercel.svg|favicon.ico|robots.txt|sitemap.xml).*)",
-    "/profile",
-    "/order",
   ],
 };
