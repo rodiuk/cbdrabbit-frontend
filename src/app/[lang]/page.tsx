@@ -1,9 +1,25 @@
+import { Metadata } from "next";
 import { getAllProducts } from "@/libs/api/products.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
+import { openGraphBase } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+
+export async function generateMetadata({
+  params,
+}: IMainPageProps): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical: `/`,
+    },
+    openGraph: {
+      ...openGraphBase,
+      locale: params.lang,
+    },
+  };
+}
 
 export default async function Home({ params }: IMainPageProps) {
   const res = await getAllProducts(params.lang);
