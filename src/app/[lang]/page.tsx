@@ -15,7 +15,7 @@ export default async function Home({ params }: IMainPageProps) {
       <ul className={styles.list}>
         {res?.map(product => (
           <li key={product.id} className={styles.item}>
-            <h1>{product.productName}</h1>
+            <h2>{product.productName}</h2>
             <p>{product.description}</p>
             <p>{product.price}</p>
           </li>
