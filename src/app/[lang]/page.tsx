@@ -6,6 +6,21 @@ import { openGraphBase } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import { sendOrderMessage } from "@/libs/api/telegram.api";
+
+export async function generateMetadata({
+  params,
+}: IMainPageProps): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical: `/`,
+    },
+    openGraph: {
+      ...openGraphBase,
+      locale: params.lang,
+    },
+  };
+}
 
 export async function generateMetadata({
   params,
@@ -24,6 +39,8 @@ export async function generateMetadata({
 export default async function Home({ params }: IMainPageProps) {
   const res = await getAllProducts(params.lang);
   const dictionary = await getDictionary(params.lang);
+
+  sendOrderMessage("6787003082", "Hello, Andrii");
 
   return (
     <main className={cn("container", styles.main)}>
