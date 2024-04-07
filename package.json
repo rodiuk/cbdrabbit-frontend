@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma db push && next build",
+    "prebuild": "npx prisma db push",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,6 +15,8 @@
     "@prisma/client": "^5.11.0",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.0.25",
+    "jotai": "^2.7.2",
     "negotiator": "^0.6.3",
     "next": "14.1.4",
     "next-auth": "^4.24.7",

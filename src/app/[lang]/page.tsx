@@ -1,26 +1,12 @@
 import { Metadata } from "next";
 import { getAllProducts } from "@/libs/api/products.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { getDictionary } from "@/libs/18n/getDictionary";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { ProductCard } from "@/components/ProductCard/ProductCard";
+import { IProductRes } from "@/interfaces/product.interface";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import { sendOrderMessage } from "@/libs/api/telegram.api";
-
-export async function generateMetadata({
-  params,
-}: IMainPageProps): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/`,
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
-}
 
 export async function generateMetadata({
   params,
@@ -37,23 +23,25 @@ export async function generateMetadata({
 }
 
 export default async function Home({ params }: IMainPageProps) {
-  const res = await getAllProducts(params.lang);
-  const dictionary = await getDictionary(params.lang);
-
-  sendOrderMessage("6787003082", "Hello, Andrii");
+  const products = await getAllProducts(params.lang);
 
   return (
-    <main className={cn("container", styles.main)}>
-      <h1>{dictionary["home"].title}</h1>
-      <ul className={styles.list}>
-        {res?.map(product => (
-          <li key={product.id} className={styles.item}>
-            <h2>{product.productName}</h2>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-          </li>
-        ))}
-      </ul>
+    <main className={cn(styles.container)}>
+      <div className={styles.s_home_bg1}></div>
+      <div className={styles.s_home_bg2} />
+      <div className="container">
+        <div className="row">
+          <ul className={styles.products}>
+            {products?.map(product => (
+              <ProductCard
+                key={product.id}
+                product={product as unknown as IProductRes}
+                lang={params.lang}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
     </main>
   );
 }

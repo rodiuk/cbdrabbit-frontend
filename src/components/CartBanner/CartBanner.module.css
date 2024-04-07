@@ -1,0 +1,66 @@
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+
+  border-radius: 24px 24px 0px 0px;
+  background: #fff;
+  box-shadow: 4px -10px 30px 0px rgba(66, 98, 59, 0.12);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.amount {
+  color: var(--primary-color);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.27;
+}
+
+.button {
+  display: flex;
+  padding: 15px 20px 15px 28px;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 50px;
+  background: var(--primary-color);
+
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.icon {
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 540px;
+  }
+}

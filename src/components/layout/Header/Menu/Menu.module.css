@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  padding: 12px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.container:hover {
+  cursor: pointer;
+}

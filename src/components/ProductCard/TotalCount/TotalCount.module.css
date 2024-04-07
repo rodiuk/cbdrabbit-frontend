@@ -1,0 +1,18 @@
+.container {
+  all: unset;
+  display: flex;
+  max-width: 150px;
+  padding: 0px 5px;
+  margin: 0 auto;
+
+  color: #112a0b;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.disabled {
+  color: #98979a;
+}

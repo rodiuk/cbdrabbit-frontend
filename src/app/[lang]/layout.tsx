@@ -3,11 +3,15 @@ import { Providers } from "./providers";
 import { appConfig } from "@/configs/app.config";
 import { Scripts } from "@/components/layout/Scripts";
 import { Header } from "@/components/layout/Header/Header";
-import { Footer } from "@/components/layout/Footer/Footer";
 import { i18n } from "../../../i18n.config";
 import { IPageProps } from "@/interfaces/page.interface";
+import { getDictionary } from "@/libs/18n/getDictionary";
+import dynamic from "next/dynamic";
+
+const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"));
 
 import { fonts } from "./fonts";
+import cn from "clsx";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,16 +25,26 @@ export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ lang: locale }));
 }
 
-export default function RootLayout({ children, params }: Readonly<IPageProps>) {
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<IPageProps>) {
   const isProduction = process.env.NODE_ENV === "production";
+  const dict = await getDictionary(params.lang);
 
   return (
     <html lang={params.lang}>
-      <body className={fonts.roboto.variable}>
+      <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
         <Providers>
-          <Header />
+          <Header lang={params.lang} />
           {children}
-          <Footer />
+          {/* <Footer /> */}
+          <CartBanner
+            currency={dict.currency}
+            lang={params.lang}
+            checkoutLabel={dict.cartBanner.checkoutLabel}
+            buttonLabel={dict.cartBanner.checkoutButton}
+          />
         </Providers>
 
         {/* Scripts list with analytics and etc. */}

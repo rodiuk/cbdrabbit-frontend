@@ -1,5 +1,40 @@
 .container {
   display: flex;
-  padding: 10px 30px;
-  justify-content: space-between;
+  padding: 16px 30px;
+  height: 76px;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+  position: relative;
+}
+
+.navigation {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  width: auto;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 12px;
+  /* margin-left: auto; */
+  align-items: center;
+  z-index: 3;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 8px 30px;
+  }
+
+  .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(155, 210, 143, 0.4);
+    filter: blur(6px);
+  }
 }

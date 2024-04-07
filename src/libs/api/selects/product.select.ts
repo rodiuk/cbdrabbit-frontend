@@ -16,5 +16,8 @@ export const productSelect: Prisma.ProductSelect = {
       label: true,
       image: true,
     },
+    orderBy: {
+      createdAt: "asc",
+    },
   },
 };

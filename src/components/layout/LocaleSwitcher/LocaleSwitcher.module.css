@@ -1,15 +1,67 @@
 .container {
+  position: relative;
+  color: #69332b;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.container:hover .arrow {
+  transform: rotate(-180deg);
+}
+
+.arrow {
+  transition: transform 0.3s;
+}
+
+.icon {
+  color: #69332b;
+}
+
+.current_container {
   display: flex;
-  list-style: none;
-  gap: 5px;
-}
-
-.locale {
-  padding: 5px;
-  font-weight: 700;
+  align-items: center;
+  gap: 10px;
   text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
 }
 
-.active {
-  color: teal;
+.current_lang {
+  display: flex;
+  align-items: center;
+}
+
+.locales {
+  position: absolute;
+  top: 24px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  opacity: 0;
+  transform: translateY(-20%);
+  pointer-events: none;
+
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.locales li {
+  padding: 5px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.locales li:hover {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.container:hover > .locales {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }
