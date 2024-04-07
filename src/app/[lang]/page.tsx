@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { getAllProducts } from "@/libs/api/products.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";
