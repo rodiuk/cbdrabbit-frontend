@@ -1,6 +1,6 @@
 "use server";
 
-import { IProductCreate } from "@/interfaces/product.interface";
+import { IProductCreate, IProductRes } from "@/interfaces/product.interface";
 import prisma from "@/libs/client/prisma.client";
 import { productSelect } from "./selects/product.select";
 

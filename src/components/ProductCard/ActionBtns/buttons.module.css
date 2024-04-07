@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #42623b;
+
+  border-radius: 99px;
+  background: #9bd28f;
+  border: 1px solid #9bd28f;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.disabled {
+  border: 1px solid #cbcbcb;
+  background: none;
+  cursor: not-allowed;
+  color: #cbcbcb;
+}
+
+.icon {
+  color: inherit;
+}

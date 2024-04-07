@@ -1,35 +1,57 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { i18n } from "../../../../i18n.config";
+import LocaleIcon from "@/components/icons/Locale";
+import SwitcherArrowIcon from "@/components/icons/SwitcherArrow";
 
 import cn from "clsx";
 import styles from "./LocaleSwitcher.module.css";
 
-export default function LocaleSwitcher() {
-  const pathName = usePathname();
+interface Props {
+  current: string;
+}
+
+export const LocaleSwitcher = (props: Props) => {
+  const { current } = props;
+  const router = useRouter();
+  const pathname = usePathname();
 
   const redirectedPathName = (locale: string) => {
-    if (!pathName) return "/";
-    const segments = pathName.split("/");
+    if (!pathname) return "/";
+    const segments = pathname.split("/");
     segments[1] = locale;
     return segments.join("/");
   };
 
-  return (
-    <ul className={styles.container}>
-      {i18n.locales.map(locale => {
-        return (
-          <li key={locale} className={cn(styles.locale, {
-            [styles.active]: pathName.startsWith(`/${locale}`),
-          })}>
-            <Link href={redirectedPathName(locale)} className="">
-              {locale}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+  const filteredLocales = i18n?.locales?.filter(
+    locale => locale.toLowerCase() !== current.toLowerCase()
   );
-}
+  const hasAnotherLocale = filteredLocales?.length > 0;
+
+  const handleChangeLocale = (locale: string) => {
+    const localePath = redirectedPathName(locale.toLowerCase());
+    router.push(localePath);
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.current_container}>
+        <LocaleIcon iconStyle={styles.icon} />
+        <div className={styles.current_lang}>
+          {current}
+          <SwitcherArrowIcon iconStyle={cn(styles.arrow, styles.icon)} />
+        </div>
+      </div>
+      {hasAnotherLocale && (
+        <ul className={styles.locales}>
+          {filteredLocales?.map(locale => (
+            <li key={locale} onClick={() => handleChangeLocale(locale)}>
+              {locale}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
