@@ -1,0 +1,76 @@
+.label {
+	display: block;
+	position: relative;
+	margin: 15px 0;
+}
+.label:last-child {
+	margin-bottom: 0;
+}
+.label.error input {
+	border: 2px solid #FF1111 !important;
+}
+.label p.error {
+	color: #f11;
+	font-size: 16px;
+}
+.label .label_ttl {
+	margin-bottom: 5px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.label .label_ttl .oldPass {
+	position: absolute;
+	right: 0;
+	top: 2px;
+	font-size: 16px;
+	color: #42623B; /* В SASS переменная $a не определена */
+}
+.label.radio {
+	display: flex;
+	padding-left: 30px;
+	position: relative;
+}
+.label.radio .label_ttl {
+	margin-bottom: 0;
+}
+.label.radio input {
+	display: none;
+}
+.label.radio::before {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #D2D4DF;
+	left: 0;
+	top: calc(50% - 10px);
+}
+.label.radio.active::before {
+	border: 6px solid #42623B; /* В SASS переменная $a не определена */
+}
+input[type="text"].input, input[type="password"].input{
+		height: 58px;
+	border-radius: 20px;
+	border: 2px solid transparent;
+	font-size: 16px;
+	display: block;
+	width: 100%;
+	text-indent: 16px;
+	background: #D4D4D433;
+	border: none;
+}
+.pass {
+	position: absolute;
+	right: 19px;
+	bottom: 14px;
+	cursor: pointer;
+}
+.right_text {
+	display: block;
+	flex-grow: 1;
+	text-align: right;
+	color: var(--primary-color);
+	font-size: 16px;
+}
