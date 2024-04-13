@@ -2,7 +2,7 @@
   display: flex;
   padding: 16px 30px;
   height: 76px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   margin: 0 auto;
@@ -11,7 +11,7 @@
 
 .navigation {
   position: absolute;
-  right: 30px;
+  right: 16px;
   top: 50%;
   width: auto;
   transform: translateY(-50%);

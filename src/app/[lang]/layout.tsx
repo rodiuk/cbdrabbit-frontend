@@ -38,7 +38,6 @@ export default async function RootLayout({
         <Providers>
           <Header lang={params.lang} />
           {children}
-          {/* <Footer /> */}
           <CartBanner
             currency={dict.currency}
             lang={params.lang}
@@ -47,7 +46,6 @@ export default async function RootLayout({
           />
         </Providers>
 
-        {/* Scripts list with analytics and etc. */}
         {isProduction && <Scripts />}
       </body>
     </html>

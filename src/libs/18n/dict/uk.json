@@ -1,11 +1,71 @@
 {
-  "header": {},
+  "header": {
+    "titles": {
+      "signIn": "Вхід",
+      "signUp": "Реєстрація",
+      "checkout": "Оформлення",
+      "success": "Успіх",
+      "profile": "Мій профіль",
+      "orders": "Мої замовлення",
+      "contacts": "Контакти",
+      "cooperation": "Співпраця",
+      "blog": "Блог",
+      "post": "Стаття",
+      "about": "Про нас",
+      "whereToBuy": "Де придбати в живу?"
+    }
+  },
   "footer": {},
   "currency": "₴",
   "cartBanner": {
     "checkoutLabel": "До оплати:",
     "checkoutButton": "Оформити"
   },
+  "auth": {
+    "activate": {
+      "title": "Ви отримали персональну знижку на усі покупки",
+      "subTitle": "Акаунт успішно створено!",
+      "button": "Гайда по цукерки!"
+    },
+    "successSignUp": {
+      "title": "Реєстрація",
+      "subTitle": "Ми відправили лист для підтвердження вашої пошти",
+      "description": "Перейдіть за посиланням у листі, щоб зареєструвати акаунт",
+      "button": "На пошту"
+    },
+    "signInEmail": {
+      "title": "Вхід",
+      "inputLabel": "Email",
+      "inputPlaceholder": "Введіть email",
+      "button": "Далі"
+    },
+    "signInPassword": {
+      "title": "Вхід в акаунт",
+      "inputLabel": "Пароль",
+      "inputPlaceholder": "Введіть пароль",
+      "error": "Неправильно введений пароль або email. Спробуйте ще раз",
+      "buttonSignIn": "Увійти",
+      "buttonBack": "Назад"
+    },
+    "signUpPassword": {
+      "title": "Придумайте пароль для акаунта",
+      "firstInputPlaceholder": "Введи пароль",
+      "secondInputPlaceholder": "Підтверди новий пароль",
+      "buttonSignUp": "Створити акаунт"
+    },
+    "signInNotExist": {
+      "title": "Такого email не зареєстровано",
+      "description": "Бажаєте <strong>зареєструватися</strong> і отримати <strong>знижку</strong> на цукерки?",
+      "buttonSignUp": "Реєстрація",
+      "buttonBack": "Назад"
+    },
+    "lastChance": {
+      "title": "Це твій останній шанс. Далі вже не буде вороття...",
+      "description": "Вибереш червону цукерку - залишишся в дивокраї, вибереш жовту - те ж саме, але бананова",
+      "button": "Беру дві"
+    }
+  },
+
   "home": {
     "title": "Привіт, ми CBD Rabbit",
     "product": {

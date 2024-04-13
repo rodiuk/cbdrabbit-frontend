@@ -1,0 +1,30 @@
+.container {
+  position: relative;
+  z-index: 2;
+  height: 60px;
+}
+
+.desktop_home_logo {
+  display: none;
+}
+
+.mobile_home_logo {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .desktop_home_logo {
+    display: block;
+  }
+
+  .mobile_home_logo {
+    display: none;
+  }
+
+  .home_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

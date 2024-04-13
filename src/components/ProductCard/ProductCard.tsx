@@ -6,11 +6,11 @@ import { ArrowRightIcon } from "../icons/ArrowRight";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { ActionBar } from "./ActionBar/ActionBar";
-
-import styles from "./ProductCard.module.css";
 import { DiscountInfo } from "./DiscountInfo/DiscountInfo";
 import { ArrowRightFilterIcon } from "../icons/ArrowRightFilter";
 import { RabbitEarIcon } from "../icons/RabbitEar";
+
+import styles from "./ProductCard.module.css";
 
 interface Props {
   product: IProductRes;
