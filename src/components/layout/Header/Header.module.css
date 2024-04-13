@@ -8,7 +8,26 @@
   margin: 0 auto;
   position: relative;
 }
-
+.header {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 999;
+}
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #9BD28F, #D5D376); /* Замени 'your-background-image.jpg' на путь к фоновому изображению */
+    background: linear-gradient(to right, #9BD28F, #FDD466); /* Замени 'your-background-image.jpg' на путь к фоновому изображению */
+    filter: blur(5px); /* Размытие */
+    z-index: -1;
+	opacity: 0.6;
+}
 .navigation {
   position: absolute;
   right: 30px;
@@ -27,7 +46,7 @@
     padding: 8px 30px;
   }
 
-  .container::after {
+  /* .container::after {
     content: "";
     position: absolute;
     top: 0;
@@ -36,5 +55,5 @@
     bottom: 0;
     background: rgba(155, 210, 143, 0.4);
     filter: blur(6px);
-  }
+  } */
 }

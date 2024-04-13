@@ -13,13 +13,15 @@ interface Props {
 
 export const Header = ({ lang }: Props): React.JSX.Element => {
   return (
-    <header className={cn("container", styles.container)}>
-      <HomeLogo lang={lang} />
-      <nav className={styles.navigation}>
-        <LocaleSwitcher current={lang} />
-        <Cart lang={lang} />
-        <Menu />
-      </nav>
-    </header>
+    <div className={styles.header}>
+      <header className={cn("container", styles.container)}>
+        <HomeLogo lang={lang} />
+        <nav className={styles.navigation}>
+          <LocaleSwitcher current={lang} />
+          <Cart lang={lang} />
+          <Menu />
+        </nav>
+      </header>
+    </div>
   );
 };
