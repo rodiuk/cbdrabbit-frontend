@@ -10,7 +10,7 @@ import cn from "clsx";
 import styles from "./page.module.css";
 
 import Image from "next/image";
-import bg1 from "./img/bg1.svg";
+import bg1 from "/public/img/bg1.svg";
 
 export async function generateMetadata({
   params,
