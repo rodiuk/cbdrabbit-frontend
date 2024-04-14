@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAtom, useStore } from "jotai";
+import { useAtom } from "jotai";
 import { addProductToCartAtom } from "@/libs/store/atoms";
 import { Product } from "@prisma/client";
 import { PlusIcon } from "@/components/icons/Plus";
@@ -13,9 +13,7 @@ interface Props {
 }
 
 export const IncrementCart = ({ product }: Props) => {
-  const [_, add] = useAtom(addProductToCartAtom, {
-    store: useStore(),
-  });
+  const [_, add] = useAtom(addProductToCartAtom);
 
   return (
     <button onClick={() => add(product)} className={styles.container}>

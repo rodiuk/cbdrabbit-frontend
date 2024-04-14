@@ -1,20 +1,23 @@
 import React from "react";
-import { HomeLogo } from "./HomeLogo/HomeLogo";
 import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
+import { Cart } from "./Cart/Cart";
+import { Menu } from "./Menu/Menu";
+import { LogoContainer } from "./Logo/LogoContainer";
+import { Locale } from "../../../../i18n.config";
+import { PageTitle } from "./PageTitle/PageTitle";
 
 import cn from "clsx";
 import styles from "./Header.module.css";
-import { Cart } from "./Cart/Cart";
-import { Menu } from "./Menu/Menu";
 
 interface Props {
-  lang: string;
+  lang: Locale;
 }
 
 export const Header = ({ lang }: Props): React.JSX.Element => {
   return (
-    <header className={cn("container", styles.container)}>
-      <HomeLogo lang={lang} />
+    <header className={cn("container", styles.container, styles.header)}>
+      <LogoContainer lang={lang} />
+      <PageTitle lang={lang} />
       <nav className={styles.navigation}>
         <LocaleSwitcher current={lang} />
         <Cart lang={lang} />

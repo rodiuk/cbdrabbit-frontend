@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAtom, useStore } from "jotai";
+import { useAtom } from "jotai";
 import { getAllProductsAtom, changeProductCountAtom } from "@/libs/store/atoms";
 import { IProductRes } from "@/interfaces/product.interface";
 
@@ -13,12 +13,9 @@ interface Props {
 }
 
 export const TotalCount = ({ product }: Props): React.JSX.Element => {
-  const [products, _] = useAtom(getAllProductsAtom, {
-    store: useStore(),
-  });
-  const [, changeCount] = useAtom(changeProductCountAtom, {
-    store: useStore(),
-  });
+  const [products, _] = useAtom(getAllProductsAtom);
+  const [, changeCount] = useAtom(changeProductCountAtom);
+
   const count = products.find(p => p.id === product.id)?.count ?? 0;
   const [localCount, setLocalCount] = React.useState<string>(count.toString());
 
@@ -46,6 +43,7 @@ export const TotalCount = ({ product }: Props): React.JSX.Element => {
       })}
       value={localCount}
       onChange={handleChange}
+      suppressHydrationWarning
     />
   );
 };

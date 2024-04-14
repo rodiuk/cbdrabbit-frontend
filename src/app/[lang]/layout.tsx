@@ -8,7 +8,9 @@ import { IPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import dynamic from "next/dynamic";
 
-const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"));
+const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
+  ssr: false,
+});
 
 import { fonts } from "./fonts";
 import cn from "clsx";
@@ -33,12 +35,12 @@ export default async function RootLayout({
   const dict = await getDictionary(params.lang);
 
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} suppressHydrationWarning>
       <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
         <Providers>
           <Header lang={params.lang} />
           {children}
-          {/* <Footer /> */}
+
           <CartBanner
             currency={dict.currency}
             lang={params.lang}
@@ -47,7 +49,6 @@ export default async function RootLayout({
           />
         </Providers>
 
-        {/* Scripts list with analytics and etc. */}
         {isProduction && <Scripts />}
       </body>
     </html>

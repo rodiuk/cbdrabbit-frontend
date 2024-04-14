@@ -1,19 +1,28 @@
 import { Product } from "@prisma/client";
 import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import { calculatePrice } from "@/utils/calculatePrice";
 import { Cart } from "@/interfaces/store.interface";
 import { IProductRes } from "@/interfaces/product.interface";
 
-const initialCartState = {
+export const initialCartState = {
   products: [],
   totalAmount: 0,
   totalCount: 0,
   newPrice: 0,
 };
 
+const storage = typeof window !== "undefined" ? window.localStorage : null;
+
 // Cart atom
-const cartAtom = atomWithStorage<Cart>("cart", initialCartState);
+const cartAtom = atomWithStorage<Cart>(
+  "cart",
+  initialCartState,
+  { ...createJSONStorage(() => storage as Storage) },
+  {
+    getOnInit: true,
+  }
+);
 
 // Add product to cart
 const addProductToCartAtom = atom(

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
+import { ArrowDownIcon } from "@/components/icons/ArrowDown";
+import { AnimatePresence, motion } from "framer-motion";
 
 import cn from "clsx";
 import styles from "./DiscountInfo.module.css";
-import { ArrowDownIcon } from "@/components/icons/ArrowDown";
-import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   label: string;
