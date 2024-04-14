@@ -15,7 +15,7 @@ interface Props {
 
 export const Header = ({ lang }: Props): React.JSX.Element => {
   return (
-    <header className={cn("container", styles.container)}>
+    <header className={cn("container", styles.container, styles.header)}>
       <LogoContainer lang={lang} />
       <PageTitle lang={lang} />
       <nav className={styles.navigation}>

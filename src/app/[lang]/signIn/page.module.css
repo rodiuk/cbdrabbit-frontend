@@ -5,4 +5,6 @@
   align-items: center;
   padding: 10px 30px;
   min-height: calc(100vh - 38px - 38px);
+
+  padding-top: 150px;
 }

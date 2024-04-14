@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import EyeClosed from "@/components/icons/EyeClosed";
-import EyeOpened from "@/components/icons/EyeOpened";
-
 import cn from "clsx";
 import s from "./s.module.css";
+import EyeClosed from "@/components/icons/EyeClosed";
+import EyeOpened from "@/components/icons/EyeOpened";
 
 interface InputProps {
   text?: string;
@@ -14,26 +13,26 @@ interface InputProps {
   placeholder?: string;
   password?: boolean;
   isPassword?: boolean;
-  value?: string;
-  onInputChange?: (value: string) => void;
 }
 
-const Input: React.FC<InputProps> = ({
+const InputNovaPoshta: React.FC<InputProps> = ({
   text,
   required,
   password,
   isPassword,
-  value,
-  onInputChange,
   ...input
 }) => {
+  const [value, setValue] = React.useState("");
   const [type, setType] = React.useState(input.type);
 
-  const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onInputChange) onInputChange(e.target.value);
+  // const [validate, setValidate] = React.useState(true)
+
+  const handlerInput = (e: any) => {
+    setValue(e.target.value);
+    //setValidate(true)
   };
 
-  const handlerClick = (el: string) => {
+  const handkerClick = (el: string) => {
     setType(el);
   };
 
@@ -45,7 +44,7 @@ const Input: React.FC<InputProps> = ({
     >
       <p className={s.label_ttl}>
         {text}
-        {required && <span className="red">*</span>}
+        {required && <span className={s.red}>*</span>}
         {isPassword && (
           <span className={s.right_text}>Забув пароль? {password}</span>
         )}
@@ -57,21 +56,9 @@ const Input: React.FC<InputProps> = ({
         type={type}
         value={value}
       />
-      {isPassword && (
-        <>
-          {type === "text" ? (
-            <div className={s.pass} onClick={() => handlerClick("password")}>
-              <EyeClosed />
-            </div>
-          ) : (
-            <div className={s.pass} onClick={() => handlerClick("text")}>
-              <EyeOpened />
-            </div>
-          )}
-        </>
-      )}
+
     </label>
   );
 };
 
-export default Input;
+export default InputNovaPoshta;

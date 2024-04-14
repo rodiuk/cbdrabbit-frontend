@@ -16,7 +16,9 @@ export const GoogleButton = ({ label }: Props): React.JSX.Element => {
       type="button"
       aria-label={label}
       className={styles.container}
-      onClick={() => signIn("google", { redirect: true, callbackUrl: "/" })}
+      onClick={() =>
+        signIn("google", { redirect: true, callbackUrl: "/profile" })
+      }
     >
       <GoogleIcon />
       {label}
