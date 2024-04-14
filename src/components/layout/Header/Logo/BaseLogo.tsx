@@ -10,7 +10,7 @@ interface Props {
 
 export const BaseLogo = ({ lang }: Props): React.JSX.Element => {
   return (
-    <Link href={`/${lang}/`} className={styles.container}>
+    <Link href={`/${lang}`} className={styles.container}>
       <BaseLogoIcon />
     </Link>
   );

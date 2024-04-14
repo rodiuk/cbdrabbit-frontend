@@ -8,6 +8,7 @@ import { IProductRes } from "@/interfaces/product.interface";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   params,

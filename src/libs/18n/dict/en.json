@@ -37,13 +37,16 @@
       "title": "Sign In",
       "inputLabel": "Email",
       "inputPlaceholder": "Enter email",
-      "button": "Next"
+      "button": "Next",
+      "buttonGoogle": "Sign in with Google",
+      "buttonDividerLabel": "or"
     },
     "signInPassword": {
       "title": "Account Sign In",
       "inputLabel": "Password",
       "inputPlaceholder": "Enter password",
       "error": "Incorrect password or email entered. Please try again",
+      "errorNotActivated": "Your account is not activated. Please check your email",
       "buttonSignIn": "Sign In",
       "buttonBack": "Back"
     },
@@ -51,7 +54,8 @@
       "title": "Create a password for the account",
       "firstInputPlaceholder": "Enter password",
       "secondInputPlaceholder": "Confirm new password",
-      "buttonSignUp": "Create Account"
+      "buttonSignUp": "Create Account",
+      "error": "Passwords do not match. Please try again."
     },
     "signInNotExist": {
       "title": "Email Not Registered",

@@ -1,45 +1,73 @@
+"use client";
+
 import React from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";
-import { Locale } from "../../../../i18n.config";
-import { getDictionary } from "@/libs/18n/getDictionary";
+import { ISignInPasswordDict } from "@/interfaces/auth.interface";
+import { isAccountActivated } from "@/libs/api/user.api";
 
 import cn from "clsx";
 import styles from "./styles.module.css";
 
 interface Props {
-  lang: Locale;
+  dict: ISignInPasswordDict;
 }
 
-export const SignInPassword = async (
-  props: Props
-): Promise<React.JSX.Element> => {
-  const { lang } = props;
+export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const userEmail = searchParams?.get("email");
+  const [notValid, setNotValid] = React.useState<boolean>(false);
+  const [password, setPassword] = React.useState<string>("");
+  const [notActivated, setNotActivated] = React.useState<boolean>(false);
 
-  const { signInPassword } = (await getDictionary(lang)).auth;
+  const handleSignIn = async () => {
+    setNotActivated(false);
+    setNotValid(false);
+    if (!password || !userEmail) return setNotValid(true);
 
-  const userEmail = "newzaychyik@gmail.com";
+    const isAccActive = await isAccountActivated(userEmail);
+
+    if (!isAccActive) return setNotActivated(true);
+
+    const serverResult = await signIn("credentials", {
+      redirect: false,
+      email: userEmail,
+      password: password,
+    });
+
+    if (serverResult?.error || !serverResult?.ok) return setNotValid(true);
+
+    router.push("/profile");
+  };
 
   return (
     <section className={styles.lay_item}>
-      <h1 className={styles.ttl}>{signInPassword.title}</h1>
+      <h1 className={styles.ttl}>{dict.title}</h1>
       <p className={styles.descr}>{userEmail}</p>
       <Input
-        type="text"
-        text={signInPassword.inputLabel}
-        placeholder={signInPassword.inputPlaceholder}
+        type="password"
+        text={dict.inputLabel}
+        placeholder={dict.inputPlaceholder}
         isPassword
         password={true}
+        value={password}
+        onInputChange={setPassword}
       />
 
-      {true && <p className={styles.error}>{signInPassword.error}</p>}
+      {notValid && <p className={styles.error}>{dict.error}</p>}
+      {notActivated && <p className={styles.error}>{dict.errorNotActivated}</p>}
+
       <div className={cn(styles.bb, styles.two_button)}>
         <Button
-          text={signInPassword.buttonBack}
+          text={dict.buttonBack}
           className="white_button"
           iconLeft={true}
+          handleClick={() => router.back()}
         />
-        <Button text={signInPassword.buttonSignIn} />
+        <Button text={dict.buttonSignIn} handleClick={handleSignIn} />
       </div>
     </section>
   );

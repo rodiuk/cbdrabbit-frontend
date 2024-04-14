@@ -82,6 +82,11 @@
   font-family: var(--font-merriweather);
 }
 
+.divider_label {
+  display: flex;
+  margin: 10px auto;
+}
+
 @media (min-width: 769px) {
   .lay_item {
     width: 585px;

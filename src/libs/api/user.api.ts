@@ -37,7 +37,7 @@ export const createGoogleUser = async (
 ) => {
   try {
     const user = await prisma.user.create({
-      data: userData,
+      data: { ...userData, isActive: true },
     });
 
     return user;
@@ -48,7 +48,7 @@ export const createGoogleUser = async (
 
 export const createUser = async (userData: ICreateUser) => {
   try {
-    if (!userData?.password) throw new Error("Password is required");
+    if (!userData?.password) return { error: "Password is required" };
 
     const hashPassword = await hash(userData.password, 10);
     userData.password = hashPassword;
@@ -60,7 +60,7 @@ export const createUser = async (userData: ICreateUser) => {
         },
       });
 
-      if (isUserExist) throw new Error("User already exist");
+      if (isUserExist) return { error: "User already exist" };
 
       const user = await prisma.user.create({
         data: userData,
@@ -111,9 +111,7 @@ export const updatePassword = async (
 
       const isPasswordMatch = await compare(currentPassword, user.password);
 
-      if (!isPasswordMatch) {
-        throw new Error("Current password is incorrect");
-      }
+      if (!isPasswordMatch) return { error: "Current password is incorrect" };
 
       const hashNewPassword = await hash(newPassword, 10);
 
@@ -130,6 +128,23 @@ export const updatePassword = async (
     });
 
     return transaction;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const isAccountActivated = async (userEmail: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+      select: {
+        isActive: true,
+      },
+    });
+
+    return user?.isActive ?? false;
   } catch (error) {
     throw error;
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAtom, useStore } from "jotai";
+import { useAtom } from "jotai";
 import { getProductNewPriceAtom } from "@/libs/store/atoms";
 
 import cn from "clsx";
@@ -12,27 +12,29 @@ interface Props {
   currency: string;
 }
 
-export const ProductPrice = ({
+const ProductPrice = ({
   currentPrice: defaultPrice,
   currency,
-}: Props): React.JSX.Element => {
-  const [newPrice] = useAtom(getProductNewPriceAtom, {
-    store: useStore(),
-  });
+}: Props): React.JSX.Element | null => {
+  const [newPrice] = useAtom(getProductNewPriceAtom);
 
-  const hasNewPrice = newPrice !== 80 && newPrice !== 0;
+  const hasPriceChange = React.useMemo(() => {
+    return newPrice !== 80 && newPrice !== 0;
+  }, [newPrice]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} suppressHydrationWarning>
       <p
         className={cn(styles.current, {
-          [styles.crossed]: hasNewPrice,
+          [styles.crossed]: hasPriceChange,
         })}
       >
         {defaultPrice}
       </p>
-      {hasNewPrice && <p className={styles.sale}>{newPrice}</p>}
+      {hasPriceChange && <p className={styles.sale}>{newPrice}</p>}
       {currency}
     </div>
   );
 };
+
+export default ProductPrice;

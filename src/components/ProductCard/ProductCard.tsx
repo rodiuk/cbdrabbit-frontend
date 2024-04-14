@@ -1,14 +1,20 @@
 import React from "react";
 import Image from "next/image";
-import { ProductPrice } from "./ProductPrice/ProductPrice";
+import dynamic from "next/dynamic";
 import { IProductRes } from "@/interfaces/product.interface";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import { ActionBar } from "./ActionBar/ActionBar";
 import { DiscountInfo } from "./DiscountInfo/DiscountInfo";
 import { ArrowRightFilterIcon } from "../icons/ArrowRightFilter";
 import { RabbitEarIcon } from "../icons/RabbitEar";
+
+const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
+  ssr: false,
+});
+const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
+  ssr: false,
+});
 
 import styles from "./ProductCard.module.css";
 
@@ -67,7 +73,6 @@ export const ProductCard = async ({
         <div className={styles.divider} />
 
         <ActionBar product={product} />
-
         <DiscountInfo
           label={home.product.discountLabel}
           discountList={home.product.discountList}

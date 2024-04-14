@@ -26,8 +26,8 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
 
   const content = useMemo(() => {
     return {
-      [`/${lang}/auth`]: titles?.signIn,
-      [`/${lang}/auth?type=signup`]: titles?.signUp,
+      [`/${lang}/signIn`]: titles?.signIn,
+      [`/${lang}/signUp`]: titles?.signUp,
       [`/${lang}/checkout`]: titles?.checkout,
       [`/${lang}/checkout?type=success`]: titles?.success,
       [`/${lang}/profile`]: titles?.profile,

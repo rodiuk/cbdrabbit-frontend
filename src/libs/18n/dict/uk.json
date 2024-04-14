@@ -37,13 +37,16 @@
       "title": "Вхід",
       "inputLabel": "Email",
       "inputPlaceholder": "Введіть email",
-      "button": "Далі"
+      "button": "Далі",
+      "buttonGoogle": "Ввійти через Google",
+      "buttonDividerLabel": "або"
     },
     "signInPassword": {
       "title": "Вхід в акаунт",
       "inputLabel": "Пароль",
       "inputPlaceholder": "Введіть пароль",
       "error": "Неправильно введений пароль або email. Спробуйте ще раз",
+      "errorNotActivated": "Ваш акаунт є неактивованим. Будь ласка, перевірте Вашу пошту",
       "buttonSignIn": "Увійти",
       "buttonBack": "Назад"
     },
@@ -51,7 +54,8 @@
       "title": "Придумайте пароль для акаунта",
       "firstInputPlaceholder": "Введи пароль",
       "secondInputPlaceholder": "Підтверди новий пароль",
-      "buttonSignUp": "Створити акаунт"
+      "buttonSignUp": "Створити акаунт",
+      "error": "Паролі не співпадають. Спробуйте ще раз"
     },
     "signInNotExist": {
       "title": "Такого email не зареєстровано",
