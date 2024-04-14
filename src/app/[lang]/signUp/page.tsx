@@ -91,13 +91,13 @@ export default function SignUp() {
 		<div className={styles.lay_item}>
 			<div className={styles.ttl}>Придумайте пароль для акаунта</div>
 			<div className={styles.descr}>new****@gmail.com</div>
-			<Input type="text" placeholder="Введи пароль" password={true} />
-			<Input type="text" placeholder="Підтверди новий пароль" password={true} />
+			<Input type="text" placeholder="Введи пароль" isPassword password={true} />
+			<Input type="text" placeholder="Підтверди новий пароль" isPassword password={true} />
 			<div className={styles.bb}>
 				<Button text="Створити акаунт" />
 			</div>
 		</div>
-
+ 
 		<div className={styles.lay_item}>
 			<div className={styles.ttl}>Вхід (удалить)</div>
 			<div className={styles.img_center}>

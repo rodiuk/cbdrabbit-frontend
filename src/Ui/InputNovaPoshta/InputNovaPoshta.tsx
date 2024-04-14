@@ -15,7 +15,7 @@ interface InputProps {
   isPassword?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
+const InputNovaPoshta: React.FC<InputProps> = ({
   text,
   required,
   password,
@@ -44,7 +44,7 @@ const Input: React.FC<InputProps> = ({
     >
       <p className={s.label_ttl}>
         {text}
-        {required && <span className="red">*</span>}
+        {required && <span className={s.red}>*</span>}
         {isPassword && (
           <span className={s.right_text}>Забув пароль? {password}</span>
         )}
@@ -57,21 +57,8 @@ const Input: React.FC<InputProps> = ({
         value={value}
       />
 
-      {isPassword && (
-        <>
-          {type === "text" ? (
-            <div className={s.pass} onClick={() => handkerClick("password")}>
-              <EyeClosed />
-            </div>
-          ) : (
-            <div className={s.pass} onClick={() => handkerClick("text")}>
-              <EyeOpened />
-            </div>
-          )}
-        </>
-      )}
     </label>
   );
 };
 
-export default Input;
+export default InputNovaPoshta;
