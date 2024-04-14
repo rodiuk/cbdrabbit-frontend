@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { IProductRes } from "@/interfaces/product.interface";
 import { DecrementCart } from "../ActionBtns/DecrementCart";
@@ -10,7 +12,7 @@ interface Props {
   product: IProductRes;
 }
 
-export const ActionBar = ({ product }: Props): React.JSX.Element => {
+const ActionBar = ({ product }: Props): React.JSX.Element => {
   return (
     <div className={styles.container}>
       <DecrementCart product={product} />
@@ -19,3 +21,5 @@ export const ActionBar = ({ product }: Props): React.JSX.Element => {
     </div>
   );
 };
+
+export default ActionBar;

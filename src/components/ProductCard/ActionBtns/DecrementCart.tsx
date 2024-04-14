@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAtom, useStore } from "jotai";
+import { useAtom } from "jotai";
 import {
   getAllProductsAtom,
   removeProductFromCartAtom,
@@ -17,20 +17,16 @@ interface Props {
 }
 
 export const DecrementCart = ({ product }: Props) => {
-  const [, remove] = useAtom(removeProductFromCartAtom, {
-    store: useStore(),
-  });
-  const [products] = useAtom(getAllProductsAtom, {
-    store: useStore(),
-  });
+  const [, remove] = useAtom(removeProductFromCartAtom);
+  const [products] = useAtom(getAllProductsAtom);
 
-  const count = products.find(p => p.id === product.id)?.count ?? 0;
+  const count = products.find(p => p.id === product.id)?.count;
 
   return (
     <button
       onClick={() => remove(product)}
       className={cn(styles.container, {
-        [styles.disabled]: count <= 0,
+        [styles.disabled]: count && count <= 0,
       })}
     >
       <MinusIcon iconStyle={styles.icon} />

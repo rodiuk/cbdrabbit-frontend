@@ -2,11 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { useAtom, useStore } from "jotai";
+import { useAtom } from "jotai";
 import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { ArrowRightIcon } from "../icons/ArrowRight";
-import { AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import styles from "./CartBanner.module.css";
 
@@ -19,9 +18,7 @@ interface Props {
 
 const CartBanner = (props: Props): React.JSX.Element | null => {
   const { currency, checkoutLabel, buttonLabel, lang } = props;
-  const [total] = useAtom(getTotalPriceAtom, {
-    store: useStore(),
-  });
+  const [total] = useAtom(getTotalPriceAtom);
 
   return (
     <AnimatePresence mode="wait">
@@ -37,7 +34,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
             <h3 className={styles.label}>{checkoutLabel}</h3>
             <p className={styles.amount}>{`${total} ${currency}`}</p>
           </div>
-          <Link href={`${lang}/checkout`} className={styles.button}>
+          <Link href={`/${lang}/checkout`} className={styles.button}>
             {buttonLabel}
             <ArrowRightIcon iconStyle={styles.icon} />
           </Link>

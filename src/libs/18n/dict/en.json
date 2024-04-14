@@ -1,10 +1,73 @@
 {
-  "header": {},
+  "header": {
+    "titles": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up",
+      "checkout": "Checkout",
+      "success": "Success",
+      "profile": "My Profile",
+      "orders": "My Orders",
+      "contacts": "Contacts",
+      "cooperation": "Cooperation",
+      "blog": "Blog",
+      "post": "Post",
+      "about": "About Us",
+      "whereToBuy": "Where to Buy Offline?"
+    }
+  },
   "footer": {},
   "currency": "$",
   "cartBanner": {
     "checkoutLabel": "Total amount:",
     "checkoutButton": "Checkout"
+  },
+  "auth": {
+    "activate": {
+      "title": "You've got a personal discount on all purchases",
+      "subTitle": "Account successfully created!",
+      "button": "Let's go for some sweets!"
+    },
+    "successSignUp": {
+      "title": "Registration",
+      "subTitle": "We have sent an email to confirm your email address",
+      "description": "Follow the link in the email to create an account",
+      "button": "To Email"
+    },
+    "signInEmail": {
+      "title": "Sign In",
+      "inputLabel": "Email",
+      "inputPlaceholder": "Enter email",
+      "button": "Next",
+      "buttonGoogle": "Sign in with Google",
+      "buttonDividerLabel": "or"
+    },
+    "signInPassword": {
+      "title": "Account Sign In",
+      "inputLabel": "Password",
+      "inputPlaceholder": "Enter password",
+      "error": "Incorrect password or email entered. Please try again",
+      "errorNotActivated": "Your account is not activated. Please check your email",
+      "buttonSignIn": "Sign In",
+      "buttonBack": "Back"
+    },
+    "signUpPassword": {
+      "title": "Create a password for the account",
+      "firstInputPlaceholder": "Enter password",
+      "secondInputPlaceholder": "Confirm new password",
+      "buttonSignUp": "Create Account",
+      "error": "Passwords do not match. Please try again."
+    },
+    "signInNotExist": {
+      "title": "Email Not Registered",
+      "description": "Would you like to <strong>register</strong> and get a <strong>discount</strong> on candies?",
+      "buttonSignUp": "Sign Up",
+      "buttonBack": "Back"
+    },
+    "lastChance": {
+      "title": "This is your last chance. There's no turning back...",
+      "description": "Choose the red candy - stay in wonderland, choose the yellow - same as before, but banana-flavored",
+      "button": "I'll take two"
+    }
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",
