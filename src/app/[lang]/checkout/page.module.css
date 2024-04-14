@@ -117,28 +117,26 @@
 	  
 	.checkoutBlocks {
 		max-width: 992px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-column-gap: 45px;
+		display: flex;
+		gap: 45px;
 	}
 	.checkoutBlock {
-		order: 5;
 		width: 100%;
 	}
-	.checkoutBlock:nth-child(1) {
-		order: 2;
+	.left, .right {
+		flex: 1;
 	}
-	.checkoutBlock:nth-child(2) {
-		order: 1;
-	}
-	.checkoutBlock:nth-child(3) {
-		order: 3;
-	}
+	
 	
 }
 @media (min-width: 1200px) {
-	.checkoutBlocks {
-		grid-template-columns: 585px 360px;
-	}
 	
+	.left {
+		width: 585px;
+		flex: auto;
+	}
+	.right {
+		width: 360px;
+		flex: auto;
+	}
 }

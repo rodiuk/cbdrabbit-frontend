@@ -2,7 +2,7 @@
     background: #fff;
     padding: 15px 25px 25px;
 	margin: 0 -30px;
-	max-width: 585px;
+	max-width: 1000%;
 }
 .checkoutRes .checkoutRes_error {
     color: #f11;
@@ -85,7 +85,4 @@
 		border-radius: 24px;
 	}
 	
-	.checkoutRes {
-		order: 4;
-	}
 }
