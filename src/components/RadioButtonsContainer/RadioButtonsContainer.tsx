@@ -9,15 +9,10 @@ interface Options {
   name: string;
   text: string;
   value: string;
-  handleRadioChange: any;
-  checkedValue: string;
 }
 
-const RadioButtonsContainer = ({ options }: { options: any }) => {
-  const [selectedRadio, setSelectedRadio] = React.useState(""); // сюда текст от радиокнопки придет 1, 2. 3
-  const handleRadioChange = (value: string) => {
-    setSelectedRadio(value);
-  };
+const RadioButtonsContainer = ({ options, handleRadioChange, deliveryId }: { options: Options[]; handleRadioChange: (id: string) => void; deliveryId: string })  => {
+  
   return (
     <div>
       <ul>
@@ -32,7 +27,7 @@ const RadioButtonsContainer = ({ options }: { options: any }) => {
                   text={el.text}
                   value={el.value}
                   handleRadioChange={handleRadioChange}
-                  checkedValue={selectedRadio}
+                  checkedValue={deliveryId}
                 />
               </li>
             );
