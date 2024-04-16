@@ -100,7 +100,8 @@ const Tablet = () => {
             </li>
           </ul>
         </div>
-        <CheckoutRes />
+			  <CheckoutRes />
+			  
       </div>
     </>
   );

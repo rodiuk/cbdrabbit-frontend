@@ -7,15 +7,11 @@ import InputNovaPoshta from "../Ui/InputNovaPoshta/InputNovaPoshta";
 import RadioButtonsContainer from "../RadioButtonsContainer/RadioButtonsContainer";
 
 import s from "./s.module.css";
-import Input from "../Ui/Input/Input";
-import LayShowCities from "./LayShowCities";
+import LayShow from "./LayShow";
 
 const NovaPoshta = () => {
 	const [deliveryId, setDeliveryId] = React.useState("")
 	const [isOpen, setIsOpen] = React.useState(false)
-	const [sities, setSities] = React.useState([])
-	const [sity, setSity] = React.useState("")
-	const [deliveryRef, setDeliveryRef] = React.useState("")
 
 	
 	const handleRadioChange = (id: string) => {
@@ -27,19 +23,6 @@ const NovaPoshta = () => {
 	const close = () => {
 		setIsOpen(false)
 	}
-	const showLay = () => {
-		setIsOpen(true)
-		setSities([])
-		setSity("")
-		setDeliveryRef("")
-	}
-	const selectedCity = (obj: any) => {
-		setSity(obj.sity)
-		setDeliveryRef(obj.deliveryCity)
-		setIsOpen(false)
-	}
-
-
 	
 	const novaposhtaCities = (e: string) => {
         let requestData = {
@@ -63,7 +46,7 @@ const NovaPoshta = () => {
         axios(settings)
             .then((response) => {
                 console.log("Успешный ответ:", response.data.data[0].Addresses);
-                setSities(response.data.data[0].Addresses);
+                //setCities(response.data.data[0].Addresses);
             })
             .catch((error) => {
                 console.error("Ошибка при отправке запроса:", error);
@@ -99,16 +82,12 @@ const NovaPoshta = () => {
 			  deliveryId={deliveryId}
       />
 
-      
-		  <Input
-			  type="text"
-			  text="Населений пункт"
+      <InputNovaPoshta
+        type="text"
+        name="Населений пункт"
+        text="Населений пункт"
 			  required={true}
-			  name="Населений пункт"
-			  placeholder="Введи населений пункт"
-			  showLay={showLay}
-			  autoComplete="off"
-			  value={sity}
+			  novaposhtaCities={novaposhtaCities}
 		  />
 		  <input type="text"  name="Населений пункт" />
       <InputNovaPoshta
@@ -128,11 +107,9 @@ const NovaPoshta = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
 				  >
-					  <LayShowCities
+					  <LayShow
 						  novaposhtaCities={novaposhtaCities}
 						  close={close}
-						  sities={sities}
-						  selectedCity={selectedCity}
 					  />
 				  </motion.div>
 				  

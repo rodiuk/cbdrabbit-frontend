@@ -12,6 +12,7 @@ import RadioButtonsContainer from "@/components/RadioButtonsContainer/RadioButto
 import InputNovaPoshta from "@/components/Ui/InputNovaPoshta/InputNovaPoshta";
 import CheckoutRes from "./CheckoutRes/CheckoutRes";
 import Input from "@/components/Ui/Input/Input";
+import NovaPoshta from "@/components/NovaPoshta/NovaPoshta";
 
 const NoTablet = () => {
   return (
@@ -84,44 +85,9 @@ const NoTablet = () => {
           <div className={styles.checkoutBlock_ttl}>Нова Пошта</div>
           <div className={styles.checkoutBlock_price}>Від 50 ₴</div>
         </div>
-        <RadioButtonsContainer
-          options={[
-            {
-              id: "1",
-              type: "radio",
-              name: "Спосіб доставки",
-              text: "У відділення",
-              value: "У відділення",
-            },
-            {
-              id: "2",
-              type: "radio",
-              name: "Спосіб доставки",
-              text: "До дверей",
-              value: "До дверей",
-            },
-            {
-              id: "3",
-              type: "radio",
-              name: "Спосіб доставки",
-              text: "Самовивіз",
-              value: "Самовивіз",
-            },
-          ]}
-        />
-
-        <InputNovaPoshta
-          type="text"
-          name="Населений пункт"
-          text="Населений пункт"
-          required={true}
-        />
-        <InputNovaPoshta
-          type="text"
-          name="Відділення"
-          text="Відділення"
-          required={true}
-        />
+       
+		<NovaPoshta />
+       
       </div>
 
       <div className={styles.checkoutBlock}>
