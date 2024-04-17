@@ -54,6 +54,23 @@
 	border-top: 1px solid #D4D4D4;
 	cursor: pointer;
 }
+.errorBlock {
+	text-align: center;
+}
+.errorBlockPic {
+	margin: 10px 0;
+}
+.errorBlockPic img {
+	margin: auto;
+}
+.errTtl {
+	font-size: 20px;
+	color: #000;
+}
+.errDescr {
+	color: #98979a;
+	margin: 10px 0;
+}
 
 @media (min-width: 769px) {
 	.overl {

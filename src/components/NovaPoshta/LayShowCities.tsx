@@ -62,6 +62,7 @@ const LayShowCities = ({
             placeholder="Введи населений пункт"
 					  novaposhtaCities={novaposhtaCities}
 					  setIsPopular={setIsPopular}
+					  target="cityInput"
           />
           <div className={s.start}>
             Почни вводити назву населеного пункту від 3 букв

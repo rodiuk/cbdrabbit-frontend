@@ -11,11 +11,14 @@ interface InputProps {
   required?: boolean;
   type?: string;
   name?: string;
+  target: string;
   placeholder?: string;
   password?: boolean;
   isPassword?: boolean;
   novaposhtaCities?: any;
   setIsPopular?: any;
+  newPostNum?: any;
+  errorRes?: any
 }
 
 const InputNovaPoshta: React.FC<InputProps> = ({
@@ -25,17 +28,28 @@ const InputNovaPoshta: React.FC<InputProps> = ({
   isPassword,
   novaposhtaCities,
   setIsPopular,
+  newPostNum,
+  errorRes,
+  target,
 	...input
 }) => {
   const [value, setValue] = React.useState("");
   const [type, setType] = React.useState(input.type);
 
   // const [validate, setValidate] = React.useState(true)
-
-  const handlerInput = (e: any) => {
-    setValue(e.target.value);
-	  novaposhtaCities(e.target.value);
-	  setIsPopular(false)
+console.log(target)
+	const handlerInput = (e: any) => {
+		
+	  if (target === "cityInput") {
+		setValue(e.target.value);
+		novaposhtaCities(e.target.value);
+		setIsPopular(false)
+	  } else if (target === "filialInput") {
+		setValue(e.target.value);
+		  newPostNum(e.target.value)
+		  errorRes()
+	  }
+    
     //setValidate(true)
   };
 
@@ -53,9 +67,6 @@ const InputNovaPoshta: React.FC<InputProps> = ({
 			  <p className={s.label_ttl}>
 			  {text}
 			  {required && <span className={s.red}>*</span>}
-			  {isPassword && (
-				<span className={s.right_text}>Забув пароль? {password}</span>
-			  )}
 			</p>
 		  )}
 		  <span className={s.search}>
