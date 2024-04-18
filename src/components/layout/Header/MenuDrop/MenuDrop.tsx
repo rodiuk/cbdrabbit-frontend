@@ -32,6 +32,9 @@ const MenuDrop = ({toggleMenu}: Props) => {
           <li className={s.mnu_link}>
 		  <Link href={`/uk/profile`}>Мій профіль</Link>
           </li>
+          <li className={s.mnu_link}>
+		  <Link href={`/uk/icons`}>Ikons</Link>
+          </li>
         </ul>
         <div className={s.ssoc}>
           <p>Соц мережі</p>

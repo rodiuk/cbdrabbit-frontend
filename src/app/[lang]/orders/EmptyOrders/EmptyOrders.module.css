@@ -17,3 +17,9 @@
 	color: var(--primary-color);
 	margin-bottom: 12px;
 }
+
+@media (max-width: 768px) {
+	.emptyOrders {
+		max-width: 100%;
+	}
+}
