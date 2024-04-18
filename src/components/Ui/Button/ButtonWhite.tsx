@@ -12,7 +12,7 @@ interface ButtonProps {
   handleClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ButtonWhite: React.FC<ButtonProps> = ({
   className,
   iconLeft,
   text,
@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
 	console.log(className)
   return (
     <button
-      className={cn(s.button, {
+      className={cn(s.white_button, {
         [className!]: className !== undefined,
       })}
       onClick={handleClick}
@@ -37,4 +37,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ButtonWhite;
