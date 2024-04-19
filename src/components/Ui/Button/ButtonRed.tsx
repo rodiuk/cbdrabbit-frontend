@@ -12,17 +12,17 @@ interface ButtonProps {
   handleClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ButtonRed: React.FC<ButtonProps> = ({
   className,
   iconLeft,
   text,
   icon,
   handleClick,
 }) => {
-	
+	console.log(className)
   return (
     <button
-      className={cn(s.button, {
+      className={cn(s.buttonRed, {
         [className!]: className !== undefined,
       })}
       onClick={handleClick}
@@ -37,4 +37,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ButtonRed;

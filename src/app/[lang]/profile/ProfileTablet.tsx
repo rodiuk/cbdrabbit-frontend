@@ -11,7 +11,11 @@ import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 
 import np from "/public/img/np.svg";
 
-const ProfileTablet = () => {
+interface Props {
+	bottomBlock: (info: string) => void
+}
+
+const ProfileTablet = ({bottomBlock}: Props) => {
   return (
     <div className={s.wrap}>
       <div className={s.wrap_left}>
@@ -20,7 +24,7 @@ const ProfileTablet = () => {
             Email
             <span
               className={s.pencil}
-              // onClick={() => bottomBlock("email")}
+              onClick={() => bottomBlock("email")}
             >
               <PencilIcon />
             </span>
@@ -33,7 +37,7 @@ const ProfileTablet = () => {
             Пароль
             <span
               className={s.pencil}
-              //onClick={() => bottomBlock("password")}
+              onClick={() => bottomBlock("password")}
             >
               <PencilIcon />
             </span>
@@ -42,10 +46,10 @@ const ProfileTablet = () => {
         </div>
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>
-            Дані для автозаповнення доставки{" "}
+            Дані для автозаповнення доставки
             <span
               className={s.pencil}
-              //onClick={() => bottomBlock("delivery")}
+              onClick={() => bottomBlock("delivery")}
             >
               <PencilIcon />
             </span>
@@ -66,11 +70,11 @@ const ProfileTablet = () => {
 
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>Видалити акаунт</div>
-          <Button
-            //onClick={() => bottomBlock("delete")}
-            text="Видалити"
-            className={s.buttonRed}
-          />
+          
+				  <button
+					  className={s.buttonRed}
+					  onClick={() => bottomBlock("delete")}
+				  >Видалити</button>
         </div>
       </div>
       <div className={s.wrap_right}>
