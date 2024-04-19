@@ -13,6 +13,7 @@ import InputNovaPoshta from "@/components/Ui/InputNovaPoshta/InputNovaPoshta";
 import CheckoutRes from "./CheckoutRes/CheckoutRes";
 import Input from "@/components/Ui/Input/Input";
 import NovaPoshta from "@/components/NovaPoshta/NovaPoshta";
+import InputsBlockTelNameThirname from "@/components/InputsBlockTelNameThirname/InputsBlockTelNameThirname";
 
 const NoTablet = () => {
   return (
@@ -50,29 +51,7 @@ const NoTablet = () => {
       </div>
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>Контактні дані</div>
-        <div className={styles.labels}>
-          <Input
-            type="text"
-            name="Телефон"
-            text="Телефон"
-            // required='true'
-            placeholder="+380 (__)___-__-__"
-          />
-          <Input
-            type="text"
-            name="Прізвище"
-            text="Прізвище"
-            //required='true'
-            placeholder="Введи прізвище кирилицею"
-          />
-          <Input
-            type="text"
-            name="Імʼя"
-            text="Імʼя"
-            //required='true'
-            placeholder="Введи імʼя кирилицею"
-          />
-        </div>
+		<InputsBlockTelNameThirname />
       </div>
       <div className={styles.checkoutBlock}>
         <div

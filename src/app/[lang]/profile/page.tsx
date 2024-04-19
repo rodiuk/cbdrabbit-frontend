@@ -11,55 +11,24 @@ import ProfileDetail from "./ProfileDetail/ProfileDetail";
 import PencilIcon from "@/components/icons/PencilIcon";
 import NovaPoshta from "@/components/NovaPoshta/NovaPoshta";
 
+
+import Image from "next/image";
+import InputsBlockTelNameThirname from "@/components/InputsBlockTelNameThirname/InputsBlockTelNameThirname";
+import Button from "@/components/Ui/Button/Button";
+import useMedia from "@/hooks/useMedia";
+import ProfileTablet from "./ProfileTablet";
+import ProfileNoTablet from "./ProfileNoTablet";
+
 export default function Profile() {
+	const isTablet = useMedia(993);
   return (
-    <main className={cn("container", s.wrapper)}>
-      <div className="wrapper">
-        <div className={s.wrapper_wrap}>
-          <div className={s.wrapper_ttl}>
-            <p>Моя персональна знижка</p>
-          </div>
-          <div className={s.wrapper_big}>
-            <p>5%</p>
-          </div>
-          <div className={s.profile_details} /* onClick={toggleBlock} */>
-            <p className={s.profile_detailsOne}>
-              Деталі <ArrowDownIcon iconStyle={s.arr} />
-            </p>
-
-            <ProfileDetail />
-          </div>
-			  </div>
-			  
-			  <div className={s.wrapper_wrap_tal}>
-                    <div className={s.h2}>
-                        Email
-                        <span
-                            className={s.pencil}
-                           // onClick={() => bottomBlock("email")}
-                        >
-                            <PencilIcon />
-                        </span>
-                    </div>
-                    <p>ojo*****@gmail.com</p>
-			  </div>
-
-			  <div className={s.wrapper_wrap_tal}>
-                    <div className={s.h2}>
-                        Пароль
-                        <span
-                            className={s.pencil}
-                            //onClick={() => bottomBlock("password")}
-                        >
-                            <PencilIcon />
-                        </span>
-                    </div>
-                    <p>Встановлено</p>
-			  </div>
-			  <div className={s.wrapper_wrap_tal}>
-			  <NovaPoshta />
-			  </div>
-      </div>
+	  <main className={cn("container", s.wrapper)}>
+		  {isTablet ? (
+			  <ProfileTablet />
+		  ) : (
+				  <ProfileNoTablet />
+		  )}
+      
     </main>
   );
 }
