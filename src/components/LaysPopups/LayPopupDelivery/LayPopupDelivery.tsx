@@ -44,12 +44,12 @@ const LayPopupDelivery = ({
                 </span>
               </p>
             </div>
-            <UserCheckoutForm />
+            {/* <UserCheckoutForm /> */}
             <div className={s.checkoutBlock_np}>
               <Image src={np} alt="np" />
               <div className={s.checkoutBlock_ttl}>Нова Пошта</div>
             </div>
-            <NovaPost />
+            {/* <NovaPost /> */}
             <div className={s.buttonBlock}>
               <ButtonRed text="Стерти дані доставки" />
             </div>
