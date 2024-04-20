@@ -19,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   handleClick,
 }) => {
+	
   return (
     <button
       className={cn(s.button, {

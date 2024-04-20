@@ -37,7 +37,41 @@ export const createGoogleUser = async (
 ) => {
   try {
     const user = await prisma.user.create({
-      data: { ...userData, isActive: true },
+      data: {
+        ...userData,
+        isActive: true,
+        loyalty: {
+          create: {
+            percentDiscount: 2,
+          },
+        },
+      },
+    });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserInfo = async (userId: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        firstName: true,
+        lastName: true,
+        loyalty: {
+          select: {
+            percentDiscount: true,
+          },
+        },
+      },
     });
 
     return user;
@@ -63,7 +97,7 @@ export const createUser = async (userData: ICreateUser) => {
       if (isUserExist) return { error: "User already exist" };
 
       const user = await prisma.user.create({
-        data: userData,
+        data: { ...userData, loyalty: { create: { percentDiscount: 2 } } },
       });
 
       return user;

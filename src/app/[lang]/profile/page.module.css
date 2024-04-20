@@ -1,11 +1,11 @@
-.main {
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 38px - 38px);
-  padding: 10px 30px;
+  padding: 10px 15px;
 
-  padding-top: 150px;
+  padding-top: 90px;
 }
 
 .list {
@@ -19,4 +19,114 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.wrapper_wrap, .wrapper_wrap_tal {
+    margin-bottom: 20px;
+    padding: 15px 15px 20px;
+    background: #fff;
+    border-radius: 20px;
+	text-align: center;
+}
+.wrapper_wrap_tal {
+	text-align: left;
+}
+.wrapper_wrap_tal .h2 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: #42623B;
+    font-size: 24px;
+    font-family: "Merriweather";
+}
+.pencil {
+	min-width: 36px;
+    cursor: pointer;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #CBCBCB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper .wrapper_ttl {
+    font-size: 20px;
+}
+.wrapper .wrapper_big {
+    font-size: 40px;
+    color: #42623B;
+}
+.profile .profile_details-one {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #42623B;
+    border-top: 1px solid #D4D4D4;
+    padding-top: 10px;
+}
+.profile_detailsOne {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #42623B;
+    border-top: 1px solid #D4D4D4;
+    padding-top: 10px;
+}
+.arr {
+	position: relative;
+	top: 3px;
+	margin-left: 5px;
+	cursor: pointer;
+} 
+.checkoutBlock_grey {
+    color: #98979a;
+    line-height: 1.22;
+    margin: 15px 0 10px;
+}
+.checkoutBlock_np {
+	margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #D4D4D4;
+	display: flex;
+}
+.checkoutBlock_ttl {
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+.buttonRed {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 54px;
+    background: var(--primary-color);
+    border-radius: 50px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 20px;
+    border: 2px solid transparent;
+    position: relative;
+	background: #fff;
+    color: #FF1111;
+    border: 2px solid rgba(255, 17, 18, 0.1019607843);
+	margin-top: 15px;
+}
+@media (min-width: 992px) {
+	.wrap {
+		display: flex;
+		gap: 45px;
+		justify-content: center;
+	}
+	.wrap_left {
+		width: 100%;
+		max-width: 585px;
+	}
+	.wrap_right {
+		width: 100%;
+		max-width: 328px;
+	}
 }

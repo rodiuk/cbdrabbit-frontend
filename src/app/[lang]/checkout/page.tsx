@@ -1,22 +1,20 @@
-"use client";
-
 import React from "react";
-import useMedia from "@/hooks/useMedia";
-import Tablet from "./Tablet";
+import { IMainPageProps } from "@/interfaces/page.interface";
+import { getDictionary } from "@/libs/18n/getDictionary";
+import { CheckoutWrapper } from "./CheckoutWrapper";
 
 import cn from "clsx";
 import styles from "./page.module.css";
 
-import NoTablet from "./NoTablet";
-
-export default function Checkout() {
-  const isTablet = useMedia(769);
+export default async function Checkout({ params }: IMainPageProps) {
+  const { lang } = params;
+  const dict = await getDictionary(lang);
 
   return (
     <main className={cn("container", styles.main)}>
       <div className={styles.checoutPage}>
         <div className={styles.checkoutBlocks}>
-          {isTablet ? <Tablet /> : <NoTablet />}
+          <CheckoutWrapper dict={dict.checkout} currency={dict.currency} />
         </div>
       </div>
     </main>

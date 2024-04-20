@@ -69,6 +69,29 @@
       "button": "I'll take two"
     }
   },
+  "checkout": {
+    "contactTitle": "Contact Information",
+    "deliveryTitle": "Delivery",
+    "npDelivery": "New Post",
+    "userLabelPhone": "Phone",
+    "userLabelLastName": "Last Name",
+    "userLabelPlaceholderLastName": "Enter surname in Cyrillic",
+    "userLabelFirstName": "First Name",
+    "userLabelPlaceholderFirstName": "Enter first name in Cyrillic",
+    "npCostLabel": "From 50 UAH",
+    "payTitle": "Payment by card on the website",
+    "payLabelFirst": "No overpayment",
+    "payLabelSecond": "Online payment from any Ukrainian bank card",
+    "orderTitle": "Your order",
+    "formError": "To place an order, fill in all fields *",
+    "totalAmountTitle": "Order amount",
+    "personalDiscount": "Personal discount",
+    "discountTitle": "Discount for quantity",
+    "deliveryDisclaimer": "We do not include the cost of delivery",
+    "totalCheckout": "Total to pay without delivery:",
+    "checkoutDisclaimer": "By clicking “Proceed to payment” I confirm that the entered data is true",
+    "checkoutButton": "Proceed to payment"
+  },
   "home": {
     "title": "Hello, we are CBD Rabbit",
     "product": {

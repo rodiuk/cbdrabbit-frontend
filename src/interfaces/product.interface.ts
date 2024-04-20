@@ -12,6 +12,8 @@ export interface IProductCreate {
 
 export interface IProductCard extends Product {
   count: number;
+  images?: Image[];
+  properties?: IPropertyRes[];
 }
 
 export interface IProductRes extends Product {
