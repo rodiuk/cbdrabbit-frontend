@@ -11,6 +11,7 @@ import ProfileNoTablet from "./ProfileNoTablet";
 import LayPopupEmail from "@/components/LaysPopups/LayPopupEmail/LayPopupEmail";
 import LayPopupPassword from "@/components/LaysPopups/LayPopupPassword/LayPopupPassword";
 import LayPopupDelivery from "@/components/LaysPopups/LayPopupDelivery/LayPopupDelivery";
+import LayPopupDeleteAkk from "@/components/LaysPopups/LayPopupDeleteAkk/LayPopupDeleteAkk";
 
 export default function Profile() {
   const [isDetailes, setIsDetailes] = React.useState(false);
@@ -30,7 +31,7 @@ export default function Profile() {
       {isTablet ? (
         <ProfileTablet bottomBlock={bottomBlock} />
       ) : (
-        <ProfileNoTablet />
+        <ProfileNoTablet bottomBlock={bottomBlock} />
       )}
 <AnimatePresence mode="wait">
       {isOpen ? (
@@ -45,6 +46,7 @@ export default function Profile() {
           { actualLay === "email" && <LayPopupEmail bottomBlock={bottomBlock} />}
           { actualLay === "password" && <LayPopupPassword bottomBlock={bottomBlock} />}
           { actualLay === "delivery" && <LayPopupDelivery bottomBlock={bottomBlock} />}
+          { actualLay === "delete" && <LayPopupDeleteAkk bottomBlock={bottomBlock} />}
         </motion.div>
 		  ) : null}
 		  </AnimatePresence>

@@ -16,11 +16,11 @@ const LayPopupDeleteAkk = ({bottomBlock}: {bottomBlock: (e: string) => void}) =>
 		<div className={s.lay_wrap}>
             <div className={s.container}>
 			<div className={s.flexLay}>
-                    <div className='lay_ttl'>
+                    <div className={s.lay_ttl}>
                         <p>
                             Видалити акаунт
                             <span
-                                className='close'
+                                className={s.close}
                                 onClick={() => bottomBlock("")}
                             >
                                 <svg
@@ -41,14 +41,16 @@ const LayPopupDeleteAkk = ({bottomBlock}: {bottomBlock: (e: string) => void}) =>
                             </span>
                         </p>
                     </div>
-                    <div className='lay_img'>
+                    <div className={s.lay_img}>
                         <Image src={deleteAkkIcon} alt='delet' />
                     </div>
                     <div className={s.lay_text}>
                         <p>Ви впевнені що хочете видалити акаунт?</p>
                     </div>
-                    <div className='button-block'>
+                    <div className={s.bbt}>
                         <ButtonWhite text="Не хочу видаляти 🥺" />
+                    </div>
+                    <div className={s.bbt}>
 						<ButtonRed text="Видалити 😭" />
                     </div>
                 </div>

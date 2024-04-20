@@ -1,4 +1,6 @@
+'use client'
 import React from 'react';
+import { AnimatePresence, motion } from "framer-motion";
 
 import s from "./page.module.css";
 import NovaPoshta from '@/components/NovaPoshta/NovaPoshta';
@@ -11,7 +13,16 @@ import { ArrowDownIcon } from '@/components/icons/ArrowDown';
 
 import np from "/public/img/np.svg";
 
-const ProfileNoTablet = () => {
+interface Props {
+	bottomBlock: (info: string) => void
+}
+
+const ProfileNoTablet = ({ bottomBlock }: Props) => {
+	const [isOpenDetails, setIsOpenDetails] = React.useState(false)
+
+	const toggleBlock = () => {
+		setIsOpenDetails(!isOpenDetails)
+	}
 	return (
 		<div className={s.wrap}>
         <div className={s.wrapper_wrap}>
@@ -21,12 +32,25 @@ const ProfileNoTablet = () => {
           <div className={s.wrapper_big}>
             <p>5%</p>
           </div>
-          <div className={s.profile_details} /* onClick={toggleBlock} */>
+          <div className={s.profile_details} onClick={toggleBlock} >
             <p className={s.profile_detailsOne}>
               Деталі <ArrowDownIcon iconStyle={s.arr} />
             </p>
-
-            <ProfileDetail />
+			<AnimatePresence mode="wait">
+{isOpenDetails ? ( // для выбора города
+  <motion.div
+				className={s.overl}
+				style={{ height: '100vh' }}
+	initial={{ opacity: 0 }}
+	animate={{ opacity: 1 }}
+	exit={{ opacity: 0 }}
+	transition={{ duration: 0.5 }}
+			>
+				 <ProfileDetail />
+			</motion.div>
+			
+) : null}
+		</AnimatePresence>	
           </div>
 			  </div>
 			  
@@ -35,7 +59,7 @@ const ProfileNoTablet = () => {
                         Email
                         <span
                             className={s.pencil}
-                           // onClick={() => bottomBlock("email")}
+                           onClick={() => bottomBlock("email")}
                         >
                             <PencilIcon />
                         </span>
@@ -48,7 +72,7 @@ const ProfileNoTablet = () => {
                         Пароль
                         <span
                             className={s.pencil}
-                            //onClick={() => bottomBlock("password")}
+                            onClick={() => bottomBlock("password")}
                         >
                             <PencilIcon />
                         </span>
@@ -60,7 +84,7 @@ const ProfileNoTablet = () => {
                         Дані для автозаповнення доставки{" "}
                         <span
                             className={s.pencil}
-                            //onClick={() => bottomBlock("delivery")}
+                            onClick={() => bottomBlock("delivery")}
                         >
                             <PencilIcon />
                         </span>
@@ -81,11 +105,10 @@ const ProfileNoTablet = () => {
 
 			  <div className={s.wrapper_wrap_tal}>
                     <div className={s.h2}>Видалити акаунт</div>
-                    <Button
-                        //onClick={() => bottomBlock("delete")}
-                        text='Видалити'
-                        className={s.buttonRed}
-                    />
+                    <button
+					  className={s.buttonRed}
+					  onClick={() => bottomBlock("delete")}
+				  >Видалити</button>
                 </div>
       </div>
 	);

@@ -1,4 +1,6 @@
+'use client'
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import s from "./page.module.css";
 import NovaPoshta from "@/components/NovaPoshta/NovaPoshta";
@@ -15,7 +17,12 @@ interface Props {
 	bottomBlock: (info: string) => void
 }
 
-const ProfileTablet = ({bottomBlock}: Props) => {
+const ProfileTablet = ({ bottomBlock }: Props) => {
+	const [isOpenDetails, setIsOpenDetails] = React.useState(false)
+
+	const toggleBlock = () => {
+		setIsOpenDetails(!isOpenDetails)
+	}
   return (
     <div className={s.wrap}>
       <div className={s.wrap_left}>
@@ -85,12 +92,28 @@ const ProfileTablet = ({bottomBlock}: Props) => {
           <div className={s.wrapper_big}>
             <p>5%</p>
           </div>
-          <div className={s.profile_details} /* onClick={toggleBlock} */>
+          <div className={s.profile_details} onClick={toggleBlock}>
             <p className={s.profile_detailsOne}>
               Деталі <ArrowDownIcon iconStyle={s.arr} />
-            </p>
+					  </p>
+					 
 
-            <ProfileDetail />
+<AnimatePresence mode="wait">
+{isOpenDetails ? ( // для выбора города
+  <motion.div
+				className={s.overl}
+				style={{ height: '100vh' }}
+	initial={{ opacity: 0 }}
+	animate={{ opacity: 1 }}
+	exit={{ opacity: 0 }}
+	transition={{ duration: 0.5 }}
+			>
+				 <ProfileDetail />
+			</motion.div>
+			
+) : null}
+		</AnimatePresence>			
+           
           </div>
         </div>
       </div>
