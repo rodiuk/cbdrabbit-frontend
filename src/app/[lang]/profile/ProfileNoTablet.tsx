@@ -71,12 +71,12 @@ const ProfileNoTablet = () => {
             швидшого оформлення замовлень
           </p>
         </div>
-        <UserCheckoutForm />
+        {/* <UserCheckoutForm /> */}
         <div className={s.checkoutBlock_np}>
           <Image src={np} alt="np" />
           <div className={s.checkoutBlock_ttl}>Нова Пошта</div>
         </div>
-        <NovaPost />
+        {/* <NovaPost /> */}
       </div>
 
       <div className={s.wrapper_wrap_tal}>
