@@ -1,0 +1,83 @@
+.overl {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .5);		
+	z-index: 999;
+}
+.content {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	height: 82vh;
+	background: #fff;
+	z-index: 999;
+	padding: 16px 24px;
+	border-top-right-radius: 24px;
+	border-top-left-radius: 24px;
+}
+.container, .lay_wrap {
+    height: 100%;
+}
+.deleteAkk, .flexLay {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.lay_ttl p {
+    position: relative;
+    color: #42623B;
+    font-weight: 400;
+	font-family: var(--font-merriweather);
+	font-size: 24px;
+	padding-right: 25px;
+}
+.lay_ttl .close {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    cursor: pointer;
+}
+.checkoutBlock_np {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #D4D4D4;
+    display: flex;
+}
+.checkoutBlock_ttl {
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+.lay_text {
+    text-align: left;
+    font-weight: 500;
+    margin: 10px 0;
+}
+.buttonBlock {
+    padding: 12px 0;
+	text-align: center;
+}
+.bbt {
+    font-size: 16px;
+	margin-bottom: 15px;
+
+}
+
+@media (min-width: 769px) {
+	.overl {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.content {
+		position: relative;
+		width: 584px;
+		height: 80vh;
+		border-radius: 20px;
+		overflow-y: auto;
+	}
+}

@@ -21,6 +21,29 @@
     "checkoutLabel": "До оплати:",
     "checkoutButton": "Оформити"
   },
+  "checkout": {
+    "contactTitle": "Контактні дані",
+    "deliveryTitle": "Доставка",
+    "npDelivery": "Нова Пошта",
+    "userLabelPhone":"Телефон",
+    "userLabelLastName":"Прізвище",
+    "userLabelPlaceholderLastName":"Введи прізвище кирилицею",
+    "userLabelFirstName":"Ім'я",
+    "userLabelPlaceholderFirstName":"Введи ім'я кирилицею",
+    "npCostLabel": "Від 50 грн",
+    "payTitle": "Оплата карткою на сайті",
+    "payLabelFirst": "Без переплат",
+    "payLabelSecond": "Онлайн оплата з картки будь-якого україньского банку",
+    "orderTitle": "Ваше замовлення",
+    "formError": "Щоб оформити відправлення заповніть усі поля *",
+    "totalAmountTitle": "Вартість замовлення",
+    "personalDiscount":"Персональна знижка",
+    "discountTitle": "Знижка за кількість",
+    "deliveryDisclaimer": "Ми не враховуємо вартість доставки",
+    "totalCheckout": "До оплати без доставки:",
+    "checkoutDisclaimer": "Натискаючи “Перейти до оплати” я підтверджую що введені мною дані вірні",
+    "checkoutButton": "Перейти до оплати"
+  },
   "auth": {
     "activate": {
       "title": "Ви отримали персональну знижку на усі покупки",

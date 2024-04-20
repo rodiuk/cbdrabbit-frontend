@@ -37,7 +37,7 @@ model User {
 
 model Loyalty {
   id              String @id @default(uuid())
-  percentDiscount Int
+  percentDiscount Int    @default(2)
 
   userId String @unique
 

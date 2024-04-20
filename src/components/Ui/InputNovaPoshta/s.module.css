@@ -1,7 +1,7 @@
 .label {
 	display: block;
 	position: relative;
-	margin: 15px 0;
+	margin: 15px 0 0;
 }
 .label:last-child {
 	margin-bottom: 0;
@@ -50,14 +50,14 @@
 .label.radio.active::before {
 	border: 6px solid #42623B; /* В SASS переменная $a не определена */
 }
-input[type="text"].input, input[type="password"].input{
+input[type="text"].input{
 		height: 58px;
 	border-radius: 20px;
 	border: 2px solid transparent;
 	font-size: 16px;
 	display: block;
 	width: 100%;
-	text-indent: 16px;
+	text-indent: 48px;
 	background: #D4D4D433;
 	border: none;
 }
@@ -76,4 +76,11 @@ input[type="text"].input, input[type="password"].input{
 }
 .red {
     color: #FF1111;
+}
+.search {
+	position: absolute;
+	left: 15px;
+	top: 20px;
+	width: 20px;
+	height: 20px;
 }

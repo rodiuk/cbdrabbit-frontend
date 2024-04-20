@@ -50,7 +50,7 @@ const addProductToCartAtom = atom(
 
     const newPrice = calculatePrice(totalCount);
 
-    cart.totalAmount += newPrice;
+    cart.totalAmount = newPrice * totalCount;
 
     set(cartAtom, { ...cart, newPrice, totalCount, products: updatedProducts });
   }
@@ -73,9 +73,9 @@ const removeProductFromCartAtom = atom(
     if (existingProduct && existingProduct.count > 0) {
       existingProduct.count -= 1;
       newPrice = calculatePrice(totalCount);
-      cart.totalAmount -= newPrice;
       totalCount -= 1;
       newPrice = calculatePrice(totalCount);
+      cart.totalAmount = totalCount * newPrice;
     }
 
     set(cartAtom, { ...cart, newPrice, totalCount, products: updatedProducts });

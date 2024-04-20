@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useAtom } from "jotai";
+import { usePathname } from "next/navigation";
 import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { AnimatePresence, motion } from "framer-motion";
@@ -16,13 +17,18 @@ interface Props {
   lang: string;
 }
 
+const excludedPaths = ["checkout"];
+
 const CartBanner = (props: Props): React.JSX.Element | null => {
   const { currency, checkoutLabel, buttonLabel, lang } = props;
   const [total] = useAtom(getTotalPriceAtom);
+  const pathname = usePathname()?.split("/")?.at(-1);
+
+  const hasExcludedPath = !!pathname ? excludedPaths.includes(pathname) : false;
 
   return (
     <AnimatePresence mode="wait">
-      {total > 0 ? (
+      {total > 0 && !hasExcludedPath ? (
         <motion.div
           className={styles.container}
           initial={{ opacity: 0, y: 100 }}

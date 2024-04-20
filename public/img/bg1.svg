@@ -200,8 +200,8 @@
 <defs>
 
 <linearGradient id="paint0_linear_2024_3" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="objectBoundingBox">
-  <stop offset="0%" stop-color="#FCD365" stop-opacity="0"/>
-  <stop offset="14%" stop-color="#FCD365"/>
+  <stop offset="0%" stopColor="#FCD365" stopOpacity="0"/>
+  <stop offset="14%" stopColor="#FCD365"/>
 </linearGradient>
 
 </defs>

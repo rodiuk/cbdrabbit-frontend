@@ -1,0 +1,67 @@
+.menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, .6);
+	z-index: 999;
+}
+.mnu {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 80%;
+	background: #fff;
+	padding: 80px 20px 20px;
+	display: flex;
+	flex-direction: column;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 160px;
+    height: 54px;
+    background: #42623B;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 20px;
+    border: 2px solid transparent;
+	margin-bottom: 15px;
+}
+.buttonIcon {
+	margin-left: 10px;
+	position: relative;
+	top: -2px;
+}
+.close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	background: #9BD28F66;
+	cursor: pointer;
+}
+.mnu_list {
+	flex-grow: 1;
+}
+.mnu_link {
+	padding: 5px 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.ssoc a {
+	margin-right: 10px;
+    padding-top: 10px;
+}
