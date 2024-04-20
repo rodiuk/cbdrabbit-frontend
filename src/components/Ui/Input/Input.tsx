@@ -17,8 +17,8 @@ interface InputProps {
   value?: string;
   autoComplete?: string;
   onInputChange?: (value: string) => void;
-	showLay?: any;
-	errorText?: string
+  showLay?: any;
+  errorText?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -60,8 +60,8 @@ const Input: React.FC<InputProps> = ({
         {...input}
         onChange={e => handlerInput(e)}
         type={type}
-			  value={value}
-			  onClick={showLay ? () => showLay() : undefined}
+        value={value}
+        onClick={showLay ? () => showLay() : undefined}
       />
       {isPassword && (
         <>
@@ -75,8 +75,8 @@ const Input: React.FC<InputProps> = ({
             </div>
           )}
         </>
-		  )}
-		  {errorText && <p className={s.error}>Не правильно введений пароль</p>}
+      )}
+      {errorText && <p className={s.error}>Не правильно введений пароль</p>}
     </label>
   );
 };

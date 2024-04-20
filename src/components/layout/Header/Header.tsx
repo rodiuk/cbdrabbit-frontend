@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React from "react";
 import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
 import { Cart } from "./Cart/Cart";
@@ -16,13 +17,11 @@ interface Props {
 }
 
 export const Header = ({ lang }: Props): React.JSX.Element => {
+  const [isMenu, setIsMenu] = React.useState(false);
 
-	const [isMenu, setIsMenu] = React.useState(false)
-
-	const toggleMenu = () => {
-		setIsMenu(!isMenu)
-	}
-
+  const toggleMenu = () => {
+    setIsMenu(!isMenu);
+  };
 
   return (
     <header className={cn("container", styles.container, styles.header)}>
@@ -31,13 +30,9 @@ export const Header = ({ lang }: Props): React.JSX.Element => {
       <nav className={styles.navigation}>
         <LocaleSwitcher current={lang} />
         <Cart lang={lang} />
-			  <Menu  toggleMenu={toggleMenu} />
+        <Menu toggleMenu={toggleMenu} />
       </nav>
-		  {isMenu && (
-			  <MenuDrop
-				  toggleMenu={toggleMenu}
-			  />
-		  )}
+      {isMenu && <MenuDrop lang={lang} toggleMenu={toggleMenu} />}
     </header>
   );
 };

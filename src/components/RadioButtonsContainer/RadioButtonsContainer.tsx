@@ -11,8 +11,15 @@ interface Options {
   value: string;
 }
 
-const RadioButtonsContainer = ({ options, handleRadioChange, deliveryId }: { options: Options[]; handleRadioChange: (id: string) => void; deliveryId: string })  => {
-  
+const RadioButtonsContainer = ({
+  options,
+  handleRadioChange,
+  deliveryId,
+}: {
+  options: Options[];
+  handleRadioChange: (id: string) => void;
+  deliveryId: string;
+}) => {
   return (
     <div>
       <ul>
