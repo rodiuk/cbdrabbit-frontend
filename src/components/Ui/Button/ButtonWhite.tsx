@@ -10,6 +10,7 @@ interface ButtonProps {
   iconLeft?: boolean;
   icon?: React.ReactNode;
   handleClick?: () => void;
+  isDisabled?: boolean;
 }
 
 const ButtonWhite: React.FC<ButtonProps> = ({
@@ -18,13 +19,15 @@ const ButtonWhite: React.FC<ButtonProps> = ({
   text,
   icon,
   handleClick,
+  isDisabled,
 }) => {
-	console.log(className)
+  console.log(className);
   return (
     <button
       className={cn(s.white_button, {
         [className!]: className !== undefined,
       })}
+      disabled={isDisabled}
       onClick={handleClick}
     >
       {iconLeft && (

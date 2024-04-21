@@ -19,13 +19,14 @@ enum Role {
 }
 
 model User {
-  id        String  @id @default(uuid())
-  email     String  @unique
-  firstName String?
-  lastName  String?
-  password  String?
-  isActive  Boolean @default(false)
-  role      String  @default("USER")
+  id                String  @id @default(uuid())
+  email             String  @unique
+  firstName         String?
+  lastName          String?
+  password          String?
+  isActive          Boolean @default(false)
+  role              String  @default("USER")
+  totalOrdersAmount Int     @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -44,7 +45,7 @@ model Loyalty {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user User? @relation(fields: [userId], references: [id])
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Address {
@@ -59,7 +60,7 @@ model Address {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Order {

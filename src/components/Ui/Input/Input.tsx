@@ -19,6 +19,7 @@ interface InputProps {
   onInputChange?: (value: string) => void;
   showLay?: any;
   errorText?: string;
+  showForgotPassword?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
   onInputChange,
   showLay,
   errorText,
+  showForgotPassword,
   ...input
 }) => {
   const [type, setType] = React.useState(input.type);
@@ -51,7 +53,7 @@ const Input: React.FC<InputProps> = ({
       <p className={s.label_ttl}>
         {text}
         {required && <span className={s.red}>*</span>}
-        {isPassword && (
+        {showForgotPassword && (
           <span className={s.right_text}>Забув пароль? {password}</span>
         )}
       </p>

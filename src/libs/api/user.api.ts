@@ -1,8 +1,13 @@
 "use server";
 
-import { ICreateUser, IUserData } from "@/interfaces/user.interface";
+import {
+  ICreateUser,
+  IUpdateDeliveryInfo,
+  IUserData,
+} from "@/interfaces/user.interface";
 import prisma from "@/libs/client/prisma.client";
 import { compare, hash } from "bcrypt";
+import { revalidatePath } from "next/cache";
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -33,7 +38,7 @@ export const checkIsUserExistByEmail = async (email: string) => {
 };
 
 export const createGoogleUser = async (
-  userData: Omit<IUserData, "password">
+  userData: Pick<IUserData, "email" | "firstName" | "lastName">
 ) => {
   try {
     const user = await prisma.user.create({
@@ -44,6 +49,9 @@ export const createGoogleUser = async (
           create: {
             percentDiscount: 2,
           },
+        },
+        address: {
+          create: {},
         },
       },
     });
@@ -66,11 +74,12 @@ export const getUserInfo = async (userId: string) => {
         role: true,
         firstName: true,
         lastName: true,
-        loyalty: {
-          select: {
-            percentDiscount: true,
-          },
-        },
+        totalOrdersAmount: true,
+        password: true,
+        address: true,
+        loyalty: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
 
@@ -97,7 +106,11 @@ export const createUser = async (userData: ICreateUser) => {
       if (isUserExist) return { error: "User already exist" };
 
       const user = await prisma.user.create({
-        data: { ...userData, loyalty: { create: { percentDiscount: 2 } } },
+        data: {
+          ...userData,
+          loyalty: { create: { percentDiscount: 2 } },
+          address: { create: {} },
+        },
       });
 
       return user;
@@ -167,6 +180,75 @@ export const updatePassword = async (
   }
 };
 
+export const createPassword = async (userId: string, newPassword: string) => {
+  try {
+    const transaction = await prisma.$transaction(async prisma => {
+      const user = await prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const hashNewPassword = await hash(newPassword, 10);
+
+      const updatedUser = await prisma.user.update({
+        where: {
+          id: userId,
+        },
+        data: {
+          password: hashNewPassword,
+        },
+      });
+
+      return updatedUser;
+    });
+
+    return transaction;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateDeliveryInfo = async (
+  userId: string,
+  data: IUpdateDeliveryInfo
+) => {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        address: {
+          update: {
+            phoneNumber: data.phoneNumber,
+            city: data.city,
+            npDepartment: data.npDepartment,
+            npDeliveryType: data.npDeliveryType,
+          },
+        },
+      },
+      select: {
+        firstName: true,
+        lastName: true,
+        password: true,
+        address: true,
+      },
+    });
+
+    revalidatePath("profile");
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const isAccountActivated = async (userEmail: string) => {
   try {
     const user = await prisma.user.findUnique({
@@ -179,6 +261,18 @@ export const isAccountActivated = async (userEmail: string) => {
     });
 
     return user?.isActive ?? false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteAccount = async (userId: string) => {
+  try {
+    await prisma.user.delete({
+      where: {
+        id: userId,
+      },
+    });
   } catch (error) {
     throw error;
   }

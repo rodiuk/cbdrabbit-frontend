@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import styles from "./page.module.css";
 

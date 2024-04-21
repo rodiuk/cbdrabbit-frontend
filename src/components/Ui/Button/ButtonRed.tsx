@@ -10,6 +10,7 @@ interface ButtonProps {
   iconLeft?: boolean;
   icon?: React.ReactNode;
   handleClick?: () => void;
+  isDisabled?: boolean;
 }
 
 const ButtonRed: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const ButtonRed: React.FC<ButtonProps> = ({
   text,
   icon,
   handleClick,
+  isDisabled
 }) => {
 	console.log(className)
   return (
@@ -26,6 +28,7 @@ const ButtonRed: React.FC<ButtonProps> = ({
         [className!]: className !== undefined,
       })}
       onClick={handleClick}
+      disabled={isDisabled}
     >
       {iconLeft && (
         <span className={s.icon_block_left}>
