@@ -46,6 +46,7 @@ const ProfileTablet = (props: Props) => {
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>
             {profileDict.userPasswordTitle}
+
             <span className={s.pencil} onClick={() => bottomBlock("password")}>
               <PencilIcon />
             </span>
@@ -59,6 +60,7 @@ const ProfileTablet = (props: Props) => {
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>
             {profileDict.deliveryTitle}
+
             <span className={s.pencil} onClick={() => bottomBlock("delivery")}>
               <PencilIcon />
             </span>
