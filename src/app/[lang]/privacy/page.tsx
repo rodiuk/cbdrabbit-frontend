@@ -11,7 +11,7 @@ export async function generateMetadata({
 }: Readonly<IMainPageProps>): Promise<Metadata> {
   return {
     alternates: {
-      canonical: `/policy`,
+      canonical: `/privacy`,
     },
     openGraph: {
       ...openGraphBase,
