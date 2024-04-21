@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { ProfileWrapper } from "./ProfileWrapper";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
@@ -11,11 +11,13 @@ export default async function Profile({ params }: IMainPageProps) {
 
   return (
     <main className={cn("container", s.wrapper)}>
-      <ProfileWrapper
-        currency={dict.currency}
-        profileDict={dict.profile}
-        checkoutDict={dict.checkout}
-      />
+      <Suspense fallback={null}>
+        <ProfileWrapper
+          currency={dict.currency}
+          profileDict={dict.profile}
+          checkoutDict={dict.checkout}
+        />
+      </Suspense>
     </main>
   );
 }
