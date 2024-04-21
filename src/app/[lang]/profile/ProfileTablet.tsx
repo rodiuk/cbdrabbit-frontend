@@ -27,6 +27,7 @@ const ProfileTablet = (props: Props) => {
   const { user, currency, bottomBlock, profileDict, handleDeleteAccount } =
     props;
   const { data } = useSession();
+  const [showDetail, setShowDetail] = React.useState(false);
   const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
 
   return (
@@ -89,12 +90,21 @@ const ProfileTablet = (props: Props) => {
             <p>{user?.loyalty?.percentDiscount}%</p>
           </div>
           <div className={s.profile_details}>
-            <p className={s.profile_detailsOne}>
+            <p
+              className={s.profile_detailsOne}
+              onClick={() => setShowDetail(!showDetail)}
+            >
               {profileDict.personalDiscountLabel}{" "}
               <ArrowDownIcon iconStyle={s.arr} />
             </p>
 
-            <ProfileDetail user={user} currency={currency} dict={profileDict} />
+            {showDetail && (
+              <ProfileDetail
+                user={user}
+                currency={currency}
+                dict={profileDict}
+              />
+            )}
           </div>
         </div>
       </div>
