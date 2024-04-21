@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import cn from "clsx";
 import styles from "./page.module.css";
@@ -26,6 +27,7 @@ interface Props {
   city: string;
   postPoint: string;
   deliveryId: string;
+  userInfo: IUserCheckoutForm;
   setCity: (city: string) => void;
   setPostPoint: (postPoint: string) => void;
   setDeliveryId: (deliveryId: string) => void;
@@ -50,6 +52,7 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     setUserInfo,
     hasError,
     currency,
+    userInfo,
   } = props;
 
   return (
@@ -57,7 +60,11 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
       <div className={styles.left}>
         <div className={styles.checkoutBlock}>
           <h1 className={styles.checkoutBlock_h2}>{dict.contactTitle}</h1>
-          <UserCheckoutForm setUserInfo={setUserInfo} dict={dict} />
+          <UserCheckoutForm
+            setUserInfo={setUserInfo}
+            dict={dict}
+            userInfo={userInfo}
+          />
         </div>
         <div className={styles.checkoutBlock}>
           <h2

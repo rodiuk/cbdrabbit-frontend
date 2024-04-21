@@ -17,7 +17,7 @@ interface Props {
   lang: string;
 }
 
-const excludedPaths = ["checkout"];
+const excludedPaths = ["checkout", "profile"];
 
 const CartBanner = (props: Props): React.JSX.Element | null => {
   const { currency, checkoutLabel, buttonLabel, lang } = props;
