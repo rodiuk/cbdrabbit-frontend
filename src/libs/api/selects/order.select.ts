@@ -4,6 +4,10 @@ export const orderSelect: Prisma.OrderSelect = {
   id: true,
   totalSum: true,
   comment: true,
+  itemPrice: true,
+  status: true,
+  createdAt: true,
+  checkId: true,
   user: {
     select: {
       id: true,

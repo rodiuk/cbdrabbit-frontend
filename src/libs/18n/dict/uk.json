@@ -142,7 +142,12 @@
       "button": "Беру дві"
     }
   },
-
+  "orders": {
+    "noOrdersTitle": "У вас ще немає замовлень",
+    "choiceCandy": "Обрати цукерки",
+    "amountLabel":"Оплачуно без доставки",
+    "orderAgainBtn":"Повторити замовлення"
+  },
   "home": {
     "title": "Привіт, ми CBD Rabbit",
     "product": {

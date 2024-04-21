@@ -89,3 +89,10 @@ export interface IHeaderDict {
     socials: string;
   };
 }
+
+export interface IOrderDict {
+  noOrdersTitle: string;
+  choiceCandy: string;
+  amountLabel: string;
+  orderAgainBtn: string;
+}

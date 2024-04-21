@@ -18,6 +18,14 @@ enum Role {
   ADMIN
 }
 
+enum OrderStatus {
+  CANCELED
+  PAID
+  SENDED
+  DELIVERED
+  CREATED
+}
+
 model User {
   id                String  @id @default(uuid())
   email             String  @unique
@@ -26,7 +34,7 @@ model User {
   password          String?
   isActive          Boolean @default(false)
   role              String  @default("USER")
-  totalOrdersAmount Int     @default(0)
+  totalOrdersAmount Float   @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -64,10 +72,13 @@ model Address {
 }
 
 model Order {
-  id       String  @id @default(uuid())
-  totalSum Float
-  comment  String?
-  userId   String
+  id        String       @id @default(uuid())
+  checkId   Int          @unique @default(autoincrement())
+  totalSum  Float
+  itemPrice Float
+  comment   String?
+  userId    String
+  status    OrderStatus? @default(CREATED)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

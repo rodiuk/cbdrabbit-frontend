@@ -7,7 +7,7 @@ export interface IProductCreate {
   price: number;
   images: string[];
   propertiesIds: string[];
-  lang: string;
+  locale: string;
 }
 
 export interface IProductCard extends Product {
