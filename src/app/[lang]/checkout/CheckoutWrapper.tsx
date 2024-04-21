@@ -8,6 +8,11 @@ import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { useSession } from "next-auth/react";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
+import { createOrder } from "@/libs/api/order.api";
+import { IOrderCreate } from "@/interfaces/order.interface";
+import { useAtom } from "jotai";
+import { cartAtom, initialCartState } from "@/libs/store/atoms";
+import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 
 interface Props {
   dict: ICheckoutDict;
@@ -31,9 +36,9 @@ export const CheckoutWrapper = ({
   const [userInfo, setUserInfo] = React.useState<IUserCheckoutForm>(initial);
   const [finalPrice, setFinalPrice] = React.useState<number>(0);
   const [isEmptyFields, setIsEmptyFields] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-
-  console.log({ finalPrice, city, postPoint, delivery, userInfo, data });
+  const [cart, setCart] = useAtom(cartAtom);
 
   React.useEffect(() => {
     (async function fetchUser() {
@@ -54,7 +59,9 @@ export const CheckoutWrapper = ({
     })();
   }, [data?.user?.id]);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    if (!data?.user?.id) return;
+
     if (
       !city ||
       !postPoint ||
@@ -66,6 +73,30 @@ export const CheckoutWrapper = ({
       setIsEmptyFields(true);
 
     if (isEmptyFields) setIsEmptyFields(false);
+
+    try {
+      setIsLoading(true);
+
+      const payload: IOrderCreate = {
+        userId: data?.user?.id,
+        totalSum: finalPrice,
+        itemPrice: finalPrice / cart.totalCount,
+        items: formatItemsForOrder(cart?.products),
+        address: {
+          city,
+          npDepartment: postPoint,
+          npDeliveryType: delivery,
+          phoneNumber: userInfo?.phone,
+        },
+      };
+
+      const res = await createOrder(payload);
+      setCart(initialCartState);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

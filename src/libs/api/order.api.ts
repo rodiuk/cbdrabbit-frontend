@@ -4,6 +4,7 @@ import prisma from "@/libs/client/prisma.client";
 import { orderSelect } from "./selects/order.select";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
+import { updateUserTotalAmount } from "./user.api";
 
 export const getAllUserOrders = async (userId: string) => {
   try {
@@ -38,10 +39,13 @@ export const getOrderById = async (orderId: string) => {
 export const createOrder = async (orderData: IOrderCreate) => {
   try {
     await updateUserAddress(orderData.userId, orderData.address);
+    await updateUserTotalAmount(orderData.userId, orderData.totalSum);
 
     const order = await prisma.order.create({
       data: {
         totalSum: orderData.totalSum,
+        itemPrice: orderData.itemPrice,
+        ...(orderData?.comment && { comment: orderData.comment }),
         user: {
           connect: {
             id: orderData.userId,

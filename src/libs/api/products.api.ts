@@ -43,7 +43,7 @@ export const createProduct = async (productData: IProductCreate) => {
           productName: productData.productName,
           description: productData.description,
           price: productData.price,
-          locale: productData.lang,
+          locale: productData.locale,
           images: {
             createMany: {
               data: productData?.images.map(imageUrl => ({

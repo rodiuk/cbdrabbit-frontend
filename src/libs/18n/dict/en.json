@@ -142,6 +142,12 @@
     "step3": "From 5000₴",
     "step4": "From 7000₴"
   },
+  "orders": {
+    "noOrdersTitle": "You don't have any orders yet",
+    "choiceCandy": "Choose candies",
+    "amountLabel": "Paid without delivery",
+    "orderAgainBtn": "Reorder"
+  },
   "home": {
     "title": "Hello, we are CBD Rabbit",
     "product": {
