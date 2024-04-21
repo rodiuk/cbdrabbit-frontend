@@ -1,3 +1,5 @@
+import { Address, Loyalty } from "@prisma/client";
+
 export interface IUser extends IUserData {
   id: string;
 
@@ -7,9 +9,10 @@ export interface IUser extends IUserData {
 
 export interface IUserData {
   email: string;
-  password?: string;
-  firstName?: string;
-  lastName?: string;
+  password?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  totalOrdersAmount: number;
 }
 
 export interface ICreateUser {
@@ -17,8 +20,22 @@ export interface ICreateUser {
   password: string;
 }
 
+export interface IUserProfile extends IUser {
+  loyalty: Loyalty | null;
+  address: Address | null;
+}
+
 export interface IUserCheckoutForm {
   firstName: string;
   lastName: string;
   phone: string;
+}
+
+export interface IUpdateDeliveryInfo {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  npDepartment?: string;
+  npDeliveryType?: string;
+  city?: string;
 }

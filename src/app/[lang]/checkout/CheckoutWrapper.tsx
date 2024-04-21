@@ -6,6 +6,8 @@ import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { useSession } from "next-auth/react";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import { getUserInfo } from "@/libs/api/user.api";
 
 interface Props {
   dict: ICheckoutDict;
@@ -33,6 +35,25 @@ export const CheckoutWrapper = ({
 
   console.log({ finalPrice, city, postPoint, delivery, userInfo, data });
 
+  React.useEffect(() => {
+    (async function fetchUser() {
+      try {
+        if (!data?.user?.id) return;
+        const res = await getUserInfo(data.user.id);
+        setUserInfo({
+          firstName: res?.firstName ?? "",
+          lastName: res?.lastName ?? "",
+          phone: res?.address?.phoneNumber ?? "",
+        });
+        setCity(res?.address?.city ?? "");
+        setPostPoint(res?.address?.npDepartment ?? "");
+        setDeliveryId(res?.address?.npDeliveryType ?? "");
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [data?.user?.id]);
+
   const handleCheckout = () => {
     if (
       !city ||
@@ -45,8 +66,6 @@ export const CheckoutWrapper = ({
       setIsEmptyFields(true);
 
     if (isEmptyFields) setIsEmptyFields(false);
-
-    
   };
 
   return (
@@ -64,6 +83,7 @@ export const CheckoutWrapper = ({
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
         setUserInfo={setUserInfo}
+        userInfo={userInfo}
       />
       <MobileCheckout
         dict={dict}

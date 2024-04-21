@@ -1,21 +1,34 @@
-import React from "react";
+"use client";
 
-import s from "./page.module.css";
-import NovaPost from "@/components/NovaPoshta/NovaPoshta";
+import React from "react";
 import Image from "next/image";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
-import Button from "@/components/Ui/Button/Button";
 import PencilIcon from "@/components/icons/PencilIcon";
-import ProfileDetail from "./ProfileDetail/ProfileDetail";
+import ProfileDetail from "../../../components/Profile/ProfileDetail/ProfileDetail";
 import { ArrowDownIcon } from "@/components/icons/ArrowDown";
+import { IUserProfile } from "@/interfaces/user.interface";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
+import { IProfileDict } from "@/interfaces/i18n.interface";
+import { useSession } from "next-auth/react";
+
+import s from "./page.module.css";
 
 import np from "/public/img/np.svg";
 
 interface Props {
+  user: IUserProfile | null;
+  currency: string;
   bottomBlock: (info: string) => void;
+  profileDict: IProfileDict;
+  handleDeleteAccount: () => void;
 }
 
-const ProfileTablet = ({ bottomBlock }: Props) => {
+const ProfileTablet = (props: Props) => {
+  const { user, currency, bottomBlock, profileDict, handleDeleteAccount } =
+    props;
+  const { data } = useSession();
+  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+
   return (
     <div className={s.wrap}>
       <div className={s.wrap_left}>
@@ -26,61 +39,62 @@ const ProfileTablet = ({ bottomBlock }: Props) => {
               <PencilIcon />
             </span>
           </div>
-          <p>ojo*****@gmail.com</p>
+          <p>{maskedEmail}</p>
         </div>
 
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>
-            Пароль
+            {profileDict.userPasswordTitle}
             <span className={s.pencil} onClick={() => bottomBlock("password")}>
               <PencilIcon />
             </span>
           </div>
-          <p>Встановлено</p>
+          <p>
+            {!!user?.password?.length
+              ? profileDict.passwordExist
+              : profileDict.passwordNotExist}
+          </p>
         </div>
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>
-            Дані для автозаповнення доставки
+            {profileDict.deliveryTitle}
             <span className={s.pencil} onClick={() => bottomBlock("delivery")}>
               <PencilIcon />
             </span>
           </div>
           <div className={s.checkoutBlock_grey}>
-            <p>
-              Ми не поширюємо ці дані і не використовуємо для розсилок. Лише для
-              швидшого оформлення замовлень
-            </p>
+            <p>{profileDict.deliveryDisclaimer}</p>
           </div>
-          {/* <UserCheckoutForm /> */}
+          {/* <UserCheckoutForm dict={checkoutDict} setUserInfo={setCheckoutInfo} /> */}
           <div className={s.checkoutBlock_np}>
             <Image src={np} alt="np" />
-            <div className={s.checkoutBlock_ttl}>Нова Пошта</div>
+            <div className={s.checkoutBlock_ttl}>{profileDict.npLabel}</div>
           </div>
-          {/* <NovaPost /> */}
         </div>
 
         <div className={s.wrapper_wrap_tal}>
-          <div className={s.h2}>Видалити акаунт</div>
+          <div className={s.h2}>{profileDict.deleteAccount}</div>
 
-          <button className={s.buttonRed} onClick={() => bottomBlock("delete")}>
-            Видалити
+          <button className={s.buttonRed} onClick={handleDeleteAccount}>
+            {profileDict.deleteAccountBtn}
           </button>
         </div>
       </div>
       <div className={s.wrap_right}>
         <div className={s.wrapper_wrap}>
           <div className={s.wrapper_ttl}>
-            <p>Моя персональна знижка</p>
+            <p>{profileDict.personalDiscountTitle}</p>
           </div>
           <div className={s.wrapper_big}>
-            <p>5%</p>
+            <p>{user?.loyalty?.percentDiscount}%</p>
           </div>
-          <div className={s.profile_details} /* onClick={toggleBlock} */>
+          <div className={s.profile_details}>
             <p className={s.profile_detailsOne}>
-              Деталі <ArrowDownIcon iconStyle={s.arr} />
+              {profileDict.personalDiscountLabel}{" "}
+              <ArrowDownIcon iconStyle={s.arr} />
             </p>
 
-            <ProfileDetail />
+            <ProfileDetail user={user} currency={currency} dict={profileDict} />
           </div>
         </div>
       </div>

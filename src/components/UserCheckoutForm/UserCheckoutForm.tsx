@@ -1,15 +1,21 @@
 import React from "react";
 import Input from "../Ui/Input/Input";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import s from "./UserCheckoutForm.module.css";
 
 interface Props {
   dict: ICheckoutDict;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
+  userInfo?: IUserCheckoutForm;
 }
 
-const UserCheckoutForm = ({ setUserInfo, dict }: Props): React.JSX.Element => {
+const UserCheckoutForm = ({
+  setUserInfo,
+  dict,
+  userInfo,
+}: Props): React.JSX.Element => {
   const handleInputChange = (key: string, field: string): void => {
     setUserInfo((prev: IUserCheckoutForm) => ({ ...prev, [key]: field }));
   };
@@ -19,14 +25,16 @@ const UserCheckoutForm = ({ setUserInfo, dict }: Props): React.JSX.Element => {
       <Input
         type="text"
         name="phone"
-        text={dict.userLabelPhone}
+        text={dict.userLabelPhone ?? ""}
         required={true}
+        value={userInfo?.phone}
         placeholder="+380 (__)___-__-__"
         onInputChange={value => handleInputChange("phone", value)}
       />
       <Input
         type="text"
         name="lastName"
+        value={userInfo?.lastName ?? ""}
         text={dict.userLabelLastName}
         required={true}
         placeholder={dict.userLabelPlaceholderLastName}
@@ -35,6 +43,7 @@ const UserCheckoutForm = ({ setUserInfo, dict }: Props): React.JSX.Element => {
       <Input
         type="text"
         name="firstName"
+        value={userInfo?.firstName ?? ""}
         text={dict.userLabelFirstName}
         required={true}
         placeholder={dict.userLabelPlaceholderFirstName}
