@@ -19,6 +19,7 @@
 	padding: 16px 24px;
 	border-top-right-radius: 24px;
 	border-top-left-radius: 24px;
+	overflow: hidden;
 }
 .left {
 	fill: var(--primary-color);

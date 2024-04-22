@@ -2,6 +2,7 @@
 	display: block;
 	position: relative;
 	margin: 15px 0;
+	width: 100%;
 }
 .label:last-child {
 	margin-bottom: 0;

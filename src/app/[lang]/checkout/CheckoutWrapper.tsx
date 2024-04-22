@@ -59,7 +59,8 @@ export const CheckoutWrapper = ({
     })();
   }, [data?.user?.id]);
 
-  const handleCheckout = async () => {
+	const handleCheckout = async () => {
+	  console.log(5)
     if (!data?.user?.id) return;
 
     if (

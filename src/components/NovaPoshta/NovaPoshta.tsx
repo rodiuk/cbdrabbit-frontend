@@ -37,7 +37,6 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const close = () => {
     setIsOpen(false);
-    setIsOpenFilial(false);
   };
   const showLay = () => {
     setIsOpen(true);
@@ -48,7 +47,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
     setArrayNpFilials([]);
   };
   const showLayFilial = () => {
-    setIsOpenFilial(true);
+	  setIsOpenFilial(true);
+	  console.log(55555)
   };
   const selectedCity = (obj: any) => {
     setCity(obj.sity);
