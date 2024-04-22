@@ -20,11 +20,15 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
   const [hasError, setHasError] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+	const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+	
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const validEmail = emailRegex.test(email);
+	
 
   const handleChangeEmail = async () => {
     try {
-      if (!email?.length || !data?.user?.id) return setHasError(true);
+      if (!email?.length || !validEmail || !data?.user?.id) return setHasError(true);
       setIsLoading(true);
 
       const res = await updateEmail(data?.user.id, email);
