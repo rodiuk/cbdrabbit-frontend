@@ -12,7 +12,7 @@
 	position: absolute;
 	width: 100%;
 	left: 0;
-	bottom: 0;
+	top: 18vh;
 	height: 82vh;
 	background: #fff;
 	z-index: 999;
