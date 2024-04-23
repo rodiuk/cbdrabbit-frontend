@@ -27,7 +27,8 @@ interface Props {
 const ProfileMobile = (props: Props): React.JSX.Element => {
   const { user, profileDict, currency, bottomBlock, handleDeleteAccount } =
     props;
-  const { data } = useSession();
+	const { data } = useSession();
+	const [showDetail, setShowDetail] = React.useState(true);
 
   const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
 
@@ -40,13 +41,15 @@ const ProfileMobile = (props: Props): React.JSX.Element => {
         <div className={s.wrapper_big}>
           <p>{user?.loyalty?.percentDiscount}%</p>
         </div>
-        <div className={s.profile_details} /* onClick={toggleBlock} */>
+        <div className={s.profile_details} onClick={() => setShowDetail(!showDetail)} /* onClick={toggleBlock} */>
           <p className={s.profile_detailsOne}>
             {profileDict.personalDiscountLabel}{" "}
             <ArrowDownIcon iconStyle={s.arr} />
           </p>
-
-          <ProfileDetail dict={profileDict} user={user} currency={currency} />
+				  {showDetail && (
+					  <ProfileDetail dict={profileDict} user={user} currency={currency} />
+			)}
+          
         </div>
       </div>
 

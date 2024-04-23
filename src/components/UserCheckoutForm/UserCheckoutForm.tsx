@@ -52,7 +52,7 @@ const UserCheckoutForm = ({
           onInputChange={value => handleInputChange("firstName", value)}
         />
 		  </div>
-		  <Textarea placeholder="Введи імʼя кирилицею" />
+		  
     </div>
   );
 };

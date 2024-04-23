@@ -48,7 +48,7 @@ const LayShowCities = ({
 	
   return (
     <>
-      <div className={s.overl}>
+      <>
         <div className={s.content}>
           <div className={s.ttlRow}>
             <span className={s.close} onClick={() => close()}>
@@ -95,7 +95,7 @@ const LayShowCities = ({
             )}
           </div>
         </div>
-      </div>
+      </>
     </>
   );
 };
