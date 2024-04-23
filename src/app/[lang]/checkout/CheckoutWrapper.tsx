@@ -11,12 +11,15 @@ import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { useAtom } from "jotai";
-import { cartAtom, clearCartAtom, initialCartState } from "@/libs/store/atoms";
+import { cartAtom, clearCartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
+import { useRouter } from "next/navigation";
+import { Locale } from "../../../../i18n.config";
 
 interface Props {
   dict: ICheckoutDict;
   currency: string;
+  lang: Locale;
 }
 
 const initial = {
@@ -28,8 +31,10 @@ const initial = {
 export const CheckoutWrapper = ({
   dict,
   currency,
+  lang,
 }: Props): React.JSX.Element => {
   const { data } = useSession();
+  const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
@@ -94,6 +99,7 @@ export const CheckoutWrapper = ({
 
       await createOrder(payload);
       clear();
+      router.push(`/${lang}`);
     } catch (error) {
       console.log(error);
     } finally {
@@ -117,6 +123,7 @@ export const CheckoutWrapper = ({
         hasError={isEmptyFields}
         setUserInfo={setUserInfo}
         userInfo={userInfo}
+        isLoading={isLoading}
       />
       <MobileCheckout
         dict={dict}
@@ -131,6 +138,7 @@ export const CheckoutWrapper = ({
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
         setUserInfo={setUserInfo}
+        isLoading={isLoading}
       />
     </>
   );

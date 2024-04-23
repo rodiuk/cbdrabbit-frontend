@@ -36,6 +36,7 @@ interface Props {
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
   currency: string;
+  isLoading?: boolean;
 }
 
 const TabletCheckout = (props: Props): React.JSX.Element => {
@@ -53,6 +54,7 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     hasError,
     currency,
     userInfo,
+    isLoading
   } = props;
 
   return (
@@ -111,6 +113,7 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           setFinalPrice={setFinalPrice}
           handleCheckout={handleCheckout}
           hasError={hasError}
+          isLoading={isLoading}
         />
       </div>
     </section>

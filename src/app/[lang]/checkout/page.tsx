@@ -14,7 +14,11 @@ export default async function Checkout({ params }: IMainPageProps) {
     <main className={cn("container", styles.main)}>
       <div className={styles.checoutPage}>
         <div className={styles.checkoutBlocks}>
-          <CheckoutWrapper dict={dict.checkout} currency={dict.currency} />
+          <CheckoutWrapper
+            dict={dict.checkout}
+            currency={dict.currency}
+            lang={lang}
+          />
         </div>
       </div>
     </main>

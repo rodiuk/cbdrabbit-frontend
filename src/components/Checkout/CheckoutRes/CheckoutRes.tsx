@@ -21,6 +21,7 @@ interface Props {
   setFinalPrice: (finalPrice: number) => void;
   handleCheckout: () => void;
   hasError: boolean;
+  isLoading?: boolean;
 }
 
 const CheckoutRes = React.memo(function CheckoutRes({
@@ -29,6 +30,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
   setFinalPrice,
   handleCheckout,
   hasError,
+  isLoading,
 }: Props): React.JSX.Element {
   const [cart] = useAtom(cartAtom);
   const { data } = useSession();
@@ -120,7 +122,10 @@ const CheckoutRes = React.memo(function CheckoutRes({
                 {finalPrice} {currency}
               </p>
             </div>
-            <Button text={dict.checkoutButton} handleClick={handleCheckout} />
+            <Button
+              text={isLoading ? "Loading..." : dict.checkoutButton}
+              handleClick={handleCheckout}
+            />
             <div className={s.checkoutTotal_check}>
               <p>{dict.checkoutDisclaimer}</p>
             </div>

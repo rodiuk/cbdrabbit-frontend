@@ -34,6 +34,7 @@ interface Props {
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
+  isLoading?: boolean;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -50,6 +51,7 @@ const MobileCheckout = (props: Props) => {
     setUserInfo,
     hasError,
     currency,
+    isLoading,
   } = props;
 
   return (
@@ -101,6 +103,7 @@ const MobileCheckout = (props: Props) => {
         setFinalPrice={setFinalPrice}
         handleCheckout={handleCheckout}
         hasError={hasError}
+        isLoading={isLoading}
       />
     </section>
   );
