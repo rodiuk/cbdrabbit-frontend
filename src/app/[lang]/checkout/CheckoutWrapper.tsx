@@ -11,7 +11,7 @@ import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { useAtom } from "jotai";
-import { cartAtom, initialCartState } from "@/libs/store/atoms";
+import { cartAtom, clearCartAtom, initialCartState } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 
 interface Props {
@@ -38,7 +38,8 @@ export const CheckoutWrapper = ({
   const [isEmptyFields, setIsEmptyFields] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-  const [cart, setCart] = useAtom(cartAtom);
+  const [cart] = useAtom(cartAtom);
+  const [, clear] = useAtom(clearCartAtom);
 
   React.useEffect(() => {
     (async function fetchUser() {
@@ -59,8 +60,8 @@ export const CheckoutWrapper = ({
     })();
   }, [data?.user?.id]);
 
-	const handleCheckout = async () => {
-	  console.log(5)
+  const handleCheckout = async () => {
+    console.log(5);
     if (!data?.user?.id) return;
 
     if (
@@ -91,8 +92,8 @@ export const CheckoutWrapper = ({
         },
       };
 
-      const res = await createOrder(payload);
-      setCart(initialCartState);
+      await createOrder(payload);
+      clear();
     } catch (error) {
       console.log(error);
     } finally {

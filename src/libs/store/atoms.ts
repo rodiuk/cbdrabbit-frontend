@@ -24,6 +24,12 @@ const cartAtom = atomWithStorage<Cart>(
   }
 );
 
+// Clear cart atom
+const clearCartAtom = atom(null, (get, set) => {
+  set(cartAtom, initialCartState);
+  return null;
+});
+
 // Add product to cart
 const addProductToCartAtom = atom(
   (get: (atom: any) => Cart) => get(cartAtom),
@@ -146,6 +152,7 @@ const getTotalPriceAtom = atom(get => {
 
 export {
   cartAtom,
+  clearCartAtom,
   getAllProductsAtom,
   getProductNewPriceAtom,
   addProductToCartAtom,
