@@ -30,13 +30,12 @@ export default async function Home({ params }: IMainPageProps) {
   return (
     <main className={cn(styles.container)}>
       <div className={styles.s_home_bg1}>
-        <Image src={bg1} fill className={styles.image} alt="bg" />
+        {/* <Image src={bg1} fill className={styles.image} alt="bg" /> */}
         {/* <Bg3 /> */}
       </div>
       {/* <div className={styles.s_home_bg2}><Bg2 /></div> */}
       <div className="container">
-        <div className="row">
-          <ul className={styles.products}>
+	  <ul className={styles.products}>
             {products?.map(product => (
               <ProductCard
                 key={product.id}
@@ -45,7 +44,6 @@ export default async function Home({ params }: IMainPageProps) {
               />
             ))}
           </ul>
-        </div>
       </div>
     </main>
   );
