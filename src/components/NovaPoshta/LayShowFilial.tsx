@@ -44,7 +44,7 @@ const LayShowFilial = ({
 	//console.log(deliveryId, "LayShowFilial")
   return (
     <>
-      <div className={s.overl}>
+      <>
         <div className={s.content}>
           <div className={s.ttlRow}>
             <span className={s.close} onClick={() => close()}>
@@ -87,7 +87,7 @@ const LayShowFilial = ({
 				  ): null}
 				  
         </div>
-      </div>
+      </>
     </>
   );
 };

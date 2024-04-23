@@ -14,7 +14,6 @@ const Textarea = ({ placeholder }: Props) => {
 	}
 	return (
 		<div className={s.textareaBlock}>
-			<p className={s.ttl}>Коментар</p>
 			<textarea name="" className={s.textarea} value={val}
 				onChange={(e) => HendlerInput(e)}
 				placeholder={placeholder}></textarea>

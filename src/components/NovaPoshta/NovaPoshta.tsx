@@ -164,11 +164,11 @@ const NovaPost = (props: Props): React.JSX.Element => {
           />
         </>
       )}
-
+ 
       <AnimatePresence mode="wait">
         {isOpen ? ( // для выбора города
           <motion.div
-            //className={s.overl}
+            className={s.overl}
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

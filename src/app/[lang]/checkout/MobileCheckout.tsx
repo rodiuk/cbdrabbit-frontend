@@ -12,6 +12,7 @@ import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
+import Textarea from "@/components/Ui/Textarea/Textarea";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -97,6 +98,12 @@ const MobileCheckout = (props: Props) => {
           <p>{dict.payLabelSecond}</p>
         </div>
       </div>
+
+      <div className={styles.checkoutBlock}>
+        <div className={styles.checkoutBlock_h2}>Коментар</div>
+        <Textarea placeholder="Коментар до замовлення" />
+      </div>
+
       <CheckoutRes
         dict={dict}
         currency={currency}

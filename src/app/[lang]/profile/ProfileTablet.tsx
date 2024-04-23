@@ -27,7 +27,7 @@ const ProfileTablet = (props: Props) => {
   const { user, currency, bottomBlock, profileDict, handleDeleteAccount } =
     props;
   const { data } = useSession();
-  const [showDetail, setShowDetail] = React.useState(false);
+  const [showDetail, setShowDetail] = React.useState(true);
   const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
 
   return (
