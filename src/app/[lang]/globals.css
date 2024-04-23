@@ -131,7 +131,7 @@ body::before {
   top: 0;
   width: 100%;
   height: 100%;
-  background: url("/bg_pattern.png") repeat;
+  background: url("/img/bg_pattern.png") repeat;
 }
 a {
   color: inherit;
