@@ -4,6 +4,7 @@ import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import s from "./UserCheckoutForm.module.css";
+import Textarea from "../Ui/Textarea/Textarea";
 
 interface Props {
   dict: ICheckoutDict;
@@ -31,24 +32,27 @@ const UserCheckoutForm = ({
         placeholder="+380 (__)___-__-__"
         onInputChange={value => handleInputChange("phone", value)}
       />
-      <Input
-        type="text"
-        name="lastName"
-        value={userInfo?.lastName ?? ""}
-        text={dict.userLabelLastName}
-        required={true}
-        placeholder={dict.userLabelPlaceholderLastName}
-        onInputChange={value => handleInputChange("lastName", value)}
-      />
-      <Input
-        type="text"
-        name="firstName"
-        value={userInfo?.firstName ?? ""}
-        text={dict.userLabelFirstName}
-        required={true}
-        placeholder={dict.userLabelPlaceholderFirstName}
-        onInputChange={value => handleInputChange("firstName", value)}
-      />
+      <div className={s.wrap_row}>
+        <Input
+          type="text"
+          name="lastName"
+          value={userInfo?.lastName ?? ""}
+          text={dict.userLabelLastName}
+          required={true}
+          placeholder={dict.userLabelPlaceholderLastName}
+          onInputChange={value => handleInputChange("lastName", value)}
+        />
+        <Input
+          type="text"
+          name="firstName"
+          value={userInfo?.firstName ?? ""}
+          text={dict.userLabelFirstName}
+          required={true}
+          placeholder={dict.userLabelPlaceholderFirstName}
+          onInputChange={value => handleInputChange("firstName", value)}
+        />
+		  </div>
+		  <Textarea placeholder="Введи імʼя кирилицею" />
     </div>
   );
 };

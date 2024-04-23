@@ -3,10 +3,15 @@
 import React from "react";
 import { Locale } from "../../../../i18n.config";
 import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
-import { Cart } from "./Cart/Cart";
+//import Cart from "./Cart/Cart";
 import { Menu } from "./Menu/Menu";
 import MenuDrop from "./MenuDrop/MenuDrop";
 import { IHeaderDict } from "@/interfaces/i18n.interface";
+import dynamic from "next/dynamic";
+
+const Cart = dynamic(() => import("@/components/layout/Header/Cart/Cart"), {
+	ssr: false,
+  });
 
 import styles from "./Header.module.css";
 

@@ -2,6 +2,7 @@
 	display: block;
 	position: relative;
 	margin: 15px 0;
+	width: 100%;
 }
 .label:last-child {
 	margin-bottom: 0;
@@ -64,7 +65,7 @@ input[type="text"].input, input[type="password"].input{
 .pass {
 	position: absolute;
 	right: 19px;
-	bottom: 14px;
+	top: 15px;
 	cursor: pointer;
 }
 .right_text {
@@ -76,4 +77,7 @@ input[type="text"].input, input[type="password"].input{
 }
 .red {
 	color: #f11;
+}
+.forEyePosition {
+	position: relative;
 }
