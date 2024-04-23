@@ -37,7 +37,6 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const close = () => {
     setIsOpen(false);
-    setIsOpenFilial(false);
   };
   const showLay = () => {
     setIsOpen(true);
@@ -48,7 +47,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
     setArrayNpFilials([]);
   };
   const showLayFilial = () => {
-    setIsOpenFilial(true);
+	  setIsOpenFilial(true);
+	  newPostNum("1")
   };
   const selectedCity = (obj: any) => {
     setCity(obj.sity);
@@ -63,7 +63,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const novaposhtaCities = (e: string) => {
     let requestData = {
-      apiKey: "b8468b363951e2f035a2f38c961bb23a",
+      apiKey: "5f7142ac0b82581bc8ac1ece8253bf11",
       modelName: "Address",
       calledMethod: "searchSettlements",
       methodProperties: {
@@ -91,7 +91,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const newPostNum = (e: any) => {
     let requestData = {
-      apiKey: "b8468b363951e2f035a2f38c961bb23a",
+      apiKey: "5f7142ac0b82581bc8ac1ece8253bf11",
       modelName: "Address",
       calledMethod: "getWarehouses",
       methodProperties: {
@@ -168,7 +168,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
       <AnimatePresence mode="wait">
         {isOpen ? ( // для выбора города
           <motion.div
-            className={s.overl}
+            //className={s.overl}
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

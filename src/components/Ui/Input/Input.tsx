@@ -56,7 +56,22 @@ const Input: React.FC<InputProps> = ({
         {showForgotPassword && (
           <span className={s.right_text}>Забув пароль? {password}</span>
         )}
-      </p>
+		  </p>
+		  {isPassword && (
+			  <p className={s.forEyePosition}>
+				  <>
+					{type === "text" ? (
+						<div className={s.pass} onClick={() => handlerClick("password")}>
+						<EyeClosed />
+						</div>
+					) : (
+						<div className={s.pass} onClick={() => handlerClick("text")}>
+						<EyeOpened />
+						</div>
+					)}
+				</>
+			  </p>
+		  )}
       <input
         className={s.input}
         {...input}
@@ -65,19 +80,7 @@ const Input: React.FC<InputProps> = ({
         value={value}
         onClick={showLay ? () => showLay() : undefined}
       />
-      {isPassword && (
-        <>
-          {type === "text" ? (
-            <div className={s.pass} onClick={() => handlerClick("password")}>
-              <EyeClosed />
-            </div>
-          ) : (
-            <div className={s.pass} onClick={() => handlerClick("text")}>
-              <EyeOpened />
-            </div>
-          )}
-        </>
-      )}
+      
       {errorText && <p className={s.error}>Не правильно введений пароль</p>}
     </label>
   );
