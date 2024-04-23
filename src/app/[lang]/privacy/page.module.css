@@ -1,9 +1,28 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 30px;
-  min-height: calc(100vh - 38px - 38px);
-
-  padding-top: 150px;
-}
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px 15px;
+	min-height: calc(100vh - 38px - 38px);
+	  
+	padding-top: 90px;
+  }
+  .wrapper {
+	  background: #fff;
+	  padding: 15px;
+	  border-radius: 20px;
+  }
+  .h1 {
+	  font-size: 30px;
+	  text-align: center;
+	  font-weight: 600;
+  }
+  .h2 {
+	  font-size: 20px;
+	  margin: 15px 0;
+	  font-weight: 600;
+  }
+  .p	{
+	  margin: 10px 0;
+  }
+  

@@ -37,7 +37,7 @@ const InputNovaPoshta: React.FC<InputProps> = ({
   const [type, setType] = React.useState(input.type);
 
   // const [validate, setValidate] = React.useState(true)
-console.log(target)
+//console.log(target)
 	const handlerInput = (e: any) => {
 		
 	  if (target === "cityInput") {
@@ -53,8 +53,8 @@ console.log(target)
     //setValidate(true)
   };
 
-  const handkerClick = (el: string) => {
-    setType(el);
+  const handlerClick = (el: string) => {
+    console.log(el, "ggg");
   };
 
   return (
@@ -75,7 +75,8 @@ console.log(target)
       <input
         className={s.input}
         {...input}
-        onChange={e => handlerInput(e)}
+			  onChange={e => handlerInput(e)}
+			  onClick={() => handlerClick(target)}
         type={type}
         value={value}
       />
