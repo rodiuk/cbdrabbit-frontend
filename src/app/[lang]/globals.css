@@ -1,29 +1,29 @@
 :root {
   --background-color: #9bd28f;
   --color: #212121;
---red: #FF1111;
+  --red: #ff1111;
   --primary-color: #42623b;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 *:before,
 *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 ul,
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 h1,
@@ -32,24 +32,24 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 sup {
-    vertical-align: text-top;
+  vertical-align: text-top;
 }
 
 sub {
-    vertical-align: text-bottom;
+  vertical-align: text-bottom;
 }
 
 input,
 textarea,
 select {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    max-width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  max-width: 100%;
 }
 
 article,
@@ -64,21 +64,21 @@ menu,
 nav,
 section,
 main {
-    display: block;
+  display: block;
 }
 
 img {
-    height: auto;
-    max-width: 100%;
-    border: 0;
-    display: block;
+  height: auto;
+  max-width: 100%;
+  border: 0;
+  display: block;
 }
 
 a {
-    display: inline-block;
-    transition: all 0.3s;
-    text-decoration: none;
-    color: #42623B;
+  display: inline-block;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: #42623b;
 }
 
 a:active,
@@ -90,23 +90,22 @@ button,
 input,
 textarea,
 select {
-    outline: none;
+  outline: none;
 }
 
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 form label {
-    display: block;
+  display: block;
 }
 
 form label span {
-    display: block;
+  display: block;
 }
 
-
-html{
+html {
   overflow-x: hidden;
 }
 
@@ -114,8 +113,8 @@ body {
   color: var(--color);
   background: var(--background-color);
   font-family: var(--font-manrope);
-background: linear-gradient(to bottom,#9BD28F, #55A146 );
-height: 100%;
+  background: linear-gradient(to bottom, #9bd28f, #55a146);
+  height: 100%;
   min-width: 320px;
   position: relative;
   line-height: 1.5;
@@ -126,13 +125,13 @@ height: 100%;
   position: relative;
 }
 body::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: url("/bg_pattern.png") repeat;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/bg_pattern.png") repeat;
 }
 a {
   color: inherit;
