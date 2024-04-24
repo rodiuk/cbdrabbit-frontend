@@ -14,6 +14,7 @@ import info from "/public/img/info.svg";
 import arr2 from "/public/img/arrow-doble.svg";
 
 import s from "./s.module.css";
+import ButtonforPay from "@/components/ButtonforPay/ButtonforPay";
 
 interface Props {
   dict: ICheckoutDict;
@@ -23,7 +24,7 @@ interface Props {
   hasError: boolean;
   isLoading?: boolean;
 }
-
+ 
 const CheckoutRes = React.memo(function CheckoutRes({
   dict,
   currency,
@@ -125,7 +126,8 @@ const CheckoutRes = React.memo(function CheckoutRes({
             <Button
               text={isLoading ? "Loading..." : dict.checkoutButton}
               handleClick={handleCheckout}
-            />
+					  />
+					  <ButtonforPay finalPrice={finalPrice} />
             <div className={s.checkoutTotal_check}>
               <p>{dict.checkoutDisclaimer}</p>
             </div>

@@ -59,7 +59,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
         profileDict={profileDict}
         handleDeleteAccount={handleDeleteAccount}
       />
-
+ 
       <ProfileMobile
         user={user}
         profileDict={profileDict}

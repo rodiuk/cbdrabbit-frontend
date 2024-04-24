@@ -95,10 +95,16 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
     } finally {
       setIsLoadingReset(false);
     }
-  };
+	};
+	
+	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.currentTarget === e.target) {
+			bottomBlock("")
+		}
+	}
 
   return (
-    <div className={s.overl}>
+    <div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>

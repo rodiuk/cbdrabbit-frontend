@@ -8,10 +8,16 @@ import ButtonRed from '@/components/Ui/Button/ButtonRed';
 import deleteAkkIcon from "/public/img/deleteAkk.svg";
 import Image from 'next/image';
 
-const LayPopupDeleteAkk = ({bottomBlock}: {bottomBlock: (e: string) => void}) => {
+const LayPopupDeleteAkk = ({ bottomBlock }: { bottomBlock: (e: string) => void }) => {
+	
+	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.currentTarget === e.target) {
+			bottomBlock("")
+		}
+	}
 	
 	return (
-		<div className={s.overl}>
+		<div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
         <div className={s.content}>
 		<div className={s.lay_wrap}>
             <div className={s.container}>

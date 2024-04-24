@@ -82,10 +82,16 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
     } else {
       await handleCreatePassword();
     }
-  };
+	};
+	
+	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.currentTarget === e.target) {
+			bottomBlock("")
+		}
+	}
 
   return (
-    <div className={s.overl}>
+    <div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>

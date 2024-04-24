@@ -31,12 +31,15 @@ const NovaPost = (props: Props): React.JSX.Element => {
   const [arrayNpFilials, setArrayNpFilials] = React.useState([]);
 
   const handleRadioChange = (id: string) => {
-    setDeliveryId(id);
+	  setDeliveryId(id);
+	  setArrayNpFilials([])
+	  setPostPoint("");
     console.log(id);
   };
 
   const close = () => {
-    setIsOpen(false);
+	  setIsOpen(false);
+	  setIsOpenFilial(false)
   };
   const showLay = () => {
     setIsOpen(true);
@@ -152,23 +155,37 @@ const NovaPost = (props: Props): React.JSX.Element => {
             value={city}
           />
 
-          <Input
-            type="text"
-            text="Відділення"
-            required={true}
-            name="Відділення"
-            placeholder="Введи номер відділення"
-            showLay={showLayFilial}
-            autoComplete="off"
-            value={postPoint}
-          />
+          
+				  {deliveryId === "3" ? (
+					  <Input
+					  type="text"
+					  text="Адреса"
+					  required={true}
+					  name="Адреса"
+					  placeholder="Введи адресу"
+					//  showLay={showLayFilial}
+					  autoComplete="off"
+					  //value={postPoint}
+							/>
+				  ) : (
+					<Input
+					type="text"
+					text="Відділення"
+					required={true}
+					name="Відділення"
+					placeholder="Введи номер відділення"
+					showLay={showLayFilial}
+					autoComplete="off"
+					value={postPoint}
+						  />
+				  )}
         </>
       )}
  
       <AnimatePresence mode="wait">
         {isOpen ? ( // для выбора города
           <motion.div
-            className={s.overl}
+            
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -185,7 +202,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
         ) : null}
         {isOpenFilial ? (
           <motion.div
-            className={s.overl}
+            
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
