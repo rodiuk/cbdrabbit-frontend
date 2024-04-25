@@ -123,10 +123,10 @@ const CheckoutRes = React.memo(function CheckoutRes({
                 {finalPrice} {currency}
               </p>
             </div>
-            <Button
+            {/* <Button
               text={isLoading ? "Loading..." : dict.checkoutButton}
               handleClick={handleCheckout}
-					  />
+					  /> */}
 					  <ButtonforPay finalPrice={finalPrice} />
             <div className={s.checkoutTotal_check}>
               <p>{dict.checkoutDisclaimer}</p>
