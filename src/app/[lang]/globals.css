@@ -2,6 +2,7 @@
   --background-color: #9bd28f;
   --color: #212121;
   --red: #ff1111;
+
   --primary-color: #42623b;
 }
 
@@ -9,21 +10,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 *:before,
 *:after {
   box-sizing: border-box;
+
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+
 }
 
 ul,
 li {
   list-style-type: none;
+
 }
 
 h1,
@@ -33,14 +38,17 @@ h4,
 h5,
 h6 {
   font-weight: normal;
+
 }
 
 sup {
   vertical-align: text-top;
+
 }
 
 sub {
   vertical-align: text-bottom;
+
 }
 
 input,
@@ -50,6 +58,7 @@ select {
   font-size: inherit;
   font-weight: inherit;
   max-width: 100%;
+
 }
 
 article,
@@ -65,6 +74,7 @@ nav,
 section,
 main {
   display: block;
+
 }
 
 img {
@@ -72,6 +82,7 @@ img {
   max-width: 100%;
   border: 0;
   display: block;
+
 }
 
 a {
@@ -79,6 +90,7 @@ a {
   transition: all 0.3s;
   text-decoration: none;
   color: #42623b;
+
 }
 
 a:active,
@@ -91,18 +103,22 @@ input,
 textarea,
 select {
   outline: none;
+
 }
 
 strong {
   font-weight: bold;
+
 }
 
 form label {
   display: block;
+
 }
 
 form label span {
   display: block;
+
 }
 
 html {
