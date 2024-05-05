@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
-import bg1 from "/public/img/bg1.svg";
 import { getAllProducts } from "@/libs/api/products.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";
@@ -35,15 +33,15 @@ export default async function Home({ params }: IMainPageProps) {
       </div>
       {/* <div className={styles.s_home_bg2}><Bg2 /></div> */}
       <div className="container">
-	  <ul className={styles.products}>
-            {products?.map(product => (
-              <ProductCard
-                key={product.id}
-                product={product as unknown as IProductRes}
-                lang={params.lang}
-              />
-            ))}
-          </ul>
+        <ul className={styles.products}>
+          {products?.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product as unknown as IProductRes}
+              lang={params.lang}
+            />
+          ))}
+        </ul>
       </div>
     </main>
   );

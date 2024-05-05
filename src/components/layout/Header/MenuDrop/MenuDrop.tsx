@@ -23,15 +23,20 @@ const MenuDrop = (props: Props) => {
   const { toggleMenu, lang, dict } = props;
   const { status } = useSession();
 
-  const isSignIn = status === "authenticated";
+	const isSignIn = status === "authenticated";
+	
+	
 
   const handleSignOut = () => {
     signOut();
-    toggleMenu();
-  };
+	  toggleMenu();
+	};
+	
 
   return (
-    <div className={s.menu}>
+	  <div className={s.menu}
+		  onClick={e => (e.currentTarget === e.target) && toggleMenu()}
+	  >
       <div className={s.mnu}>
         {!isSignIn && (
           <Link

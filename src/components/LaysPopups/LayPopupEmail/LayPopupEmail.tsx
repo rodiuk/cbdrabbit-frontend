@@ -1,9 +1,10 @@
 import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
 import Input from "@/components/Ui/Input/Input";
 import { IProfileDict } from "@/interfaces/i18n.interface";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
-import { updateEmail } from "@/libs/api/user.api";
+import { updateEmailRequest } from "@/libs/api/user.api";
 import { useSession } from "next-auth/react";
 
 import s from "./LayPopupEmail.module.css";
@@ -15,26 +16,30 @@ interface Props {
 
 const LayPopupEmail = (props: Props): React.JSX.Element => {
   const { bottomBlock, dict } = props;
-  const { data, update: sessionUpdate } = useSession();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { data } = useSession();
   const [email, setEmail] = React.useState<string>("");
   const [hasError, setHasError] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-	const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
-	
+  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	const validEmail = emailRegex.test(email);
-	
+  const validEmail = emailRegex.test(email);
 
   const handleChangeEmail = async () => {
+    if (!email?.length || !validEmail || !data?.user?.email)
+      return setHasError(true);
+
     try {
-      if (!email?.length || !validEmail || !data?.user?.id) return setHasError(true);
       setIsLoading(true);
 
-      const res = await updateEmail(data?.user.id, email);
-      await sessionUpdate({ ...data, user: { ...data?.user, email } });
-      console.log(data?.user);
-      bottomBlock("");
+      const res = await updateEmailRequest(data.user.email, email);
+      if ("error" in res) return setHasError(true);
+
+      router.push(pathname + `?newEmail=${email}`);
+      bottomBlock("successChangeEmail");
     } catch (error) {
       console.log(error);
     } finally {
@@ -43,8 +48,15 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
   };
 
   let status = "2";
+
+  const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      bottomBlock("");
+    }
+  };
+
   return (
-    <div className={s.overl}>
+    <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>
@@ -134,7 +146,7 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
                 <div className={s.buttonBlock}>
                   <p className={s.bbt}>{dict.changeEmailSecondSubtitle}</p>
                   <ButtonWhite
-                    text={isLoading ? "Loading" : dict.changeEmailBtn}
+                    text={isLoading ? "Loading..." : dict.changeEmailBtn}
                     handleClick={handleChangeEmail}
                     isDisabled={isLoading}
                   />

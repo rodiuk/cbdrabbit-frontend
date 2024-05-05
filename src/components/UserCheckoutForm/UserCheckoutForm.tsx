@@ -4,7 +4,6 @@ import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import s from "./UserCheckoutForm.module.css";
-import Textarea from "../Ui/Textarea/Textarea";
 
 interface Props {
   dict: ICheckoutDict;
@@ -51,8 +50,7 @@ const UserCheckoutForm = ({
           placeholder={dict.userLabelPlaceholderFirstName}
           onInputChange={value => handleInputChange("firstName", value)}
         />
-		  </div>
-		  
+      </div>
     </div>
   );
 };

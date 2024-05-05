@@ -4,6 +4,8 @@ interface AppConfig {
   DOMAIN: string;
   API_KEY: string;
   TG_BOT_TOKEN: string;
+  SPUTNIK_BEARER_TOKEN: string;
+  SPUTNIK_URL: string;
 }
 
 export const appConfig: AppConfig = {
@@ -12,4 +14,6 @@ export const appConfig: AppConfig = {
   DOMAIN: process.env.PUBLIC_DOMAIN as string,
   API_KEY: process.env.API_KEY as string,
   TG_BOT_TOKEN: process.env.TG_BOT_TOKEN as string,
+  SPUTNIK_BEARER_TOKEN: process.env.SPUTNIK_BEARER_TOKEN as string,
+  SPUTNIK_URL: process.env.SPUTNIK_URL as string,
 };

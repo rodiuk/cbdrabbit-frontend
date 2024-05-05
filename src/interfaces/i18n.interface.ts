@@ -28,6 +28,13 @@ export interface IProfileDict {
   passwordNotExist: string;
   deliveryTitle: string;
   deliveryDisclaimer: string;
+  askDeleteAccount: string;
+  cancelDeleteAccount: string;
+  confirmDeleteAccount: string;
+  askDeleteDelivery: string;
+  cancelDeleteDelivery: string;
+  confirmDeleteDelivery: string;
+  deleteDeliveryTitle: string;
   npLabel: string;
   deleteAccount: string;
   deleteAccountBtn: string;
@@ -95,4 +102,21 @@ export interface IOrderDict {
   choiceCandy: string;
   amountLabel: string;
   orderAgainBtn: string;
+}
+
+export interface IRecoveryPasswordDict {
+  titleAsk: string;
+  messageAsk: string;
+  buttonAsk: string;
+  titleSuccess: string;
+  titleSuccessEmail: string;
+  messageSuccess: string;
+  messageSuccessBase: string;
+  labelSuccess: string;
+  buttonSuccess: string;
+}
+
+export interface IAuthGeneral {
+  successPassUpdateMessage: string;
+  successPassUpdateBtn: string;
 }

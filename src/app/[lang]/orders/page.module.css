@@ -7,19 +7,21 @@
   min-height: calc(100vh - 38px - 38px);
 
   padding-top: 90px;
+  padding-bottom: 120px;
 }
+
 .wrapPage {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	max-width: 680px;
-	width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 680px;
+  width: 100%;
 }
 
 @media (min-width: 769px) {
-	.wrapPage {
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 24px;
-	}
+  .wrapPage {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 }

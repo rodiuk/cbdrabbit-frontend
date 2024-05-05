@@ -15,6 +15,7 @@ export default async function Profile({ params }: IMainPageProps) {
         <ProfileWrapper
           currency={dict.currency}
           profileDict={dict.profile}
+          recoveryDict={dict.recoveryPassword}
           checkoutDict={dict.checkout}
         />
       </Suspense>

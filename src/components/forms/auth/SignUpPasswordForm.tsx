@@ -29,7 +29,11 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
 
     if (password1 !== password2) return setNotMatch(true);
 
-    const user = await createUser({ email: userEmail, password: password1 });
+    const user = await createUser({
+      email: userEmail,
+      password: password1,
+      phoneNumber: "",
+    });
 
     if (!user || "error" in user) return setError(user.error);
 
