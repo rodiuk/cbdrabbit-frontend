@@ -39,6 +39,7 @@ export const createUrlForCheckout = async (
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          "X-Token": "uMPifdfwWuOCQHZlDW5zNC9-FZHbZjCktoXp34ciPTHo",
         },
         body: JSON.stringify(arg),
       }
