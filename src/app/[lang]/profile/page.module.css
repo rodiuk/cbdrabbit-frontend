@@ -10,6 +10,7 @@
 
 .wrap {
   display: none;
+  position: relative;
 }
 
 .list {
@@ -61,7 +62,7 @@
 .wrapper .wrapper_ttl {
   font-size: 20px;
 }
-
+ 
 .wrapper .wrapper_big {
   font-size: 40px;
   color: #42623b;
@@ -133,10 +134,14 @@
   border: 2px solid rgba(255, 17, 18, 0.1019607843);
   margin-top: 15px;
 }
+.wrap_mobile {
+	position: relative;
+}
 
 @media (min-width: 992px) {
   .wrap_mobile {
     display: none;
+	position: relative;
   }
 
   .wrap {

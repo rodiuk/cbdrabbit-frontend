@@ -20,12 +20,10 @@ interface Props {
   currency: string;
   bottomBlock: (info: string) => void;
   profileDict: IProfileDict;
-  handleDeleteAccount: () => void;
 }
 
 const ProfileTablet = (props: Props) => {
-  const { user, currency, bottomBlock, profileDict, handleDeleteAccount } =
-    props;
+  const { user, currency, bottomBlock, profileDict } = props;
   const { data } = useSession();
   const [showDetail, setShowDetail] = React.useState(true);
   const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
@@ -78,7 +76,10 @@ const ProfileTablet = (props: Props) => {
         <div className={s.wrapper_wrap_tal}>
           <div className={s.h2}>{profileDict.deleteAccount}</div>
 
-          <button className={s.buttonRed} onClick={handleDeleteAccount}>
+          <button
+            className={s.buttonRed}
+            onClick={() => bottomBlock("deleteAccount")}
+          >
             {profileDict.deleteAccountBtn}
           </button>
         </div>

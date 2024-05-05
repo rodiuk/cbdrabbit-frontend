@@ -25,12 +25,30 @@
     }
   },
   "footer": {},
-  "currency": "$",
+  "currency": "₴",
   "cartBanner": {
     "checkoutLabel": "Total amount:",
     "checkoutButton": "Checkout"
   },
+  "recoveryPassword": {
+    "titleAsk": "Forgot Password",
+    "messageAsk": "Send password reset link to email?",
+    "buttonAsk": "Send",
+    "titleSuccess": "Password Reset",
+    "titleSuccessEmail": "Update email",
+    "messageSuccess": "We sent a password reset link to your email",
+    "messageSuccessBase": "We sent a link for activate to your email",
+    "labelSuccess": "Click the link in the email",
+    "buttonSuccess": "To Email"
+  },
   "auth": {
+    "general": {
+      "successPassUpdateMessage": "Password successfully updated!",
+      "successEmailUpdateMessage": "Email successfully updated!",
+      "successPassUpdateBtn": "Go to Home",
+      "updatePassTitle": "Update password",
+      "updatePassButton": "Update"
+    },
     "activate": {
       "title": "You've got a personal discount on all purchases",
       "subTitle": "Account successfully created!",
@@ -110,6 +128,13 @@
     "npLabel": "New Post",
     "deleteAccount": "Delete account",
     "deleteAccountBtn": "Delete",
+    "askDeleteAccount": "Are you sure you want to delete the account?",
+    "cancelDeleteAccount": "I don't want to delete 🥺",
+    "confirmDeleteAccount": "Delete 😭",
+    "deleteDeliveryTitle": "Clear delivery data",
+    "askDeleteDelivery": "Are you sure you want to clear delivery data?",
+    "cancelDeleteDelivery": "No, I'm not sure 🙄",
+    "confirmDeleteDelivery": "Clear data 🧹",
     "changeEmailTitle": "Change email",
     "changeEmailSubtitle": "Enter which email you want instead",
     "changeEmailSecondSubtitle": "We will send a letter with a link for email verification",
@@ -153,17 +178,17 @@
     "product": {
       "discountLabel": "Discount for large orders",
       "discountList": [
-        "1-5 шт - 80 грн/цукерка",
-        "6-10 шт - 77 грн/цукерка",
-        "11-15 шт - 75 грн/цукерка",
-        "16-20 шт - 73.5 грн/цукерка",
-        "21-30 шт - 72.5 грн/цукерка",
-        "31-40 шт - 71.5 грн/цукерка",
-        "41-50 шт - 70.5 грн/цукерка",
-        "51-75 шт - 70 грн/цукерка",
-        "76-100 шт - 69.5 грн/цукерка",
-        "101-200 шт - 69 грн/цукерка",
-        "200+ шт - 68.5 грн/цукерка"
+        "1-5 шт - 80 uah/candy",
+        "6-10 шт - 77 uah/candy",
+        "11-15 шт - 75 uah/candy",
+        "16-20 шт - 73.5 uah/candy",
+        "21-30 шт - 72.5 uah/candy",
+        "31-40 шт - 71.5 uah/candy",
+        "41-50 шт - 70.5 uah/candy",
+        "51-75 шт - 70 uah/candy",
+        "76-100 шт - 69.5 uah/candy",
+        "101-200 шт - 69 uah/candy",
+        "200+ шт - 68.5 uah/candy"
       ]
     }
   },

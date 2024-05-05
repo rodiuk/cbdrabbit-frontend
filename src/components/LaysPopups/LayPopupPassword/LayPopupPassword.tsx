@@ -84,8 +84,14 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
     }
   };
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      bottomBlock("");
+    }
+  };
+
   return (
-    <div className={s.overl}>
+    <div className={s.overl} onClick={e => handleBackdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>
@@ -119,6 +125,8 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
                   text={dict.changePasswordOldInputLabel}
                   placeholder={dict.changePasswordOldInputPlaceholder}
                   isPassword
+                  handleForgot={() => bottomBlock("recoveryAsk")}
+                  showForgotPassword
                   password={true}
                   errorText={
                     passwordError ? dict.changePasswordOldInputError : undefined

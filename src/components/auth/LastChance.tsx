@@ -2,6 +2,7 @@ import React from "react";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { Locale } from "../../../i18n.config";
 import Button from "../Ui/Button/Button";
+import Image from "next/image";
 
 import last from "/public/img/last.svg";
 
@@ -19,7 +20,7 @@ export const LastChance = async (props: Props): Promise<React.JSX.Element> => {
     <section className={styles.lay_item}>
       <div className={styles.items_wrap}>
         <div className={styles.img_center}>
-          <img src={last.src} alt="last" />
+          <Image src={last.src} alt="Decorate icon" width={206} height={169} />
         </div>
         <h1 className={`${styles.ttl} ${styles.mb15}`}>{lastChance.title}</h1>
         <p className={styles.ttl}>{lastChance.description}</p>

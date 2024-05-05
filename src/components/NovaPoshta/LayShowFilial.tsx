@@ -40,11 +40,17 @@ const LayShowFilial = ({
 		}, 2000);
 	}
 	
-	console.log(arrayNpFilials)
+	//console.log(arrayNpFilials)
 	//console.log(deliveryId, "LayShowFilial")
+	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.currentTarget === e.target) {
+			close()
+		}
+	}
+
   return (
     <>
-      <>
+      <div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
         <div className={s.content}>
           <div className={s.ttlRow}>
             <span className={s.close} onClick={() => close()}>
@@ -87,7 +93,7 @@ const LayShowFilial = ({
 				  ): null}
 				  
         </div>
-      </>
+      </div>
     </>
   );
 };
