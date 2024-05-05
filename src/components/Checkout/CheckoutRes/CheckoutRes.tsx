@@ -3,18 +3,17 @@
 import React from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import Button from "@/components/Ui/Button/Button";
 import { cartAtom } from "@/libs/store/atoms";
 import { useAtom } from "jotai/react";
 import { getUserInfo } from "@/libs/api/user.api";
 import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import ButtonforPay from "@/components/ButtonforPay/ButtonforPay";
 
 import info from "/public/img/info.svg";
 import arr2 from "/public/img/arrow-doble.svg";
 
 import s from "./s.module.css";
-import ButtonforPay from "@/components/ButtonforPay/ButtonforPay";
 
 interface Props {
   dict: ICheckoutDict;
@@ -24,7 +23,7 @@ interface Props {
   hasError: boolean;
   isLoading?: boolean;
 }
- 
+
 const CheckoutRes = React.memo(function CheckoutRes({
   dict,
   currency,
@@ -127,7 +126,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
               text={isLoading ? "Loading..." : dict.checkoutButton}
               handleClick={handleCheckout}
 					  /> */}
-					  <ButtonforPay finalPrice={finalPrice} />
+            <ButtonforPay finalPrice={finalPrice} />
             <div className={s.checkoutTotal_check}>
               <p>{dict.checkoutDisclaimer}</p>
             </div>

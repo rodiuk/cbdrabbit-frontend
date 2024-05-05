@@ -4,6 +4,7 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import Button from "../Ui/Button/Button";
 import { ISuccessSignUpDict } from "@/interfaces/auth.interface";
+import Image from "next/image";
 
 import letter from "/public/img/letter.svg";
 
@@ -24,7 +25,12 @@ export const SuccessSignUp = ({ dict }: Props): React.JSX.Element => {
       <div className={styles.items_wrap}>
         <h1 className={styles.ttl}>{dict.title}</h1>
         <div className={styles.img_center}>
-          <img src={letter.src} alt="letter" />
+          <Image
+            src={letter.src}
+            alt="Decorate icon"
+            width={206}
+            height={169}
+          />
         </div>
         <p className={styles.descr}>{userEmail}</p>
         <h2 className={styles.ttl}>{dict.subTitle}</h2>
@@ -36,7 +42,7 @@ export const SuccessSignUp = ({ dict }: Props): React.JSX.Element => {
         <Button
           text={dict.button}
           className="white_button"
-          handleClick={() => window.open(mailDomain, "_blank")}
+          handleClick={() => window.open(`https://${mailDomain}`, "_blank")}
         />
       </div>
     </div>

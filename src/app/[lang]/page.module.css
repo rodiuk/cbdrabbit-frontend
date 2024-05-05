@@ -1,7 +1,7 @@
 .container {
-  padding-bottom: 50px;
   padding-top: 150px;
   position: relative;
+  padding-bottom: 120px;
 }
 
 .s_home_bg1 {
@@ -48,8 +48,8 @@
 @media screen and (min-width: 768px) {
   .products {
     display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     margin: auto auto;
     gap: 24px;

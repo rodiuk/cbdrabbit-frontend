@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios";
+import { useRouter } from 'next/router';
 
 import s from "./ButtonforPay.module.css";
-import { useRouter } from 'next/router';
 
 interface Props {
 	finalPrice: number
@@ -12,7 +12,7 @@ interface Props {
 
 const ButtonforPay = ({ finalPrice }: Props) => {
 	console.log(finalPrice.toFixed(2))
-	
+
 	const takeLinkFromBank = () => {
 		let priceAll = finalPrice.toFixed(2)
 		const numberWithoutDot = priceAll.replace(".", "");
@@ -46,7 +46,7 @@ const ButtonforPay = ({ finalPrice }: Props) => {
 			"validity": 3600,
 			"paymentType": "debit"
 		}
-		
+
 		axios.post("https://api.monobank.ua/api/merchant/invoice/create", arg, {
 			headers: {
 				'Content-type': 'application/json',

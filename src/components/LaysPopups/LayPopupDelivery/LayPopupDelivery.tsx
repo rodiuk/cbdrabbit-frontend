@@ -77,34 +77,14 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
     }
   };
 
-  const handleDeleteDelivery = async () => {
-    try {
-      if (!data?.user?.id) return;
-      setIsLoadingReset(true);
-      await updateDeliveryInfo(data.user.id, {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        city: "",
-        npDepartment: "",
-        npDeliveryType: "",
-      });
+  const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
       bottomBlock("");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoadingReset(false);
     }
-	};
-	
-	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (e.currentTarget === e.target) {
-			bottomBlock("")
-		}
-	}
+  };
 
   return (
-    <div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
+    <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>
@@ -150,7 +130,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
             <div className={s.buttonBlock}>
               <ButtonRed
                 isDisabled={isLoadingReset}
-                handleClick={handleDeleteDelivery}
+                handleClick={() => bottomBlock("deleteDelivery")}
                 text={
                   isLoadingReset
                     ? "Loading..."

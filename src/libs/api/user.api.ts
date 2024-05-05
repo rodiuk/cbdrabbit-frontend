@@ -7,7 +7,13 @@ import {
 } from "@/interfaces/user.interface";
 import prisma from "@/libs/client/prisma.client";
 import { compare, hash } from "bcrypt";
+import { nanoid } from "nanoid";
 import { revalidatePath } from "next/cache";
+import {
+  emailUpdateSendEmail,
+  passwordResetSendEmail,
+  signUpActivateSendEmail,
+} from "./emails.api";
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -58,7 +64,7 @@ export const createGoogleUser = async (
     const user = await prisma.user.create({
       data: {
         ...userData,
-        isActive: true,
+        isVerified: true,
         loyalty: {
           create: {
             percentDiscount: 2,
@@ -119,13 +125,23 @@ export const createUser = async (userData: ICreateUser) => {
 
       if (isUserExist) return { error: "User already exist" };
 
+      const code = nanoid(16);
+
       const user = await prisma.user.create({
         data: {
-          ...userData,
+          email: userData.email,
+          password: hashPassword,
+          verifiedCode: code,
           loyalty: { create: { percentDiscount: 2 } },
-          address: { create: {} },
+          address: {
+            create: {
+              phoneNumber: userData.phoneNumber,
+            },
+          },
         },
       });
+
+      await signUpActivateSendEmail(user.email, userData.phoneNumber, code);
 
       return user;
     });
@@ -136,6 +152,37 @@ export const createUser = async (userData: ICreateUser) => {
   }
 };
 
+export const updateEmailRequest = async (
+  oldEmail: string,
+  newEmail: string
+) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: oldEmail,
+      },
+    });
+
+    if (!user) return { error: "User not found" };
+
+    const code = nanoid(16);
+
+    await prisma.user.update({
+      where: {
+        email: oldEmail,
+      },
+      data: {
+        successCode: code,
+      },
+    });
+
+    await emailUpdateSendEmail(newEmail, code);
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
 export const updateEmail = async (userId: string, email: string) => {
   try {
     const user = await prisma.user.update({
@@ -282,9 +329,12 @@ export const isAccountActivated = async (userEmail: string) => {
 
 export const deleteAccount = async (userId: string) => {
   try {
-    await prisma.user.delete({
+    await prisma.user.update({
       where: {
         id: userId,
+      },
+      data: {
+        isActive: false,
       },
     });
   } catch (error) {
@@ -309,6 +359,88 @@ export const updateUserTotalAmount = async (
         totalOrdersAmount: user?.totalOrdersAmount + orderAmount,
       },
     });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkVerifiedCode = async (code: string) => {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        verifiedCode: code,
+      },
+    });
+
+    if (!user) return { error: "User not found" };
+
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        isVerified: true,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const resetPassword = async (email: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) return { error: "User not found" };
+
+    const code = nanoid();
+
+    const updateUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        successCode: code,
+      },
+    });
+
+    await passwordResetSendEmail(email, code);
+
+    return updateUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updatePasswordByCode = async (code: string, password: string) => {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        successCode: code,
+      },
+    });
+
+    if (!user) return { error: "User not found" };
+
+    const hashNewPassword = await hash(password, 10);
+
+    const updateUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        password: hashNewPassword,
+        successCode: null,
+      },
+    });
+
+    return updateUser;
   } catch (error) {
     throw error;
   }

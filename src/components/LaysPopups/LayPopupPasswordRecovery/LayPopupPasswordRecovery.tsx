@@ -1,37 +1,37 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
-import { deleteAccount } from "@/libs/api/user.api";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
-import ButtonRed from "@/components/Ui/Button/ButtonRed";
-import { IProfileDict } from "@/interfaces/i18n.interface";
+import { IRecoveryPasswordDict } from "@/interfaces/i18n.interface";
+import { ArrowLeftIcon } from "@/components/icons/ArrowLeft";
+import { resetPassword } from "@/libs/api/user.api";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 import cn from "clsx";
-import s from "./LayPopupDeleteAkk.module.css";
-
-import deleteAkkIcon from "/public/img/deleteAkk.svg";
+import s from "./LayPopupPasswordRecovery.module.css";
 
 interface Props {
   bottomBlock: (e: string) => void;
-  dict: IProfileDict;
+  dict: IRecoveryPasswordDict;
+  email: string;
 }
 
-const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
-  const { data } = useSession();
+const LayPopupPasswordRecovery = (props: Props): React.JSX.Element => {
+  const { bottomBlock, dict, email } = props;
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
       bottomBlock("");
     }
   };
 
-  const handleDeleteAccount = async () => {
-    if (!data?.user?.id) return;
+  const handleSendRecoveryEmail = async () => {
     try {
       setIsLoading(true);
+      const res = await resetPassword(email);
 
-      await deleteAccount(data?.user?.id);
-      signOut();
+      if ("id" in res) return bottomBlock("successResetPassword");
     } catch (error) {
       console.log(error);
     } finally {
@@ -45,9 +45,13 @@ const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
         <div className={s.lay_wrap}>
           <div className={s.container}>
             <div className={s.flexLay}>
-              <div className={cn("lay_ttl", s.header)}>
-                <p>{dict.deleteAccount}</p>
-                <span className="close" onClick={() => bottomBlock("")}>
+              <div className={s.lay_ttl}>
+                <ArrowLeftIcon
+                  handleClick={() => bottomBlock("password")}
+                  iconStyle={s.back}
+                />
+                <p className={s.title}>{dict.titleAsk}</p>
+                <span className={s.close} onClick={() => bottomBlock("")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -65,20 +69,15 @@ const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
                   </svg>
                 </span>
               </div>
-              <div className={cn("lay_img", s.img)}>
-                <Image src={deleteAkkIcon} alt="Delete decorate image" />
-              </div>
-              <div className={s.lay_text}>
-                <p>{dict.askDeleteAccount}</p>
-              </div>
-              <div className={cn("button-block", s.buttons)}>
+
+              <p className={s.message}>{dict.messageAsk}</p>
+
+              <p className={s.email}>{maskEmailAddress(email)}</p>
+
+              <div className={cn("button-block", s.submit)}>
                 <ButtonWhite
-                  text={dict.cancelDeleteAccount}
-                  handleClick={() => bottomBlock("")}
-                />
-                <ButtonRed
-                  text={isLoading ? "Loading..." : dict.confirmDeleteAccount}
-                  handleClick={handleDeleteAccount}
+                  text={isLoading ? "Loading..." : dict.buttonAsk}
+                  handleClick={handleSendRecoveryEmail}
                   isDisabled={isLoading}
                 />
               </div>
@@ -90,4 +89,4 @@ const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
   );
 };
 
-export default LayPopupDeleteAkk;
+export default LayPopupPasswordRecovery;

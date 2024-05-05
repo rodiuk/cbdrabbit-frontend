@@ -15,6 +15,7 @@ import { cartAtom, clearCartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { useRouter } from "next/navigation";
 import { Locale } from "../../../../i18n.config";
+import { createUrlForCheckout } from "@/libs/api/checkout.api";
 
 interface Props {
   dict: ICheckoutDict;
@@ -66,7 +67,6 @@ export const CheckoutWrapper = ({
   }, [data?.user?.id]);
 
   const handleCheckout = async () => {
-    console.log(5);
     if (!data?.user?.id) return;
 
     if (
@@ -97,9 +97,15 @@ export const CheckoutWrapper = ({
         },
       };
 
+      const res = await createUrlForCheckout(
+        finalPrice,
+        cart?.products,
+        finalPrice / cart.totalCount
+      );
+
       await createOrder(payload);
-      clear();
-      router.push(`/${lang}`);
+      // clear();
+      // router.push(`/${lang}`);
     } catch (error) {
       console.log(error);
     } finally {

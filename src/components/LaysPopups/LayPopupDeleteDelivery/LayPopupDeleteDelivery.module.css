@@ -26,6 +26,17 @@
   height: 100%;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .deleteAkk,
 .flexLay {
   display: flex;
@@ -75,5 +86,11 @@
     width: 584px;
     height: auto;
     border-radius: 20px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
   }
 }

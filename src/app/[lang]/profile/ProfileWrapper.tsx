@@ -6,19 +6,23 @@ import ProfileTablet from "./ProfileTablet";
 import ProfileMobile from "./ProfileMobile";
 import { useSession } from "next-auth/react";
 import { IUserProfile } from "@/interfaces/user.interface";
-import { deleteAccount, getUserInfo } from "@/libs/api/user.api";
-import { signOut } from "next-auth/react";
-import { ICheckoutDict, IProfileDict } from "@/interfaces/i18n.interface";
+import { getUserInfo } from "@/libs/api/user.api";
+import {
+  ICheckoutDict,
+  IProfileDict,
+  IRecoveryPasswordDict,
+} from "@/interfaces/i18n.interface";
 import { useSearchParams } from "next/navigation";
 
 interface Props {
   currency: string;
   profileDict: IProfileDict;
+  recoveryDict: IRecoveryPasswordDict;
   checkoutDict: ICheckoutDict;
 }
 
 export const ProfileWrapper = (props: Props): React.JSX.Element => {
-  const { currency, profileDict, checkoutDict } = props;
+  const { currency, profileDict, checkoutDict, recoveryDict } = props;
   const { data } = useSession();
   const [user, setUser] = React.useState<IUserProfile | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -36,18 +40,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
 
   const handleInfoSet = (info: string) => {
     setActualLay(info);
-    setIsOpen(!isOpen);
-  };
-
-  const handleDeleteAccount = async () => {
-    try {
-      if (!data?.user?.id) return;
-
-      signOut();
-      await deleteAccount(data?.user?.id);
-    } catch (error) {
-      console.log(error);
-    }
+    setIsOpen(!!info);
   };
 
   return (
@@ -57,15 +50,13 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
         currency={currency}
         bottomBlock={handleInfoSet}
         profileDict={profileDict}
-        handleDeleteAccount={handleDeleteAccount}
       />
- 
+
       <ProfileMobile
         user={user}
         profileDict={profileDict}
         currency={currency}
         bottomBlock={handleInfoSet}
-        handleDeleteAccount={handleDeleteAccount}
       />
 
       <PopupWrapper
@@ -73,6 +64,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
         actualLay={actualLay}
         handleInfo={handleInfoSet}
         profileDict={profileDict}
+        recoveryDict={recoveryDict}
         checkoutDict={checkoutDict}
         user={user}
       />

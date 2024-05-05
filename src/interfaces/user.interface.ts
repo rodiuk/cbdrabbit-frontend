@@ -17,6 +17,7 @@ export interface IUserData {
 
 export interface ICreateUser {
   email: string;
+  phoneNumber: string;
   password: string;
 }
 

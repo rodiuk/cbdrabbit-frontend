@@ -32,9 +32,13 @@ model User {
   firstName         String?
   lastName          String?
   password          String?
-  isActive          Boolean @default(false)
+  isVerified        Boolean @default(false)
+  isActive          Boolean @default(true)
   role              String  @default("USER")
   totalOrdersAmount Float   @default(0)
+
+  verifiedCode String?
+  successCode  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
