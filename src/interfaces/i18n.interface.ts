@@ -4,6 +4,7 @@ export interface ICheckoutDict {
   npDelivery: string;
   npCostLabel: string;
   userLabelPhone: string;
+  userLabelEmail: string;
   userLabelLastName: string;
   userLabelFirstName: string;
   userLabelPlaceholderLastName: string;
@@ -69,6 +70,12 @@ export interface IProfileDict {
   step2: string;
   step3: string;
   step4: string;
+  emailFieldTitle: string;
+  phoneFieldTitle: string;
+  lastNameFieldTitle: string;
+  firstNameFiledTitle: string;
+  deliveryFieldTitle: string;
+  noInfo: string;
 }
 
 export interface IHeaderDict {

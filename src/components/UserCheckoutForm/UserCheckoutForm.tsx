@@ -9,12 +9,14 @@ interface Props {
   dict: ICheckoutDict;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   userInfo?: IUserCheckoutForm;
+  isPopup?: boolean;
 }
 
 const UserCheckoutForm = ({
   setUserInfo,
   dict,
   userInfo,
+  isPopup,
 }: Props): React.JSX.Element => {
   const handleInputChange = (key: string, field: string): void => {
     setUserInfo((prev: IUserCheckoutForm) => ({ ...prev, [key]: field }));
@@ -31,6 +33,16 @@ const UserCheckoutForm = ({
         placeholder="+380 (__)___-__-__"
         onInputChange={value => handleInputChange("phone", value)}
       />
+      {!isPopup && (
+        <Input
+          type="email"
+          required
+          placeholder={dict?.userLabelEmail}
+          text={dict?.userLabelEmail}
+          value={userInfo?.email}
+          onInputChange={value => handleInputChange("email", value)}
+        />
+      )}
       <div className={s.wrap_row}>
         <Input
           type="text"

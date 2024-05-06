@@ -2,8 +2,6 @@
 import React from "react";
 import cn from "clsx";
 import s from "./s.module.css";
-import EyeClosed from "@/components/icons/EyeClosed";
-import EyeOpened from "@/components/icons/EyeOpened";
 import { SearchIcon } from "@/components/icons/SearchIcon";
 
 interface InputProps {
@@ -18,7 +16,7 @@ interface InputProps {
   novaposhtaCities?: any;
   setIsPopular?: any;
   newPostNum?: any;
-  errorRes?: any
+  errorRes?: any;
 }
 
 const InputNovaPoshta: React.FC<InputProps> = ({
@@ -31,31 +29,27 @@ const InputNovaPoshta: React.FC<InputProps> = ({
   newPostNum,
   errorRes,
   target,
-	...input
+  ...input
 }) => {
   const [value, setValue] = React.useState("");
   const [type, setType] = React.useState(input.type);
 
   // const [validate, setValidate] = React.useState(true)
-//console.log(target)
-	const handlerInput = (e: any) => {
-		
-	  if (target === "cityInput") {
-		setValue(e.target.value);
-		novaposhtaCities(e.target.value);
-		setIsPopular(false)
-	  } else if (target === "filialInput") {
-		setValue(e.target.value);
-		  newPostNum(e.target.value)
-		  errorRes()
-	  }
-    
+  const handlerInput = (e: any) => {
+    if (target === "cityInput") {
+      setValue(e.target.value);
+      novaposhtaCities(e.target.value);
+      setIsPopular(false);
+    } else if (target === "filialInput") {
+      setValue(e.target.value);
+      newPostNum(e.target.value);
+      errorRes();
+    }
+
     //setValidate(true)
   };
 
-  const handlerClick = (el: string) => {
-    console.log(el, "ggg");
-  };
+  const handlerClick = (el: string) => {};
 
   return (
     <label
@@ -63,24 +57,23 @@ const InputNovaPoshta: React.FC<InputProps> = ({
         error: false,
       })}
     >
-		  {text && (
-			  <p className={s.label_ttl}>
-			  {text}
-			  {required && <span className={s.red}>*</span>}
-			</p>
-		  )}
-		  <span className={s.search}>
-			  <SearchIcon />
-		  </span>
+      {text && (
+        <p className={s.label_ttl}>
+          {text}
+          {required && <span className={s.red}>*</span>}
+        </p>
+      )}
+      <span className={s.search}>
+        <SearchIcon />
+      </span>
       <input
         className={s.input}
         {...input}
-			  onChange={e => handlerInput(e)}
-			  onClick={() => handlerClick(target)}
+        onChange={e => handlerInput(e)}
+        onClick={() => handlerClick(target)}
         type={type}
         value={value}
       />
-
     </label>
   );
 };

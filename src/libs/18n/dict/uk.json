@@ -58,6 +58,13 @@
     "cancelDeleteDelivery": "Я передумав 🙄",
     "confirmDeleteDelivery": "Стираємо 🧹",
 
+    "emailFieldTitle": "Email",
+    "phoneFieldTitle": "Телефон",
+    "lastNameFieldTitle": "Прізвище",
+    "firstNameFiledTitle": "Ім'я",
+    "deliveryFieldTitle": "Доставка",
+    "noInfo": "Не вказано",
+
     "deleteAccountBtn": "Видалити",
     "changeEmailTitle": "Змінити email",
     "changeEmailSubtitle": "Вкажи який email ти хочеш замість",
@@ -97,6 +104,7 @@
     "npDelivery": "Нова Пошта",
     "userLabelPhone": "Телефон",
     "userLabelLastName": "Прізвище",
+    "userLabelEmail": "Email",
     "userLabelPlaceholderLastName": "Введи прізвище кирилицею",
     "userLabelFirstName": "Ім'я",
     "userLabelPlaceholderFirstName": "Введи ім'я кирилицею",

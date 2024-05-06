@@ -14,6 +14,7 @@ import {
   passwordResetSendEmail,
   signUpActivateSendEmail,
 } from "./emails.api";
+import { Prisma, User } from "@prisma/client";
 
 export const getUserByEmail = async (email: string) => {
   try {
@@ -29,12 +30,16 @@ export const getUserByEmail = async (email: string) => {
   }
 };
 
-export const getUserById = async (userId: string) => {
+export const getUserById = async (
+  userId: string,
+  select?: Prisma.UserSelect
+) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
       },
+      ...(!!select && { select }),
     });
 
     return user;
@@ -441,6 +446,61 @@ export const updatePasswordByCode = async (code: string, password: string) => {
     });
 
     return updateUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateUserLoyalty = async (userId: string) => {
+  try {
+    const user = (await getUserById(userId, {
+      id: true,
+      totalOrdersAmount: true,
+      loyalty: {
+        select: {
+          id: true,
+          percentDiscount: true,
+        },
+      },
+    })) as User & { loyalty: { id: string; percentDiscount: number } };
+
+    if (!user) return { error: "User not found" };
+
+    let newDiscount: number = user?.loyalty?.percentDiscount;
+
+    switch (true) {
+      case user?.totalOrdersAmount >= 1000:
+        newDiscount = 5;
+        break;
+      case user?.totalOrdersAmount >= 3000:
+        newDiscount = 7;
+        break;
+      case user?.totalOrdersAmount >= 5000:
+        newDiscount = 10;
+        break;
+      case user?.totalOrdersAmount >= 7000:
+        newDiscount = 12;
+        break;
+      default:
+        newDiscount;
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        loyalty: {
+          update: {
+            percentDiscount: newDiscount,
+          },
+        },
+      },
+    });
+
+    if (!updatedUser) return null;
+
+    return updatedUser;
   } catch (error) {
     throw error;
   }

@@ -36,7 +36,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
         setUser(userInfo ?? null);
       }
     })();
-  }, [data?.user?.id, searchParams]);
+  }, [data?.user?.id, searchParams, isOpen]);
 
   const handleInfoSet = (info: string) => {
     setActualLay(info);

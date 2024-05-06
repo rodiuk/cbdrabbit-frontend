@@ -62,7 +62,7 @@
 .wrapper .wrapper_ttl {
   font-size: 20px;
 }
- 
+
 .wrapper .wrapper_big {
   font-size: 40px;
   color: #42623b;
@@ -104,7 +104,6 @@
 .checkoutBlock_np {
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid #d4d4d4;
   display: flex;
 }
 
@@ -135,13 +134,13 @@
   margin-top: 15px;
 }
 .wrap_mobile {
-	position: relative;
+  position: relative;
 }
 
 @media (min-width: 992px) {
   .wrap_mobile {
     display: none;
-	position: relative;
+    position: relative;
   }
 
   .wrap {

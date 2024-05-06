@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";
-import { getDictionary } from "@/libs/18n/getDictionary";
 import { GoogleButton } from "@/components/GoogleButton/GoogleButton";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createQueryString } from "@/utils/createQueryString";
@@ -52,7 +51,7 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
         <Image src={icon_1.src} width={120} height={115} alt="icon_1" />
       </div>
       <Input
-        type="text"
+        type="email"
         placeholder={dict?.inputPlaceholder}
         text={dict?.inputLabel}
         value={email}

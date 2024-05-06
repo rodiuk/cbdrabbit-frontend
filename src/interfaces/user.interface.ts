@@ -30,6 +30,7 @@ export interface IUserCheckoutForm {
   firstName: string;
   lastName: string;
   phone: string;
+  email: string;
 }
 
 export interface IUpdateDeliveryInfo {

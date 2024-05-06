@@ -14,16 +14,13 @@ interface Props {
 
 const Cart = ({ lang }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
-  console.log(cart?.totalCount);
 
   return (
     <Link href={`/${lang}/checkout`} className={styles.container}>
-		  <CartIcon />
-		  <div className={styles.counter}>
-			  {cart?.totalCount}
-		  </div>
+      <CartIcon />
+      <div className={styles.counter}>{cart?.totalCount}</div>
     </Link>
   );
 };
 
-export default Cart
+export default Cart;

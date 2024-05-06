@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-
-import s from "./page.module.css";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import Button from "@/components/Ui/Button/Button";
 import PencilIcon from "@/components/icons/PencilIcon";
 import ProfileDetail from "../../../components/Profile/ProfileDetail/ProfileDetail";
@@ -12,9 +10,11 @@ import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { IProfileDict } from "@/interfaces/i18n.interface";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
-import { useSession } from "next-auth/react";
+import { UserDeliveryInfoSection } from "@/components/UserDeliveryInfoSection/UserDeliveryInfoSection";
 
 import np from "/public/img/np.svg";
+
+import s from "./page.module.css";
 
 interface Props {
   user: IUserProfile | null;
@@ -86,7 +86,7 @@ const ProfileMobile = (props: Props): React.JSX.Element => {
         <div className={s.checkoutBlock_grey}>
           <p>{profileDict.deliveryDisclaimer}</p>
         </div>
-        {/* <UserCheckoutForm dict={checkoutDict} setUserInfo={setCheckoutInfo} /> */}
+        <UserDeliveryInfoSection user={user} profileDict={profileDict} />
         <div className={s.checkoutBlock_np}>
           <Image src={np} alt="np" />
           <div className={s.checkoutBlock_ttl}>{profileDict.npLabel}</div>

@@ -16,46 +16,43 @@ const LayShowCities = ({
   close: any;
   sities: any;
   selectedCity?: any;
-	}) => {
-	
-	const [isPopular, setIsPopular] = React.useState(false)
-	
-		let citiesPopular = [
-			"Київ",
-			"Одеса",
-			"Дніпро",
-			"Харків",
-			"Львів (Львівська обл.)",
-			"Запоріжжя (Запорізька обл.,)",
-			"Кривий Ріг (Дніпропетровська обл.)",
-			"Миколаїв (Миколаївська обл)"
-	];
+}) => {
+  const [isPopular, setIsPopular] = React.useState(false);
 
-	const onClickPopular = (city: string, e: any) => {
-		console.log(e.target)
-		console.log(e.currentTarget.dataset.popular)
-		setIsPopular(true)
-		novaposhtaCities(city)
-	}
+  let citiesPopular = [
+    "Київ",
+    "Одеса",
+    "Дніпро",
+    "Харків",
+    "Львів (Львівська обл.)",
+    "Запоріжжя (Запорізька обл.,)",
+    "Кривий Ріг (Дніпропетровська обл.)",
+    "Миколаїв (Миколаївська обл)",
+  ];
 
-	React.useEffect(() => {
-		if (sities.length && isPopular) {
-			selectedCity({ sity: sities[0].Present, deliveryCity: sities[0].DeliveryCity })
-			console.log(55555555)
-		}
-		console.log(sities)
-	}, [sities, isPopular])
+  const onClickPopular = (city: string, e: any) => {
+    setIsPopular(true);
+    novaposhtaCities(city);
+  };
 
-	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (e.currentTarget === e.target) {
-			close()
-		}
-	}
-	
-	
+  React.useEffect(() => {
+    if (sities.length && isPopular) {
+      selectedCity({
+        sity: sities[0].Present,
+        deliveryCity: sities[0].DeliveryCity,
+      });
+    }
+  }, [sities, isPopular]);
+
+  const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      close();
+    }
+  };
+
   return (
     <>
-      <div className={s.overl}  onClick={e => handleBadkdropClick(e)}>
+      <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
         <div className={s.content}>
           <div className={s.ttlRow}>
             <span className={s.close} onClick={() => close()}>
@@ -67,37 +64,48 @@ const LayShowCities = ({
             type="text"
             name="Населений пункт"
             placeholder="Введи населений пункт"
-					  novaposhtaCities={novaposhtaCities}
-					  setIsPopular={setIsPopular}
-					  target="cityInput"
+            novaposhtaCities={novaposhtaCities}
+            setIsPopular={setIsPopular}
+            target="cityInput"
           />
           <div className={s.start}>
             Почни вводити назву населеного пункту від 3 букв
           </div>
           <div className="list">
             {sities.length ? (
-				<ul className={s.list}>
-					{sities.map((sity: any, index: number) => {
-						return <li
-							key={index}
-							className={s.li}
-							onClick={() => selectedCity({sity: sity.Present, deliveryCity: sity.DeliveryCity})}
-						>{sity.Present}</li>
-					})}
-				</ul>
+              <ul className={s.list}>
+                {sities.map((sity: any, index: number) => {
+                  return (
+                    <li
+                      key={index}
+                      className={s.li}
+                      onClick={() =>
+                        selectedCity({
+                          sity: sity.Present,
+                          deliveryCity: sity.DeliveryCity,
+                        })
+                      }
+                    >
+                      {sity.Present}
+                    </li>
+                  );
+                })}
+              </ul>
             ) : (
               <>
                 <div className={s.listTTl}>Популярні населені пункти</div>
                 <ul className={s.list}>
-					{citiesPopular.map((city, index) => (
-						<li
-							key={index}
-							data-popular={true}
-							className={s.li}
-							onClick={(e) => onClickPopular(city, e)}
-						>{city}</li>
-					))}
-				</ul>
+                  {citiesPopular.map((city, index) => (
+                    <li
+                      key={index}
+                      data-popular={true}
+                      className={s.li}
+                      onClick={e => onClickPopular(city, e)}
+                    >
+                      {city}
+                    </li>
+                  ))}
+                </ul>
               </>
             )}
           </div>

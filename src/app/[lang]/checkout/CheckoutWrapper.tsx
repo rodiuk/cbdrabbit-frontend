@@ -24,6 +24,7 @@ const initial = {
   firstName: "",
   lastName: "",
   phone: "",
+  email: "",
 };
 
 export const CheckoutWrapper = ({
@@ -43,14 +44,16 @@ export const CheckoutWrapper = ({
   const [cart] = useAtom(cartAtom);
 
   React.useEffect(() => {
+    if (!data?.user?.id) return;
     (async function fetchUser() {
       try {
-        if (!data?.user?.id) return;
         const res = await getUserInfo(data.user.id);
+
         setUserInfo({
           firstName: res?.firstName ?? "",
           lastName: res?.lastName ?? "",
           phone: res?.address?.phoneNumber ?? "",
+          email: res?.email ?? "",
         });
         setCity(res?.address?.city ?? "");
         setPostPoint(res?.address?.npDepartment ?? "");
@@ -70,7 +73,8 @@ export const CheckoutWrapper = ({
       !deliveryId ||
       !userInfo?.phone?.length ||
       !userInfo?.firstName?.length ||
-      !userInfo?.lastName?.length
+      !userInfo?.lastName?.length ||
+      !userInfo?.email
     )
       setIsEmptyFields(true);
 
@@ -81,6 +85,9 @@ export const CheckoutWrapper = ({
 
       const payload: IOrderCreate = {
         userId: data?.user?.id,
+        firstName: userInfo?.firstName,
+        lastName: userInfo?.lastName,
+        email: userInfo?.email,
         comment,
         totalSum: finalPrice,
         itemPrice: finalPrice / cart.totalCount,
@@ -92,8 +99,6 @@ export const CheckoutWrapper = ({
           phoneNumber: userInfo?.phone,
         },
       };
-
-   
 
       const res = await createUrlForCheckout(
         finalPrice,
