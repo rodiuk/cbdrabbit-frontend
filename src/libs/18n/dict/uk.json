@@ -120,7 +120,9 @@
     "deliveryDisclaimer": "Ми не враховуємо вартість доставки",
     "totalCheckout": "До оплати без доставки:",
     "checkoutDisclaimer": "Натискаючи “Перейти до оплати” я підтверджую що введені мною дані вірні",
-    "checkoutButton": "Перейти до оплати"
+    "checkoutButton": "Перейти до оплати",
+    "commentTitle": "Коментар",
+    "commentLabel": "Коментар до замовлення"
   },
   "auth": {
     "general": {
