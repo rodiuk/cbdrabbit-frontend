@@ -20,7 +20,7 @@ export const passwordResetSendEmail = async (email: string, code: string) => {
           },
           {
             name: "url_password_restore",
-            value: `http://localhost:3000/uk/signIn?resetPassword=${code}`,
+            value: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
           },
         ],
       }),
@@ -58,7 +58,7 @@ export const signUpActivateSendEmail = async (
           },
           {
             name: "url_activator",
-            value: `http://localhost:3000/uk/signUp?code=${code}`,
+            value: `https://cbdrabbit.shop/uk/signUp?code=${code}`,
           },
         ],
       }),
@@ -88,7 +88,7 @@ export const emailUpdateSendEmail = async (email: string, code: string) => {
           },
           {
             name: "url_password_restore",
-            value: `http://localhost:3000/uk/signIn?changeEmail=true&code=${code}&newEmail=${email}`,
+            value: `https://cbdrabbit.shop/uk/signIn?changeEmail=true&code=${code}&newEmail=${email}`,
           },
         ],
       }),
