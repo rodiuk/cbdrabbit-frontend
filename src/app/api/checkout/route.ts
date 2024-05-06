@@ -1,5 +1,6 @@
 import { checkOrderStatusOnMono } from "@/libs/api/checkout.api";
 import { changeOrderStatusByInvoiceId } from "@/libs/api/order.api";
+import { updateUserLoyalty } from "@/libs/api/user.api";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -12,10 +13,12 @@ export async function POST(req: Request) {
 
     if (!validatedOrder?.invoiceId) return;
 
-    await changeOrderStatusByInvoiceId(
+    const order = await changeOrderStatusByInvoiceId(
       validatedOrder.invoiceId,
       validatedOrder.status
     );
+
+    await updateUserLoyalty(order.user.id);
 
     return NextResponse.json({ message: "Successfully" }, { status: 200 });
   } catch (error) {

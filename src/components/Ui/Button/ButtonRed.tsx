@@ -19,9 +19,8 @@ const ButtonRed: React.FC<ButtonProps> = ({
   text,
   icon,
   handleClick,
-  isDisabled
+  isDisabled,
 }) => {
-	console.log(className)
   return (
     <button
       className={cn(s.buttonRed, {

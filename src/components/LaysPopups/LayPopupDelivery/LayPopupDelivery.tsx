@@ -28,6 +28,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
     firstName: "",
     lastName: "",
     phone: "",
+    email: "",
   });
   const [city, setCity] = React.useState("");
   const [postPoint, setPostPoint] = React.useState("");
@@ -45,6 +46,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
           firstName: res?.firstName ?? "",
           lastName: res?.lastName ?? "",
           phone: res?.address?.phoneNumber ?? "",
+          email: res?.email ?? "",
         });
         setCity(res?.address?.city ?? "");
         setPostPoint(res?.address?.npDepartment ?? "");
@@ -65,7 +67,9 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
         phoneNumber: userInfo.phone,
         city: city,
         npDepartment: postPoint,
-        npDeliveryType: deliveryId,
+        npDeliveryType:
+          npDeliveryType.filter(item => item.id === deliveryId)[0]?.text ??
+          deliveryId,
       };
 
       await updateDeliveryInfo(data.user.id, payload);
@@ -114,6 +118,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
               dict={checkoutDict}
               setUserInfo={setUserInfo}
               userInfo={userInfo}
+              isPopup
             />
             <div className={s.checkoutBlock_np}>
               <Image src={np} alt="np" />

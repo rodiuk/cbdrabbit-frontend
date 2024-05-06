@@ -21,7 +21,6 @@ const ButtonWhite: React.FC<ButtonProps> = ({
   handleClick,
   isDisabled,
 }) => {
-  console.log(className);
   return (
     <button
       className={cn(s.white_button, {

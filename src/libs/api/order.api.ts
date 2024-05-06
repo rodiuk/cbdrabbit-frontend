@@ -4,8 +4,8 @@ import prisma from "@/libs/client/prisma.client";
 import { orderSelect } from "./selects/order.select";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
-import { updateUserTotalAmount } from "./user.api";
-import { OrderStatus } from "@prisma/client";
+import { createUser, updateUserTotalAmount } from "./user.api";
+import { OrderStatus, User } from "@prisma/client";
 import { nanoid } from "nanoid";
 
 export const getAllUserOrders = async (userId: string) => {
@@ -43,8 +43,24 @@ export const createOrder = async (
   paymentId: string
 ) => {
   try {
-    await updateUserAddress(orderData.userId, orderData.address);
-    await updateUserTotalAmount(orderData.userId, orderData.totalSum);
+    if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
+      //TODO: need send for email
+      const password = nanoid(6);
+      const user = await createUser({
+        email: orderData.email,
+        password,
+        phoneNumber: orderData.address?.phoneNumber,
+      });
+
+      if ("id" in user) {
+        orderData.userId = user.id;
+        await updateUserAddress(user.id, orderData.address);
+        await updateUserTotalAmount(user.id, orderData.totalSum);
+      }
+    } else {
+      await updateUserAddress(orderData.userId!, orderData.address);
+      await updateUserTotalAmount(orderData.userId!, orderData.totalSum);
+    }
 
     const order = await prisma.order.create({
       data: {

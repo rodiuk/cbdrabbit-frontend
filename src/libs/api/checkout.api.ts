@@ -58,6 +58,7 @@ export const createUrlForCheckout = async (
       return data;
     }
 
+    // TODO: for validate logs on server
     console.log(await res.json());
 
     return null;
@@ -87,6 +88,7 @@ export const checkOrderStatusOnMono = async (
       return data;
     }
 
+    // TODO: for validate logs on server
     console.log(await res.json());
     return null;
   } catch (error) {

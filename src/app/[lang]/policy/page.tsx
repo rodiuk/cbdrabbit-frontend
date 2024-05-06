@@ -21,8 +21,6 @@ export async function generateMetadata({
 }
 
 export default function Policy({ params }: IMainPageProps): React.JSX.Element {
-  console.log(params);
-
   return (
     <main className={cn("container", styles.main)}>
       <div className={styles.wrapper}>

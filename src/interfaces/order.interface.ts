@@ -2,7 +2,10 @@ import { Image, Product } from "@prisma/client";
 import { IAddressData } from "./adress.interface";
 
 export interface IOrderCreate {
-  userId: string;
+  userId?: string | undefined;
+  firstName: string;
+  lastName: string;
+  email: string;
   totalSum: number;
   comment?: string;
   itemPrice: number;

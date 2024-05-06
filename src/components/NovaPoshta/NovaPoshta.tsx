@@ -31,15 +31,14 @@ const NovaPost = (props: Props): React.JSX.Element => {
   const [arrayNpFilials, setArrayNpFilials] = React.useState([]);
 
   const handleRadioChange = (id: string) => {
-	  setDeliveryId(id);
-	  setArrayNpFilials([])
-	  setPostPoint("");
-    console.log(id);
+    setDeliveryId(id);
+    setArrayNpFilials([]);
+    setPostPoint("");
   };
 
   const close = () => {
-	  setIsOpen(false);
-	  setIsOpenFilial(false)
+    setIsOpen(false);
+    setIsOpenFilial(false);
   };
   const showLay = () => {
     setIsOpen(true);
@@ -50,8 +49,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
     setArrayNpFilials([]);
   };
   const showLayFilial = () => {
-	  setIsOpenFilial(true);
-	  newPostNum("1")
+    setIsOpenFilial(true);
+    newPostNum("1");
   };
   const selectedCity = (obj: any) => {
     setCity(obj.sity);
@@ -115,7 +114,6 @@ const NovaPost = (props: Props): React.JSX.Element => {
     };
     axios(settings)
       .then(response => {
-        console.log("Успешный ответ:", response.data.data);
         let results;
         if (deliveryId === "1") {
           results = response.data.data.filter((el: any) =>
@@ -155,37 +153,35 @@ const NovaPost = (props: Props): React.JSX.Element => {
             value={city}
           />
 
-          
-				  {deliveryId === "3" ? (
-					  <Input
-					  type="text"
-					  text="Адреса"
-					  required={true}
-					  name="Адреса"
-					  placeholder="Введи адресу"
-					//  showLay={showLayFilial}
-					  autoComplete="off"
-					  //value={postPoint}
-							/>
-				  ) : (
-					<Input
-					type="text"
-					text="Відділення"
-					required={true}
-					name="Відділення"
-					placeholder="Введи номер відділення"
-					showLay={showLayFilial}
-					autoComplete="off"
-					value={postPoint}
-						  />
-				  )}
+          {deliveryId === "3" ? (
+            <Input
+              type="text"
+              text="Адреса"
+              required={true}
+              name="Адреса"
+              placeholder="Введи адресу"
+              //  showLay={showLayFilial}
+              autoComplete="off"
+              //value={postPoint}
+            />
+          ) : (
+            <Input
+              type="text"
+              text="Відділення"
+              required={true}
+              name="Відділення"
+              placeholder="Введи номер відділення"
+              showLay={showLayFilial}
+              autoComplete="off"
+              value={postPoint}
+            />
+          )}
         </>
       )}
- 
+
       <AnimatePresence mode="wait">
         {isOpen ? ( // для выбора города
           <motion.div
-            
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -202,7 +198,6 @@ const NovaPost = (props: Props): React.JSX.Element => {
         ) : null}
         {isOpenFilial ? (
           <motion.div
-            
             style={{ height: "100vh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
