@@ -122,3 +122,20 @@ export interface IAuthGeneral {
   successPassUpdateMessage: string;
   successPassUpdateBtn: string;
 }
+
+export interface IRecoveryPasswordDict {
+  titleAsk: string;
+  messageAsk: string;
+  buttonAsk: string;
+  titleSuccess: string;
+  titleSuccessEmail: string;
+  messageSuccess: string;
+  messageSuccessBase: string;
+  labelSuccess: string;
+  buttonSuccess: string;
+}
+
+export interface IAuthGeneral {
+  successPassUpdateMessage: string;
+  successPassUpdateBtn: string;
+}

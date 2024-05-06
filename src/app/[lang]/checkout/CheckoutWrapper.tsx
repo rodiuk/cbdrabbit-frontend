@@ -93,6 +93,8 @@ export const CheckoutWrapper = ({
         },
       };
 
+   
+
       const res = await createUrlForCheckout(
         finalPrice,
         cart?.products,
