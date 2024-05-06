@@ -102,6 +102,25 @@ export interface IOrderDict {
   choiceCandy: string;
   amountLabel: string;
   orderAgainBtn: string;
+  orderSuccess: string;
+  buttonLabel: string;
+}
+
+export interface IRecoveryPasswordDict {
+  titleAsk: string;
+  messageAsk: string;
+  buttonAsk: string;
+  titleSuccess: string;
+  titleSuccessEmail: string;
+  messageSuccess: string;
+  messageSuccessBase: string;
+  labelSuccess: string;
+  buttonSuccess: string;
+}
+
+export interface IAuthGeneral {
+  successPassUpdateMessage: string;
+  successPassUpdateBtn: string;
 }
 
 export interface IRecoveryPasswordDict {

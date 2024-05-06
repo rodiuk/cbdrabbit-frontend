@@ -40,7 +40,7 @@ export const createProperty = async (propertyData: IPropertyCreate) => {
     const property = await prisma.property.create({
       data: {
         label: propertyData.label,
-        locale: propertyData.lang,
+        locale: propertyData.locale,
         image: {
           create: {
             url: propertyData.imgUrl,

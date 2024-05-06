@@ -35,6 +35,8 @@ interface Props {
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
+  comment: string;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
   isLoading?: boolean;
 }
 
@@ -52,6 +54,8 @@ const MobileCheckout = (props: Props) => {
     setUserInfo,
     hasError,
     currency,
+    comment,
+    setComment,
     isLoading,
   } = props;
 
@@ -101,7 +105,11 @@ const MobileCheckout = (props: Props) => {
 
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>Коментар</div>
-        <Textarea placeholder="Коментар до замовлення" />
+        <Textarea
+          placeholder="Коментар до замовлення"
+          value={comment}
+          setValue={setComment}
+        />
       </div>
 
       <CheckoutRes

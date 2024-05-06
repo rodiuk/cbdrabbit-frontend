@@ -7,13 +7,13 @@ import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import Textarea from "@/components/Ui/Textarea/Textarea";
 
 import cn from "clsx";
 import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import Textarea from "@/components/Ui/Textarea/Textarea";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -37,6 +37,8 @@ interface Props {
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
   currency: string;
+  comment: string;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
   isLoading?: boolean;
 }
 
@@ -55,7 +57,9 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     hasError,
     currency,
     userInfo,
-    isLoading
+    comment,
+    setComment,
+    isLoading,
   } = props;
 
   return (
@@ -107,10 +111,14 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           <h3 className={styles.checkoutBlock_h2}>{dict.orderTitle}</h3>
           <ProductsCheckout />
         </div>
-		<div className={styles.checkoutBlock}>
-        <div className={styles.checkoutBlock_h2}>Коментар</div>
-        <Textarea placeholder="Коментар до замовлення" />
-      </div>
+        <div className={styles.checkoutBlock}>
+          <div className={styles.checkoutBlock_h2}>Коментар</div>
+          <Textarea
+            placeholder="Коментар до замовлення"
+            value={comment}
+            setValue={setComment}
+          />
+        </div>
         <CheckoutRes
           currency={currency}
           dict={dict}

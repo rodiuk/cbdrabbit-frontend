@@ -11,16 +11,13 @@ import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { useAtom } from "jotai";
-import { cartAtom, clearCartAtom } from "@/libs/store/atoms";
+import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
-import { useRouter } from "next/navigation";
-import { Locale } from "../../../../i18n.config";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
 
 interface Props {
   dict: ICheckoutDict;
   currency: string;
-  lang: Locale;
 }
 
 const initial = {
@@ -32,20 +29,18 @@ const initial = {
 export const CheckoutWrapper = ({
   dict,
   currency,
-  lang,
 }: Props): React.JSX.Element => {
   const { data } = useSession();
-  const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
   const [userInfo, setUserInfo] = React.useState<IUserCheckoutForm>(initial);
   const [finalPrice, setFinalPrice] = React.useState<number>(0);
   const [isEmptyFields, setIsEmptyFields] = React.useState<boolean>(false);
+  const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
   const [cart] = useAtom(cartAtom);
-  const [, clear] = useAtom(clearCartAtom);
 
   React.useEffect(() => {
     (async function fetchUser() {
@@ -86,6 +81,7 @@ export const CheckoutWrapper = ({
 
       const payload: IOrderCreate = {
         userId: data?.user?.id,
+        comment,
         totalSum: finalPrice,
         itemPrice: finalPrice / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
@@ -97,15 +93,19 @@ export const CheckoutWrapper = ({
         },
       };
 
+   
+
       const res = await createUrlForCheckout(
         finalPrice,
         cart?.products,
         finalPrice / cart.totalCount
       );
 
-      await createOrder(payload);
-      // clear();
-      // router.push(`/${lang}`);
+      if (!res?.pageUrl || !res?.invoiceId) return;
+
+      await createOrder(payload, res?.invoiceId);
+
+      window.open(res.pageUrl, "_blank");
     } catch (error) {
       console.log(error);
     } finally {
@@ -130,6 +130,8 @@ export const CheckoutWrapper = ({
         setUserInfo={setUserInfo}
         userInfo={userInfo}
         isLoading={isLoading}
+        comment={comment}
+        setComment={setComment}
       />
       <MobileCheckout
         dict={dict}
@@ -145,6 +147,8 @@ export const CheckoutWrapper = ({
         hasError={isEmptyFields}
         setUserInfo={setUserInfo}
         isLoading={isLoading}
+        comment={comment}
+        setComment={setComment}
       />
     </>
   );
