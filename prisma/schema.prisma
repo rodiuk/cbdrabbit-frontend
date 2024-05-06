@@ -83,6 +83,7 @@ model Order {
   comment   String?
   userId    String
   status    OrderStatus? @default(CREATED)
+  paymentId String       @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

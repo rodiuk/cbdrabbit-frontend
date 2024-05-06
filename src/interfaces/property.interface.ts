@@ -3,7 +3,7 @@ import { Image, Property } from "@prisma/client";
 export interface IPropertyCreate {
   label: string;
   imgUrl: string;
-  lang: string;
+  locale: string;
 }
 
 export interface IPropertyUpdate {

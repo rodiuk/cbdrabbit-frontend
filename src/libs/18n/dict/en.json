@@ -171,7 +171,9 @@
     "noOrdersTitle": "You don't have any orders yet",
     "choiceCandy": "Choose candies",
     "amountLabel": "Paid without delivery",
-    "orderAgainBtn": "Reorder"
+    "orderAgainBtn": "Reorder",
+    "orderSuccess": "The order has been successfully placed!",
+    "buttonLabel": "Go home"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",

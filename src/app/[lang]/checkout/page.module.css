@@ -137,6 +137,10 @@
   background: #98979a;
 }
 
+.successOrder {
+  margin: 0 auto;
+}
+
 @media (min-width: 769px) {
   .main {
     padding-top: 50px;

@@ -171,7 +171,9 @@
     "noOrdersTitle": "У вас ще немає замовлень",
     "choiceCandy": "Обрати цукерки",
     "amountLabel": "Оплачено без доставки",
-    "orderAgainBtn": "Повторити замовлення"
+    "orderAgainBtn": "Повторити замовлення",
+    "orderSuccess": "Замовлення успішно оформлено!",
+    "buttonLabel": "На головну"
   },
   "home": {
     "title": "Привіт, ми CBD Rabbit",

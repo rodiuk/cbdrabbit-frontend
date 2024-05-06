@@ -102,6 +102,8 @@ export interface IOrderDict {
   choiceCandy: string;
   amountLabel: string;
   orderAgainBtn: string;
+  orderSuccess: string;
+  buttonLabel: string;
 }
 
 export interface IRecoveryPasswordDict {

@@ -8,7 +8,7 @@ import { useAtom } from "jotai/react";
 import { getUserInfo } from "@/libs/api/user.api";
 import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
-import ButtonforPay from "@/components/ButtonforPay/ButtonforPay";
+import Button from "@/components/Ui/Button/Button";
 
 import info from "/public/img/info.svg";
 import arr2 from "/public/img/arrow-doble.svg";
@@ -122,11 +122,10 @@ const CheckoutRes = React.memo(function CheckoutRes({
                 {finalPrice} {currency}
               </p>
             </div>
-            {/* <Button
+            <Button
               text={isLoading ? "Loading..." : dict.checkoutButton}
               handleClick={handleCheckout}
-					  /> */}
-            <ButtonforPay finalPrice={finalPrice} />
+            />
             <div className={s.checkoutTotal_check}>
               <p>{dict.checkoutDisclaimer}</p>
             </div>

@@ -1,13 +1,13 @@
 import React from "react";
+import Image from "next/image";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { checkVerifiedCode } from "@/libs/api/user.api";
-import Image from "next/image";
+import { ButtonLink } from "../Ui/ButtonLink";
 
 import ok from "/public/img/ok.svg";
 
 import styles from "./styles.module.css";
-import { ButtonLink } from "../Ui/ButtonLink";
 
 interface Props {
   lang: Locale;
