@@ -118,7 +118,9 @@
     "deliveryDisclaimer": "We do not include the cost of delivery",
     "totalCheckout": "Total to pay without delivery:",
     "checkoutDisclaimer": "By clicking “Proceed to payment” I confirm that the entered data is true",
-    "checkoutButton": "Proceed to payment"
+    "checkoutButton": "Proceed to payment",
+    "commentTitle": "Comment",
+    "commentLabel": "Comment to order"
   },
   "profile": {
     "userPasswordTitle": "Password",

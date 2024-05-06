@@ -35,7 +35,7 @@ const UserCheckoutForm = ({
       />
       {!isPopup && (
         <Input
-          type="email"
+          type="text"
           required
           placeholder={dict?.userLabelEmail}
           text={dict?.userLabelEmail}

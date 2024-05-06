@@ -21,6 +21,8 @@ export interface ICheckoutDict {
   totalCheckout: string;
   checkoutDisclaimer: string;
   checkoutButton: string;
+  commentTitle: string;
+  commentLabel: string;
 }
 
 export interface IProfileDict {
