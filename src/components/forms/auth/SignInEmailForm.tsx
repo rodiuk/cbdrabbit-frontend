@@ -52,6 +52,7 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
       </div>
       <Input
         type="email"
+        name="email"
         placeholder={dict?.inputPlaceholder}
         text={dict?.inputLabel}
         value={email}
