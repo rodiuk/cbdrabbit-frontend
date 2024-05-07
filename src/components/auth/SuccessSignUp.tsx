@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 import Button from "../Ui/Button/Button";
 import { ISuccessSignUpDict } from "@/interfaces/auth.interface";
-import Image from "next/image";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 import letter from "/public/img/letter.svg";
 
@@ -12,13 +12,18 @@ import styles from "./styles.module.css";
 
 interface Props {
   dict: ISuccessSignUpDict;
+  userEmail: string;
 }
 
-export const SuccessSignUp = ({ dict }: Props): React.JSX.Element => {
-  const searchParams = useSearchParams();
-  const userEmail = searchParams?.get("registered");
-
+export const SuccessSignUp = ({
+  dict,
+  userEmail,
+}: Props): React.JSX.Element => {
   const mailDomain = userEmail?.split("@")[1] ?? "https://google.com";
+
+  const handleRedirect = () => {
+    window.open(`https://${mailDomain}`, "_blank");
+  };
 
   return (
     <div className={styles.lay_item}>
@@ -32,7 +37,7 @@ export const SuccessSignUp = ({ dict }: Props): React.JSX.Element => {
             height={169}
           />
         </div>
-        <p className={styles.descr}>{userEmail}</p>
+        <p className={styles.descr}>{maskEmailAddress(userEmail)}</p>
         <h2 className={styles.ttl}>{dict.subTitle}</h2>
         <div className={`${styles.descr} ${styles.m10}`}>{userEmail}</div>
         <p className={styles.ttl}>{dict.description}</p>
@@ -42,7 +47,7 @@ export const SuccessSignUp = ({ dict }: Props): React.JSX.Element => {
         <Button
           text={dict.button}
           className="white_button"
-          handleClick={() => window.open(`https://${mailDomain}`, "_blank")}
+          handleClick={handleRedirect}
         />
       </div>
     </div>

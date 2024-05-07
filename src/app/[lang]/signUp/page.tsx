@@ -18,7 +18,7 @@ export default async function SignUp({ params, searchParams }: IMainPageProps) {
   const rendererContent = () => {
     switch (true) {
       case !!successSignUpRes:
-        return <SuccessSignUp dict={successSignUp} />;
+        return <SuccessSignUp dict={successSignUp} userEmail={successSignUpRes} />;
       case !!activateSignUpCode:
         return (
           <SuccessActivateAccount

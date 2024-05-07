@@ -87,8 +87,8 @@ export const CheckoutWrapper = ({
         lastName: userInfo?.lastName,
         email: userInfo?.email,
         comment,
-        totalSum: finalPrice,
-        itemPrice: finalPrice / cart.totalCount,
+        totalSum: cart.totalAmount,
+        itemPrice: cart.totalAmount / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
@@ -99,8 +99,8 @@ export const CheckoutWrapper = ({
       };
 
       const res = await createUrlForCheckout(
-        finalPrice,
-        cart?.products,
+        cart.totalAmount,
+        cart?.products?.filter(p => p.count > 0),
         finalPrice / cart.totalCount
       );
 
