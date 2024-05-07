@@ -65,8 +65,6 @@ export const CheckoutWrapper = ({
   }, [data?.user?.id]);
 
   const handleCheckout = async () => {
-    if (!data?.user?.id) return;
-
     if (
       !city ||
       !postPoint ||
