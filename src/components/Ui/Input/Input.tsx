@@ -80,12 +80,12 @@ const Input: React.FC<InputProps> = ({
       )}
 
       <input
-        className={s.input}
-        {...input}
         onChange={e => handlerInput(e)}
         type={type}
         value={value}
         onClick={showLay ? () => showLay() : undefined}
+        className={s.input}
+        {...input}
       />
 
       {errorText && <p className={s.error}>Не правильно введений пароль</p>}
