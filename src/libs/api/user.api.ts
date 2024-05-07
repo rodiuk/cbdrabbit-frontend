@@ -138,11 +138,13 @@ export const createUser = async (userData: ICreateUser) => {
           password: hashPassword,
           verifiedCode: code,
           loyalty: { create: { percentDiscount: 2 } },
-          address: {
-            create: {
-              phoneNumber: userData.phoneNumber,
+          ...(userData?.phoneNumber?.length > 0 && {
+            address: {
+              create: {
+                phoneNumber: userData.phoneNumber,
+              },
             },
-          },
+          }),
         },
       });
 

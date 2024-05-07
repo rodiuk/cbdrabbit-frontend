@@ -23,21 +23,28 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
   const [password2, setPassword2] = React.useState<string>("");
   const [notMatch, setNotMatch] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleSignUp = async () => {
     if (!userEmail) return router.back();
 
     if (password1 !== password2) return setNotMatch(true);
+    try {
+      setIsLoading(true);
+      const user = await createUser({
+        email: userEmail,
+        password: password1,
+        phoneNumber: "",
+      });
 
-    const user = await createUser({
-      email: userEmail,
-      password: password1,
-      phoneNumber: "",
-    });
+      if (!user || "error" in user) return setError(user.error);
 
-    if (!user || "error" in user) return setError(user.error);
-
-    if ("email" in user) router.push(pathname + `?registered=${user.email}`);
+      if ("email" in user) router.push(pathname + `?registered=${user.email}`);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -64,7 +71,10 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
       {notMatch && <p className={styles.error}>{dict.error}</p>}
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.bb}>
-        <Button text={dict.buttonSignUp} handleClick={handleSignUp} />
+        <Button
+          text={isLoading ? "Loading..." : dict.buttonSignUp}
+          handleClick={handleSignUp}
+        />
       </div>
     </section>
   );
