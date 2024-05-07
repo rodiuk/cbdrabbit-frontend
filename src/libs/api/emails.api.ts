@@ -4,7 +4,7 @@ import { appConfig } from "@/configs/app.config";
 
 export const passwordResetSendEmail = async (email: string, code: string) => {
   try {
-    const res = await fetch(appConfig.SPUTNIK_URL, {
+    const res = await fetch(appConfig.SPUTNIK_URL + "v2/event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export const signUpActivateSendEmail = async (
   code: string
 ) => {
   try {
-    const res = await fetch(appConfig.SPUTNIK_URL, {
+    const res = await fetch(appConfig.SPUTNIK_URL + "v2/event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export const signUpActivateSendEmail = async (
 
 export const emailUpdateSendEmail = async (email: string, code: string) => {
   try {
-    const res = await fetch(appConfig.SPUTNIK_URL, {
+    const res = await fetch(appConfig.SPUTNIK_URL + "v2/event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
