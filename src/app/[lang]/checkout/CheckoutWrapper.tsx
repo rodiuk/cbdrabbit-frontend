@@ -5,7 +5,7 @@ import TabletCheckout from "./TabletCheckout";
 import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
@@ -72,11 +72,9 @@ export const CheckoutWrapper = ({
       !userInfo?.phone?.length ||
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
-      !userInfo?.email
+      !userInfo?.email?.length
     )
-      setIsEmptyFields(true);
-
-    if (isEmptyFields) setIsEmptyFields(false);
+      return setIsEmptyFields(true);
 
     try {
       setIsLoading(true);
@@ -106,7 +104,15 @@ export const CheckoutWrapper = ({
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
-      await createOrder(payload, res?.invoiceId);
+      const resOrder = await createOrder(payload, res?.invoiceId);
+
+      if ("auth" in resOrder) {
+        await signIn("credentials", {
+          redirect: false,
+          email: resOrder?.auth?.email,
+          password: resOrder?.auth?.password,
+        });
+      }
 
       window.open(res.pageUrl, "_blank");
     } catch (error) {

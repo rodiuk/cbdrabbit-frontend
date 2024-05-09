@@ -45,7 +45,7 @@ export const authConfig: AuthOptions = {
 
         const user = await getUserByEmail(credentials.email);
 
-        if (!user || !user?.isActive) return null;
+        if (!user || !user?.isVerified || !user?.isActive) return null;
 
         if (user && user?.password) {
           const match = await bcrypt.compare(

@@ -42,15 +42,22 @@ export const createOrder = async (
   orderData: IOrderCreate,
   paymentId: string
 ) => {
+  let password: string | null = null;
+
   try {
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
       //TODO: need send for email
-      const password = nanoid(6);
-      const user = await createUser({
-        email: orderData.email,
-        password,
-        phoneNumber: orderData.address?.phoneNumber,
-      });
+      password = nanoid(6);
+      const user = await createUser(
+        {
+          email: orderData.email,
+          password,
+          phoneNumber: orderData.address?.phoneNumber,
+          firstName: orderData.firstName,
+          lastName: orderData.lastName,
+        },
+        true
+      );
 
       if ("id" in user) {
         orderData.userId = user.id;
@@ -87,7 +94,9 @@ export const createOrder = async (
       select: orderSelect,
     });
 
-    return order;
+    return !password
+      ? order
+      : { order, auth: { password, email: orderData.email } };
   } catch (error) {
     throw error;
   }
