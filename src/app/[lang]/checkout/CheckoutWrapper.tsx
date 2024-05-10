@@ -79,14 +79,16 @@ export const CheckoutWrapper = ({
     try {
       setIsLoading(true);
 
+      const totalCalcSum = finalPrice > 0 ? finalPrice : cart.totalAmount;
+
       const payload: IOrderCreate = {
         userId: data?.user?.id,
         firstName: userInfo?.firstName,
         lastName: userInfo?.lastName,
         email: userInfo?.email,
         comment,
-        totalSum: finalPrice ?? cart.totalAmount,
-        itemPrice: (finalPrice ?? cart.totalAmount) / cart.totalCount,
+        totalSum: totalCalcSum,
+        itemPrice: totalCalcSum / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
@@ -97,9 +99,9 @@ export const CheckoutWrapper = ({
       };
 
       const res = await createUrlForCheckout(
-        finalPrice ?? cart.totalAmount,
+        totalCalcSum,
         cart?.products?.filter(p => p.count > 0),
-        (finalPrice ?? cart.totalAmount) / cart.totalCount
+        totalCalcSum / cart.totalCount
       );
 
       if (!res?.pageUrl || !res?.invoiceId) return;
