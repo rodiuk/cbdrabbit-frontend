@@ -6,6 +6,7 @@ import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { signIn, useSession } from "next-auth/react";
+
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
@@ -73,11 +74,15 @@ export const CheckoutWrapper = ({
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
       !userInfo?.email?.length
+
     )
       return setIsEmptyFields(true);
 
+
     try {
       setIsLoading(true);
+
+      const totalCalcSum = finalPrice > 0 ? finalPrice : cart.totalAmount;
 
       const payload: IOrderCreate = {
         userId: data?.user?.id,
@@ -85,8 +90,8 @@ export const CheckoutWrapper = ({
         lastName: userInfo?.lastName,
         email: userInfo?.email,
         comment,
-        totalSum: finalPrice ?? cart.totalAmount,
-        itemPrice: (finalPrice ?? cart.totalAmount) / cart.totalCount,
+        totalSum: totalCalcSum,
+        itemPrice: totalCalcSum / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
@@ -97,9 +102,9 @@ export const CheckoutWrapper = ({
       };
 
       const res = await createUrlForCheckout(
-        finalPrice ?? cart.totalAmount,
+        totalCalcSum,
         cart?.products?.filter(p => p.count > 0),
-        (finalPrice ?? cart.totalAmount) / cart.totalCount
+        totalCalcSum / cart.totalCount
       );
 
       if (!res?.pageUrl || !res?.invoiceId) return;
@@ -112,6 +117,7 @@ export const CheckoutWrapper = ({
           userId: resOrder.user.id,
         });
       }
+      
 
       window.open(res.pageUrl, "_blank");
     } catch (error) {
