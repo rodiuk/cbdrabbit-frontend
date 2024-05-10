@@ -19,6 +19,8 @@ export interface ICreateUser {
   email: string;
   phoneNumber: string;
   password: string;
+  firstName?: string | null;
+  lastName?: string | null;
 }
 
 export interface IUserProfile extends IUser {

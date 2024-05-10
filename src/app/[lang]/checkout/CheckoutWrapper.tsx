@@ -5,7 +5,7 @@ import TabletCheckout from "./TabletCheckout";
 import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
@@ -72,11 +72,9 @@ export const CheckoutWrapper = ({
       !userInfo?.phone?.length ||
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
-      !userInfo?.email
+      !userInfo?.email?.length
     )
-      setIsEmptyFields(true);
-
-    if (isEmptyFields) setIsEmptyFields(false);
+      return setIsEmptyFields(true);
 
     try {
       setIsLoading(true);
@@ -87,8 +85,8 @@ export const CheckoutWrapper = ({
         lastName: userInfo?.lastName,
         email: userInfo?.email,
         comment,
-        totalSum: cart.totalAmount,
-        itemPrice: cart.totalAmount / cart.totalCount,
+        totalSum: finalPrice ?? cart.totalAmount,
+        itemPrice: (finalPrice ?? cart.totalAmount) / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
@@ -99,14 +97,21 @@ export const CheckoutWrapper = ({
       };
 
       const res = await createUrlForCheckout(
-        cart.totalAmount,
+        finalPrice ?? cart.totalAmount,
         cart?.products?.filter(p => p.count > 0),
-        finalPrice / cart.totalCount
+        (finalPrice ?? cart.totalAmount) / cart.totalCount
       );
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
-      await createOrder(payload, res?.invoiceId);
+      const resOrder = await createOrder(payload, res?.invoiceId);
+
+      if ("user" in resOrder && !data?.user?.id) {
+        await signIn("autoSignIn", {
+          redirect: false,
+          userId: resOrder.user.id,
+        });
+      }
 
       window.open(res.pageUrl, "_blank");
     } catch (error) {

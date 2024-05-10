@@ -114,7 +114,10 @@ export const getUserInfo = async (userId: string) => {
   }
 };
 
-export const createUser = async (userData: ICreateUser) => {
+export const createUser = async (
+  userData: ICreateUser,
+  isVerified?: boolean
+) => {
   try {
     if (!userData?.password) return { error: "Password is required" };
 
@@ -128,7 +131,7 @@ export const createUser = async (userData: ICreateUser) => {
         },
       });
 
-      if (isUserExist) return { error: "User already exist" };
+      if (isUserExist) return isUserExist;
 
       const code = nanoid(16);
 
@@ -136,7 +139,10 @@ export const createUser = async (userData: ICreateUser) => {
         data: {
           email: userData.email,
           password: hashPassword,
+          ...(!!userData?.firstName && { firstName: userData.firstName }),
+          ...(!!userData?.lastName && { lastName: userData.lastName }),
           verifiedCode: code,
+          isVerified: isVerified ? true : false,
           loyalty: { create: { percentDiscount: 2 } },
           ...(userData?.phoneNumber?.length > 0 && {
             address: {
@@ -294,11 +300,22 @@ export const updateDeliveryInfo = async (
         firstName: data.firstName,
         lastName: data.lastName,
         address: {
-          update: {
-            phoneNumber: data.phoneNumber,
-            city: data.city,
-            npDepartment: data.npDepartment,
-            npDeliveryType: data.npDeliveryType,
+          upsert: {
+            where: {
+              userId: userId,
+            },
+            update: {
+              phoneNumber: data.phoneNumber,
+              city: data.city,
+              npDepartment: data.npDepartment,
+              npDeliveryType: data.npDeliveryType,
+            },
+            create: {
+              phoneNumber: data.phoneNumber,
+              city: data.city,
+              npDepartment: data.npDepartment,
+              npDeliveryType: data.npDeliveryType,
+            },
           },
         },
       },

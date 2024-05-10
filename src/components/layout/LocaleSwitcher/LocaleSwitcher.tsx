@@ -8,6 +8,11 @@ import SwitcherArrowIcon from "@/components/icons/SwitcherArrow";
 import cn from "clsx";
 import styles from "./LocaleSwitcher.module.css";
 
+const localesMap = {
+  uk: "UA",
+  en: "EN",
+};
+
 interface Props {
   current: string;
 }
@@ -39,7 +44,7 @@ export const LocaleSwitcher = (props: Props) => {
       <div className={styles.current_container}>
         <LocaleIcon iconStyle={styles.icon} />
         <div className={styles.current_lang}>
-          {current}
+          {localesMap[current as keyof typeof localesMap]}
           <SwitcherArrowIcon iconStyle={cn(styles.arrow, styles.icon)} />
         </div>
       </div>
@@ -47,7 +52,7 @@ export const LocaleSwitcher = (props: Props) => {
         <ul className={styles.locales}>
           {filteredLocales?.map(locale => (
             <li key={locale} onClick={() => handleChangeLocale(locale)}>
-              {locale}
+              {localesMap[locale]}
             </li>
           ))}
         </ul>

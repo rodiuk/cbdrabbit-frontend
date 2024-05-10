@@ -10,8 +10,6 @@ import { npDeliveryType } from "./npDelivery";
 
 import RadioButtonsContainer from "../RadioButtonsContainer/RadioButtonsContainer";
 
-import s from "./s.module.css";
-
 interface Props {
   city: string;
   postPoint: string;

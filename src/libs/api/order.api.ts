@@ -46,11 +46,16 @@ export const createOrder = async (
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
       //TODO: need send for email
       const password = nanoid(6);
-      const user = await createUser({
-        email: orderData.email,
-        password,
-        phoneNumber: orderData.address?.phoneNumber,
-      });
+      const user = await createUser(
+        {
+          email: orderData.email,
+          password,
+          phoneNumber: orderData.address?.phoneNumber,
+          firstName: orderData.firstName,
+          lastName: orderData.lastName,
+        },
+        true
+      );
 
       if ("id" in user) {
         orderData.userId = user.id;

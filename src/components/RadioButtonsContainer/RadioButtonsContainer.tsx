@@ -11,15 +11,22 @@ interface Options {
   value: string;
 }
 
+interface Props {
+  options: Options[];
+  handleRadioChange: (id: string) => void;
+  deliveryId: string;
+}
+
 const RadioButtonsContainer = ({
   options,
   handleRadioChange,
   deliveryId,
-}: {
-  options: Options[];
-  handleRadioChange: (id: string) => void;
-  deliveryId: string;
-}) => {
+}: Props) => {
+  const checkedId =
+    deliveryId?.length > 1
+      ? options.filter(el => el.value === deliveryId)[0].id
+      : deliveryId;
+
   return (
     <div>
       <ul>
@@ -34,7 +41,7 @@ const RadioButtonsContainer = ({
                   text={el.text}
                   value={el.value}
                   handleRadioChange={handleRadioChange}
-                  checkedValue={deliveryId}
+                  checkedValue={checkedId}
                 />
               </li>
             );
