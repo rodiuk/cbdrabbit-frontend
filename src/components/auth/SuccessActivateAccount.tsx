@@ -4,16 +4,15 @@ import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { checkVerifiedCode } from "@/libs/api/user.api";
 import { ButtonLink } from "../Ui/ButtonLink";
+import { signIn } from "next-auth/react";
 
 import ok from "/public/img/ok.svg";
 
 import styles from "./styles.module.css";
 
-
 interface Props {
   lang: Locale;
   code: string;
-
 }
 
 export const SuccessActivateAccount = async (
@@ -26,11 +25,15 @@ export const SuccessActivateAccount = async (
   const user = await checkVerifiedCode(code);
   const activated = "id" in user;
 
-
+  if ("id" in user) {
+    await signIn("autoSignIn", {
+      redirect: false,
+      userId: user.id,
+    });
+  }
 
   return (
     <section className={styles.lay_item}>
-
       {activated ? (
         <>
           <div className={styles.items_wrap}>
@@ -49,8 +52,6 @@ export const SuccessActivateAccount = async (
             <h2 className={styles.ttl}>{activate.subTitle}</h2>
           </div>
 
-
-      
           <div className={`${styles.bb}`}>
             <ButtonLink href={`/${lang}`} text={activate.button} />
           </div>

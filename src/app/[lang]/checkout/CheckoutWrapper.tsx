@@ -85,8 +85,8 @@ export const CheckoutWrapper = ({
         lastName: userInfo?.lastName,
         email: userInfo?.email,
         comment,
-        totalSum: cart.totalAmount,
-        itemPrice: cart.totalAmount / cart.totalCount,
+        totalSum: finalPrice ?? cart.totalAmount,
+        itemPrice: (finalPrice ?? cart.totalAmount) / cart.totalCount,
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
@@ -97,20 +97,19 @@ export const CheckoutWrapper = ({
       };
 
       const res = await createUrlForCheckout(
-        cart.totalAmount,
+        finalPrice ?? cart.totalAmount,
         cart?.products?.filter(p => p.count > 0),
-        finalPrice / cart.totalCount
+        (finalPrice ?? cart.totalAmount) / cart.totalCount
       );
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
       const resOrder = await createOrder(payload, res?.invoiceId);
 
-      if ("auth" in resOrder) {
-        await signIn("credentials", {
+      if ("user" in resOrder && !data?.user?.id) {
+        await signIn("autoSignIn", {
           redirect: false,
-          email: resOrder?.auth?.email,
-          password: resOrder?.auth?.password,
+          userId: resOrder.user.id,
         });
       }
 

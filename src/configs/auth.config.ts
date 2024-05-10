@@ -3,7 +3,11 @@ import bcrypt from "bcrypt";
 import Provider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { appConfig } from "./app.config";
-import { createGoogleUser, getUserByEmail } from "@/libs/api/user.api";
+import {
+  createGoogleUser,
+  getUserByEmail,
+  getUserById,
+} from "@/libs/api/user.api";
 import { User } from "@prisma/client";
 
 export const authConfig: AuthOptions = {
@@ -65,6 +69,28 @@ export const authConfig: AuthOptions = {
         }
 
         return null;
+      },
+    }),
+    Provider({
+      id: "autoSignIn",
+      name: "AutoSignIn",
+      credentials: {
+        userId: { label: "UserId", type: "text" },
+      },
+      async authorize(credentials, req) {
+        if (!credentials?.userId) return null;
+
+        const user = await getUserById(credentials.userId);
+
+        if (!user || !user?.isVerified || !user?.isActive) return null;
+
+        return {
+          id: user.id,
+          email: user.email,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          role: user?.role,
+        };
       },
     }),
   ],
