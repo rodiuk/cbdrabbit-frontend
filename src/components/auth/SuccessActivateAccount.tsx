@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 import ok from "/public/img/ok.svg";
 
 import styles from "./styles.module.css";
+import { SuccessAutoSignIn } from "./SuccessAutoSignIn";
 
 interface Props {
   lang: Locale;
@@ -24,13 +25,6 @@ export const SuccessActivateAccount = async (
 
   const user = await checkVerifiedCode(code);
   const activated = "id" in user;
-
-  if ("id" in user) {
-    await signIn("autoSignIn", {
-      redirect: false,
-      userId: user.id,
-    });
-  }
 
   return (
     <section className={styles.lay_item}>
@@ -55,6 +49,7 @@ export const SuccessActivateAccount = async (
           <div className={`${styles.bb}`}>
             <ButtonLink href={`/${lang}`} text={activate.button} />
           </div>
+          <SuccessAutoSignIn user={user} />
         </>
       ) : (
         <>Something went wrong</>
