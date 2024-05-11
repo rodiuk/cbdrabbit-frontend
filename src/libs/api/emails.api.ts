@@ -99,7 +99,7 @@ export const updateContactInSendPulse = async (
   email: string,
   firstName?: string | null,
   lastName?: string | null,
-  phoneNumber?: string
+  phoneNumber?: string | null
 ) => {
   try {
     const tokenData = await getBearerToken();

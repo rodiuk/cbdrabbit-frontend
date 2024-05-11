@@ -221,6 +221,8 @@ export const updateEmail = async (userId: string, email: string) => {
       },
     });
 
+    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
+
     return user;
   } catch (error) {
     throw error;
@@ -334,12 +336,20 @@ export const updateDeliveryInfo = async (
         },
       },
       select: {
+        email: true,
         firstName: true,
         lastName: true,
         password: true,
         address: true,
       },
     });
+
+    await updateContactInSendPulse(
+      user?.email,
+      user?.firstName,
+      user?.lastName,
+      user.address?.phoneNumber
+    );
 
     revalidatePath("profile");
     return user;
