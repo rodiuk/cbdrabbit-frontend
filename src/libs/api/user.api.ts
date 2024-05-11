@@ -171,14 +171,16 @@ export const createUser = async (
         user?.isVerified
       );
 
-      await signUpActivateSendEmail(
-        user.email,
-        userData.phoneNumber,
-        user.id,
-        code,
-        userData?.firstName,
-        userData?.lastName
-      );
+      if (!isVerified) {
+        await signUpActivateSendEmail(
+          user.email,
+          userData.phoneNumber,
+          user.id,
+          code,
+          userData?.firstName,
+          userData?.lastName
+        );
+      }
 
       return user;
     });
