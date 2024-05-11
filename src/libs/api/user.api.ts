@@ -13,6 +13,7 @@ import {
   emailUpdateSendEmail,
   passwordResetSendEmail,
   updateContactInSendPulse,
+
   signUpActivateSendEmail,
 } from "./emails.api";
 import { Prisma, User } from "@prisma/client";
@@ -171,6 +172,7 @@ export const createUser = async (
         userData?.firstName,
         userData?.lastName
       );
+      
 
       return user;
     });
