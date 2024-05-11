@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache";
 import {
   emailUpdateSendEmail,
   passwordResetSendEmail,
-  sendSuccessActivationAccount,
+  updateContactInSendPulse,
   signUpActivateSendEmail,
 } from "./emails.api";
 import { Prisma, User } from "@prisma/client";
@@ -82,7 +82,7 @@ export const createGoogleUser = async (
       },
     });
 
-    await sendSuccessActivationAccount(
+    await updateContactInSendPulse(
       userData.email,
       userData?.firstName,
       userData?.lastName
@@ -421,11 +421,7 @@ export const checkVerifiedCode = async (code: string) => {
       },
     });
 
-    await sendSuccessActivationAccount(
-      user.email,
-      user?.firstName,
-      user?.lastName
-    );
+    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
 
     return user;
   } catch (error) {

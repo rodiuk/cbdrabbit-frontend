@@ -95,7 +95,7 @@ export const signUpActivateSendEmail = async (
   }
 };
 
-export const sendSuccessActivationAccount = async (
+export const updateContactInSendPulse = async (
   email: string,
   firstName?: string | null,
   lastName?: string | null,
