@@ -27,29 +27,7 @@ const getBearerToken = async () => {
 
 export const passwordResetSendEmail = async (email: string, code: string) => {
   try {
-    const res = await fetch("v2/event", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "",
-      },
-      body: JSON.stringify({
-        eventTypeKey: "password_restore",
-        keyValue: email,
-        params: [
-          {
-            name: "emailAddress",
-            value: email,
-          },
-          {
-            name: "url_password_restore",
-            value: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
-          },
-        ],
-      }),
-    });
-
-    return res;
+    return true;
   } catch (error) {
     throw error;
   }
@@ -97,9 +75,11 @@ export const signUpActivateSendEmail = async (
 
 export const updateContactInSendPulse = async (
   email: string,
+  isPromo: boolean,
   firstName?: string | null,
   lastName?: string | null,
-  phoneNumber?: string
+  isVerified?: boolean | null,
+  phoneNumber?: string | null
 ) => {
   try {
     const tokenData = await getBearerToken();
@@ -107,29 +87,41 @@ export const updateContactInSendPulse = async (
 
     if (!tokenData?.access_token) return null;
 
-    const res = await fetch(
-      `${appConfig.SENDPULSE_API_URL}/addressbooks/706336/emails`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tokenData.access_token}`,
-        },
-        body: JSON.stringify({
-          emails: [
-            {
-              email: email,
-              variables: {
-                name: fullName,
-                phone: phoneNumber ?? "",
+    const sendUpdate = async () => {
+      return fetch(
+        `${appConfig.SENDPULSE_API_URL}/addressbooks/706336/emails`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenData.access_token}`,
+          },
+          body: JSON.stringify({
+            emails: [
+              {
+                email: email,
+                variables: {
+                  name: fullName,
+                  phone: phoneNumber ?? "",
+                  isVerified: isVerified ?? false,
+                  isPromo,
+                },
               },
-            },
-          ],
-        }),
-      }
-    );
+            ],
+          }),
+        }
+      );
+    };
 
-    return res;
+    const res = await sendUpdate();
+    const pulseRes = await res.json();
+
+    if ("result" in pulseRes && pulseRes.result) return;
+
+    //Attention: Sendpulse API has bug with request on update contacts sometimes
+    setTimeout(() => {
+      sendUpdate();
+    }, 60000);
   } catch (error) {
     throw error;
   }
@@ -137,29 +129,7 @@ export const updateContactInSendPulse = async (
 
 export const emailUpdateSendEmail = async (email: string, code: string) => {
   try {
-    const res = await fetch("v2/event", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "",
-      },
-      body: JSON.stringify({
-        eventTypeKey: "password_restore",
-        keyValue: email,
-        params: [
-          {
-            name: "emailAddress",
-            value: email,
-          },
-          {
-            name: "url_password_restore",
-            value: `https://cbdrabbit.shop/uk/signIn?changeEmail=true&code=${code}&newEmail=${email}`,
-          },
-        ],
-      }),
-    });
-
-    return res;
+    return true;
   } catch (error) {
     throw error;
   }

@@ -6,7 +6,6 @@ import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { signIn, useSession } from "next-auth/react";
-
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
@@ -42,7 +41,7 @@ export const CheckoutWrapper = ({
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-  const [cart] = useAtom(cartAtom);
+  const [cart, setCart] = useAtom(cartAtom);
 
   React.useEffect(() => {
     if (!data?.user?.id) return;
@@ -74,10 +73,8 @@ export const CheckoutWrapper = ({
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
       !userInfo?.email?.length
-
     )
       return setIsEmptyFields(true);
-
 
     try {
       setIsLoading(true);
@@ -112,12 +109,12 @@ export const CheckoutWrapper = ({
       const resOrder = await createOrder(payload, res?.invoiceId);
 
       if ("user" in resOrder && !data?.user?.id) {
+        setCart(prev => ({ ...prev, fromCheckout: true }));
         await signIn("autoSignIn", {
           redirect: false,
           userId: resOrder.user.id,
         });
       }
-      
 
       window.open(res.pageUrl, "_blank");
     } catch (error) {

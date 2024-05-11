@@ -13,6 +13,7 @@ import {
   emailUpdateSendEmail,
   passwordResetSendEmail,
   updateContactInSendPulse,
+
   signUpActivateSendEmail,
 } from "./emails.api";
 import { Prisma, User } from "@prisma/client";
@@ -82,10 +83,12 @@ export const createGoogleUser = async (
       },
     });
 
-    await updateContactInSendPulse(
+    updateContactInSendPulse(
       userData.email,
+      user?.isPromo,
       userData?.firstName,
-      userData?.lastName
+      userData?.lastName,
+      user?.isVerified
     );
 
     return user;
@@ -169,6 +172,7 @@ export const createUser = async (
         userData?.firstName,
         userData?.lastName
       );
+      
 
       return user;
     });
@@ -220,6 +224,14 @@ export const updateEmail = async (userId: string, email: string) => {
         email,
       },
     });
+
+    updateContactInSendPulse(
+      user.email,
+      user.isPromo,
+      user?.firstName,
+      user?.lastName,
+      user?.isVerified
+    );
 
     return user;
   } catch (error) {
@@ -334,12 +346,24 @@ export const updateDeliveryInfo = async (
         },
       },
       select: {
+        email: true,
         firstName: true,
         lastName: true,
         password: true,
         address: true,
+        isVerified: true,
+        isPromo: true,
       },
     });
+
+    updateContactInSendPulse(
+      user?.email,
+      user.isPromo,
+      user?.firstName,
+      user?.lastName,
+      user?.isVerified,
+      user.address?.phoneNumber
+    );
 
     revalidatePath("profile");
     return user;
@@ -421,7 +445,13 @@ export const checkVerifiedCode = async (code: string) => {
       },
     });
 
-    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
+    updateContactInSendPulse(
+      user.email,
+      user.isPromo,
+      user?.firstName,
+      user?.lastName,
+      user?.isVerified
+    );
 
     return user;
   } catch (error) {

@@ -34,6 +34,7 @@ model User {
   password          String?
   isVerified        Boolean @default(false)
   isActive          Boolean @default(true)
+  isPromo           Boolean @default(true)
   role              String  @default("USER")
   totalOrdersAmount Float   @default(0)
 

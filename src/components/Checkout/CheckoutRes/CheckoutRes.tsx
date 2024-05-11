@@ -58,7 +58,9 @@ const CheckoutRes = React.memo(function CheckoutRes({
   const saleDiff = cart?.totalCount * currentPrice - cart?.totalAmount;
   let salePercent = Math.round((saleDiff / cart?.totalAmount) * 100);
   salePercent = salePercent > 0 ? salePercent : 0;
-  const userDiscountSum = (cart?.totalAmount / 100) * userDiscount;
+  const userDiscountSum = cart?.fromCheckout
+    ? 0
+    : (cart?.totalAmount / 100) * userDiscount;
   const finalPrice = cart?.totalAmount - userDiscountSum;
 
   return (

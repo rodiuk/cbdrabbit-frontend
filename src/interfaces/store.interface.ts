@@ -5,4 +5,5 @@ export type Cart = {
   totalAmount: number;
   totalCount: number;
   newPrice: number;
+  fromCheckout: boolean;
 };

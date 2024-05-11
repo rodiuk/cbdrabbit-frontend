@@ -10,6 +10,7 @@ export const initialCartState = {
   totalAmount: 0,
   totalCount: 0,
   newPrice: 0,
+  fromCheckout: false,
 };
 
 const storage = typeof window !== "undefined" ? window.localStorage : null;
@@ -25,7 +26,7 @@ const cartAtom = atomWithStorage<Cart>(
 );
 
 // Clear cart atom
-const clearCartAtom = atom(null, (get, set) => {
+const clearCartAtom = atom(null, (_, set) => {
   set(cartAtom, initialCartState);
   return null;
 });
