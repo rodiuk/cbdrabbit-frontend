@@ -163,6 +163,14 @@ export const createUser = async (
         },
       });
 
+      await updateContactInSendPulse(
+        user.email,
+        user.isPromo,
+        user?.firstName,
+        user?.lastName,
+        user?.isVerified
+      );
+
       await signUpActivateSendEmail(
         user.email,
         userData.phoneNumber,
