@@ -39,7 +39,7 @@ export const SuccessSignUp = ({
         </div>
         <p className={styles.descr}>{maskEmailAddress(userEmail)}</p>
         <h2 className={styles.ttl}>{dict.subTitle}</h2>
-        <div className={`${styles.descr} ${styles.m10}`}>{userEmail}</div>
+        <div className={`${styles.descr} ${styles.m10}`}>{maskEmailAddress(userEmail)}</div>
         <p className={styles.ttl}>{dict.description}</p>
       </div>
 

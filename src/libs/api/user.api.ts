@@ -12,6 +12,7 @@ import { revalidatePath } from "next/cache";
 import {
   emailUpdateSendEmail,
   passwordResetSendEmail,
+  updateContactInSendPulse,
   signUpActivateSendEmail,
 } from "./emails.api";
 import { Prisma, User } from "@prisma/client";
@@ -80,6 +81,12 @@ export const createGoogleUser = async (
         },
       },
     });
+
+    await updateContactInSendPulse(
+      userData.email,
+      userData?.firstName,
+      userData?.lastName
+    );
 
     return user;
   } catch (error) {
@@ -154,7 +161,14 @@ export const createUser = async (
         },
       });
 
-      await signUpActivateSendEmail(user.email, userData.phoneNumber, code);
+      await signUpActivateSendEmail(
+        user.email,
+        userData.phoneNumber,
+        user.id,
+        code,
+        userData?.firstName,
+        userData?.lastName
+      );
 
       return user;
     });
@@ -406,6 +420,8 @@ export const checkVerifiedCode = async (code: string) => {
         isVerified: true,
       },
     });
+
+    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
 
     return user;
   } catch (error) {

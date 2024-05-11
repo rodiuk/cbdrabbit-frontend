@@ -8,6 +8,7 @@ import { ISignUpPasswordDict } from "@/interfaces/auth.interface";
 import { createUser } from "@/libs/api/user.api";
 
 import styles from "./styles.module.css";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   dict: ISignUpPasswordDict;
@@ -50,7 +51,7 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
   return (
     <section className={styles.lay_item}>
       <h1 className={styles.ttl}>{dict.title}</h1>
-      <div className={styles.descr}>{userEmail}</div>
+      <div className={styles.descr}>{maskEmailAddress(userEmail ?? "")}</div>
       <Input
         type="password"
         placeholder={dict.firstInputPlaceholder}

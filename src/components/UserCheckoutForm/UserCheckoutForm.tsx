@@ -48,7 +48,7 @@ const UserCheckoutForm = ({
         <Input
           type="text"
           name="lastName"
-          value={userInfo?.lastName ?? ""}
+          value={userInfo?.lastName}
           text={dict.userLabelLastName}
           required={true}
           placeholder={dict.userLabelPlaceholderLastName}
@@ -57,7 +57,7 @@ const UserCheckoutForm = ({
         <Input
           type="text"
           name="firstName"
-          value={userInfo?.firstName ?? ""}
+          value={userInfo?.firstName}
           text={dict.userLabelFirstName}
           required={true}
           placeholder={dict.userLabelPlaceholderFirstName}
