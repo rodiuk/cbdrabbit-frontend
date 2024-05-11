@@ -171,6 +171,8 @@ export const createUser = async (
         user?.isVerified
       );
 
+      
+
       if (!isVerified) {
         await signUpActivateSendEmail(
           user.email,
