@@ -10,6 +10,7 @@ import { isAccountActivated } from "@/libs/api/user.api";
 
 import cn from "clsx";
 import styles from "./styles.module.css";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   dict: ISignInPasswordDict;
@@ -46,7 +47,7 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
   return (
     <section className={styles.lay_item}>
       <h1 className={styles.ttl}>{dict.title}</h1>
-      <p className={styles.descr}>{userEmail}</p>
+      <p className={styles.descr}>{maskEmailAddress(userEmail ?? "")}</p>
       <Input
         type="password"
         text={dict.inputLabel}

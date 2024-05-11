@@ -23,20 +23,18 @@ const MenuDrop = (props: Props) => {
   const { toggleMenu, lang, dict } = props;
   const { status } = useSession();
 
-	const isSignIn = status === "authenticated";
-	
-	
+  const isSignIn = status === "authenticated";
 
   const handleSignOut = () => {
     signOut();
-	  toggleMenu();
-	};
-	
+    toggleMenu();
+  };
 
   return (
-	  <div className={s.menu}
-		  onClick={e => (e.currentTarget === e.target) && toggleMenu()}
-	  >
+    <div
+      className={s.menu}
+      onClick={e => e.currentTarget === e.target && toggleMenu()}
+    >
       <div className={s.mnu}>
         {!isSignIn && (
           <Link
@@ -80,11 +78,6 @@ const MenuDrop = (props: Props) => {
               </li>
             </>
           )}
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/icons`} onClick={toggleMenu}>
-              Ikons
-            </Link>
-          </li>
         </ul>
         <div className={s.ssoc}>
           <p>{dict.links.socials}</p>

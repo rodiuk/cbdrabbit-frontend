@@ -9,6 +9,7 @@ import { Locale } from "../../../../i18n.config";
 
 import cn from "clsx";
 import styles from "./styles.module.css";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   dict: ISignInNotExistDict;
@@ -41,7 +42,7 @@ export const SignInNotExistEmail = ({
   return (
     <section className={styles.lay_item}>
       <h1 className={styles.ttl}>{dict.title}</h1>
-      <div className={styles.descr}>{userEmail}</div>
+      <div className={styles.descr}>{maskEmailAddress(userEmail ?? "")}</div>
       <div className={styles.lay_text}>
         <p dangerouslySetInnerHTML={{ __html: dict.description }} />
       </div>

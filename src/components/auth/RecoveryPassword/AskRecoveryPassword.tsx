@@ -4,6 +4,7 @@ import { ArrowLeftIcon } from "@/components/icons/ArrowLeft";
 import { Locale } from "../../../../i18n.config";
 
 import styles from "./style.module.css";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   title: string;
@@ -26,7 +27,7 @@ export const AskRecoveryPassword = (props: Props): React.JSX.Element => {
       </div>
 
       <p className={styles.message}>{message}</p>
-      <p className={styles.email}>{email}</p>
+      <p className={styles.email}>{maskEmailAddress(email)}</p>
 
       <Link
         href={`/${lang}/singIn/reset=true`}
