@@ -82,10 +82,12 @@ export const createGoogleUser = async (
       },
     });
 
-    await updateContactInSendPulse(
+    updateContactInSendPulse(
       userData.email,
+      user?.isPromo,
       userData?.firstName,
-      userData?.lastName
+      userData?.lastName,
+      user?.isVerified
     );
 
     return user;
@@ -221,7 +223,13 @@ export const updateEmail = async (userId: string, email: string) => {
       },
     });
 
-    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
+    updateContactInSendPulse(
+      user.email,
+      user.isPromo,
+      user?.firstName,
+      user?.lastName,
+      user?.isVerified
+    );
 
     return user;
   } catch (error) {
@@ -341,13 +349,17 @@ export const updateDeliveryInfo = async (
         lastName: true,
         password: true,
         address: true,
+        isVerified: true,
+        isPromo: true,
       },
     });
 
-    await updateContactInSendPulse(
+    updateContactInSendPulse(
       user?.email,
+      user.isPromo,
       user?.firstName,
       user?.lastName,
+      user?.isVerified,
       user.address?.phoneNumber
     );
 
@@ -431,7 +443,13 @@ export const checkVerifiedCode = async (code: string) => {
       },
     });
 
-    await updateContactInSendPulse(user.email, user?.firstName, user?.lastName);
+    updateContactInSendPulse(
+      user.email,
+      user.isPromo,
+      user?.firstName,
+      user?.lastName,
+      user?.isVerified
+    );
 
     return user;
   } catch (error) {

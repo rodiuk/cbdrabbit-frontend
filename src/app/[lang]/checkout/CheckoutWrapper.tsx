@@ -41,7 +41,7 @@ export const CheckoutWrapper = ({
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-  const [cart] = useAtom(cartAtom);
+  const [cart, setCart] = useAtom(cartAtom);
 
   React.useEffect(() => {
     if (!data?.user?.id) return;
@@ -109,6 +109,7 @@ export const CheckoutWrapper = ({
       const resOrder = await createOrder(payload, res?.invoiceId);
 
       if ("user" in resOrder && !data?.user?.id) {
+        setCart(prev => ({ ...prev, fromCheckout: true }));
         await signIn("autoSignIn", {
           redirect: false,
           userId: resOrder.user.id,
