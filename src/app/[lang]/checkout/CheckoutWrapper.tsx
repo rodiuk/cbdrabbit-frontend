@@ -14,6 +14,7 @@ import { useAtom } from "jotai";
 import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
+import { newTabOpen } from "@/utils/newTabOpen";
 
 interface Props {
   dict: ICheckoutDict;
@@ -117,6 +118,8 @@ export const CheckoutWrapper = ({
       }
 
       window.open(res.pageUrl, "_blank");
+
+      // newTabOpen(res?.pageUrl);
     } catch (error) {
       console.log(error);
     } finally {
