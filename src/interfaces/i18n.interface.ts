@@ -25,6 +25,12 @@ export interface ICheckoutDict {
   commentLabel: string;
 }
 
+export interface IAuthActivate {
+  title: string;
+  subTitle: string;
+  button: string;
+}
+
 export interface IProfileDict {
   userPasswordTitle: string;
   passwordExist: string;
