@@ -35,7 +35,7 @@ console.log(rendererProducts)
               {cart?.newPrice} ₴<span className={styles.elem}>/шт</span>
 				  </div>
 				  <div className="actions">
-				 {/*  <ActionBar product={product} /> */}
+				  <ActionBar product={product} />
 				  </div>
           </div>
         </li>
