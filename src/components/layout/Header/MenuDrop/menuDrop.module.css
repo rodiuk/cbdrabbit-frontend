@@ -1,5 +1,5 @@
 .menu {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	width: 100vw;
@@ -8,7 +8,7 @@
 	z-index: 999;
 }
 .mnu {
-	position: absolute;
+	position: fixed;
 	right: 0;
 	top: 0;
 	height: 100%;
@@ -34,6 +34,16 @@
     border: 2px solid transparent;
 	margin-bottom: 15px;
 }
+.button:hover {
+    background: rgba(53, 75, 48, 1);
+}
+.button:focus-visible {
+    border: 4px solid #0D9AD6;
+}
+.button:active {
+    background: rgba(45, 62, 41, 1);
+}
+
 .buttonIcon {
 	margin-left: 10px;
 	position: relative;
@@ -49,9 +59,19 @@
 	position: absolute;
 	right: 16px;
 	top: 16px;
-	background: #9BD28F66;
+	background: rgba(155, 210, 143, 0.4);
 	cursor: pointer;
 }
+.close:hover {
+    background: rgba(155, 210, 143, 0.7);
+}
+.close:focus-visible {
+    border: 4px solid #0D9AD6;
+}
+.close:active {
+    background: rgba(155, 210, 143, 1);
+}
+
 .mnu_list {
 	flex-grow: 1;
 }
@@ -64,4 +84,11 @@
 .ssoc a {
 	margin-right: 10px;
     padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+	.mnu {
+		width: 308px;
+	}
+	
 }

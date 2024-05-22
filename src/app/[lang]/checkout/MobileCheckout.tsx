@@ -106,7 +106,7 @@ const MobileCheckout = (props: Props) => {
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>Коментар</div>
         <Textarea
-          placeholder="Коментар до замовлення"
+          placeholder={dict.commentLabel}
           value={comment}
           setValue={setComment}
         />

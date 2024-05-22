@@ -16,3 +16,9 @@
 .disabled {
   color: #98979a;
 }
+
+@media (max-width: 767px) {
+	.container {
+		max-width: 50px;
+	}
+}

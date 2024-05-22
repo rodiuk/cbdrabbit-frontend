@@ -55,7 +55,20 @@
   font-weight: 500;
   line-height: 1.5;
 }
-
+.button:hover {
+	background: #354B30;
+}
+.button:focus-visible {
+	border: 4px solid #0D9AD6;
+}
+.button:active {
+	background: #2D3E29;
+	border: 2px solid transparent;
+}
+.button:disabled, .button.disabled {
+	background: #DBDBDB;
+	color: #fff;
+}
 .icon {
   color: #fff;
 }

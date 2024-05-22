@@ -7,6 +7,7 @@ import { IProductRes } from "@/interfaces/product.interface";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import ListSales from "@/components/ListSales/ListSales";
 
 export async function generateMetadata({
   params,
@@ -42,6 +43,8 @@ export default async function Home({ params }: IMainPageProps) {
             />
           ))}
         </ul>
+        <ListSales lang={params.lang} />
+		
       </div>
     </main>
   );

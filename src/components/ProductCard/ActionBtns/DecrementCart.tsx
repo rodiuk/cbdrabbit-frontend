@@ -25,8 +25,8 @@ export const DecrementCart = ({ product }: Props) => {
   return (
     <button
       onClick={() => remove(product)}
-      className={cn(styles.container, {
-        [styles.disabled]: count && count <= 0,
+      className={cn(styles.container, styles.decrement, {
+		  [styles.disabled]: count && count <= 0,
       })}
     >
       <MinusIcon iconStyle={styles.icon} />

@@ -16,10 +16,12 @@ export const Header = async ({ lang }: Props): Promise<React.JSX.Element> => {
   const dict = await getDictionary(lang);
 
   return (
-    <header className={cn("container", styles.container, styles.header)}>
-      <LogoContainer lang={lang} />
-      <PageTitle lang={lang} />
-      <NavWrapper lang={lang} dict={dict.header} />
+    <header className={cn("", styles.container, styles.header)}>
+      <div className="container"> {/* этот класс - он для ограничения, глобальный */}
+        <LogoContainer lang={lang} />
+        <PageTitle lang={lang} />
+        <NavWrapper lang={lang} dict={dict.header} />
+      </div>
     </header>
   );
 };

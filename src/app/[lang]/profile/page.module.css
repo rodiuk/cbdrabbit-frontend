@@ -57,6 +57,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all .3s;
+}
+.pencil:hover {
+    background: #F5FAF3;
+	border: 1px solid #9BD28F;
+}
+.pencil:focus-visible {
+    border: 4px solid #0D9AD6;
+}
+.pencil:active {
+    background: #E7F5E3;
+    border: 1px solid #9BD28F;
+}
+.pencil:disabled, .pencil.disabled {
+    background: #DBDBDB;
+    color: #DBDBDB;
 }
 
 .wrapper .wrapper_ttl {

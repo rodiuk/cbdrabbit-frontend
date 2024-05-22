@@ -31,3 +31,9 @@
     transform: translate(-50%, -50%);
   }
 }
+
+@media (max-width: 767px) {
+	.container {
+		justify-content: flex-start;
+	}
+}

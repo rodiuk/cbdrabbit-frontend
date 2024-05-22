@@ -23,7 +23,27 @@ const UserCheckoutForm = ({
   };
 
   return (
-    <div className={s.labels}>
+	  <div className={s.labels}>
+		  <div className={s.wrap_row}>
+        <Input
+          type="text"
+          name="lastName"
+          value={userInfo?.lastName}
+          text={dict.userLabelLastName}
+          required={true}
+          placeholder={dict.userLabelPlaceholderLastName}
+          onInputChange={value => handleInputChange("lastName", value)}
+        />
+        <Input
+          type="text"
+          name="firstName"
+          value={userInfo?.firstName}
+          text={dict.userLabelFirstName}
+          required={true}
+          placeholder={dict.userLabelPlaceholderFirstName}
+          onInputChange={value => handleInputChange("firstName", value)}
+        />
+      </div>
       <Input
         type="text"
         name="phone"
@@ -44,26 +64,7 @@ const UserCheckoutForm = ({
           onInputChange={value => handleInputChange("email", value)}
         />
       )}
-      <div className={s.wrap_row}>
-        <Input
-          type="text"
-          name="lastName"
-          value={userInfo?.lastName}
-          text={dict.userLabelLastName}
-          required={true}
-          placeholder={dict.userLabelPlaceholderLastName}
-          onInputChange={value => handleInputChange("lastName", value)}
-        />
-        <Input
-          type="text"
-          name="firstName"
-          value={userInfo?.firstName}
-          text={dict.userLabelFirstName}
-          required={true}
-          placeholder={dict.userLabelPlaceholderFirstName}
-          onInputChange={value => handleInputChange("firstName", value)}
-        />
-      </div>
+      
     </div>
   );
 };

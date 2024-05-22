@@ -92,6 +92,15 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
           />
+			  </div>
+			  
+			  <div className={styles.checkoutBlock}>
+          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
+          <Textarea
+            placeholder={dict.commentLabel}
+            value={comment}
+            setValue={setComment}
+          />
         </div>
 
         <div className={styles.checkoutBlock}>
@@ -111,14 +120,7 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           <h3 className={styles.checkoutBlock_h2}>{dict.orderTitle}</h3>
           <ProductsCheckout />
         </div>
-        <div className={styles.checkoutBlock}>
-          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
-          <Textarea
-            placeholder={dict.commentLabel}
-            value={comment}
-            setValue={setComment}
-          />
-        </div>
+        
         <CheckoutRes
           currency={currency}
           dict={dict}

@@ -8,6 +8,11 @@ import { CartIcon } from './Cart';
 import Close from './Close';
 import DotsIcon from './DotsIcon';
 import CheckIcon from './CheckIcon';
+import { InfoIcon } from './InfoIcon';
+import MobileMainLogoIcon from './MobileMainLogo';
+import Button from '../Ui/Button/Button';
+import ButtonRed from '../Ui/Button/ButtonRed';
+import ButtonWhite from '../Ui/Button/ButtonWhite';
 
 const AllIcons = () => {
 	return (
@@ -30,6 +35,13 @@ const AllIcons = () => {
 			<DotsIcon />
 			<p>CheckIcon</p>
 			<CheckIcon />
+			<p>InfoIcon</p>
+			<InfoIcon />
+			<p>MobileMainLogoIcon</p>
+			<MobileMainLogoIcon />
+			<Button text="button" />
+			<ButtonRed text="ButtonRed" />
+			<ButtonWhite text="ButtonWhite" />
 		</div>
 	);
 };
