@@ -20,7 +20,7 @@ export default async function Checkout({
       <div className={styles.checoutPage}>
         {!successOrder && (
           <div className={styles.checkoutBlocks}>
-            <CheckoutWrapper dict={dict.checkout} currency={dict.currency} />
+            <CheckoutWrapper lang={lang} dict={dict.checkout} currency={dict.currency} />
           </div>
         )}
 
@@ -28,4 +28,4 @@ export default async function Checkout({
       </div>
     </main>
   );
-}
+} 1347

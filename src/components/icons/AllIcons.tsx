@@ -13,6 +13,7 @@ import MobileMainLogoIcon from './MobileMainLogo';
 import Button from '../Ui/Button/Button';
 import ButtonRed from '../Ui/Button/ButtonRed';
 import ButtonWhite from '../Ui/Button/ButtonWhite';
+import { PresentIcon } from './PresentIcon';
 
 const AllIcons = () => {
 	return (
@@ -39,6 +40,8 @@ const AllIcons = () => {
 			<InfoIcon />
 			<p>MobileMainLogoIcon</p>
 			<MobileMainLogoIcon />
+			<p>PresentIcon</p>
+			<PresentIcon />
 			<Button text="button" />
 			<ButtonRed text="ButtonRed" />
 			<ButtonWhite text="ButtonWhite" />
