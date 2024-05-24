@@ -157,6 +157,7 @@ text-align: center;
 	.img_wrapper {
 		min-height: 120px;
 		top: -60px;
+		max-width: 150px;
 	}
 	.img_wrapper .image {
 		left: 24px !important;
