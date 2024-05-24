@@ -13,6 +13,13 @@ import { IHeaderDict } from "@/interfaces/i18n.interface";
 
 import s from "./menuDrop.module.css";
 
+import basket_icom from "/public/img/basket_icom.svg";
+import svd_icon from "/public/img/svd_icon.svg";
+import my_page_icon from "/public/img/my_page_icon.svg";
+import my_orders from "/public/img/my_orders.svg";
+//import svd_icon.svg from "/public/img/svd_icon.svg.svg";
+import Image from "next/image";
+
 interface Props {
   toggleMenu: () => void;
   lang: Locale;
@@ -46,40 +53,101 @@ const MenuDrop = (props: Props) => {
           </Link>
         )}
 
-        {isSignIn && (
-          <Link href={`/${lang}`} className={s.button} onClick={handleSignOut}>
-            {dict.links.signOut} <RabbitWiteIcon iconStyle={s.buttonIcon} />{" "}
-          </Link>
-        )}
-
+        
+        {/* 1 блок */}
         <ul className={s.mnu_list}>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}`} onClick={toggleMenu}>
-              {dict.links.main}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
-              {dict.links.checkout} <RabbitWiteIcon iconStyle={s.buttonIcon} />{" "}
-            </Link>
-          </li>
-
           {isSignIn && (
             <>
               <li className={s.mnu_link}>
-                <Link href={`/${lang}/orders`} onClick={toggleMenu}>
-                  {dict.links.orders}
+                <Link href={`/${lang}/profile`} onClick={toggleMenu}>
+                  <Image
+                    src={my_page_icon.src}
+                    alt="Мій кабінет"
+                    width={24}
+                    height={24}
+                  />
+                  Мій кабінет
                 </Link>
               </li>
               <li className={s.mnu_link}>
-                <Link href={`/${lang}/profile`} onClick={toggleMenu}>
-                  {dict.links.profile}
+                <Link href={`/${lang}/orders`} onClick={toggleMenu}>
+                  <Image
+                    src={my_orders.src}
+                    alt="Мій кабінет"
+                    width={24}
+                    height={24}
+                  />
+                  Мої замовлення
                 </Link>
               </li>
             </>
           )}
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}`} onClick={toggleMenu}>
+              <Image
+                src={basket_icom.src}
+                alt="Купити"
+                width={24}
+                height={24}
+              />
+              Купити
+            </Link>
+          </li>
         </ul>
-        <div className={s.ssoc}>
+
+        <ul className={s.mnu_list}>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}`} onClick={toggleMenu}>
+              <Image src={svd_icon.src} alt="CBD цукерки" width={24} height={24} />{" "}
+              CBD цукерки
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Про CBD
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Про нас
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Оплата і доставка
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Блог
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Контакти
+            </Link>
+          </li>
+          <li className={s.mnu_link}>
+            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+			Співпраця
+            </Link>
+          </li>
+
+			  </ul>
+			  {isSignIn && (
+				  <>
+					  <div className={s.botton_link}>
+					  <Link href={`/${lang}`} className={s.out} onClick={handleSignOut}>
+				{dict.links.signOut}
+			</Link>
+				  </div>
+              
+            </>
+          )}
+			  
+       {/* 
+	   покамет комментирую. хз, может еще понадобится
+	    <div className={s.ssoc}>
           <p>{dict.links.socials}</p>
           <a href="#">
             <InstagrammIcon />
@@ -87,7 +155,7 @@ const MenuDrop = (props: Props) => {
           <a href="#">
             <TelegrammIcon />
           </a>
-        </div>
+        </div> */}
         <div className={s.close} onClick={() => toggleMenu()}>
           <Close />
         </div>

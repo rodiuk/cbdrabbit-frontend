@@ -14,9 +14,10 @@
 	height: 100%;
 	width: 80%;
 	background: #fff;
-	padding: 80px 20px 20px;
+	padding: 70px 20px 20px;
 	display: flex;
 	flex-direction: column;
+	overflow-y: auto;
 }
 .button {
     display: flex;
@@ -25,6 +26,7 @@
     cursor: pointer;
     min-width: 160px;
     height: 54px;
+	min-height: 54px;
     background: #42623B;
     border-radius: 50px;
     color: #fff;
@@ -74,12 +76,21 @@
 
 .mnu_list {
 	flex-grow: 1;
+	border-bottom: 1px solid rgba(212, 212, 212, 1);
+	padding: 10px 0;
 }
-.mnu_link {
-	padding: 5px 0;
-    font-size: 22px;
-    font-weight: 500;
+.mnu_link a, .botton_link a {
+	display: flex;
+	align-items: center;
+	padding: 7px 0;
+    font-size: 20px;
+    font-weight: 700;
+	line-height: 1.2;
     color: var(--primary-color);
+	gap: 0 12px;
+}
+.botton_link {
+	padding: 15px 0;
 }
 .ssoc a {
 	margin-right: 10px;

@@ -14,6 +14,7 @@ const Cart = dynamic(() => import("@/components/layout/Header/Cart/Cart"), {
   });
 
 import styles from "./Header.module.css";
+import ButtonTop from "./ButtonTop/ButtonTop";
 
 interface Props {
   lang: Locale;
@@ -29,7 +30,8 @@ export const NavWrapper = ({ lang, dict }: Props): React.JSX.Element => {
 
   return (
     <>
-      <nav className={styles.navigation}>
+		  <nav className={styles.navigation}>
+		  <ButtonTop lang={lang} />
         <LocaleSwitcher current={lang} />
         <Cart lang={lang} />
         <Menu toggleMenu={toggleMenu} />
