@@ -73,9 +73,10 @@
 .close:active {
     background: rgba(155, 210, 143, 1);
 }
-
-.mnu_list {
+.wrapper_mnu {
 	flex-grow: 1;
+}
+.mnu_list {
 	border-bottom: 1px solid rgba(212, 212, 212, 1);
 	padding: 10px 0;
 }
@@ -95,6 +96,14 @@
 .ssoc a {
 	margin-right: 10px;
     padding-top: 10px;
+}
+.politic_link {
+	font-size: 14px;
+	color: rgba(91, 173, 72, 1);
+	font-weight: 600;
+}
+.politic_block {
+	text-align: right;
 }
 
 @media (min-width: 768px) {

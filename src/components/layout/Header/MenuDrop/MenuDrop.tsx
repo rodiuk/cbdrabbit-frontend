@@ -53,7 +53,9 @@ const MenuDrop = (props: Props) => {
           </Link>
         )}
 
-        
+			  <div className={s.wrapper_mnu}>
+				  
+		
         {/* 1 блок */}
         <ul className={s.mnu_list}>
           {isSignIn && (
@@ -144,7 +146,16 @@ const MenuDrop = (props: Props) => {
               
             </>
           )}
-			  
+			  </div>
+
+			  <div className={s.politic_block}>
+			  <Link href={`/${lang}`} className={s.politic_link} onClick={handleSignOut}>
+			  Політика конфіденційності
+			</Link>
+			  <Link href={`/${lang}`} className={s.politic_link} onClick={handleSignOut}>
+			  Публічний договір оферти
+			</Link>
+			  </div>	  
        {/* 
 	   покамет комментирую. хз, может еще понадобится
 	    <div className={s.ssoc}>
