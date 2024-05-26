@@ -60,11 +60,14 @@ export const Footer = (): React.JSX.Element => {
             </li>
           </ul>
           <div className={s.ul}>
+            {/*  якщо залогінений - не виводимо контент але сам блок s.ul  повинен бути
+					  початок */}
             <p>Давай знайомитись.</p>
             <p>Друзям зайчик робить знижки!</p>
             <Link href="/signIn" className={s.button}>
               Реєстрація / Вхід
             </Link>
+            {/* кінець */}
           </div>
         </div>
         <div className={s.footer_row}>
@@ -76,7 +79,8 @@ export const Footer = (): React.JSX.Element => {
           <div className={s.part}>
             <p>© CBDRabbit. All Rights Reserved.</p>
             <p className={s.politics}>
-              <Link href="/">Політика конфіденційності</Link> <span className={s.divider}>|</span>{" "}
+              <Link href="/">Політика конфіденційності</Link>{" "}
+              <span className={s.divider}>|</span>{" "}
               <Link href="/">Публічний договір оферти</Link>
             </p>
           </div>
@@ -87,6 +91,6 @@ export const Footer = (): React.JSX.Element => {
           </div>
         </div>
       </div>
-    </footer> 
+    </footer>
   );
 };
