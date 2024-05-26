@@ -72,10 +72,14 @@ const CheckoutRes = React.memo(function CheckoutRes({
 	
   return (
     <div className={s.checkoutRes}>
-      <div className="container-row">
-        <div className={s.checkoutRes_error}>
-          <p>Додайте цукерок у кошик</p>
-        </div>
+		  <div className="container-row">
+			  {/* якщо 0, то значить нема цукерок і показуємо щоб добавили */}
+			  {!finalPrice && (
+				  <div className={s.checkoutRes_error}>
+					<p>Додайте цукерок у кошик</p>
+					</div>
+			  )}
+        
         {hasError && (
           <div className={s.checkoutRes_error}>
             <p>{dict.formError}</p>
