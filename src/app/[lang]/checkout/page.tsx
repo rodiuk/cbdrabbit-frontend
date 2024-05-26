@@ -6,6 +6,7 @@ import { SuccessOrder } from "@/components/auth/SuccessOrder";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import { Footer } from "@/components/layout/Footer/Footer";
 
 export default async function Checkout({
   params,
@@ -16,16 +17,29 @@ export default async function Checkout({
   const successOrder = searchParams?.successOrder;
 
   return (
-    <main className={cn("container", styles.main)}>
-      <div className={styles.checoutPage}>
-        {!successOrder && (
-          <div className={styles.checkoutBlocks}>
-            <CheckoutWrapper lang={lang} dict={dict.checkout} currency={dict.currency} />
-          </div>
-        )}
+    <>
+      <main className={cn("container", styles.main)}>
+        <div className={styles.checoutPage}>
+          {!successOrder && (
+            <div className={styles.checkoutBlocks}>
+              <CheckoutWrapper
+                lang={lang}
+                dict={dict.checkout}
+                currency={dict.currency}
+              />
+            </div>
+          )}
 
-        {successOrder && <SuccessOrder lang={lang} dict={dict.orders} containerStyle={styles.successOrder} />}
-      </div>
-    </main>
+          {successOrder && (
+            <SuccessOrder
+              lang={lang}
+              dict={dict.orders}
+              containerStyle={styles.successOrder}
+            />
+          )}
+        </div>
+		  </main>
+		  <Footer />
+    </>
   );
-} 1347
+}

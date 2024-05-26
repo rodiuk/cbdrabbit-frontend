@@ -17,7 +17,7 @@ export const Header = async ({ lang }: Props): Promise<React.JSX.Element> => {
 	
  
   return (
-    <header className={cn("", styles.container, styles.header)}>
+    <header className={cn("", styles.container, styles.header)} id="headerId">
       <div className="container"> {/* этот класс - он для ограничения, глобальный */}
 			  <LogoContainer lang={lang} />
 			  

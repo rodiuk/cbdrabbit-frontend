@@ -123,3 +123,9 @@
 	}
 	
 }
+@media (max-width: 767px) {
+	.checkoutRes {
+		margin: 0;
+		border-radius: 24px;
+	}
+}

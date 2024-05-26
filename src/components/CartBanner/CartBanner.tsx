@@ -25,7 +25,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const pathname = usePathname()?.split("/")?.at(-1);
 
   const hasExcludedPath = !!pathname ? excludedPaths.includes(pathname) : false;
-
+ 
   return (
     <AnimatePresence mode="wait">
       {total > 0 && !hasExcludedPath ? (

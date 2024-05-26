@@ -138,7 +138,7 @@ body {
   overflow-x: hidden;
   font-size: 18px;
   font-feature-settings: "pnum" on, "lnum" on;
-
+	scroll-behavior: smooth;
   position: relative;
 }
 /* body::before {
