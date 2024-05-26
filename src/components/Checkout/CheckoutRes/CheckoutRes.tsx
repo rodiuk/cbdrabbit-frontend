@@ -67,6 +67,8 @@ const CheckoutRes = React.memo(function CheckoutRes({
     : (cart?.totalAmount / 100) * userDiscount;
   const finalPrice = cart?.totalAmount - userDiscountSum;
 
+	const freeDelivery = true // это если сумма достаточна для безкошновної доставки
+	
   return (
     <div className={s.checkoutRes}>
       <div className="container-row">
@@ -104,11 +106,16 @@ const CheckoutRes = React.memo(function CheckoutRes({
           </div> */}
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>Доставка</div>
-            <div className={s.checkoutRes_price}>
-              За тарифами <br /> перевізника
+					  <div className={s.checkoutRes_price}>
+						  {freeDelivery ? (
+							  <span className={s.free}><Image src={no_sum.src} alt="info" width={22} height={22} /> Безкоштовна</span>
+						  ): (
+							<span>За тарифами <br /> перевізника </span> 
+						  )}
+              
             </div>
           </div>
-          <div className={s.info}>
+          <div className={s.info}> {/* цей блок теж мабуть віводиться коли ще немає сумми достатньої */}
             <div className={s.info_ic}>
               <Image src={no_sum.src} alt="info" width={22} height={22} />
             </div>

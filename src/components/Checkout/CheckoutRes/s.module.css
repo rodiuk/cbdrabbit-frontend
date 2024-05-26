@@ -115,7 +115,13 @@
 .grey path {
 	stroke: rgba(152, 151, 154, 1);
 }
-
+.free {
+	display: flex;
+	align-items: center;
+}
+.free img {
+	margin-right: 5px;
+}
 @media (min-width: 767px) {
 	.checkoutRes {
 		margin: auto;
