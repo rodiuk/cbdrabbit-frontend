@@ -166,7 +166,8 @@ export const CheckoutWrapper = ({
         setUserInfo={setUserInfo}
         isLoading={isLoading}
         comment={comment}
-        setComment={setComment}
+			  setComment={setComment}
+			  lang={lang}
       />
     </>
   );
