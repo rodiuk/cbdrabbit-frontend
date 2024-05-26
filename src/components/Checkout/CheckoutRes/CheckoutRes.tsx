@@ -69,6 +69,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
 
 	const freeDelivery = 2200 // это если сумма достаточна для безкошновної доставки
 	
+	
   return (
     <div className={s.checkoutRes}>
       <div className="container-row">
