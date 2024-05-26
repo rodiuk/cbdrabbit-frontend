@@ -67,7 +67,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
     : (cart?.totalAmount / 100) * userDiscount;
   const finalPrice = cart?.totalAmount - userDiscountSum;
 
-	const freeDelivery = true // это если сумма достаточна для безкошновної доставки
+	const freeDelivery = 2200 // это если сумма достаточна для безкошновної доставки
 	
   return (
     <div className={s.checkoutRes}>
@@ -107,24 +107,27 @@ const CheckoutRes = React.memo(function CheckoutRes({
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>Доставка</div>
 					  <div className={s.checkoutRes_price}>
-						  {freeDelivery ? (
+						  {finalPrice >= freeDelivery ? (
 							  <span className={s.free}><Image src={no_sum.src} alt="info" width={22} height={22} /> Безкоштовна</span>
 						  ): (
 							<span>За тарифами <br /> перевізника </span> 
 						  )}
               
             </div>
-          </div>
-          <div className={s.info}> {/* цей блок теж мабуть віводиться коли ще немає сумми достатньої */}
-            <div className={s.info_ic}>
-              <Image src={no_sum.src} alt="info" width={22} height={22} />
-            </div>
-            <div className={s.info_content}>
-              <div className={s.info_ttl}>
-                <p>Додайте товарів ще на 1738₴ для безкоштовної доставки</p>
-              </div>
-            </div>
-          </div>
+				  </div>
+				  {finalPrice < freeDelivery && (
+					  <div className={s.info}> {/* цей блок теж мабуть віводиться коли ще немає сумми достатньої */}
+					  <div className={s.info_ic}>
+						<Image src={no_sum.src} alt="info" width={22} height={22} />
+					  </div>
+					  <div className={s.info_content}>
+						<div className={s.info_ttl}>
+						  <p>Додайте товарів ще на 1738₴ для безкоштовної доставки</p>
+						</div>
+					  </div>
+					</div>
+				  )}
+          
           <div className={s.checkout_promo}>
             <Input type="text" placeholder="Промокод" />
             <ButtonWhite text="Застосувати" />
