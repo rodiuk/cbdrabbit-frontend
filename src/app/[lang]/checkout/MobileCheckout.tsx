@@ -13,7 +13,6 @@ import styles from "./page.module.css";
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
 import Textarea from "@/components/Ui/Textarea/Textarea";
-import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -38,8 +37,8 @@ interface Props {
   hasError: boolean;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-	isLoading?: boolean;
-	lang: Locale
+  homeDict: any;
+  isLoading?: boolean;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -58,8 +57,8 @@ const MobileCheckout = (props: Props) => {
     currency,
     comment,
     setComment,
-	  isLoading,
-	  lang
+    isLoading,
+    homeDict,
   } = props;
 
   return (
@@ -67,7 +66,7 @@ const MobileCheckout = (props: Props) => {
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>{dict.orderTitle}</div>
 
-        <ProductsCheckout lang={lang} />
+        <ProductsCheckout homeDict={homeDict} />
       </div>
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>{dict.contactTitle}</div>

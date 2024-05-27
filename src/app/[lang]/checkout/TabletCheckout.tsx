@@ -14,7 +14,6 @@ import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -40,8 +39,8 @@ interface Props {
   currency: string;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-	isLoading?: boolean;
-	lang: Locale
+  homeDict: any;
+  isLoading?: boolean;
 }
 
 const TabletCheckout = (props: Props): React.JSX.Element => {
@@ -61,8 +60,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     userInfo,
     comment,
     setComment,
-	  isLoading,
-	  lang
+    isLoading,
+    homeDict,
   } = props;
 
   return (
@@ -95,9 +94,9 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
           />
-			  </div>
-			  
-			  <div className={styles.checkoutBlock}>
+        </div>
+
+        <div className={styles.checkoutBlock}>
           <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
           <Textarea
             placeholder={dict.commentLabel}
@@ -121,9 +120,9 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
       <div className={styles.right}>
         <div className={styles.checkoutBlock}>
           <h3 className={styles.checkoutBlock_h2}>{dict.orderTitle}</h3>
-          <ProductsCheckout lang={lang} />
+          <ProductsCheckout homeDict={homeDict} />
         </div>
-        
+
         <CheckoutRes
           currency={currency}
           dict={dict}

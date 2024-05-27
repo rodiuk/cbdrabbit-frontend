@@ -19,8 +19,8 @@ import { Locale } from "../../../../i18n.config";
 
 interface Props {
   dict: ICheckoutDict;
-	currency: string;
-	lang: Locale;
+  homeDict: any;
+  currency: string;
 }
 
 const initial = {
@@ -32,8 +32,8 @@ const initial = {
 
 export const CheckoutWrapper = ({
   dict,
-	currency,
-  lang
+  currency,
+  homeDict,
 }: Props): React.JSX.Element => {
   const { data } = useSession();
   const [city, setCity] = React.useState<string>("");
@@ -148,8 +148,8 @@ export const CheckoutWrapper = ({
         userInfo={userInfo}
         isLoading={isLoading}
         comment={comment}
-			  setComment={setComment}
-			  lang={lang}
+        setComment={setComment}
+        homeDict={homeDict}
       />
       <MobileCheckout
         dict={dict}
@@ -166,8 +166,8 @@ export const CheckoutWrapper = ({
         setUserInfo={setUserInfo}
         isLoading={isLoading}
         comment={comment}
-			  setComment={setComment}
-			  lang={lang}
+        setComment={setComment}
+        homeDict={homeDict}
       />
     </>
   );
