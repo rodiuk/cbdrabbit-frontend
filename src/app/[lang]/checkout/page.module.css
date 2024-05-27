@@ -216,6 +216,9 @@
 }
 
 @media (min-width: 1200px) {
+	.checoutPage  {
+		padding-top: 100px;
+	}
   .left {
     width: 585px;
     flex: auto;

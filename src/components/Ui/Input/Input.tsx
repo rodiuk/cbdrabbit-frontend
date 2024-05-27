@@ -21,7 +21,8 @@ interface InputProps {
   showLay?: any;
   handleForgot?: () => void;
   errorText?: string;
-  showForgotPassword?: boolean;
+	showForgotPassword?: boolean;
+	
 }
 
 const Input: React.FC<InputProps> = ({

@@ -22,14 +22,16 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
 
   let inStock = 1; // есть или нет в наявності
   let firstClient = 0; // клиент первый раз или нет. если первый, то конфета в подарунок
-
-
   const rendererProducts = cart?.products?.filter(product => product.count > 0);
+	const [products, setProduct] = React.useState(rendererProducts)
+	React.useEffect(() => {
+		setProduct(rendererProducts)
+	}, [])
 
   return (
     <>
       <ul className={styles.productCheckout}>
-        {rendererProducts?.map(product => (
+        {products?.map(product => (
           <li className={styles.list} key={product.id}>
             <div className={styles.productCheckout_img}>
               {!!product?.images?.length && (
