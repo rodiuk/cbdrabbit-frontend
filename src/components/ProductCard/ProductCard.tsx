@@ -15,7 +15,7 @@ const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
 const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
   ssr: false,
 });
- 
+
 import styles from "./ProductCard.module.css";
 
 interface Props {
@@ -31,7 +31,6 @@ export const ProductCard = async ({
 
   const currency = (await getDictionary(lang))?.currency;
   const home = (await getDictionary(lang))?.home;
-console.log(id, productName)
   return (
     <li className={styles.container}>
       {/*  <RabbitEarIcon iconStyle={styles.left_ear} />
@@ -74,12 +73,15 @@ console.log(id, productName)
         <p className={styles.description}>{description}</p>
 
         <div className={styles.divider} />
-			  {productName !== "Rabbit Matcha" ? (
-				  <ActionBar product={product} />
-			  ) : (
-					  <div className={styles.not_present}><p className={styles.p}>{/* class p здесь обязателен  */}Поки немає в наявності</p></div>
-		  )}
-        
+        {productName !== "Rabbit Matcha" ? (
+          <ActionBar product={product} />
+        ) : (
+          <div className={styles.not_present}>
+            <p className={styles.p}>
+              {/* class p здесь обязателен  */}Поки немає в наявності
+            </p>
+          </div>
+        )}
       </div>
     </li>
   );

@@ -4,31 +4,29 @@ import React from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
 import { cartAtom } from "@/libs/store/atoms";
-
-import cn from "clsx";
-
-import styles from "./page.module.css";
 import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 import { PresentIcon } from "@/components/icons/PresentIcon";
-import ListSales from "@/components/ListSales/ListSales";
 import { Locale } from "../../../../i18n.config";
+import ListSales from "@/components/ListSales/ListSales";
+import { IProductRes } from "@/interfaces/product.interface";
 
-interface Props{
-	lang:Locale
-	}
+import styles from "./page.module.css";
 
-const ProductsCheckout = ({lang}: Props): React.JSX.Element => {
-	const [cart] = useAtom(cartAtom);
-	
+interface Props {
+  lang: Locale;
+}
+
+const ProductsCheckout = ({ lang }: Props): React.JSX.Element => {
+  const [cart] = useAtom(cartAtom);
+
   let inStock = 1; // есть или нет в наявності
-	let firstClient = 0; // клиент первый раз или нет. если первый, то конфета в подарунок
-	const rendererProducts = cart?.products?.filter(product => product.count > 0);
-	const [products, setProduct] = React.useState(rendererProducts)
+  let firstClient = 0; // клиент первый раз или нет. если первый, то конфета в подарунок
+  const rendererProducts = cart?.products?.filter(product => product.count > 0);
 
   return (
     <>
       <ul className={styles.productCheckout}>
-        {products?.map(product => (
+        {rendererProducts?.map(product => (
           <li className={styles.list} key={product.id}>
             <div className={styles.productCheckout_img}>
               {!!product?.images?.length && (
@@ -51,7 +49,10 @@ const ProductsCheckout = ({lang}: Props): React.JSX.Element => {
                     {cart?.newPrice} ₴<span className={styles.elem}>/шт</span>
                   </div>
                   <div className={styles.checkout_actions}>
-                    <ActionBar product={product} className="checkout_input" />
+                    <ActionBar
+                      product={product as IProductRes}
+                      className="checkout_input"
+                    />
                   </div>
                 </>
               ) : (
@@ -62,16 +63,16 @@ const ProductsCheckout = ({lang}: Props): React.JSX.Element => {
             </div>
           </li>
         ))}
-		  </ul>
-		  {!firstClient && (
-			  <div className={styles.first_client}>
-				  <div className={styles.img_client}>
-					  <PresentIcon />
-				  </div>
-				  До першого замовлення цукерка Rabbit Classic у&nbsp;подарунок 
-			  </div>
-		  )}
-		  {/* <ListSales lang={lang} /> */}
+      </ul>
+      {!firstClient && (
+        <div className={styles.first_client}>
+          <div className={styles.img_client}>
+            <PresentIcon />
+          </div>
+          До першого замовлення цукерка Rabbit Classic у&nbsp;подарунок
+        </div>
+      )}
+      {/* <ListSales lang={lang} /> */}
     </>
   );
 };
