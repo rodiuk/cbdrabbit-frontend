@@ -138,7 +138,7 @@ body {
   overflow-x: hidden;
   font-size: 18px;
   font-feature-settings: "pnum" on, "lnum" on;
-
+	scroll-behavior: smooth;
   position: relative;
 }
 /* body::before {
@@ -180,6 +180,7 @@ a {
   padding-left: 15px;
   padding-right: 15px;
   position: relative;
+  width: 100%;
 }
 
 .col {
@@ -196,6 +197,12 @@ a {
 @media (min-width: 992px) {
   .container {
     width: 970px;
+  }
+}
+
+@media (min-width: 1070px) {
+  .container {
+    width: 1070px;
   }
 }
 

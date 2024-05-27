@@ -13,11 +13,12 @@ import { checkIsUserExistByEmail } from "@/libs/api/user.api";
 import icon_1 from "/public/img/icon_1.svg";
 
 import styles from "./styles.module.css";
+import Link from "next/link";
 
 interface Props {
   dict: ISignInEmailDict;
 }
-
+ 
 export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -48,7 +49,7 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
     <section className={styles.lay_item}>
       <div className={styles.ttl}>{dict?.title}</div>
       <div className={styles.img_center}>
-        <Image src={icon_1.src} width={120} height={115} alt="icon_1" />
+        <Image src={icon_1.src} width={256} height={256} alt="icon_1" />
       </div>
       <Input
         type="email"
@@ -64,7 +65,12 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
 
       <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
 
-      <GoogleButton label={dict?.buttonGoogle} />
+		  <GoogleButton label={dict?.buttonGoogle} />
+		  <div className={styles.add_akk}>
+			  <Link href="/" className={styles.akk}>
+			  Створити акаунт
+			  </Link>
+		  </div>
     </section>
   );
 };

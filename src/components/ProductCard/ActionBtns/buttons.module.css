@@ -14,15 +14,41 @@
 
 .container:hover {
   cursor: pointer;
+  background: #79BD6B;
+}
+.container:active {
+  background: #55A146;
+}
+.container:focus-visible {
+	border: 4px solid #0D9AD6;
 }
 
 .disabled {
-  border: 1px solid #cbcbcb;
+  border: 1px solid #DBDBDB;
   background: none;
   cursor: not-allowed;
-  color: #cbcbcb;
+  color: #DBDBDB;
 }
 
 .icon {
   color: inherit;
+}
+.decrement {
+	background: transparent;
+	border: 1px solid #CBCBCB;
+}
+.decrement:hover {
+    background: #F5FAF3;
+	border: 1px solid #9BD28F;
+}
+.decrement:focus-visible {
+    border: 4px solid #0D9AD6;
+}
+.decrement:active {
+    background: #E7F5E3;
+    border: 1px solid #9BD28F
+}
+.decrement:disabled, .button.disabled {
+    background: #DBDBDB;
+    color: #DBDBDB;
 }

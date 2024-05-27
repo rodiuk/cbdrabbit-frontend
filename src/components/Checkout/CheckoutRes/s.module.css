@@ -1,6 +1,6 @@
 .checkoutRes {
     background: #fff;
-    padding: 15px 25px 25px;
+    padding: 15px 24px 25px;
 	margin: 0 -30px;
 	max-width: 1000%;
 	position: relative;
@@ -9,9 +9,10 @@
     color: #f11;
     font-weight: 500;
     text-align: center;
-    background: #ffe1e1;
+    background: rgba(255, 225, 225, 1);
     border-radius: 20px;
     padding: 9px 15px;
+	margin-bottom: 24px;
 }
 .checkoutRes_error_pic {
     margin-bottom: 5px;
@@ -21,27 +22,44 @@
 }
 .checkoutRes_row {
     display: flex;
-    color: #98979A;
+    color: rgba(66, 98, 59, 1);
     font-weight: 500;
     margin: 10px 0;
+}
+.checkoutRes_row_promo {
+	text-transform: uppercase;
+	font-weight: 700;
+	color: rgba(33, 33, 33, 1);
+	padding: 9px 16px;
+	border: 1px solid rgba(212, 212, 212, 1);
+	border-radius: 16px;
 }
 .checkoutRes_row:first-child {
     color: #42623B;
 }
 .checkoutRes .checkoutRes_nm {
     flex-grow: 1;
+	display: flex;
+	gap: 0 8px;
 }
-
+.checkoutRes_price {
+	font-weight: 600;
+}
 .info {
-    display: flex;
+	text-align: center;
     padding: 8px 15px;
     font-weight: 500;
     border: 1px solid #D4D4D4;
     border-radius: 20px;
+	color: rgba(17, 42, 11, 1);
+	font-weight: 500;
+	line-height: 1.33;
 }
 .info .info_ic {
+	display: flex;
+	justify-content: center;
     min-width: 24px;
-    margin-right: 12px;
+	margin-bottom: 2px;
 }
 .info .info_row {
     display: flex;
@@ -54,6 +72,12 @@
 }
 .info .info_price {
     color: #98979a;
+}
+.checkout_promo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0 8px;
 }
 .checkoutTotal {
     text-align: center;
@@ -76,14 +100,38 @@
 }
 .checkoutTotal_check {
     font-size: 16px;
-    color: #98979a;
+	font-weight: 500;
+    color: rgba(0, 0, 0, 1);
 	margin-top: 10px;
 }
-
+.close {
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+.grey path {
+	stroke: rgba(152, 151, 154, 1);
+}
+.free {
+	display: flex;
+	align-items: center;
+}
+.free img {
+	margin-right: 5px;
+}
 @media (min-width: 767px) {
 	.checkoutRes {
 		margin: auto;
 		border-radius: 24px;
 	}
 	
+}
+@media (max-width: 767px) {
+	.checkoutRes {
+		margin: 0;
+		border-radius: 24px;
+	}
 }

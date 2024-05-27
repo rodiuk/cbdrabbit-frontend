@@ -16,7 +16,7 @@
 }
 
 .img_center {
-  margin: 0 auto;
+  margin: 12px auto 0;
 }
 
 .lay_item {
@@ -28,6 +28,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .items_wrap {
@@ -91,8 +92,23 @@
   margin: 10px auto;
 }
 
+.add_akk .akk {
+	display: block;
+	color: rgba(91, 173, 72, 1);
+	font-size: 16px;
+	font-weight: 500;
+	text-align: center;
+	padding: 12px 0 0;
+	border-top: 1px solid rgba(212, 212, 212, 1);
+	margin-top: 12px;
+}
 @media (min-width: 769px) {
   .lay_item {
     width: 585px;
   }
+}
+@media (max-width: 767px) {
+	.bb {
+		margin-top: 0;
+	}
 }

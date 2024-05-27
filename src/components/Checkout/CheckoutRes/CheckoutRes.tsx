@@ -9,11 +9,15 @@ import { getUserInfo } from "@/libs/api/user.api";
 import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import Button from "@/components/Ui/Button/Button";
+import cn from "clsx";
 
-import info from "/public/img/info.svg";
-import arr2 from "/public/img/arrow-doble.svg";
+import no_sum from "/public/img/no_sum.svg";
+import sale_icon from "/public/img/sale_icon.svg";
 
 import s from "./s.module.css";
+import Input from "@/components/Ui/Input/Input";
+import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
+import Close from "@/components/icons/Close";
 
 interface Props {
   dict: ICheckoutDict;
@@ -63,14 +67,21 @@ const CheckoutRes = React.memo(function CheckoutRes({
     : (cart?.totalAmount / 100) * userDiscount;
   const finalPrice = cart?.totalAmount - userDiscountSum;
 
+	const freeDelivery = 2200 // это если сумма достаточна для безкошновної доставки
+	
+	
   return (
     <div className={s.checkoutRes}>
-      <div className="container-row">
+		  <div className="container-row">
+			  {/* якщо 0, то значить нема цукерок і показуємо щоб добавили */}
+			  {!finalPrice && (
+				  <div className={s.checkoutRes_error}>
+					<p>Додайте цукерок у кошик</p>
+					</div>
+			  )}
+        
         {hasError && (
           <div className={s.checkoutRes_error}>
-            <div className={s.checkoutRes_error_pic}>
-              <Image src={arr2.src} alt="arr2" width={24} height={24} />
-            </div>
             <p>{dict.formError}</p>
           </div>
         )}
@@ -81,6 +92,52 @@ const CheckoutRes = React.memo(function CheckoutRes({
               {finalPrice} {currency}
             </div>
           </div>
+          {/*   Эти 2 блочка теперь нет в дизайне но хз, коментирую покамест */}
+          {/* <div className={s.checkoutRes_row}>
+            <div className={s.checkoutRes_nm}>
+              {dict.personalDiscount} {userDiscount}%
+            </div>
+            <div className={s.checkoutRes_price}>
+              - {userDiscountSum} {currency}
+            </div>
+          </div> */}
+          {/* <div className={s.checkoutRes_row}>
+            <div className={s.checkoutRes_nm}>
+              {dict.discountTitle} {salePercent}%
+            </div>
+            <div className={s.checkoutRes_price}>
+              - {saleDiff} {currency}
+            </div>
+          </div> */}
+          <div className={s.checkoutRes_row}>
+            <div className={s.checkoutRes_nm}>Доставка</div>
+					  <div className={s.checkoutRes_price}>
+						  {finalPrice >= freeDelivery ? (
+							  <span className={s.free}><Image src={no_sum.src} alt="info" width={22} height={22} /> Безкоштовна</span>
+						  ): (
+							<span>За тарифами <br /> перевізника </span> 
+						  )}
+              
+            </div>
+				  </div>
+				  {finalPrice < freeDelivery && (
+					  <div className={s.info}> {/* цей блок теж мабуть віводиться коли ще немає сумми достатньої */}
+					  <div className={s.info_ic}>
+						<Image src={no_sum.src} alt="info" width={22} height={22} />
+					  </div>
+					  <div className={s.info_content}>
+						<div className={s.info_ttl}>
+						  <p>Додайте товарів ще на 1738₴ для безкоштовної доставки</p>
+						</div>
+					  </div>
+					</div>
+				  )}
+          
+          <div className={s.checkout_promo}>
+            <Input type="text" placeholder="Промокод" />
+            <ButtonWhite text="Застосувати" />
+          </div>
+
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>
               {dict.personalDiscount} {userDiscount}%
@@ -88,33 +145,34 @@ const CheckoutRes = React.memo(function CheckoutRes({
             <div className={s.checkoutRes_price}>
               - {userDiscountSum} {currency}
             </div>
+				  </div>
+				  
+          <div className={cn(s.checkoutRes_row, s.checkoutRes_row_promo)}>
+            <div className={s.checkoutRes_nm}>
+              <Image
+                src={sale_icon.src}
+                alt="sale_icon"
+                width={22}
+                height={14}
+              />
+              Знижка 20%
+            </div>
+            <div className={s.checkoutRes_price}><button className={s.close}><Close iconStyle={s.grey} /></button></div>
           </div>
+				  
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>
-              {dict.discountTitle} {salePercent}%
+              <Image
+                src={sale_icon.src}
+                alt="sale_icon"
+                width={22}
+                height={14}
+              />
+              Знижка 20%
             </div>
-            <div className={s.checkoutRes_price}>
-              - {saleDiff} {currency}
-            </div>
+            <div className={s.checkoutRes_price}>- 64 ₴</div>
           </div>
-          <div className={s.info}>
-            <div className={s.info_ic}>
-              <Image src={info.src} alt="info" width={24} height={24} />
-            </div>
-            <div className={s.info_content}>
-              <div className={s.info_ttl}>
-                <p>{dict.deliveryDisclaimer}и</p>
-                <div className={s.info_row}>
-                  <div className={s.info_nm}>
-                    <p>{dict.npDelivery}</p>
-                  </div>
-                  <div className={s.info_price}>
-                    <p>{dict.npCostLabel}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div className={s.checkoutTotal}>
             <div className={s.checkoutTotal_ttl}>
               <p>{dict.totalCheckout}</p>

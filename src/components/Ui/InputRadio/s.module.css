@@ -30,6 +30,7 @@
 	display: flex;
 	padding-left: 30px;
 	position: relative;
+	transition: all .3s;
 }
 .label.radio .label_ttl {
 	margin-bottom: 0;
@@ -50,7 +51,12 @@
 .label.radio.active::before {
 	border: 6px solid #42623B; /* В SASS переменная $a не определена */
 }
-
+.label.radio:hover::before {
+	border: 2px solid rgba(168, 171, 180, 1);
+}
+.label.radio.active:hover::before {
+	border: 6px solid #42623B; /* В SASS переменная $a не определена */
+}
 .right_text {
 	display: block;
 	flex-grow: 1;
