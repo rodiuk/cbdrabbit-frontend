@@ -80,7 +80,7 @@
 		justify-content: center;
 	}
 	.content {
-		position: relative;
+		position: static;
 		max-width: 585px;
 		min-width: 585px;
 		height: 585px;

@@ -13,6 +13,21 @@
 	padding: 0 20px;
 	border: 2px solid transparent;
 	position: relative;
+	transition: all .3s;
+}
+.button:hover {
+	background: #354B30;
+}
+.button:focus-visible {
+	border: 4px solid #0D9AD6;
+}
+.button:active {
+	background: #2D3E29;
+	border: 2px solid transparent;
+}
+.button:disabled, .button.disabled {
+	background: #DBDBDB;
+	color: #fff;
 }
 .icon_block_left {
 	margin-right: 10px;
@@ -24,17 +39,29 @@
 	cursor: pointer;
 	width: 100%;
 	height: 54px;
-	background: var(--primary-color);
 	border-radius: 50px;
-	color: #fff;
 	font-size: 16px;
 	font-weight: 500;
 	padding: 0 20px;
-	border: 2px solid transparent;
 	position: relative;
 	background: #fff;
 	color: var(--primary-color);
-	border: 2px solid var(--primary-color);
+	border: 2px solid #9BD28F;
+	transition: all .3s;
+}
+.white_button:hover {
+	background: #F5FAF3;
+}
+.white_button:focus-visible {
+	border: 4px solid #0D9AD6;
+}
+.white_button:active {
+	background: #E7F5E3;
+	border: 2px solid #9BD28F;
+}
+.white_button:disabled, .button.disabled {
+	background: #DBDBDB;
+	color: #DBDBDB;
 }
 .buttonRed {
 	display: flex;
@@ -44,13 +71,26 @@
 	width: 100%;
 	height: 54px;
 	border-radius: 50px;
-	color: #fff;
 	font-size: 16px;
 	font-weight: 500;
 	padding: 0 20px;
-	border: 2px solid transparent;
 	position: relative;
     background: #fff;
     color: #FF1111;
-    border: 2px solid rgba(255, 17, 18, 0.1019607843);
+    border: 2px solid rgba(255, 17, 18, 0.1);
+	transition: all .3s;
+}
+.buttonRed:hover {
+	background: rgba(255, 17, 18, 0.05);
+}
+.buttonRed:focus-visible {
+	border: 4px solid #0D9AD6;
+}
+.buttonRed:active {
+	background: rgba(255, 17, 17, 0.1);
+	border: 4px solid rgba(255, 17, 18, 0.1)
+}
+.buttonRed:disabled, .button.disabled {
+	background: #DBDBDB;
+	color: #DBDBDB;
 }

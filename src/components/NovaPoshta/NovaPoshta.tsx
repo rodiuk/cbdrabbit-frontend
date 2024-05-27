@@ -180,7 +180,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
       <AnimatePresence mode="wait">
         {isOpen ? ( // для выбора города
           <motion.div
-            style={{ height: "100vh" }}
+            //style={{ height: "100vh" }} этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -196,7 +196,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
         ) : null}
         {isOpenFilial ? (
           <motion.div
-            style={{ height: "100vh" }}
+            //style={{ height: "100vh" }}  этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

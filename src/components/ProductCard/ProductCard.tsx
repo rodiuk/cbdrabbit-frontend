@@ -31,11 +31,10 @@ export const ProductCard = async ({
 
   const currency = (await getDictionary(lang))?.currency;
   const home = (await getDictionary(lang))?.home;
-
   return (
     <li className={styles.container}>
-      <RabbitEarIcon iconStyle={styles.left_ear} />
-      <RabbitEarIcon iconStyle={styles.right_ear} />
+      {/*  <RabbitEarIcon iconStyle={styles.left_ear} />
+      <RabbitEarIcon iconStyle={styles.right_ear} /> */}
 
       <div className={styles.img_wrapper}>
         <Image
@@ -45,14 +44,10 @@ export const ProductCard = async ({
           sizes="(max-width: 768px) 100vw, 70vw"
           className={styles.image}
         />
-        <ArrowRightFilterIcon iconStyle={styles.decorate_icon} />
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h2 className={styles.title}>
-            {productName}
-            <ArrowRightIcon iconStyle={styles.icon} />
-          </h2>
+          <h2 className={styles.title}>{productName}</h2>
           <ProductPrice currentPrice={price} currency={currency} />
         </div>
         <ul className={styles.properties_list}>
@@ -64,19 +59,29 @@ export const ProductCard = async ({
                 height={20}
                 alt={property.label}
               />
-              {property.label}
+              {property.label?.includes("CBD") ? (
+                <>
+                  {property.label.split("CBD")[0]}
+                  <span className={styles.cbd}>CBD</span>
+                </>
+              ) : (
+                property.label
+              )}
             </li>
           ))}
         </ul>
         <p className={styles.description}>{description}</p>
 
         <div className={styles.divider} />
-
-        <ActionBar product={product} />
-        <DiscountInfo
-          label={home.product.discountLabel}
-          discountList={home.product.discountList}
-        />
+        {productName !== "Rabbit Matcha" ? (
+          <ActionBar product={product} />
+        ) : (
+          <div className={styles.not_present}>
+            <p className={styles.p}>
+              {/* class p здесь обязателен  */}Поки немає в наявності
+            </p>
+          </div>
+        )}
       </div>
     </li>
   );

@@ -15,10 +15,12 @@ import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { newTabOpen } from "@/utils/newTabOpen";
+import { Locale } from "../../../../i18n.config";
 
 interface Props {
   dict: ICheckoutDict;
-  currency: string;
+	currency: string;
+	lang: Locale;
 }
 
 const initial = {
@@ -30,7 +32,8 @@ const initial = {
 
 export const CheckoutWrapper = ({
   dict,
-  currency,
+	currency,
+  lang
 }: Props): React.JSX.Element => {
   const { data } = useSession();
   const [city, setCity] = React.useState<string>("");
@@ -145,7 +148,8 @@ export const CheckoutWrapper = ({
         userInfo={userInfo}
         isLoading={isLoading}
         comment={comment}
-        setComment={setComment}
+			  setComment={setComment}
+			  lang={lang}
       />
       <MobileCheckout
         dict={dict}
@@ -162,7 +166,8 @@ export const CheckoutWrapper = ({
         setUserInfo={setUserInfo}
         isLoading={isLoading}
         comment={comment}
-        setComment={setComment}
+			  setComment={setComment}
+			  lang={lang}
       />
     </>
   );

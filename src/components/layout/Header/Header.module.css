@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  padding: 16px 30px;
   height: 76px;
   justify-content: space-between;
   align-items: center;
@@ -56,3 +55,5 @@
     filter: blur(6px);
   } */
 }
+
+

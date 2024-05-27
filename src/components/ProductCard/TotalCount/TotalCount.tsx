@@ -9,10 +9,11 @@ import cn from "clsx";
 import styles from "./TotalCount.module.css";
 
 interface Props {
-  product: IProductRes;
+	product: IProductRes;
+	className?: string | undefined
 }
 
-export const TotalCount = ({ product }: Props): React.JSX.Element => {
+export const TotalCount = ({ product, className }: Props): React.JSX.Element => {
   const [products, _] = useAtom(getAllProductsAtom);
   const [, changeCount] = useAtom(changeProductCountAtom);
 
@@ -39,7 +40,8 @@ export const TotalCount = ({ product }: Props): React.JSX.Element => {
   return (
     <input
       className={cn(styles.container, {
-        [styles.disabled]: count <= 0,
+		  [styles.disabled]: count <= 0,
+		  [styles[className ?? '']]: className
       })}
       value={localCount}
       onChange={handleChange}
