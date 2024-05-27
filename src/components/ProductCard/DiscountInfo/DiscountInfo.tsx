@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 import { AnimatePresence, motion } from "framer-motion";
 
 import cn from "clsx";
@@ -16,12 +15,14 @@ import { InfoIcon } from "@/components/icons/InfoIcon";
 
 interface Props {
   label: string;
-  discountList: string[];
+	discountList: string[];
+	className?: string
 }
 
 export const DiscountInfo = ({
   label,
-  discountList,
+	discountList,
+	className
 }: Props): React.JSX.Element => {
 	const [show, setShow] = React.useState(false);
 	
@@ -34,7 +35,7 @@ export const DiscountInfo = ({
 		}
 	  };
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, className)}>
       <p className={styles.label} onClick={() => setShow(prev => !prev)}>
         {label}
         {/* <ArrowDownIcon

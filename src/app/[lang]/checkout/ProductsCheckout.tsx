@@ -75,7 +75,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
           До першого замовлення цукерка Rabbit Classic у&nbsp;подарунок
         </div>
       )}
-      <ListSales home={homeDict} />
+      <ListSales home={homeDict} className={styles.checkoutList} />
     </>
   );
 };
