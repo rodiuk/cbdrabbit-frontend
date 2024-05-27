@@ -14,6 +14,7 @@ import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
+import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -93,6 +94,24 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             setCity={setCity}
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
+          />
+			  </div>
+
+			  <div className={styles.checkoutBlock}>
+          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
+          <Textarea
+            placeholder={dict.commentLabel}
+            value={comment}
+            setValue={setComment}
+          />
+        </div>
+
+        <div className={styles.checkoutBlock}>
+          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
+          <Textarea
+            placeholder={dict.commentLabel}
+            value={comment}
+            setValue={setComment}
           />
         </div>
 

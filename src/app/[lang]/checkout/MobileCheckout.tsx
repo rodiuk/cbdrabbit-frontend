@@ -13,6 +13,7 @@ import styles from "./page.module.css";
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
 import Textarea from "@/components/Ui/Textarea/Textarea";
+import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -109,6 +110,7 @@ const MobileCheckout = (props: Props) => {
         <div className={styles.checkoutBlock_h2}>Коментар</div>
         <Textarea
           placeholder={dict.commentLabel}
+
           value={comment}
           setValue={setComment}
         />

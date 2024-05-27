@@ -17,6 +17,7 @@ import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { newTabOpen } from "@/utils/newTabOpen";
 import { Locale } from "../../../../i18n.config";
 
+
 interface Props {
   dict: ICheckoutDict;
   homeDict: any;

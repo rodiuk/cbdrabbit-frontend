@@ -8,6 +8,7 @@ import { IProductRes } from "@/interfaces/product.interface";
 import cn from "clsx";
 import styles from "./page.module.css";
 import ListSales from "@/components/ListSales/ListSales";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -25,6 +26,7 @@ export async function generateMetadata({
 
 export default async function Home({ params }: IMainPageProps) {
   const products = await getAllProducts(params.lang);
+  const home = (await getDictionary(params.lang))?.home;
 
   return (
     <main className={cn(styles.container)}>
@@ -43,8 +45,7 @@ export default async function Home({ params }: IMainPageProps) {
             />
           ))}
         </ul>
-        <ListSales lang={params.lang} />
-		
+        <ListSales home={home} />
       </div>
     </main>
   );
