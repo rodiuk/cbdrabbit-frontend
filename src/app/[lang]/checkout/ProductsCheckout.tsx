@@ -10,17 +10,20 @@ import { Locale } from "../../../../i18n.config";
 import ListSales from "@/components/ListSales/ListSales";
 import { IProductRes } from "@/interfaces/product.interface";
 
+
 import styles from "./page.module.css";
 
 interface Props {
-  lang: Locale;
+  homeDict: any;
 }
 
-const ProductsCheckout = ({ lang }: Props): React.JSX.Element => {
+const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
 
   let inStock = 1; // есть или нет в наявності
   let firstClient = 0; // клиент первый раз или нет. если первый, то конфета в подарунок
+
+
   const rendererProducts = cart?.products?.filter(product => product.count > 0);
 
   return (
@@ -72,7 +75,7 @@ const ProductsCheckout = ({ lang }: Props): React.JSX.Element => {
           До першого замовлення цукерка Rabbit Classic у&nbsp;подарунок
         </div>
       )}
-      {/* <ListSales lang={lang} /> */}
+      <ListSales home={homeDict} />
     </>
   );
 };

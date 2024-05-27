@@ -38,8 +38,8 @@ interface Props {
   hasError: boolean;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-	isLoading?: boolean;
-	lang: Locale
+  homeDict: any;
+  isLoading?: boolean;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -58,8 +58,8 @@ const MobileCheckout = (props: Props) => {
     currency,
     comment,
     setComment,
-	  isLoading,
-	  lang
+    isLoading,
+    homeDict,
   } = props;
 
   return (
@@ -67,7 +67,7 @@ const MobileCheckout = (props: Props) => {
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>{dict.orderTitle}</div>
 
-        <ProductsCheckout lang={lang} />
+        <ProductsCheckout homeDict={homeDict} />
       </div>
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>{dict.contactTitle}</div>
@@ -110,6 +110,7 @@ const MobileCheckout = (props: Props) => {
         <div className={styles.checkoutBlock_h2}>Коментар</div>
         <Textarea
           placeholder={dict.commentLabel}
+
           value={comment}
           setValue={setComment}
         />
