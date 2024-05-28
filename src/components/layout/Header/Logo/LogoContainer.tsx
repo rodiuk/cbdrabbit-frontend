@@ -19,9 +19,9 @@ export const LogoContainer = ({ lang }: Props): React.JSX.Element => {
 
   return (
     <>
-      {isMainPage && <HomeLogo lang={lang} />}
-
-      {!isCheckoutPage && !isMainPage && <BaseLogo lang={lang} />}
+      {/* {isMainPage && <HomeLogo lang={lang} />} */}
+	  <HomeLogo lang={lang} />
+      {/* {!isCheckoutPage && !isMainPage && <BaseLogo lang={lang} />} */}
     </>
   );
 };
