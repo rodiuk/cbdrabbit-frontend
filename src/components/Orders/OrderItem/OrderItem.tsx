@@ -17,15 +17,15 @@ interface Prop {
 }
 
 const OrderItemCard = ({ menu, order, dict, currency }: Prop) => {
+	let orderStatus = 0
   return (
-    <div className={s.orderInfo}>
-      <div className={s.statusOrder}>
-        <div className={s.orderInfo_ttl}>{order.status}</div>
-        <div className={s.orderInfo_descr}>{formatDate(order.createdAt)}</div>
-      </div>
-      <div className={s.orderInfo_num}>
+	  <div className={s.orderInfo}>
+		  <div className={s.orderInfo_num}>
         <p>№ {order.checkId}</p>
       </div>
+        <div className={s.orderInfo_descr}>{formatDate(order.createdAt)}</div>
+		<div className={s.orderInfo_ttl}>{orderStatus ? order.status: "Комплектується"}</div>
+      
       <div className={s.orderInfo_items}>
         {order?.orderItems?.map(item => {
           return (
@@ -38,10 +38,22 @@ const OrderItemCard = ({ menu, order, dict, currency }: Prop) => {
         })}
       </div>
       <div className={s.orderInfo_pay}>
+        <div className={s.orderInfo_ttl2}>Подарунок</div>
+        <div className={s.orderInfo_descr2}>
+		Rabbit Classic × 1
+        </div>
+      </div>
+      <div className={s.orderInfo_pay}>
         <div className={s.orderInfo_ttl2}>{dict.amountLabel}</div>
         <div className={s.orderInfo_descr2}>
           {order?.totalSum} {currency}
         </div>
+      </div>
+      <div className={s.orderInfo_pay}>
+			  <div className={s.orderInfo_ttl2}>
+				  <p className={s.ttl2_2}>Доставка</p>
+				  <p className={s.ttl2_2}>За тарифами перевізника</p>
+		</div>
       </div>
       <div className={s.buttonBlock}>
         <ButtonWhite text={dict.orderAgainBtn} />

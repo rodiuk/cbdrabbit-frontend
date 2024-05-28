@@ -5,48 +5,52 @@
 	width: 100%;
 	margin-bottom: 20px;
 }
-.statusOrder {
-	display: flex;
-}
+
 .orderInfo_ttl {
     font-weight: 600;
-    color: #42623B;
+	font-size: 18px;
+    color: var(--primary-color);
+	text-transform: capitalize;	
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(212, 212, 212, 1);
 }
 .orderInfo_ttl2 {
 	font-weight: 500;
 	color: #42623B;
 }
 .orderInfo_descr {
-    color: #98979a;
-    flex-grow: 1;
-    text-align: right;
+	font-size: 14px;
+    color: rgba(33, 33, 33, 1);
 }
 .orderInfo_descr2 {
-	color: #98979a;
+	color: var(--primary-color);
     flex-grow: 1;
     text-align: right;
 	font-weight: 600;
 }
 .orderInfo_num {
-    color: #98979a;
+	font-size: 24px;
+    color: rgba(33, 33, 33, 1);
     font-weight: 500;
-    margin: 5px 0 10px;
+	line-height: 1.33;
 }
 .orderInfo_items {
-    background: #ecf4ea;
-    padding: 8px;
-    border-radius: 20px;
+    display: block;
 }
 
 .orderInfo_pay {
 	display: flex;
-    padding: 12px 0;
-    border-bottom: 1px solid #D4D4D4;
+    padding: 0 0 12px;
+	color: var(--primary-color);
+	font-weight: 500;
 }
 .orderInfo .buttonBlock {
     display: flex;
     align-items: center;
 	margin-top: 15px;
+}
+.ttl2_2 {
+	line-height: 1.33;
 }
 
 .orderInfo .orderInfo_mnu {
