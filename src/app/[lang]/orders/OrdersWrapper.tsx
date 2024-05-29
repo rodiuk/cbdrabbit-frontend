@@ -34,7 +34,13 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
   };
   const openPoup = () => {
     setIsOpenPopup(true);
-  };
+	};
+	
+	const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (e.currentTarget === e.target) {
+			setIsOpenPopup(false);
+		}
+	  };
 
   React.useEffect(() => {
     (async function fetchOrders() {
@@ -65,20 +71,21 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
                 order={order}
                 dict={dict}
                 currency={currency}
-                openPoup={openPoup}
+					openPoup={openPoup}
               />
             );
           })}
 
           <AnimatePresence mode="wait">
             <motion.div
-              style={{ height: "100vh" }}
+             
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              {isOpenPopup && <LayPopupOrderInfo closePoup={closePoup} />}
+              {isOpenPopup && <LayPopupOrderInfo closePoup={closePoup} 
+					handleBadkdropClick={handleBadkdropClick} />}
             </motion.div>
           </AnimatePresence>
         </>

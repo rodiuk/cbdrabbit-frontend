@@ -13,12 +13,13 @@ import CheckIcon from "@/components/icons/CheckIcon";
 import { CloseRedIcon } from "@/components/icons/CloseRedIcon";
 
 interface Props {
-  closePoup: () => void;
+	closePoup: () => void;
+	handleBadkdropClick: any
 }
 
-const LayPopupOrderInfo = ({ closePoup }: Props): React.JSX.Element => {
+const LayPopupOrderInfo = ({ closePoup, handleBadkdropClick }: Props): React.JSX.Element => {
   return (
-    <div className={s.overl} /* onClick={e => handleBadkdropClick(e)} */>
+    <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
         <div className={s.lay_wrap}>
           <div className={s.container}>

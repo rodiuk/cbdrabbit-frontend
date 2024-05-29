@@ -1,8 +1,8 @@
 .emptyOrders {
 	background: #fff;
-	max-width: 584px;
+	max-width: 440px;
 	width: 100%;
-	padding: 24px;
+	padding: 16px 16px 24px 16px;
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
