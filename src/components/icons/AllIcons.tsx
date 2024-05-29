@@ -26,6 +26,7 @@ const AllIcons = () => {
 			<ArrowRightIcon />
 			<p>ArrowRightFilterIcon</p>
 			<ArrowRightFilterIcon iconStyle="b" />
+			
 			<p>SwitcherArrowIcon</p>
 			<SwitcherArrowIcon />
 			<p>CartIcon</p>

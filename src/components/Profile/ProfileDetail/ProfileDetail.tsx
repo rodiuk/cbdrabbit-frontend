@@ -5,7 +5,7 @@ import { IProfileDict } from "@/interfaces/i18n.interface";
 
 import s from "./ProfileDetail.module.css";
 
-import sale from "/public/img/sale.svg";
+import sale from "/public/img/salenew.jpg";
 import CheckIcon from "@/components/icons/CheckIcon";
 
 interface Props {

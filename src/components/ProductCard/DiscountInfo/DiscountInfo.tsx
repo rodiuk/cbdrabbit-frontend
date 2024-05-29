@@ -7,7 +7,7 @@ import cn from "clsx";
 import styles from "./DiscountInfo.module.css";
 import Close from "@/components/icons/Close";
 
-import sale from "/public/img/Sale_new.svg";
+import sale from "/public/img/salenew.jpg";
 import Image from "next/image";
 import Button from "@/components/Ui/Button/Button";
 import ButtonRed from "@/components/Ui/Button/ButtonRed";

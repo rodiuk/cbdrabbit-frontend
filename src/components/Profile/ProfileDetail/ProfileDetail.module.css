@@ -25,6 +25,7 @@
     border-radius: 16px;
     padding: 15px;
     border: 1px solid #D4D4D4;
+	font-weight: 500;
 }
 .details .details_img {
     margin: 12px 0;
