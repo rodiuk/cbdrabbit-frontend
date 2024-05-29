@@ -8,6 +8,10 @@ import { getAllUserOrders } from "@/libs/api/order.api";
 import OrderItemCard from "@/components/Orders/OrderItem/OrderItem";
 import { IUserOrder } from "@/interfaces/order.interface";
 import { IOrderDict } from "@/interfaces/i18n.interface";
+import { AnimatePresence, motion } from "framer-motion";
+import LayPopupOrderInfo from "@/components/LaysPopups/LayPopupOrderInfo/LayPopupOrderInfo";
+
+import s from "./page.module.css";
 
 interface Props {
   lang: Locale;
@@ -22,6 +26,15 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
   const { data, status } = useSession();
   const isLoading = status === "loading" || fetchOrders;
   const hasOrders = orders?.length > 0;
+
+  const [isOpenPopup, setIsOpenPopup] = React.useState(false);
+
+  const closePoup = () => {
+    setIsOpenPopup(false);
+  };
+  const openPoup = () => {
+    setIsOpenPopup(true);
+  };
 
   React.useEffect(() => {
     (async function fetchOrders() {
@@ -52,9 +65,22 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
                 order={order}
                 dict={dict}
                 currency={currency}
+                openPoup={openPoup}
               />
             );
           })}
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              style={{ height: "100vh" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {isOpenPopup && <LayPopupOrderInfo closePoup={closePoup} />}
+            </motion.div>
+          </AnimatePresence>
         </>
       )}
     </>
