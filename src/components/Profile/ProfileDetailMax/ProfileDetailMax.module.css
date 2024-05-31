@@ -1,0 +1,27 @@
+
+
+.details .details_img {
+    margin: 12px 0;
+}
+.details .details_img img, .details .details_img svg  {
+    margin: auto;
+}
+.text {
+	font-size: 16px;
+	font-weight: 500;
+	border: 1px solid rgba(212, 212, 212, 1);
+	padding: 17px 16px;
+	border-radius: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

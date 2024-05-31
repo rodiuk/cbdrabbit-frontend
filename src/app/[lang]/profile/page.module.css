@@ -3,9 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 38px - 38px);
-  padding: 10px 15px;
-
-  padding-top: 90px;
+  padding-bottom: 120px;
+  padding-top: 150px;
 }
 
 .wrap {

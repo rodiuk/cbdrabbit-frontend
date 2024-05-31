@@ -17,8 +17,8 @@ interface Props {
 const ProfileDetail = (props: Props) => {
   const { user, currency, dict } = props;
 
-  const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
-
+	const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
+	
   return (
     <section className={s.details}>
       <div className={s.details_grey}>
