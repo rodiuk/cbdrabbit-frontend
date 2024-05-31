@@ -77,16 +77,20 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
           })}
 
           <AnimatePresence mode="wait">
-            <motion.div
+            
+						  {isOpenPopup && (
+							  <motion.div
              
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {isOpenPopup && <LayPopupOrderInfo closePoup={closePoup} 
-					handleBadkdropClick={handleBadkdropClick} />}
-            </motion.div>
+							  initial={{ opacity: 0 }}
+							  animate={{ opacity: 1 }}
+							  exit={{ opacity: 0 }}
+							  transition={{ duration: 0.5 }}
+							> 
+							  <LayPopupOrderInfo closePoup={closePoup} 
+								  handleBadkdropClick={handleBadkdropClick} />
+							   </motion.div>
+			  )}
+           
           </AnimatePresence>
         </>
       )}

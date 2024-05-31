@@ -119,10 +119,10 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
               dict={checkoutDict}
               setUserInfo={setUserInfo}
               userInfo={userInfo}
-					  />
-					  
-					  <div className={s.checkoutBlock_np}>
-					  <div className={s.lay_ttl2}>Доставка</div>
+            />
+
+            <div className={s.checkoutBlock_np}>
+              <div className={s.lay_ttl2}>Доставка</div>
               <Image src={np} alt="np" />
               <div className={s.checkoutBlock_ttl}>{profileDict.npLabel}</div>
             </div>
@@ -134,33 +134,38 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
               deliveryId={deliveryId}
               setDeliveryId={setDeliveryId}
             />
-            <div className={s.buttonBlock}>
-              <ButtonRed
-                isDisabled={isLoadingReset}
-                handleClick={() => bottomBlock("deleteDelivery")}
-                text={
-                  isLoadingReset
-                    ? "Loading..."
-                    : profileDict.changeDeliveryButtonReset
-                }
-              />
-            </div>
-            <div className={s.buttonBlock}>
-              <ButtonWhite
-                text={profileDict.changeDeliveryButtonCancel}
-                handleClick={() => bottomBlock("")}
-              />
-            </div>
-            <div className={s.buttonBlock}>
-              <Button
-                text={
-                  isLoadingSave
-                    ? "Loading..."
-                    : profileDict.changeDeliveryButtonSave
-                }
-                isDisabled={isLoadingSave}
-                handleClick={handleUpdateDelivery}
-              />
+            <div className={s.buttons}>
+              <div className={s.buttonBlock}>
+                <ButtonRed
+                  isDisabled={isLoadingReset}
+                  handleClick={() => bottomBlock("deleteDelivery")}
+                  text={
+                    isLoadingReset
+                      ? "Loading..."
+                      : profileDict.changeDeliveryButtonReset
+                  }
+				  className={s.button}
+                />
+              </div>
+              <div className={s.buttonBlock}>
+                <ButtonWhite
+                  text={profileDict.changeDeliveryButtonCancel}
+								  handleClick={() => bottomBlock("")}
+								  className={s.button}
+                />
+              </div>
+              <div className={s.buttonBlock}>
+                <Button
+                  text={
+                    isLoadingSave
+                      ? "Loading..."
+                      : profileDict.changeDeliveryButtonSave
+                  }
+                  isDisabled={isLoadingSave}
+								  handleClick={handleUpdateDelivery}
+								  className={s.button}
+                />
+              </div>
             </div>
           </div>
         </div>

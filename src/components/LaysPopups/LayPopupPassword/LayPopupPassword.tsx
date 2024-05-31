@@ -143,7 +143,14 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
                 value={newPassword}
                 isPassword
                 onInputChange={setNewPassword}
-              />
+						  />
+						  
+						  <div className={s.texts}>
+							  <div className="tl">Вимоги до паролю:</div>
+							  <div className="one">Не менше 6 символів</div>
+							  <div className="two">Мінімум 1 буква</div>
+							  <div className="three">Мінімум 1 цифра</div>
+						  </div>
 
               <Input
                 type="text"

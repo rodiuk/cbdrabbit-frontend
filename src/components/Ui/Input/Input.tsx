@@ -53,16 +53,19 @@ const Input: React.FC<InputProps> = ({
       className={cn(s.label, {
         error: false,
       })}
-    >
-      <div className={s.label_ttl}>
-        {text}
-        {required && <span className={s.red}>*</span>}
-        {showForgotPassword && (
-          <span className={s.right_text} onClick={handleForgot}>
-            Забув пароль? {password}
-          </span>
-        )}
-      </div>
+	  >
+		  {text && (
+			  <div className={s.label_ttl}>
+			  {text}
+			  {required && <span className={s.red}>*</span>}
+			  {showForgotPassword && (
+				<span className={s.right_text} onClick={handleForgot}>
+				  Забув пароль? {password}
+				</span>
+			  )}
+			</div>
+		  )}
+      
 
       {isPassword && (
         <div className={s.forEyePosition}>
