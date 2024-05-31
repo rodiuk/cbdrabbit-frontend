@@ -92,7 +92,7 @@ const Input: React.FC<InputProps> = ({
         {...input}
       />
 
-      {errorText && <p className={s.error}>Не правильно введений пароль</p>}
+		  {errorText && <p className={s.error}>{errorText }</p>}
     </label>
   );
 };
