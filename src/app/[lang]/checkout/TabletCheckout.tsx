@@ -106,23 +106,6 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           />
         </div>
 
-        <div className={styles.checkoutBlock}>
-          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
-          <Textarea
-            placeholder={dict.commentLabel}
-            value={comment}
-            setValue={setComment}
-          />
-        </div>
-
-        <div className={styles.checkoutBlock}>
-          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
-          <Textarea
-            placeholder={dict.commentLabel}
-            value={comment}
-            setValue={setComment}
-          />
-        </div>
 
         <div className={styles.checkoutBlock}>
           <h3 className={styles.checkoutBlock_h2}>{dict.payTitle}</h3>

@@ -14,6 +14,7 @@ import { UserDeliveryInfoSection } from "@/components/UserDeliveryInfoSection/Us
 import s from "./page.module.css";
 
 import np from "/public/img/np.svg";
+import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
 
 interface Props {
   user: IUserProfile | null;
@@ -27,6 +28,8 @@ const ProfileTablet = (props: Props) => {
   const { data } = useSession();
   const [showDetail, setShowDetail] = React.useState(true);
   const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+
+  let maxSale = 12;
 
   return (
     <div className={s.wrap}>
@@ -92,21 +95,38 @@ const ProfileTablet = (props: Props) => {
           <div className={s.wrapper_big}>
             <p>{user?.loyalty?.percentDiscount}%</p>
           </div>
-          <div className={s.profile_details}>
-            <p
-              className={s.profile_detailsOne}
-              onClick={() => setShowDetail(!showDetail)}
-            >
-              {profileDict.personalDiscountLabel}{" "}
-              <ArrowDownIcon iconStyle={s.arr} />
-            </p>
 
-            {showDetail && (
-              <ProfileDetail
-                user={user}
-                currency={currency}
-                dict={profileDict}
-              />
+          <div className={s.profile_details}>
+            {(user?.loyalty?.percentDiscount ?? 0) < maxSale && (
+              <p
+                className={s.profile_detailsOne}
+                onClick={() => setShowDetail(!showDetail)}
+              >
+                {profileDict.personalDiscountLabel}
+                <ArrowDownIcon iconStyle={s.arr} />
+              </p>
+            )}
+
+            {(user?.loyalty?.percentDiscount ?? 0) < maxSale ? (
+              <>
+                {showDetail && (
+                  <ProfileDetail
+                    user={user}
+                    currency={currency}
+                    dict={profileDict}
+                  />
+                )}
+              </>
+            ) : (
+              <>
+                {showDetail && (
+                  <ProfileDetailMax
+                    user={user}
+                    currency={currency}
+                    dict={profileDict}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>

@@ -5,7 +5,7 @@ import { IProfileDict } from "@/interfaces/i18n.interface";
 
 import s from "./ProfileDetail.module.css";
 
-import sale from "/public/img/sale.svg";
+import sale from "/public/img/salenew.jpg";
 import CheckIcon from "@/components/icons/CheckIcon";
 
 interface Props {
@@ -17,8 +17,8 @@ interface Props {
 const ProfileDetail = (props: Props) => {
   const { user, currency, dict } = props;
 
-  const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
-
+	const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
+	
   return (
     <section className={s.details}>
       <div className={s.details_grey}>

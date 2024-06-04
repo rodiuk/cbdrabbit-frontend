@@ -19,10 +19,11 @@ interface Props {
   profileDict: IProfileDict;
   recoveryDict: IRecoveryPasswordDict;
   checkoutDict: ICheckoutDict;
+  lang: string;
 }
 
 export const ProfileWrapper = (props: Props): React.JSX.Element => {
-  const { currency, profileDict, checkoutDict, recoveryDict } = props;
+  const { currency, profileDict, checkoutDict, recoveryDict, lang } = props;
   const { data } = useSession();
   const [user, setUser] = React.useState<IUserProfile | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -67,6 +68,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
         recoveryDict={recoveryDict}
         checkoutDict={checkoutDict}
         user={user}
+        lang={lang}
       />
     </>
   );
