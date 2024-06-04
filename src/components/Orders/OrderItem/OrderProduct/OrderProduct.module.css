@@ -1,7 +1,6 @@
 .productCheckout {
     display: flex;
-    padding: 12px 0;
-    border-bottom: 1px solid #D4D4D4;
+    padding: 6px 0;
 }
 .productCheckout:last-child {
     border-bottom: none;
@@ -25,12 +24,16 @@
 .productCheckout .productCheckout_ttl {
     font-size: 18px;
     font-weight: 500;
-    color: #212121;
+    color: rgba(33, 33, 33, 1);
 }
 .productCheckout .productCheckout_count {
+	font-weight: 600;
+	font-size: 18px;
     flex-grow: 1;
     text-align: right;
+	color: var(--primary-color);
 }
 .productCheckout .productCheckout_count .grey {
-    color: #ccc;
+    color: rgba(152, 151, 154, 1);
+	font-weight: 600;
 }

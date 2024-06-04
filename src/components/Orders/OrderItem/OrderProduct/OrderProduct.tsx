@@ -17,14 +17,14 @@ const OrderProduct = (props: Props): React.JSX.Element => {
   return (
     <div className={s.productCheckout}>
       <div className={s.productCheckout_img}>
-        {imgUrl && <Image src={imgUrl} alt="pic" width={32} height={32} />}
+        {imgUrl && <Image src={imgUrl} alt="pic" width={24} height={24} />}
       </div>
       <div className={s.productCheckout_info}>
         <div className={s.productCheckout_ttl}>
           <p>{item.product.productName}</p>
         </div>
         <div className={s.productCheckout_count}>
-          <span className={s.grey}>{item.quantity} &#215;</span> {itemPrice} ₴
+          <span className={s.grey}>{item.quantity} &#215;</span> {itemPrice.toFixed(2)} ₴
         </div>
       </div>
     </div>

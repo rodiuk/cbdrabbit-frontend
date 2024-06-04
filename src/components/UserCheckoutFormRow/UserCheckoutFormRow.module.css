@@ -1,0 +1,10 @@
+.wrap_row {
+	display: flex;
+	gap: 12px;
+}
+
+@media (max-width: 767px) {
+	.wrap_row {
+		display: block;
+	}
+}

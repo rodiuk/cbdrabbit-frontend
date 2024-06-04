@@ -21,7 +21,8 @@ interface InputProps {
   showLay?: any;
   handleForgot?: () => void;
   errorText?: string;
-  showForgotPassword?: boolean;
+	showForgotPassword?: boolean;
+	
 }
 
 const Input: React.FC<InputProps> = ({
@@ -52,16 +53,19 @@ const Input: React.FC<InputProps> = ({
       className={cn(s.label, {
         error: false,
       })}
-    >
-      <div className={s.label_ttl}>
-        {text}
-        {required && <span className={s.red}>*</span>}
-        {showForgotPassword && (
-          <span className={s.right_text} onClick={handleForgot}>
-            Забув пароль? {password}
-          </span>
-        )}
-      </div>
+	  >
+		  {text && (
+			  <div className={s.label_ttl}>
+			  {text}
+			  {required && <span className={s.red}>*</span>}
+			  {showForgotPassword && (
+				<span className={s.right_text} onClick={handleForgot}>
+				  Забув пароль? {password}
+				</span>
+			  )}
+			</div>
+		  )}
+      
 
       {isPassword && (
         <div className={s.forEyePosition}>
@@ -88,7 +92,7 @@ const Input: React.FC<InputProps> = ({
         {...input}
       />
 
-      {errorText && <p className={s.error}>Не правильно введений пароль</p>}
+		  {errorText && <p className={s.error}>{errorText }</p>}
     </label>
   );
 };

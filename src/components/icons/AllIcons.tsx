@@ -14,10 +14,11 @@ import Button from '../Ui/Button/Button';
 import ButtonRed from '../Ui/Button/ButtonRed';
 import ButtonWhite from '../Ui/Button/ButtonWhite';
 import { PresentIcon } from './PresentIcon';
+import { CloseRedIcon } from './CloseRedIcon';
 
 const AllIcons = () => {
 	return (
-		<div style={{"background": "white"} }>
+		<div style={{"background": "white"} } >
 			<p>ArrowDownIcon</p>
 			<ArrowDownIcon />
 			<p>ArrowLeftIcon</p>
@@ -26,6 +27,7 @@ const AllIcons = () => {
 			<ArrowRightIcon />
 			<p>ArrowRightFilterIcon</p>
 			<ArrowRightFilterIcon iconStyle="b" />
+			
 			<p>SwitcherArrowIcon</p>
 			<SwitcherArrowIcon />
 			<p>CartIcon</p>
@@ -36,6 +38,8 @@ const AllIcons = () => {
 			<DotsIcon />
 			<p>CheckIcon</p>
 			<CheckIcon />
+			<p>CloseRedIcon</p>
+			<CloseRedIcon  />
 			<p>InfoIcon</p>
 			<InfoIcon />
 			<p>MobileMainLogoIcon</p>
