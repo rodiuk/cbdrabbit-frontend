@@ -14,10 +14,11 @@ interface Props {
   bottomBlock: (e: string) => void;
   dict: IRecoveryPasswordDict;
   email: string;
+  lang: string;
 }
 
 const LayPopupPasswordRecovery = (props: Props): React.JSX.Element => {
-  const { bottomBlock, dict, email } = props;
+  const { bottomBlock, dict, email, lang } = props;
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,7 +30,7 @@ const LayPopupPasswordRecovery = (props: Props): React.JSX.Element => {
   const handleSendRecoveryEmail = async () => {
     try {
       setIsLoading(true);
-      const res = await resetPassword(email);
+      const res = await resetPassword(email, lang);
 
       if ("id" in res) return bottomBlock("successResetPassword");
     } catch (error) {

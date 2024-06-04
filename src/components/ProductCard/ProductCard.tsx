@@ -2,12 +2,8 @@ import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { IProductRes } from "@/interfaces/product.interface";
-import { ArrowRightIcon } from "../icons/ArrowRight";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import { DiscountInfo } from "./DiscountInfo/DiscountInfo";
-import { ArrowRightFilterIcon } from "../icons/ArrowRightFilter";
-import { RabbitEarIcon } from "../icons/RabbitEar";
 
 const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
   ssr: false,
@@ -31,6 +27,7 @@ export const ProductCard = async ({
 
   const currency = (await getDictionary(lang))?.currency;
   const home = (await getDictionary(lang))?.home;
+
   return (
     <li className={styles.container}>
       {/*  <RabbitEarIcon iconStyle={styles.left_ear} />
@@ -41,7 +38,7 @@ export const ProductCard = async ({
           src={product?.images[0]?.url}
           alt={product?.productName}
           fill
-          sizes="(max-width: 768px) 100vw, 70vw"
+          sizes="(max-width: 768px) 100vw, 50vw"
           className={styles.image}
         />
       </div>

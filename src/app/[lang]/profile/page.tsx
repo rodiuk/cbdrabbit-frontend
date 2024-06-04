@@ -19,6 +19,7 @@ export default async function Profile({ params }: IMainPageProps) {
             profileDict={dict.profile}
             recoveryDict={dict.recoveryPassword}
             checkoutDict={dict.checkout}
+            lang={params.lang}
           />
         </Suspense>
       </main>

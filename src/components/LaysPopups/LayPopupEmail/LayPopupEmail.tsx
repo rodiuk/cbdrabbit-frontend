@@ -12,10 +12,11 @@ import s from "./LayPopupEmail.module.css";
 interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
+  lang: string;
 }
- 
+
 const LayPopupEmail = (props: Props): React.JSX.Element => {
-  const { bottomBlock, dict } = props;
+  const { bottomBlock, dict, lang } = props;
   const pathname = usePathname();
   const router = useRouter();
   const { data } = useSession();
@@ -35,7 +36,7 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
     try {
       setIsLoading(true);
 
-      const res = await updateEmailRequest(data.user.email, email);
+      const res = await updateEmailRequest(data.user.email, email, lang);
       if ("error" in res) return setHasError(true);
 
       router.push(pathname + `?newEmail=${email}`);
