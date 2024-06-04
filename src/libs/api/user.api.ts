@@ -171,8 +171,6 @@ export const createUser = async (
         user?.isVerified
       );
 
-      
-
       if (!isVerified) {
         await signUpActivateSendEmail(
           user.email,
@@ -195,7 +193,8 @@ export const createUser = async (
 
 export const updateEmailRequest = async (
   oldEmail: string,
-  newEmail: string
+  newEmail: string,
+  lang: string
 ) => {
   try {
     const user = await prisma.user.findUnique({
@@ -217,7 +216,7 @@ export const updateEmailRequest = async (
       },
     });
 
-    await emailUpdateSendEmail(newEmail, code);
+    await emailUpdateSendEmail(newEmail, user, code, lang);
 
     return user;
   } catch (error) {
@@ -469,7 +468,7 @@ export const checkVerifiedCode = async (code: string) => {
   }
 };
 
-export const resetPassword = async (email: string) => {
+export const resetPassword = async (email: string, lang: string) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -490,7 +489,7 @@ export const resetPassword = async (email: string) => {
       },
     });
 
-    await passwordResetSendEmail(email, code);
+    await passwordResetSendEmail(email, user, code, lang);
 
     return updateUser;
   } catch (error) {

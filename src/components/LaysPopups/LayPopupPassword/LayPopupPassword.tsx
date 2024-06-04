@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 import s from "./LayPopupPassword.module.css";
+import ValidationPassword from "./ValidationPassword/ValidationPassword";
 
 interface Props {
   bottomBlock: (e: string) => void;
@@ -21,6 +22,7 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
   const { bottomBlock, dict, user } = props;
   const [oldPassword, setOldPassword] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
+  
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [notMatch, setNotMatch] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState(false);
@@ -143,7 +145,9 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
                 value={newPassword}
                 isPassword
                 onInputChange={setNewPassword}
-              />
+						  />
+						  
+						  <ValidationPassword />
 
               <Input
                 type="text"

@@ -12,12 +12,12 @@ import {
 } from "@/interfaces/i18n.interface";
 import { IUserProfile } from "@/interfaces/user.interface";
 import LayPopupPasswordRecovery from "@/components/LaysPopups/LayPopupPasswordRecovery/LayPopupPasswordRecovery";
-
-import s from "./page.module.css";
 import LayPopupPassRecoverySuccess from "@/components/LaysPopups/LayPopupPassRecoverySuccess/LayPopupPassRecoverySuccess";
 import LayPopupChangeEmailSuccess from "@/components/LaysPopups/LayPopupChangeEmailSuccess/LayPopupChangeEmailSuccess";
 import LayPopupDeleteAkk from "@/components/LaysPopups/LayPopupDeleteAkk/LayPopupDeleteAkk";
 import LayPopupDeleteDelivery from "@/components/LaysPopups/LayPopupDeleteDelivery/LayPopupDeleteDelivery";
+
+import s from "./page.module.css";
 
 interface Props {
   isOpen: boolean;
@@ -27,6 +27,7 @@ interface Props {
   profileDict: IProfileDict;
   checkoutDict: ICheckoutDict;
   user: IUserProfile | null;
+  lang: string;
 }
 
 export const PopupWrapper = (props: Props): React.JSX.Element => {
@@ -38,6 +39,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
     checkoutDict,
     user,
     recoveryDict,
+    lang,
   } = props;
 
   return (
@@ -52,7 +54,11 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
           transition={{ duration: 0.5 }}
         >
           {actualLay === "email" && (
-            <LayPopupEmail bottomBlock={handleInfo} dict={profileDict} />
+            <LayPopupEmail
+              bottomBlock={handleInfo}
+              dict={profileDict}
+              lang={lang}
+            />
           )}
 
           {actualLay === "password" && (
@@ -68,6 +74,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               dict={recoveryDict}
               email={user?.email ?? ""}
               bottomBlock={handleInfo}
+              lang={lang}
             />
           )}
 

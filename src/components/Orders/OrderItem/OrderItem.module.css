@@ -4,49 +4,52 @@
     border-radius: 20px;
 	width: 100%;
 	margin-bottom: 20px;
-}
-.statusOrder {
 	display: flex;
+	flex-direction: column;
 }
+
 .orderInfo_ttl {
+	display: flex;
     font-weight: 600;
-    color: #42623B;
+	font-size: 18px;
+    color: var(--primary-color);
+	text-transform: capitalize;	
+	padding: 10px 0;
 }
 .orderInfo_ttl2 {
 	font-weight: 500;
 	color: #42623B;
 }
 .orderInfo_descr {
-    color: #98979a;
-    flex-grow: 1;
-    text-align: right;
+	font-size: 14px;
+    color: rgba(33, 33, 33, 1);
 }
 .orderInfo_descr2 {
-	color: #98979a;
+	color: var(--primary-color);
     flex-grow: 1;
     text-align: right;
 	font-weight: 600;
 }
 .orderInfo_num {
-    color: #98979a;
+	font-size: 24px;
+    color: rgba(33, 33, 33, 1);
     font-weight: 500;
-    margin: 5px 0 10px;
+	line-height: 1.33;
 }
 .orderInfo_items {
-    background: #ecf4ea;
-    padding: 8px;
-    border-radius: 20px;
+    display: block;
+	border-top: 1px solid rgba(212, 212, 212, 1);
 }
 
 .orderInfo_pay {
 	display: flex;
-    padding: 12px 0;
-    border-bottom: 1px solid #D4D4D4;
+    padding: 0 0 12px;
+	color: var(--primary-color);
+	font-weight: 500;
 }
-.orderInfo .buttonBlock {
-    display: flex;
-    align-items: center;
-	margin-top: 15px;
+
+.ttl2_2 {
+	line-height: 1.33;
 }
 
 .orderInfo .orderInfo_mnu {
@@ -59,6 +62,72 @@
     height: 54px;
     border-radius: 50%;
     border: 1px solid #CACACA;
+}
+.endBlock {
+	flex-grow: 1;
+	display: flex;
+	align-items: flex-end;
+}
+.endBlock .endBlock_wrap {
+	display: flex;
+	width: 100%;
+	align-items: flex-end;
+	font-size: 20px;
+	font-weight: 600;
+	color: var(--primary-color);
+	padding-top: 10px;
+	border-top: 1px solid rgba(212, 212, 212, 1);
+}
+.endBlock_o {
+	flex-grow: 1;
+}
+.ttl_end {
+	white-space: nowrap;
+	padding-left: 5px;
+	text-align: right;
+	flex-grow: 1;
+}
+.ttl_black {
+	color: rgba(33, 33, 33, 1);
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.red {
+	color: rgba(255, 17, 17, 1);
+}
+.sale_tttl {
+	display: flex;
+	color: var(--primary-color);
+	font-weight: 500;
+	margin-bottom: 12px;
+}
+.one {
+	flex-grow: 1;
+	padding-right: 5px;
+	display: flex;
+	align-items: center;
+	gap: 0 5px;
+}
+.top_info {
+	position: relative;
+}
+.butt_info {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	width: 54px;
+	height: 54px;
+	border-radius: 50%;
+	border: 2px solid rgba(155, 210, 143, 1);
+}
+.icon_info {
+	min-width: 20px;
+	width: 20px;
+	height: 20px;
 }
 @media (min-width: 767px) {
 	.orderInfo{

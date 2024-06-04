@@ -3,9 +3,12 @@
   height: 76px;
   justify-content: space-between;
   align-items: center;
-
+	flex-wrap: wrap;
   margin: 0 auto;
   position: relative;
+}
+.block {
+	height: 65px;
 }
 .header {
 	position: absolute;

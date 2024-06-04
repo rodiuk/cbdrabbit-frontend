@@ -1,6 +1,9 @@
 "use server";
 
 import { appConfig } from "@/configs/app.config";
+import { IOrderCreate } from "@/interfaces/order.interface";
+import { IProductCard } from "@/interfaces/product.interface";
+import { User } from "@prisma/client";
 
 const getBearerToken = async () => {
   try {
@@ -25,9 +28,39 @@ const getBearerToken = async () => {
   }
 };
 
-export const passwordResetSendEmail = async (email: string, code: string) => {
+export const passwordResetSendEmail = async (
+  email: string,
+  user: User,
+  code: string,
+  lang?: string
+) => {
   try {
-    return true;
+    const tokenData = await getBearerToken();
+
+    if (!tokenData?.access_token) return null;
+
+    const res = await fetch(
+      `${appConfig.SENDPULSE_EVENTS_URL}/name/password_renew `,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          user_id: user.id,
+          first_name: user.firstName,
+          last_name: user.lastName,
+          lang: lang,
+          url_activator: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
+        }),
+      }
+    );
+
+    const pulseRes = await res.json();
+    console.log(pulseRes);
+    return pulseRes;
   } catch (error) {
     throw error;
   }
@@ -127,9 +160,99 @@ export const updateContactInSendPulse = async (
   }
 };
 
-export const emailUpdateSendEmail = async (email: string, code: string) => {
+export const createOrderEmail = async (
+  userId: string,
+  order: IOrderCreate,
+  products: IProductCard[],
+  orderId?: string,
+  lang?: string
+) => {
   try {
+    const tokenData = await getBearerToken();
+
+    const productsForEmail = products
+      .filter(product => product.count > 0)
+      .map(product => ({
+        name: product.productName,
+        url: "not product url",
+        imageUrl: product?.images && product?.images[0]?.url,
+        description: product.description,
+        cost: order.itemPrice,
+        quantity: order.items.filter(item => item.productId === product.id)[0]
+          ?.quantity,
+      }));
+
+    const res = await fetch(
+      `${appConfig.SENDPULSE_EVENTS_URL}/name/ordercreate`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
+        body: JSON.stringify({
+          email: order.email,
+          phone: order.address.phoneNumber,
+          user_id: userId,
+          event_date: Date.now().toString(),
+          products: productsForEmail,
+          language: lang,
+          total: order.totalSum,
+          order_id: orderId,
+          delivery_address: `${order.address.npDeliveryType}, ${order.address.city}, ${order.address.npDepartment}`,
+          delivery_price: "",
+          payment_method: "online",
+          first_order: "no",
+          utm_source: "",
+          utm_medium: "",
+          utm_campaign: "",
+          utm_content: "",
+          utm_term: "",
+        }),
+      }
+    );
+
+    const pulseRes = await res.json();
+    console.log(pulseRes);
     return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const emailUpdateSendEmail = async (
+  email: string,
+  user: User,
+  code: string,
+  lang: string
+) => {
+  try {
+    const tokenData = await getBearerToken();
+
+    if (!tokenData?.access_token) return null;
+
+    const res = await fetch(
+      `${appConfig.SENDPULSE_EVENTS_URL}/name/change_email  `,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          user_id: user.id,
+          first_name: user.firstName,
+          last_name: user.lastName,
+          lang: lang,
+          url_activator: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
+        }),
+      }
+    );
+
+    const pulseRes = await res.json();
+    console.log(pulseRes);
+    return pulseRes;
   } catch (error) {
     throw error;
   }

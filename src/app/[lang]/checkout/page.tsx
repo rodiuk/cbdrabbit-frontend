@@ -27,6 +27,7 @@ export default async function Checkout({
                 dict={dict.checkout}
                 currency={dict.currency}
                 homeDict={homeDict}
+                lang={lang}
               />
             </div>
           )}

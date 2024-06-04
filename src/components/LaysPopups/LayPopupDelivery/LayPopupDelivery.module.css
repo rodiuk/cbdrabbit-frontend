@@ -36,17 +36,40 @@
 	font-size: 24px;
 	padding-right: 25px;
 }
-.lay_ttl .close {
-    position: absolute;
-    right: 0;
-    top: 5px;
-    cursor: pointer;
-}
+.close {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	background: #fff;
+	border: 4px solid transparent;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	border-radius: 50%;
+  }
+  .close:hover path  {
+	  stroke: rgba(106, 104, 107, 1);
+  }
+  .close:active path  {
+	  stroke: rgba(51, 51, 51, 1);
+  }
+  .close:focus-visible   {
+	  border: 4px solid rgba(13, 154, 214, 1);
+  }
+  
 .checkoutBlock_np {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #D4D4D4;
     display: flex;
+	flex-wrap: wrap;
+}
+.lay_ttl2 {
+	width: 100%;
+	font-family: var(--font-merriweather);
+	font-size: 24px;
+	color: #42623B;
+	margin-bottom: 12px;
 }
 .checkoutBlock_ttl {
     font-size: 20px;
@@ -61,6 +84,14 @@
 .buttonBlock {
     padding: 12px 0;
 	text-align: center;
+	flex-grow: 1;
+}
+.buttons {
+	display: flex;
+	gap: 0 10px;
+}
+.button {
+	padding: 0;
 }
 .bbt {
     font-size: 16px;

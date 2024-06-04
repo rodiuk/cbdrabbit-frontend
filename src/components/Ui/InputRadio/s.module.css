@@ -18,6 +18,7 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+	font-weight: 500;
 }
 .label .label_ttl .oldPass {
 	position: absolute;

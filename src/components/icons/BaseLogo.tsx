@@ -1,6 +1,11 @@
 import React from "react";
+import cn from "clsx";
 
-function BaseLogoIcon() {
+interface Props {
+  iconStyle?: string;
+}
+
+function BaseLogoIcon({ iconStyle }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +13,9 @@ function BaseLogoIcon() {
       height="44"
       fill="none"
       viewBox="0 0 44 44"
+      className={cn({
+        [iconStyle!]: iconStyle !== undefined,
+      })}
     >
       <rect width="44" height="44" fill="#fff" fillOpacity="0.2" rx="22"></rect>
       <path

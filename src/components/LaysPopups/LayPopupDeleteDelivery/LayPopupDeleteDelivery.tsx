@@ -9,7 +9,7 @@ import { IProfileDict } from "@/interfaces/i18n.interface";
 import cn from "clsx";
 import s from "./LayPopupDeleteDelivery.module.css";
 
-import deleteAkkIcon from "/public/img/deleteDel.png";
+import deleteAkkIcon from "/public/img/clean.jpg";
 
 interface Props {
   bottomBlock: (e: string) => void;
@@ -54,7 +54,7 @@ const LayPopupDeleteDelivery = ({ bottomBlock, dict }: Props) => {
             <div className={s.flexLay}>
               <div className={cn("lay_ttl", s.header)}>
                 <p>{dict.deleteDeliveryTitle}</p>
-                <span className="close" onClick={() => bottomBlock("")}>
+                <button className={s.close} onClick={() => bottomBlock("")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -70,7 +70,7 @@ const LayPopupDeleteDelivery = ({ bottomBlock, dict }: Props) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </span>
+                </button>
               </div>
               <div className={cn("lay_img", s.img)}>
                 <Image src={deleteAkkIcon} alt="Delete decorate image" />
