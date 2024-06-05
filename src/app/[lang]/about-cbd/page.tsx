@@ -21,12 +21,12 @@ export async function generateMetadata({
   };
 }
 
-export default function About() {
+export default function AboutCBD() {
   return (
     <>
       <main className={cn("container", s.main)}>
         <div className={s.wrap}>
-          <div className={s.title}>Про нас</div>
+          <div className={s.title}>8 питань про CBD</div>
           <div className={s.block}>
             <div className={s.ttl}>1. Загальні положення</div>
             <p>

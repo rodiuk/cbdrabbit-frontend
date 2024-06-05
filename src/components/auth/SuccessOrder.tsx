@@ -8,7 +8,7 @@ import { ButtonLink } from "../Ui/ButtonLink";
 import { IOrderDict } from "@/interfaces/i18n.interface";
 import { clearCartAtom } from "@/libs/store/atoms";
 
-import ok from "/public/img/ok.svg";
+import ok from "/public/img/ok.jpg";
 
 import cn from "clsx";
 import styles from "./styles.module.css";

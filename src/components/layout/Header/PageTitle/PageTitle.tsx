@@ -16,7 +16,7 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
   const { lang } = props;
   const pathname = usePathname();
   const [titles, setTitles] = React.useState<IHeaderTitles | null>(null);
-
+console.log(titles)
   React.useEffect(() => {
     (async function fetchLocale() {
       const { titles } = (await getDictionary(lang)).header;
@@ -38,6 +38,10 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
       [`/${lang}/blog/`]: titles?.post, // need fixed
       [`/${lang}/about`]: titles?.about,
       [`/${lang}/whereToBuy`]: titles?.whereToBuy,
+      [`/${lang}/checkout-info`]: titles?.checkoutInfo,
+      [`/${lang}/about-cbd`]: titles?.aboutCbd,
+      [`/${lang}/policy`]: titles?.policy,
+      [`/${lang}/privacy`]: titles?.privacy,
     };
   }, [lang, titles]);
 
