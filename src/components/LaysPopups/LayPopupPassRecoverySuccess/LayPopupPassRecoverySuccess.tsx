@@ -7,7 +7,7 @@ import { IRecoveryPasswordDict } from "@/interfaces/i18n.interface";
 import { ArrowLeftIcon } from "@/components/icons/ArrowLeft";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
-import ok from "/public/img/ok.svg";
+import ok from "/public/img/ok.jpg";
 
 import cn from "clsx";
 import s from "./LayPopupPassRecoverySuccess.module.css";

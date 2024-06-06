@@ -6,7 +6,7 @@ import { checkVerifiedCode } from "@/libs/api/user.api";
 import { ButtonLink } from "../Ui/ButtonLink";
 import { signIn } from "next-auth/react";
 
-import ok from "/public/img/ok.svg";
+import ok from "/public/img/ok.jpg";
 
 import styles from "./styles.module.css";
 import { SuccessAutoSignIn } from "./SuccessAutoSignIn";

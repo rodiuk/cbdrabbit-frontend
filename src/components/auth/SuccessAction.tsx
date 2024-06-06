@@ -3,7 +3,7 @@ import { Locale } from "../../../i18n.config";
 import Image from "next/image";
 import { ButtonLink } from "../Ui/ButtonLink";
 
-import ok from "/public/img/ok.svg";
+import ok from "/public/img/ok.jpg";
 
 import styles from "./styles.module.css";
 
