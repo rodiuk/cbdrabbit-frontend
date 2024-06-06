@@ -12,7 +12,11 @@
       "blog": "Blog",
       "post": "Post",
       "about": "About Us",
-      "whereToBuy": "Where to Buy Offline?"
+      "whereToBuy": "Where to Buy Offline?",
+      "checkoutInfo": "Payment and delivery",
+      "aboutCbd": "About Cbd",
+      "policy": "Public offer agreement",
+      "privacy": "Privacy Policy"
     },
     "links": {
       "signIn": "SignIn / SignUp",
