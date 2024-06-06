@@ -1,28 +1,54 @@
 .main {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 10px 15px;
 	min-height: calc(100vh - 38px - 38px);
 	  
-	padding-top: 90px;
+	padding-top: 150px;
+	padding-bottom: 120px;
   }
   .wrapper {
 	  background: #fff;
 	  padding: 15px;
 	  border-radius: 20px;
+	  position: relative;
+	  max-width: 960px;
   }
   .h1 {
-	  font-size: 30px;
-	  text-align: center;
+	  font-size: 28px;
 	  font-weight: 600;
+	  color: rgba(66, 98, 59, 1);
+	  margin-bottom: 35px;
   }
   .h2 {
-	  font-size: 20px;
+	  font-size: 18px;
 	  margin: 15px 0;
 	  font-weight: 600;
   }
-  .p	{
-	  margin: 10px 0;
+  .p, .m0	{
+	  margin: 15px 0;
+	  font-size: 14px;
+  }
+  
+  .m0 {
+	  margin: 0;
+  }
+  .li {
+	  padding-left: 10px;
+	  font-size: 14px;
+	  position: relative;
+  }
+  .li::before {
+	  content: '';
+	  position: absolute;
+	  left: 0;
+	  top: 8px;
+	  width: 4px;
+	  height: 4px;
+	  border-radius: 50%;
+	  background: rgba(0, 0, 0, 1);
+  }
+  .block {
+	margin-bottom: 15px;
   }
   

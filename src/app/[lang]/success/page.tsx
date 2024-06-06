@@ -1,7 +1,4 @@
 import React from "react";
-import { Metadata } from "next";
-import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -9,20 +6,6 @@ import s from "./page.module.css";
 import success from "/public/img/success.svg";
 import Image from "next/image";
 import Link from "next/link";
-
-export async function generateMetadata({
-  params,
-}: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/success`,
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
-}
 
 export default function Success() {
   return (

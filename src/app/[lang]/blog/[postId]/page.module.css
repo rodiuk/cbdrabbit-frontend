@@ -1,7 +1,40 @@
 .main {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 30px;
-  min-height: calc(100vh - 38px - 38px);
+  justify-content: center;
+  align-items: baseline;
+  padding: 10px 15px;
+  padding-top: 150px;
+  padding-bottom: 120px;
+}
+.wrapper {
+	width: 100%;
+	max-width: 584px;
+	background: #fff;
+	font-weight: 500;
+	line-height: 1.55;
+	padding: 16px 16px 24px 16px;
+	border-radius: 20px;
+	position: relative;
+}
+.dt {
+	font-size: 16px;
+	color: rgba(152, 151, 154, 1);
+}
+.h2 {
+	font-size: 24px;
+	font-family: var(--font-merriweather);
+	color: var(--primary-color);
+}
+.block {
+	margin: 12px 0;
+}
+.block:last-child {
+	margin-bottom: 0;
+}
+.ttl {
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+.img {
+	margin-top: 12px;
 }

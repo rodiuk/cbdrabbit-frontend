@@ -11,4 +11,8 @@ export interface IHeaderTitles {
   post: string;
   about: string;
   whereToBuy: string;
+  checkoutInfo: string;
+  aboutCbd: string;
+  policy: string;
+  privacy: string;
 }

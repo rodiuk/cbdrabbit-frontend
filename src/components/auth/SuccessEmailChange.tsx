@@ -7,7 +7,7 @@ import { ButtonLink } from "../Ui/ButtonLink";
 import { useRouter, useSearchParams } from "next/navigation";
 import { updatePasswordByCode } from "@/libs/api/user.api";
 
-import ok from "/public/img/ok.svg";
+import ok from "/public/img/ok.jpg";
 
 import styles from "./styles.module.css";
 

@@ -14,7 +14,7 @@ interface Props {
   dict: IProfileDict;
   lang: string;
 }
-
+ 
 const LayPopupEmail = (props: Props): React.JSX.Element => {
   const { bottomBlock, dict, lang } = props;
   const pathname = usePathname();

@@ -105,32 +105,32 @@ const MenuDrop = (props: Props) => {
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
 			Про CBD
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/about`} onClick={toggleMenu}>
 			Про нас
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
 			Оплата і доставка
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/blog`} onClick={toggleMenu}>
 			Блог
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/contacts`} onClick={toggleMenu}>
 			Контакти
             </Link>
           </li>
           <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout`} onClick={toggleMenu}>
+            <Link href={`/${lang}/cooperation`} onClick={toggleMenu}>
 			Співпраця
             </Link>
           </li>
@@ -149,10 +149,10 @@ const MenuDrop = (props: Props) => {
 			  </div>
 
 			  <div className={s.politic_block}>
-			  <Link href={`/${lang}`} className={s.politic_link} onClick={handleSignOut}>
+			  <Link href={`/${lang}/privacy`} className={s.politic_link}>
 			  Політика конфіденційності
 			</Link>
-			  <Link href={`/${lang}`} className={s.politic_link} onClick={handleSignOut}>
+			  <Link href={`/${lang}/policy`} className={s.politic_link}>
 			  Публічний договір оферти
 			</Link>
 			  </div>	  
