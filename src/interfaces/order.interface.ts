@@ -11,6 +11,12 @@ export interface IOrderCreate {
   itemPrice: number;
   address: IAddressData;
   items: IOrderItem[];
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_medium?: string;
+  utm_source?: string;
+  utm_term?: string;
+  promocodeId?: string;
 }
 
 export interface IOrderItem {

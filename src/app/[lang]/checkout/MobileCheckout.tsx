@@ -7,13 +7,13 @@ import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import Textarea from "@/components/Ui/Textarea/Textarea";
+import { Promocode } from "@prisma/client";
 
 import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import Textarea from "@/components/Ui/Textarea/Textarea";
-import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -38,6 +38,8 @@ interface Props {
   hasError: boolean;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
+  setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
+  promocode: Promocode | null;
   homeDict: any;
   isLoading?: boolean;
 }
@@ -60,6 +62,8 @@ const MobileCheckout = (props: Props) => {
     setComment,
     isLoading,
     homeDict,
+    setPromocode,
+    promocode,
   } = props;
 
   return (
@@ -110,7 +114,6 @@ const MobileCheckout = (props: Props) => {
         <div className={styles.checkoutBlock_h2}>Коментар</div>
         <Textarea
           placeholder={dict.commentLabel}
-
           value={comment}
           setValue={setComment}
         />
@@ -123,6 +126,8 @@ const MobileCheckout = (props: Props) => {
         handleCheckout={handleCheckout}
         hasError={hasError}
         isLoading={isLoading}
+        setPromocode={setPromocode}
+        promocode={promocode}
       />
     </section>
   );

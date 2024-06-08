@@ -164,6 +164,7 @@ export const createOrderEmail = async (
   userId: string,
   order: IOrderCreate,
   products: IProductCard[],
+  firstOrder: boolean,
   orderId?: string,
   lang?: string
 ) => {
@@ -202,12 +203,12 @@ export const createOrderEmail = async (
           delivery_address: `${order.address.npDeliveryType}, ${order.address.city}, ${order.address.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
-          first_order: "no",
-          utm_source: "",
-          utm_medium: "",
-          utm_campaign: "",
-          utm_content: "",
-          utm_term: "",
+          first_order: firstOrder ? "yes" : "no",
+          utm_source: order?.utm_source,
+          utm_medium: order?.utm_medium,
+          utm_campaign: order?.utm_campaign,
+          utm_content: order?.utm_content,
+          utm_term: order?.utm_term,
         }),
       }
     );

@@ -15,6 +15,9 @@ import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { createOrderEmail } from "@/libs/api/emails.api";
+import useLocalStorage from "@/hooks/useLocaleStorage";
+import { constants } from "@/configs/constants";
+import { Promocode } from "@prisma/client";
 
 interface Props {
   dict: ICheckoutDict;
@@ -45,6 +48,10 @@ export const CheckoutWrapper = ({
   const [isEmptyFields, setIsEmptyFields] = React.useState<boolean>(false);
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [promocode, setPromocode] = React.useState<Promocode | null>(null);
+
+  const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
+
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
   const [cart, setCart] = useAtom(cartAtom);
 
@@ -112,6 +119,8 @@ export const CheckoutWrapper = ({
           npDeliveryType: deliveryId,
           phoneNumber: userInfo?.phone,
         },
+        promocodeId: promocode?.id,
+        ...utmLabels,
       };
 
       const res = await createUrlForCheckout(
@@ -132,11 +141,15 @@ export const CheckoutWrapper = ({
         });
       }
 
-      createOrderEmail(resOrder.user.id, payload, cart.products, lang);
+      createOrderEmail(
+        resOrder.user.id,
+        payload,
+        cart.products,
+        cart.fromCheckout,
+        lang
+      );
 
       window.open(res.pageUrl, "_blank");
-
-      // newTabOpen(res?.pageUrl);
     } catch (error) {
       console.log(error);
     } finally {
@@ -164,7 +177,10 @@ export const CheckoutWrapper = ({
         comment={comment}
         setComment={setComment}
         homeDict={homeDict}
+        setPromocode={setPromocode}
+        promocode={promocode}
       />
+
       <MobileCheckout
         dict={dict}
         currency={currency}
@@ -182,6 +198,8 @@ export const CheckoutWrapper = ({
         comment={comment}
         setComment={setComment}
         homeDict={homeDict}
+        setPromocode={setPromocode}
+        promocode={promocode}
       />
     </>
   );

@@ -8,13 +8,13 @@ import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import Textarea from "@/components/Ui/Textarea/Textarea";
+import { Promocode } from "@prisma/client";
 
 import cn from "clsx";
 import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import { Locale } from "../../../../i18n.config";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -41,6 +41,8 @@ interface Props {
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
   homeDict: any;
+  setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
+  promocode: Promocode | null;
   isLoading?: boolean;
 }
 
@@ -61,6 +63,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     userInfo,
     comment,
     setComment,
+    setPromocode,
+    promocode,
     isLoading,
     homeDict,
   } = props;
@@ -95,9 +99,9 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
           />
-			  </div>
+        </div>
 
-			  <div className={styles.checkoutBlock}>
+        <div className={styles.checkoutBlock}>
           <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
           <Textarea
             placeholder={dict.commentLabel}
@@ -105,7 +109,6 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             setValue={setComment}
           />
         </div>
-
 
         <div className={styles.checkoutBlock}>
           <h3 className={styles.checkoutBlock_h2}>{dict.payTitle}</h3>
@@ -132,6 +135,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           handleCheckout={handleCheckout}
           hasError={hasError}
           isLoading={isLoading}
+          setPromocode={setPromocode}
+          promocode={promocode}
         />
       </div>
     </section>

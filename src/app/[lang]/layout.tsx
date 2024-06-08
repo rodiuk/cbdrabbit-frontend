@@ -15,6 +15,8 @@ const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
 import { fonts } from "./fonts";
 import cn from "clsx";
 import "./globals.css";
+import LabelListener from "@/components/LabelListener";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "CBD Rabbit",
@@ -36,7 +38,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang} suppressHydrationWarning>
-		  <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
+      <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
         <Providers>
           <Header lang={params.lang} />
           {children}
@@ -47,6 +49,10 @@ export default async function RootLayout({
             checkoutLabel={dict.cartBanner.checkoutLabel}
             buttonLabel={dict.cartBanner.checkoutButton}
           />
+
+          <Suspense fallback={null}>
+            <LabelListener />
+          </Suspense>
         </Providers>
 
         {isProduction && <Scripts />}
