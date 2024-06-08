@@ -82,9 +82,12 @@ export const CheckoutWrapper = ({
         console.log(error);
       }
     })();
-  }, [data?.user?.id]);
+  }, [data?.user?.id]); 
+	
+	
 
-  const handleCheckout = async () => {
+	const handleCheckout = async () => {
+		
     if (
       !city ||
       !postPoint ||
