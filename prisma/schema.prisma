@@ -77,20 +77,28 @@ model Address {
 }
 
 model Order {
-  id        String       @id @default(uuid())
-  checkId   Int          @unique @default(autoincrement())
-  totalSum  Float
-  itemPrice Float
-  comment   String?
-  userId    String
-  status    OrderStatus? @default(CREATED)
-  paymentId String       @unique
+  id           String       @id @default(uuid())
+  checkId      Int          @unique @default(autoincrement())
+  totalSum     Float
+  itemPrice    Float
+  comment      String?
+  status       OrderStatus? @default(CREATED)
+  utm_source   String?
+  utm_medium   String?
+  utm_campaign String?
+  utm_content  String?
+  utm_term     String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  paymentId   String  @unique
+  userId      String
+  promocodeId String?
+
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   orderItems OrderItem[]
+  promocode  Promocode?  @relation(fields: [promocodeId], references: [id])
 }
 
 model OrderItem {
@@ -159,4 +167,17 @@ model Post {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Promocode {
+  id              String  @id @default(uuid())
+  code            String  @unique
+  percentDiscount Int?
+  newPrice        Int?
+  iasActive       Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order Order[]
 }
