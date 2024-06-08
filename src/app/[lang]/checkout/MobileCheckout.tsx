@@ -7,14 +7,13 @@ import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import Textarea from "@/components/Ui/Textarea/Textarea";
+import { Promocode } from "@prisma/client";
 
 import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import Textarea from "@/components/Ui/Textarea/Textarea";
-import { Locale } from "../../../../i18n.config";
-import { Promocode } from "@prisma/client";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -63,6 +62,8 @@ const MobileCheckout = (props: Props) => {
     setComment,
     isLoading,
     homeDict,
+    setPromocode,
+    promocode,
   } = props;
 
   return (
@@ -125,6 +126,8 @@ const MobileCheckout = (props: Props) => {
         handleCheckout={handleCheckout}
         hasError={hasError}
         isLoading={isLoading}
+        setPromocode={setPromocode}
+        promocode={promocode}
       />
     </section>
   );
