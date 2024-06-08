@@ -78,6 +78,16 @@ export const createOrder = async (
             id: orderData.userId,
           },
         },
+        promocode: {
+          connect: {
+            id: orderData.promocodeId,
+          },
+        },
+        ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
+        ...(orderData.utm_source && { utm_source: orderData.utm_source }),
+        ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
+        ...(orderData.utm_term && { utm_term: orderData.utm_term }),
+        ...(orderData.utm_content && { utm_content: orderData.utm_content }),
         orderItems: {
           create: orderData.items.map(item => ({
             quantity: item.quantity,
