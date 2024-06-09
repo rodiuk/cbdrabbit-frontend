@@ -59,7 +59,7 @@ export const passwordResetSendEmail = async (
     );
 
     const pulseRes = await res.json();
-    console.log(pulseRes);
+    console.log({ pulseRes });
     return pulseRes;
   } catch (error) {
     throw error;
@@ -214,7 +214,7 @@ export const createOrderEmail = async (
     );
 
     const pulseRes = await res.json();
-    console.log(pulseRes);
+    console.log({ pulseRes });
     return true;
   } catch (error) {
     throw error;
@@ -275,7 +275,7 @@ export const orderInProgress = async (
     );
 
     const pulseRes = await res.json();
-    console.log(pulseRes);
+    console.log({ pulseRes });
     return true;
   } catch (error) {
     throw error;
@@ -313,7 +313,7 @@ export const emailUpdateSendEmail = async (
     );
 
     const pulseRes = await res.json();
-    console.log(pulseRes);
+    console.log({ pulseRes });
     return pulseRes;
   } catch (error) {
     throw error;
@@ -322,7 +322,7 @@ export const emailUpdateSendEmail = async (
 
 export const sendWebhook = async (order: Order) => {
   try {
-    return fetch("data.custom.systems/cbdrabbit/webhook.php", {
+    return fetch("https://data.custom.systems/cbdrabbit/webhook.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -25,6 +25,7 @@ interface Props {
   hasError: boolean;
   promocode: Promocode | null;
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
+
   isLoading?: boolean;
 }
 
@@ -174,51 +175,51 @@ const CheckoutRes = React.memo(function CheckoutRes({
           )}
 
           <PromocodeBlock setPromocode={setPromocode} promocode={promocode} />
+        </div>
 
-          {!promocode?.code && (
-            <div className={s.checkoutRes_row}>
-              <div className={s.checkoutRes_nm}>
-                {dict.personalDiscount} {userDiscount}%
-              </div>
-              <div className={s.checkoutRes_price}>
-                - {userDiscountSum.toFixed(2)} {currency}
-              </div>
+        {!promocode?.code && (
+          <div className={s.checkoutRes_row}>
+            <div className={s.checkoutRes_nm}>
+              {dict.personalDiscount} {userDiscount}%
             </div>
-          )}
+            <div className={s.checkoutRes_price}>
+              - {userDiscountSum.toFixed(2)} {currency}
+            </div>
+          </div>
+        )}
 
-          {promocode?.code && (
-            <div className={s.checkoutRes_row}>
-              <div className={s.checkoutRes_nm}>
-                <Image
-                  src={sale_icon.src}
-                  alt="sale_icon"
-                  width={22}
-                  height={14}
-                />
-                {promocodeLabel}
-              </div>
-              <div className={s.checkoutRes_price}>
-                - {promocodeDiscountLabel.toFixed(2)} ₴
-              </div>
+        {promocode?.code && (
+          <div className={s.checkoutRes_row}>
+            <div className={s.checkoutRes_nm}>
+              <Image
+                src={sale_icon.src}
+                alt="sale_icon"
+                width={22}
+                height={14}
+              />
+              {promocodeLabel}
             </div>
-          )}
+            <div className={s.checkoutRes_price}>
+              - {promocodeDiscountLabel.toFixed(2)} ₴
+            </div>
+          </div>
+        )}
 
-          <div className={s.checkoutTotal}>
-            <div className={s.checkoutTotal_ttl}>
-              <p>{dict.totalCheckout}</p>
-            </div>
-            <div className={s.checkoutTotal_res}>
-              <p>
-                {finalPrice.toFixed(2)} {currency}
-              </p>
-            </div>
-            <Button
-              text={isLoading ? "Loading..." : dict.checkoutButton}
-              handleClick={handleCheckout}
-            />
-            <div className={s.checkoutTotal_check}>
-              <p>{dict.checkoutDisclaimer}</p>
-            </div>
+        <div className={s.checkoutTotal}>
+          <div className={s.checkoutTotal_ttl}>
+            <p>{dict.totalCheckout}</p>
+          </div>
+          <div className={s.checkoutTotal_res}>
+            <p>
+              {finalPrice.toFixed(2)} {currency}
+            </p>
+          </div>
+          <Button
+            text={isLoading ? "Loading..." : dict.checkoutButton}
+            handleClick={handleCheckout}
+          />
+          <div className={s.checkoutTotal_check}>
+            <p>{dict.checkoutDisclaimer}</p>
           </div>
         </div>
       </div>
