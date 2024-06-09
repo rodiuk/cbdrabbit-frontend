@@ -82,12 +82,9 @@ export const CheckoutWrapper = ({
         console.log(error);
       }
     })();
-  }, [data?.user?.id]); 
-	
-	
+  }, [data?.user?.id]);
 
-	const handleCheckout = async () => {
-		
+  const handleCheckout = async () => {
     if (
       !city ||
       !postPoint ||
@@ -119,8 +116,8 @@ export const CheckoutWrapper = ({
           npDeliveryType: deliveryId,
           phoneNumber: userInfo?.phone,
         },
-        promocodeId: promocode?.id,
         ...utmLabels,
+        ...(!!promocode?.code && { promocodeId: promocode?.id }),
       };
 
       const res = await createUrlForCheckout(
@@ -149,7 +146,7 @@ export const CheckoutWrapper = ({
         lang
       );
 
-      window.open(res.pageUrl, "_blank");
+      window.open(res.pageUrl);
     } catch (error) {
       console.log(error);
     } finally {

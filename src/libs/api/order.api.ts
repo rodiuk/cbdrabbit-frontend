@@ -5,7 +5,7 @@ import { orderSelect } from "./selects/order.select";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
 import { createUser, updateUserTotalAmount } from "./user.api";
-import { OrderStatus, User } from "@prisma/client";
+import { OrderStatus } from "@prisma/client";
 import { nanoid } from "nanoid";
 
 export const getAllUserOrders = async (userId: string) => {
@@ -78,11 +78,13 @@ export const createOrder = async (
             id: orderData.userId,
           },
         },
-        promocode: {
-          connect: {
-            id: orderData.promocodeId,
+        ...(!!orderData.promocodeId && {
+          promocode: {
+            connect: {
+              id: orderData.promocodeId,
+            },
           },
-        },
+        }),
         ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
         ...(orderData.utm_source && { utm_source: orderData.utm_source }),
         ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
