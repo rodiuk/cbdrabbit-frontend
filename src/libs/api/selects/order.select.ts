@@ -13,6 +13,11 @@ export const orderSelect: Prisma.OrderSelect = {
   utm_medium: true,
   utm_source: true,
   utm_term: true,
+  promocode: {
+    select: {
+      code: true,
+    },
+  },
   user: {
     select: {
       id: true,
