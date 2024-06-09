@@ -5,17 +5,17 @@ interface PriceRange {
 }
 
 const priceRanges: PriceRange[] = [
-  { min: 1, max: 5, price: 80 },
-  { min: 6, max: 10, price: 77 },
-  { min: 11, max: 15, price: 75 },
-  { min: 16, max: 20, price: 73.5 },
-  { min: 21, max: 30, price: 72.5 },
-  { min: 31, max: 40, price: 71.5 },
-  { min: 41, max: 50, price: 70.5 },
-  { min: 51, max: 75, price: 70 },
-  { min: 76, max: 100, price: 69.5 },
-  { min: 101, max: 200, price: 69 },
-  { min: 201, max: Infinity, price: 68.5 },
+  { min: 1, max: 5, price: 85 },
+  { min: 6, max: 10, price: 82 },
+  { min: 11, max: 15, price: 80 },
+  { min: 16, max: 20, price: 78.5 },
+  { min: 21, max: 30, price: 77.5 },
+  { min: 31, max: 40, price: 76.5 },
+  { min: 41, max: 50, price: 75.5 },
+  { min: 51, max: 75, price: 75 },
+  { min: 76, max: 100, price: 74.5 },
+  { min: 101, max: 200, price: 74 },
+  { min: 201, max: Infinity, price: 73.5 },
 ];
 
 /**
