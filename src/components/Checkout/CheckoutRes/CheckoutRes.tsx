@@ -122,7 +122,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>{dict.totalAmountTitle}</div>
             <div className={s.checkoutRes_price}>
-              {finalPrice} {currency}
+              {finalPrice.toFixed(2)} {currency}
             </div>
           </div>
           {/*   Эти 2 блочка теперь нет в дизайне но хз, коментирую покамест */}
