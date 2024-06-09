@@ -116,11 +116,12 @@ model OrderItem {
 }
 
 model Product {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   productName String
   description String
   price       Float
-  locale      String @default("uk")
+  locale      String  @default("uk")
+  isStock     Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

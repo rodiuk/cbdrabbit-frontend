@@ -18,6 +18,7 @@ import { createOrderEmail } from "@/libs/api/emails.api";
 import useLocalStorage from "@/hooks/useLocaleStorage";
 import { constants } from "@/configs/constants";
 import { Promocode } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface Props {
   dict: ICheckoutDict;
@@ -40,6 +41,7 @@ export const CheckoutWrapper = ({
   lang,
 }: Props): React.JSX.Element => {
   const { data } = useSession();
+  const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
@@ -146,7 +148,7 @@ export const CheckoutWrapper = ({
         lang
       );
 
-      window.open(res.pageUrl);
+      router.replace(res.pageUrl);
     } catch (error) {
       console.log(error);
     } finally {

@@ -26,7 +26,7 @@ export const ProductCard = async ({
   const { productName, description, price, id, properties } = product;
 
   const currency = (await getDictionary(lang))?.currency;
-  const home = (await getDictionary(lang))?.home;
+  // const home = (await getDictionary(lang))?.home;
 
   return (
     <li className={styles.container}>
@@ -70,7 +70,7 @@ export const ProductCard = async ({
         <p className={styles.description}>{description}</p>
 
         <div className={styles.divider} />
-        {productName !== "Rabbit Matcha" ? (
+        {product.isStock ? (
           <ActionBar product={product} />
         ) : (
           <div className={styles.not_present}>

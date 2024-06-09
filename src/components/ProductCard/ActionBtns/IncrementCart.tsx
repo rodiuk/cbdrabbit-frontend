@@ -13,10 +13,15 @@ interface Props {
 }
 
 export const IncrementCart = ({ product }: Props) => {
-  const [_, add] = useAtom(addProductToCartAtom);
+  const [cart, add] = useAtom(addProductToCartAtom);
+  const itemCount = cart.products.find(p => p.id === product.id)?.count || 0;
 
   return (
-    <button onClick={() => add(product)} className={styles.container}>
+    <button
+      onClick={() => add(product)}
+      className={styles.container}
+      disabled={itemCount >= 500}
+    >
       <PlusIcon iconStyle={styles.icon} />
     </button>
   );

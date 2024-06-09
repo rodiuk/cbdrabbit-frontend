@@ -5,6 +5,7 @@ export const productSelect: Prisma.ProductSelect = {
   productName: true,
   description: true,
   price: true,
+  isStock: true,
   images: {
     select: {
       url: true,
