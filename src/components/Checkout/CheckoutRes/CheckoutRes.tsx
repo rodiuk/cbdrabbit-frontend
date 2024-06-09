@@ -42,7 +42,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
   const { data } = useSession();
   const [userDiscount, setUserDiscount] = React.useState<number>(0);
 
-  const currentPrice = 80;
+  const currentPrice = 85;
   const freeDelivery = 2200; // это если сумма достаточна для безкошновної доставки
 
   const saleDiff = cart?.totalCount * currentPrice - cart?.totalAmount;
