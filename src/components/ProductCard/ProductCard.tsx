@@ -23,7 +23,7 @@ export const ProductCard = async ({
   product,
   lang,
 }: Props): Promise<React.JSX.Element> => {
-  const { productName, description, price, id, properties } = product;
+  const { productName, description, price, properties } = product;
 
   const currency = (await getDictionary(lang))?.currency;
   // const home = (await getDictionary(lang))?.home;
