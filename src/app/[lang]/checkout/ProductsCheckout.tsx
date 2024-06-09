@@ -6,10 +6,10 @@ import { useAtom } from "jotai/react";
 import { cartAtom } from "@/libs/store/atoms";
 import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 import { PresentIcon } from "@/components/icons/PresentIcon";
-import { Locale } from "../../../../i18n.config";
 import ListSales from "@/components/ListSales/ListSales";
 import { IProductRes } from "@/interfaces/product.interface";
-
+import { useSession } from "next-auth/react";
+import { getAllUserOrders } from "@/libs/api/order.api";
 
 import styles from "./page.module.css";
 
@@ -19,14 +19,26 @@ interface Props {
 
 const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
+  const { data } = useSession();
+  const [hasOrders, setHasOrders] = React.useState<boolean>(false);
+  const [isRendered, setIsRendered] = React.useState<boolean>(false);
 
-  let inStock = 1; // есть или нет в наявності
-  let firstClient = 0; // клиент первый раз или нет. если первый, то конфета в подарунок
   const rendererProducts = cart?.products?.filter(product => product.count > 0);
-	const [products, setProduct] = React.useState(rendererProducts)
-	React.useEffect(() => {
-		setProduct(rendererProducts)
-	}, [])
+  const [products, setProduct] = React.useState(rendererProducts);
+
+  React.useEffect(() => {
+    if (!data?.user?.id) return setIsRendered(true);
+    (async function getOrders() {
+      setIsRendered(false);
+      const hasOrders = (await getAllUserOrders(data.user.id))?.length > 0;
+      setHasOrders(hasOrders);
+      setIsRendered(true);
+    })();
+  }, [data]);
+
+  React.useEffect(() => {
+    setProduct(rendererProducts);
+  }, []);
 
   return (
     <>
@@ -47,7 +59,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
               <div className={styles.productCheckout_ttl}>
                 <h2>{product.productName}</h2>
               </div>
-              {inStock ? (
+              {product.isStock ? (
                 <>
                   <div className={styles.productCheckout_count}>
                     <span className={styles.grey}>{product.price}</span>
@@ -69,7 +81,8 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
           </li>
         ))}
       </ul>
-      {!firstClient && (
+
+      {!hasOrders && isRendered && (
         <div className={styles.first_client}>
           <div className={styles.img_client}>
             <PresentIcon />

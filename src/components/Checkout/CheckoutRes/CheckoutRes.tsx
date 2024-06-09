@@ -117,6 +117,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
             <p>{dict.formError}</p>
           </div>
         )}
+
         <div className={s.checkoutRes_prices}>
           <div className={s.checkoutRes_row}>
             <div className={s.checkoutRes_nm}>{dict.totalAmountTitle}</div>

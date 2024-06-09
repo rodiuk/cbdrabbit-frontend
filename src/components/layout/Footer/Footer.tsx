@@ -1,18 +1,21 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/configs/auth.config";
+import MobileMainLogoIcon from "@/components/icons/MobileMainLogo";
+import { InstaWhiteIcon } from "@/components/icons/InstaWhiteIcon";
+import LinkToTop from "./LinkToTop/LinkToTop";
 
 import cn from "clsx";
 import s from "./Footer.module.css";
-import Link from "next/link";
-import MobileMainLogoIcon from "@/components/icons/MobileMainLogo";
-import BaseLogoIcon from "@/components/icons/BaseLogo";
-import { InstaWhiteIcon } from "@/components/icons/InstaWhiteIcon";
 
 import figureForFooter from "/public/img/figureForFooter.svg";
-import Image from "next/image";
-import { ArrowRightIcon } from "@/components/icons/ArrowRight";
-import LinkToTop from "./LinkToTop/LinkToTop";
 
-export const Footer = (): React.JSX.Element => {
+export const Footer = async (): Promise<React.JSX.Element> => {
+  const session = await getServerSession(authConfig);
+  const isAuth = !!session?.user.id;
+
   return (
     <footer className={cn("footer", s.footer)}>
       <div className={s.figure}>
@@ -30,9 +33,11 @@ export const Footer = (): React.JSX.Element => {
             <li>
               <Link href="/">Купити</Link>
             </li>
-            <li>
-              <Link href="/">Мій кабінет</Link>
-            </li>
+            {isAuth && (
+              <li>
+                <Link href="/">Мій кабінет</Link>
+              </li>
+            )}
           </ul>
           <ul className={s.ul}>
             <li>
@@ -62,11 +67,15 @@ export const Footer = (): React.JSX.Element => {
           <div className={s.ul}>
             {/*  якщо залогінений - не виводимо контент але сам блок s.ul  повинен бути
 					  початок */}
-            <p>Давай знайомитись.</p>
-            <p>Друзям зайчик робить знижки!</p>
-            <Link href="/signIn" className={s.button}>
-              Реєстрація / Вхід
-            </Link>
+            {!isAuth && (
+              <>
+                <p>Давай знайомитись.</p>
+                <p>Друзям зайчик робить знижки!</p>
+                <Link href="/signIn" className={s.button}>
+                  Реєстрація / Вхід
+                </Link>
+              </>
+            )}
             {/* кінець */}
           </div>
         </div>
