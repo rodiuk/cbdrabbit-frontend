@@ -16,7 +16,6 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
   const { lang } = props;
   const pathname = usePathname();
   const [titles, setTitles] = React.useState<IHeaderTitles | null>(null);
-console.log(titles)
   React.useEffect(() => {
     (async function fetchLocale() {
       const { titles } = (await getDictionary(lang)).header;

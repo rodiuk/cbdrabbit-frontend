@@ -4,11 +4,11 @@ import { IMainPageProps } from "@/interfaces/page.interface";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
 import { IProductRes } from "@/interfaces/product.interface";
+import ListSales from "@/components/ListSales/ListSales";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import ListSales from "@/components/ListSales/ListSales";
-import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
