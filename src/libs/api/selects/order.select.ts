@@ -8,6 +8,11 @@ export const orderSelect: Prisma.OrderSelect = {
   status: true,
   createdAt: true,
   checkId: true,
+  utm_campaign: true,
+  utm_content: true,
+  utm_medium: true,
+  utm_source: true,
+  utm_term: true,
   user: {
     select: {
       id: true,
