@@ -19,7 +19,7 @@ const ProductPrice = ({
   const [newPrice] = useAtom(getProductNewPriceAtom);
 
   const hasPriceChange = React.useMemo(() => {
-    return newPrice !== 80 && newPrice !== 0;
+    return newPrice !== 85 && newPrice !== 0;
   }, [newPrice]);
 
   return (
