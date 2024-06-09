@@ -194,17 +194,17 @@
     "product": {
       "discountLabel": "Discount for large orders",
       "discountList": [
-        "1-5 шт - 80 uah/candy",
-        "6-10 шт - 77 uah/candy",
-        "11-15 шт - 75 uah/candy",
-        "16-20 шт - 73.5 uah/candy",
-        "21-30 шт - 72.5 uah/candy",
-        "31-40 шт - 71.5 uah/candy",
-        "41-50 шт - 70.5 uah/candy",
-        "51-75 шт - 70 uah/candy",
-        "76-100 шт - 69.5 uah/candy",
-        "101-200 шт - 69 uah/candy",
-        "200+ шт - 68.5 uah/candy"
+        "1-5 шт - 85 uah/candy",
+        "6-10 шт - 82 uah/candy",
+        "11-15 шт - 80 uah/candy",
+        "16-20 шт - 78.5 uah/candy",
+        "21-30 шт - 77.5 uah/candy",
+        "31-40 шт - 76.5 uah/candy",
+        "41-50 шт - 75.5 uah/candy",
+        "51-75 шт - 75 uah/candy",
+        "76-100 шт - 74.5 uah/candy",
+        "101-200 шт - 74 uah/candy",
+        "200+ шт - 73.5 uah/candy"
       ]
     }
   },

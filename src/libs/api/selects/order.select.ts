@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-export const orderSelect: Prisma.OrderSelect = {
+const orderBaseSelect: Prisma.OrderSelect = {
   id: true,
   totalSum: true,
   comment: true,
@@ -35,6 +35,10 @@ export const orderSelect: Prisma.OrderSelect = {
       },
     },
   },
+};
+
+export const orderSelect: Prisma.OrderSelect = {
+  ...orderBaseSelect,
   orderItems: {
     select: {
       id: true,
@@ -49,6 +53,23 @@ export const orderSelect: Prisma.OrderSelect = {
               url: true,
             },
           },
+        },
+      },
+    },
+  },
+};
+
+export const changedOrderStatusSelect: Prisma.OrderSelect = {
+  ...orderBaseSelect,
+  orderItems: {
+    select: {
+      id: true,
+      quantity: true,
+      product: {
+        select: {
+          id: true,
+          productName: true,
+          price: true,
         },
       },
     },
