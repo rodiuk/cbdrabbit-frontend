@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/libs/client/prisma.client";
-import { orderSelect } from "./selects/order.select";
+import { changedOrderStatusSelect, orderSelect } from "./selects/order.select";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
 import { createUser, updateUserTotalAmount } from "./user.api";
@@ -136,7 +136,7 @@ export const changeOrderStatusByInvoiceId = async (
       data: {
         status,
       },
-      select: orderSelect,
+      select: changedOrderStatusSelect,
     });
 
     return order;

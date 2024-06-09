@@ -22,7 +22,6 @@ export async function POST(req: Request) {
     await updateUserLoyalty(order.user.id);
 
     const webhookRes = await sendWebhook(order);
-    console.log({ webhookRes });
 
     return NextResponse.json({ message: "Successfully" }, { status: 200 });
   } catch (error) {

@@ -22,6 +22,7 @@ function getLocale(request: NextRequest): string | undefined {
 
 function intlMiddleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const searchParams = request.nextUrl.searchParams.toString();
 
   const pathnameIsMissingLocale = i18n.locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
@@ -30,13 +31,19 @@ function intlMiddleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-        request.url
-      )
+    const newUrl = new URL(
+      `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+      request.url
     );
+
+    if (searchParams) {
+      newUrl.search = searchParams;
+    }
+
+    return NextResponse.rewrite(newUrl);
   }
+
+  return NextResponse.next();
 }
 
 const authMiddleware = withAuth(
