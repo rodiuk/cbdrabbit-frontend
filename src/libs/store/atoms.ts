@@ -103,6 +103,7 @@ const changeProductCountAtom = atom(
     let totalCount = cart.totalCount;
     let newPrice = calculatePrice(cart.totalCount);
     let totalAmount = cart.totalAmount;
+    countValue = countValue >= 500 ? 500 : countValue;
 
     if (existingProduct) {
       totalAmount -= existingProduct.count * newPrice;
