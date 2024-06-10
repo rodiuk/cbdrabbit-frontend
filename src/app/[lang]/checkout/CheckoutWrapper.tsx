@@ -140,7 +140,7 @@ export const CheckoutWrapper = ({
         });
       }
 
-      createOrderEmail(
+      await createOrderEmail(
         resOrder.user.id,
         payload,
         cart.products,
