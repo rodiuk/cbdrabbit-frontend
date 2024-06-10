@@ -9,6 +9,7 @@ import styles from "./page.module.css";
 import { Footer } from "@/components/layout/Footer/Footer";
 import Post from "./[postId]/page";
 import Link from "next/link";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -24,9 +25,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Blog() {
+export default async function Blog({ params }: any) {
+	const { lang } = params;
 	const posts = await getAllPosts();
-	
+	const dict = await getDictionary(params.lang);
+	const {header} = dict
 	const items = [
 		{ id: 1, date: '17.03.24, 11:52', title: 'Як там то-то?', description: '1.1. Цей Договір, згідно зі ст. 633 та ст. 641 Цивільного кодексу України, є публічною офертою Продавця, адресованою невизначеному колу осіб, незалежно від їхнього статусу (фізич' },
 		{ id: 2, date: '18.03.24, 11:52', title: 'Як там то-то?2', description: '1.1. Цей Договір, згідно зі ст. 633 та ст. 641 Цивільного кодексу України, є публічною офертою Продавця, адресованою невизначеному колу осіб, незалежно від їхнього статусу (фізич' },
@@ -43,7 +46,7 @@ export default async function Blog() {
 					  <li key={item.id} className={styles.item}>
 						  <div className="wrap_item">
 							  <div className={styles.date}>{item.date}</div>
-							  <div className={styles.ttl}>{item.title}<Link href="/blog/1">kdtkydtk</Link></div>
+							  <div className={styles.ttl}><Link href={`/${lang}/blog/${item.id}`}>{ item.title}</Link></div>
 							  <div className={styles.description}>{item.description}</div>
 						  </div>
 					</li>
@@ -52,7 +55,7 @@ export default async function Blog() {
 			  </ul>
 			  </div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

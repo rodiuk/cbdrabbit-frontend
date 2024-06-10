@@ -11,6 +11,7 @@ import Link from "next/link";
 import okIcon from "/public/img/ok.jpg";
 import TelegramGreenIcon from "@/components/icons/TelegramGreenIcon";
 import Image from "next/image";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -26,7 +27,10 @@ export async function generateMetadata({
   };
 }
 
-export default function Cooperation() {
+export default async function Cooperation({ params }: any) {
+	const { lang } = params;
+	const dict = await getDictionary(lang);
+	const {header} = dict
   return (
     <>
 		  <main className={cn("container", s.main)}>
@@ -45,7 +49,7 @@ export default function Cooperation() {
 				  </div>
 			  </div>
 	  </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

@@ -4,7 +4,7 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 import { CheckoutWrapper } from "./CheckoutWrapper";
 import { SuccessOrder } from "@/components/auth/SuccessOrder";
 import { Footer } from "@/components/layout/Footer/Footer";
-
+ 
 import cn from "clsx";
 import styles from "./page.module.css";
 
@@ -13,10 +13,11 @@ export default async function Checkout({
   searchParams,
 }: IMainPageProps) {
   const { lang } = params;
-  const dict = await getDictionary(lang);
+	const dict = await getDictionary(lang);
+	const {header} = dict
   const homeDict = dict?.home;
   const successOrder = searchParams?.successOrder;
-
+ 
   return (
     <>
       <main className={cn("container", styles.main)}>
@@ -41,7 +42,7 @@ export default async function Checkout({
           )}
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

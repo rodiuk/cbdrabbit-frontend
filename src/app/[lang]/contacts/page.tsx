@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import { InstaWhiteIcon } from "@/components/icons/InstaWhiteIcon";
 import TelegramGreenIcon from "@/components/icons/TelegramGreenIcon";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -25,7 +26,10 @@ export async function generateMetadata({
   };
 }
 
-export default function Contacts() {
+export default async function Contacts({ params }: any) {
+	const { lang } = params;
+	const dict = await getDictionary(lang);
+	const {header} = dict
   return (
     <>
 		  <main className={cn("container", s.main)}>
@@ -41,7 +45,7 @@ export default function Contacts() {
 				  </div>
 			  </div>
 	  </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

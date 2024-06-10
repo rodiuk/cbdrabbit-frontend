@@ -8,7 +8,10 @@ import styles from "./page.module.css";
 import { Footer } from "@/components/layout/Footer/Footer";
 
 export default async function Orders({ params }: IMainPageProps) {
-  const { orders, currency } = await getDictionary(params.lang);
+	const { orders, currency } = await getDictionary(params.lang);
+	const { lang } = params;
+	const dict = await getDictionary(lang);
+	const {header} = dict
 
   return (
     <>
@@ -17,7 +20,7 @@ export default async function Orders({ params }: IMainPageProps) {
           <OrdersWrapper lang={params.lang} dict={orders} currency={currency} />
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }
