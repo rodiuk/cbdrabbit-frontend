@@ -53,7 +53,7 @@ const MenuDrop = (props: Props) => {
           </Link>
         )}
 
-			  <div className={s.wrapper_mnu}>
+			  <div className={s.wrapper_mnu}> 
 				  
 		
         {/* 1 блок */}
@@ -111,7 +111,7 @@ const MenuDrop = (props: Props) => {
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/about`} onClick={toggleMenu}>
-			Про нас
+			Про нас 
             </Link>
           </li>
           <li className={s.mnu_link}>

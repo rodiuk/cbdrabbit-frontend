@@ -11,11 +11,16 @@ import cn from "clsx";
 import s from "./Footer.module.css";
 
 import figureForFooter from "/public/img/figureForFooter.svg";
-
-export const Footer = async (): Promise<React.JSX.Element> => {
+import { Locale } from "../../../../i18n.config";
+interface Props {
+	lang?: Locale;
+	titles?: any;
+  }
+export const Footer = async ({lang, titles}: Props): Promise<React.JSX.Element> => {
   const session = await getServerSession(authConfig);
   const isAuth = !!session?.user.id;
-
+	
+	const {buy, cabinet, candies, aboutCbd, about, checkoutInfo, contacts, cooperation, blog, privacy, policy} = titles
   return (
     <footer className={cn("footer", s.footer)}>
       <div className={s.figure}>
@@ -31,37 +36,37 @@ export const Footer = async (): Promise<React.JSX.Element> => {
         <div className={s.mnu_row}>
           <ul className={s.ul}>
             <li>
-              <Link href="/">Купити</Link>
+						  <Link href={`/${lang}`}>{buy}</Link>
             </li>
             {isAuth && (
               <li>
-                <Link href="/">Мій кабінет</Link>
+                <Link href={`/${lang}/profile`}>{cabinet}</Link>
               </li>
             )}
           </ul>
           <ul className={s.ul}>
             <li>
-              <Link href="/">CBD цукерки</Link>
+						  <Link href={`/${lang}`}>{ candies}</Link>
             </li>
             <li>
-              <Link href="/">Про CBD</Link>
+              <Link href={`/${lang}/about-cbd`}>{aboutCbd}</Link>
             </li>
             <li>
-              <Link href="/">Про нас</Link>
+              <Link href={`/${lang}/about`}>{about}</Link>
             </li>
             <li>
-              <Link href="/">Оплата і доставка</Link>
+              <Link href={`/${lang}/checkout-info`}>{checkoutInfo}</Link>
             </li>
           </ul>
           <ul className={s.ul}>
             <li>
-              <Link href="/">Контакти</Link>
+              <Link href={`/${lang}/contacts`}>{contacts}</Link>
             </li>
             <li>
-              <Link href="/">Співпраця</Link>
+              <Link href={`/${lang}/cooperation`}>{cooperation}</Link>
             </li>
             <li>
-              <Link href="/">Блог</Link>
+              <Link href={`/${lang}/blog`}>{blog}</Link>
             </li>
           </ul>
           <div className={s.ul}>
@@ -88,9 +93,9 @@ export const Footer = async (): Promise<React.JSX.Element> => {
           <div className={s.part}>
             <p>© CBDRabbit. All Rights Reserved.</p>
             <p className={s.politics}>
-              <Link href="/">Політика конфіденційності</Link>{" "}
+              <Link href={`/${lang}/privacy`}>{privacy}</Link>{" "}
               <span className={s.divider}>|</span>{" "}
-              <Link href="/">Публічний договір оферти</Link>
+              <Link href={`/${lang}/policy`}>{policy}</Link>
             </p>
           </div>
           <div className={s.part}>

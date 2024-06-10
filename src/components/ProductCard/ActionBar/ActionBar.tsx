@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ActionBar = ({ product, className }: Props): React.JSX.Element => {
-	console.log(className)
+	
   return (
     <div className={cn(styles.container, {
 		[styles[className ?? '']]: className

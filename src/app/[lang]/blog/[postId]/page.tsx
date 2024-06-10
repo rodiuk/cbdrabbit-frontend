@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer/Footer";
 
 import post_pic from "/public/img/post_pic.jpg";
 import Image from "next/image";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 interface Props {}
 
@@ -34,7 +35,10 @@ interface Props {}
 }
  */
 export default async function Post({ params }: IMainPageProps) {
-  const post = await getPostById(params.postId);
+	const post = await getPostById(params.postId);
+	const { lang } = params;
+	const dict = await getDictionary(params.lang);
+	const {header} = dict
 
   return (
     <>
@@ -53,7 +57,7 @@ export default async function Post({ params }: IMainPageProps) {
 				  </div>
 		</div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

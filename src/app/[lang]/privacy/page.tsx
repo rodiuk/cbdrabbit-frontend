@@ -6,6 +6,7 @@ import { openGraphBase } from "@/app/[lang]/shared-metadata";
 import cn from "clsx";
 import styles from "./page.module.css";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -21,7 +22,11 @@ export async function generateMetadata({
   };
 }
 
-export default function Policy() {
+export default async function Policy({ params }: IMainPageProps) {
+	const { lang } = params;
+	const dict = await getDictionary(lang);
+	const {header} = dict
+	
   return (
     <>
       <main className={cn("container", styles.main)}>
@@ -137,7 +142,7 @@ export default function Policy() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }
