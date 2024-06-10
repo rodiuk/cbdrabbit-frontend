@@ -4,8 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Close from "@/components/icons/Close";
 import { useSession } from "next-auth/react";
-import InstagrammIcon from "@/components/icons/InstagrammIcon";
-import TelegrammIcon from "@/components/icons/TelegrammIcon";
+
 import RabbitWiteIcon from "@/components/icons/RabbitWiteIcon";
 import { Locale } from "../../../../../i18n.config";
 import { signOut } from "next-auth/react";
@@ -17,7 +16,7 @@ import basket_icom from "/public/img/basket_icom.svg";
 import svd_icon from "/public/img/svd_icon.svg";
 import my_page_icon from "/public/img/my_page_icon.svg";
 import my_orders from "/public/img/my_orders.svg";
-//import svd_icon.svg from "/public/img/svd_icon.svg.svg";
+
 import Image from "next/image";
 
 interface Props {
@@ -28,15 +27,16 @@ interface Props {
 
 const MenuDrop = (props: Props) => {
   const { toggleMenu, lang, dict } = props;
-  const { status } = useSession();
-
+	const { status } = useSession();
+	const titles = dict.titles
+  const {buy, cabinet, candies, aboutCbd, about, checkoutInfo, contacts, cooperation, blog, privacy, policy} = titles
   const isSignIn = status === "authenticated";
-
+ // 
   const handleSignOut = () => {
     signOut();
     toggleMenu();
   };
-
+console.log(titles)
   return (
     <div
       className={s.menu}
@@ -64,11 +64,11 @@ const MenuDrop = (props: Props) => {
                 <Link href={`/${lang}/profile`} onClick={toggleMenu}>
                   <Image
                     src={my_page_icon.src}
-                    alt="Мій кабінет"
+                    alt={cabinet}
                     width={24}
                     height={24}
                   />
-                  Мій кабінет
+                  {cabinet}
                 </Link>
               </li>
               <li className={s.mnu_link}>
@@ -88,11 +88,11 @@ const MenuDrop = (props: Props) => {
             <Link href={`/${lang}`} onClick={toggleMenu}>
               <Image
                 src={basket_icom.src}
-                alt="Купити"
+                alt={buy}
                 width={24}
                 height={24}
               />
-              Купити
+              {buy}
             </Link>
           </li>
         </ul>
@@ -100,38 +100,38 @@ const MenuDrop = (props: Props) => {
         <ul className={s.mnu_list}>
           <li className={s.mnu_link}>
             <Link href={`/${lang}`} onClick={toggleMenu}>
-              <Image src={svd_icon.src} alt="CBD цукерки" width={24} height={24} />{" "}
-              CBD цукерки
+              <Image src={svd_icon.src} alt={candies} width={24} height={24} />
+              {candies}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
-			Про CBD
+			{aboutCbd}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/about`} onClick={toggleMenu}>
-			Про нас 
+			{about}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
-			Оплата і доставка
+			{checkoutInfo}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/blog`} onClick={toggleMenu}>
-			Блог
+			{blog}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/contacts`} onClick={toggleMenu}>
-			Контакти
+			{contacts}
             </Link>
           </li>
           <li className={s.mnu_link}>
             <Link href={`/${lang}/cooperation`} onClick={toggleMenu}>
-			Співпраця
+			{cooperation}
             </Link>
           </li>
 
@@ -150,10 +150,10 @@ const MenuDrop = (props: Props) => {
 
 			  <div className={s.politic_block}>
 			  <Link href={`/${lang}/privacy`} className={s.politic_link}>
-			  Політика конфіденційності
+			  {privacy}
 			</Link>
 			  <Link href={`/${lang}/policy`} className={s.politic_link}>
-			  Публічний договір оферти
+			  {policy}
 			</Link>
 			  </div>	  
        {/* 
