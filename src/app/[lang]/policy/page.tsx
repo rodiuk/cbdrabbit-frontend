@@ -2,10 +2,11 @@ import React from "react";
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { Footer } from "@/components/layout/Footer/Footer";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import { Footer } from "@/components/layout/Footer/Footer";
 
 export async function generateMetadata({
   params,
@@ -21,7 +22,13 @@ export async function generateMetadata({
   };
 }
 
-export default function Policy({ params }: IMainPageProps): React.JSX.Element {
+export default async function Policy({
+  params,
+}: IMainPageProps): Promise<React.JSX.Element> {
+  const { lang } = params;
+
+  const header = (await getDictionary(lang)).header;
+
   return (
     <>
       <main className={cn("container", styles.main)}>
@@ -113,7 +120,7 @@ export default function Policy({ params }: IMainPageProps): React.JSX.Element {
           </p>
         </div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

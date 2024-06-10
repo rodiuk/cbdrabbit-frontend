@@ -8,7 +8,9 @@ import cn from "clsx";
 import s from "./page.module.css";
 
 export default async function Profile({ params }: IMainPageProps) {
-  const dict = await getDictionary(params.lang);
+	const dict = await getDictionary(params.lang);
+	const { lang } = params;
+	const {header} = dict
 
   return (
     <>
@@ -23,7 +25,7 @@ export default async function Profile({ params }: IMainPageProps) {
           />
         </Suspense>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }

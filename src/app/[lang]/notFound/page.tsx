@@ -10,6 +10,7 @@ import Image from "next/image";
 
 import iconRubbit from "/public/img/last.jpg";
 import Link from "next/link";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -25,7 +26,10 @@ export async function generateMetadata({
   };
 }
 
-export default function NotFound() {
+export default async function NotFound({ params }: any) {
+	const { lang } = params;
+	const dict = await getDictionary(lang);
+	const {header} = dict
   return (
     <>
       <main className={cn("container", s.main)}>
@@ -43,7 +47,7 @@ export default function NotFound() {
 			  </div>
 			  <div className={s.bot}><span className={s.bold}>404.</span> Сторінки не існує. А що взагалі реально?</div>
       </main>
-      <Footer />
+      <Footer lang={lang} titles={header.titles} />
     </>
   );
 }
