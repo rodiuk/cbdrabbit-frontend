@@ -99,7 +99,14 @@ export interface IHeaderDict {
     blog: string;
     post: string;
     about: string;
-    whereToBuy: string;
+	  whereToBuy: string; 
+	  checkoutInfo: string
+      aboutCbd: string
+      policy: string
+      privacy: string
+      buy: string
+      cabinet: string
+      candies: string
   };
   links: {
     signIn: string;

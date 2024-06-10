@@ -4,10 +4,15 @@
   align-items: center;
   height: 40px;
 }
-
+.checkout_input {
+	margin: 0 !important;
+}
 @media (max-width: 767px) {
 	.container {
 		max-width: 144px;
 		margin: 0 0 0 auto;
+	}
+	.checkout_input {
+		margin: 0 !important;
 	}
 }

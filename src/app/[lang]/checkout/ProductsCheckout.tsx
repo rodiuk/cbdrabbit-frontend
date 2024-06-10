@@ -70,7 +70,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
                       product={product as IProductRes}
                       className="checkout_input"
                     />
-                  </div>
+                  </div> 
                 </>
               ) : (
                 <>
