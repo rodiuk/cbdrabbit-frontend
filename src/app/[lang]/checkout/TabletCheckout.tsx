@@ -43,7 +43,8 @@ interface Props {
   homeDict: any;
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
-  isLoading?: boolean;
+	isLoading?: boolean;
+	validateData: any
 }
 
 const TabletCheckout = (props: Props): React.JSX.Element => {
@@ -66,7 +67,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     setPromocode,
     promocode,
     isLoading,
-    homeDict,
+	  homeDict,
+	  validateData
   } = props;
 
   return (
@@ -77,7 +79,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           <UserCheckoutForm
             setUserInfo={setUserInfo}
             dict={dict}
-            userInfo={userInfo}
+					  userInfo={userInfo}
+					  validateData={validateData}
           />
         </div>
         <div className={styles.checkoutBlock}>
@@ -97,7 +100,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             deliveryId={deliveryId}
             setCity={setCity}
             setPostPoint={setPostPoint}
-            setDeliveryId={setDeliveryId}
+					  setDeliveryId={setDeliveryId}
+					  validateData={validateData}
           />
         </div>
 
