@@ -63,10 +63,7 @@ const Input: React.FC<InputProps> = ({
 		})
 	}, [validateData])
 	
-	console.log(validateData)
-	/* validateData.map((elem: any) => {
-		console.log(elem)
-	}) */
+	
   return (
     <label
       className={cn(s.label, {
