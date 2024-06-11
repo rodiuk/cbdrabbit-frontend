@@ -60,7 +60,6 @@ const Input: React.FC<InputProps> = ({
 					setIsEmpty(true)
 				}
 			}
-			console.log(elem.name, input)
 		})
 	}, [validateData])
 	
