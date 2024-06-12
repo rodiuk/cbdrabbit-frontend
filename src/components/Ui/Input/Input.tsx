@@ -22,6 +22,7 @@ interface InputProps {
   handleForgot?: () => void;
   errorText?: string;
 	showForgotPassword?: boolean;
+	validateData?: any,
 	
 }
 
@@ -35,23 +36,39 @@ const Input: React.FC<InputProps> = ({
   showLay,
   errorText,
   showForgotPassword,
-  handleForgot,
+	handleForgot,
+	validateData,
   ...input
 }) => {
-  const [type, setType] = React.useState(input.type);
+	const [type, setType] = React.useState(input.type);
+	const [isEmpty, setIsEmpty] = React.useState(false)
 
   const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onInputChange) onInputChange(e.target.value);
+	  if (onInputChange) onInputChange(e.target.value);
+	  setIsEmpty(false)
   };
 
   const handlerClick = (el: string) => {
     setType(el);
-  };
+	};
 
+	React.useEffect(() => {
+		setIsEmpty(false)
+		validateData && validateData.map((elem: any) => {
+			if (elem.name === input.name) {
+				if (elem.value) {
+					setIsEmpty(true)
+				}
+			}
+		})
+	}, [validateData])
+	
+	
   return (
     <label
       className={cn(s.label, {
-        error: false,
+		  error: false,
+		  [s.isEmpty]: isEmpty
       })}
 	  >
 		  {text && (

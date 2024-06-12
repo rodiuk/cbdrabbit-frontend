@@ -76,7 +76,7 @@
 .checkout_promo {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 	gap: 0 8px;
 }
 .checkoutTotal {

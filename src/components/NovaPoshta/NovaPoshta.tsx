@@ -16,11 +16,12 @@ interface Props {
   setCity: (city: string) => void;
   setPostPoint: (postPoint: string) => void;
   deliveryId: string;
-  setDeliveryId: (deliveryId: string) => void;
+	setDeliveryId: (deliveryId: string) => void;
+	validateData?: any
 }
 
 const NovaPost = (props: Props): React.JSX.Element => {
-  const { city, setCity, postPoint, setPostPoint, deliveryId, setDeliveryId } =
+  const { city, setCity, postPoint, setPostPoint, deliveryId, setDeliveryId, validateData } =
     props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenFilial, setIsOpenFilial] = React.useState(false);
@@ -148,7 +149,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
             placeholder="Введи населений пункт"
             showLay={showLay}
             autoComplete="off"
-            value={city}
+					  value={city}
+					  validateData={validateData}
           />
 
           {deliveryId === "3" ? (
@@ -171,7 +173,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
               placeholder="Введи номер відділення"
               showLay={showLayFilial}
               autoComplete="off"
-              value={postPoint}
+							  value={postPoint}
+							  validateData={validateData}
             />
           )}
         </>

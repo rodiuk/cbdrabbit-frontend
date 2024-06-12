@@ -42,6 +42,7 @@ interface Props {
   promocode: Promocode | null;
   homeDict: any;
   isLoading?: boolean;
+  validateData?: any;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -64,6 +65,7 @@ const MobileCheckout = (props: Props) => {
     homeDict,
     setPromocode,
     promocode,
+    validateData,
   } = props;
 
   return (
@@ -75,7 +77,7 @@ const MobileCheckout = (props: Props) => {
       </div>
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>{dict.contactTitle}</div>
-        <UserCheckoutForm setUserInfo={setUserInfo} dict={dict} />
+        <UserCheckoutForm setUserInfo={setUserInfo} dict={dict}  validateData={validateData} />
       </div>
       <div className={styles.checkoutBlock}>
         <div
@@ -95,7 +97,8 @@ const MobileCheckout = (props: Props) => {
           postPoint={postPoint}
           setPostPoint={setPostPoint}
           deliveryId={deliveryId}
-          setDeliveryId={setDeliveryId}
+				  setDeliveryId={setDeliveryId}
+				  validateData={validateData}
         />
       </div>
 
