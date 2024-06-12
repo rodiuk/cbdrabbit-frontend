@@ -51,7 +51,15 @@ export const CheckoutWrapper = ({
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [promocode, setPromocode] = React.useState<Promocode | null>(null);
-
+	const [validateData, setValidateData] = React.useState([
+		{name: "firstName", value: false},
+		{name: "lastName", value: false},
+		{name: "phone", value: false},
+		{name: "email", value: false},
+		{name: "Населений пункт", value: false},
+		{name: "Відділення", value: false},
+	]);
+ 
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
@@ -85,8 +93,56 @@ export const CheckoutWrapper = ({
       }
     })();
   }, [data?.user?.id]);
+	
+	const validateInputs = () => {
+		setValidateData([
+			{name: "firstName", value: false},
+			{name: "lastName", value: false},
+			{name: "phone", value: false},
+			{name: "email", value: false},
+			{name: "Населений пункт", value: false},
+			{name: "Відділення", value: false},
+		])
+		if (!userInfo.firstName) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "firstName" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.lastName) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "lastName" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.phone) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "phone" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.email) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "email" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!city) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "Населений пункт" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!postPoint) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "Відділення" ?
+					{...item, value: true} : item
+			)));
+		}
+	}
 
-  const handleCheckout = async () => {
+	const handleCheckout = async () => {
+		validateInputs()
     if (
       !city ||
       !postPoint ||
@@ -177,7 +233,8 @@ export const CheckoutWrapper = ({
         setComment={setComment}
         homeDict={homeDict}
         setPromocode={setPromocode}
-        promocode={promocode}
+			  promocode={promocode}
+			  validateData={validateData}
       />
 
       <MobileCheckout
@@ -192,13 +249,15 @@ export const CheckoutWrapper = ({
         setFinalPrice={setFinalPrice}
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
-        setUserInfo={setUserInfo}
+			  setUserInfo={setUserInfo}
+			  
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
         homeDict={homeDict}
         setPromocode={setPromocode}
-        promocode={promocode}
+			  promocode={promocode}
+			  validateData={validateData}
       />
     </>
   );
