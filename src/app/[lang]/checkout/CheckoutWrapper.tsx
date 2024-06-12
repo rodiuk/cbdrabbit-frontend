@@ -59,7 +59,7 @@ export const CheckoutWrapper = ({
 		{name: "Населений пункт", value: false},
 		{name: "Відділення", value: false},
 	]);
-
+ 
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
@@ -249,13 +249,15 @@ export const CheckoutWrapper = ({
         setFinalPrice={setFinalPrice}
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
-        setUserInfo={setUserInfo}
+			  setUserInfo={setUserInfo}
+			  
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
         homeDict={homeDict}
         setPromocode={setPromocode}
-        promocode={promocode}
+			  promocode={promocode}
+			  validateData={validateData}
       />
     </>
   );

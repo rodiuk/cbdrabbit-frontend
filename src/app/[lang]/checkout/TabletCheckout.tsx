@@ -44,7 +44,7 @@ interface Props {
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
 	isLoading?: boolean;
-	validateData: any
+	validateData?: any
 }
 
 const TabletCheckout = (props: Props): React.JSX.Element => {

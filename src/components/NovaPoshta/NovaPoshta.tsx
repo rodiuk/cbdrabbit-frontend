@@ -17,7 +17,7 @@ interface Props {
   setPostPoint: (postPoint: string) => void;
   deliveryId: string;
 	setDeliveryId: (deliveryId: string) => void;
-	validateData: any
+	validateData?: any
 }
 
 const NovaPost = (props: Props): React.JSX.Element => {

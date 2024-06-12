@@ -10,7 +10,7 @@ interface Props {
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   userInfo?: IUserCheckoutForm;
 	isPopup?: boolean;
-	validateData: any
+	validateData?: any
 }
 
 const UserCheckoutForm = ({
