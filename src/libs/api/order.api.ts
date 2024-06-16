@@ -158,6 +158,8 @@ export const changeOrderStatusByCheckId = async (
   try {
     const existOrder = await getOrderByCheckId(checkId);
 
+    console.log("existOrder", existOrder);
+
     if (!existOrder) throw new Error("Order not found");
 
     if (existOrder.status !== status) {
