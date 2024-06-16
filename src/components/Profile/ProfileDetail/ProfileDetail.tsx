@@ -17,14 +17,14 @@ interface Props {
 const ProfileDetail = (props: Props) => {
   const { user, currency, dict } = props;
 
-	const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
-	
+  const totalAmount = user?.totalOrdersAmount ? user?.totalOrdersAmount : 0;
+
   return (
     <section className={s.details}>
       <div className={s.details_grey}>
         <p>{dict.totalAmountTitle} </p>
         <p className={s.details_big}>
-          {user?.totalOrdersAmount} {currency}
+          {user?.totalOrdersAmount?.toFixed(2)} {currency}
         </p>
       </div>
       <div className={s.details_white}>

@@ -16,6 +16,7 @@ import no_sum from "/public/img/no_sum.svg";
 import sale_icon from "/public/img/sale_icon.svg";
 
 import s from "./s.module.css";
+import { LoaderRabbit } from "@/components/Ui/Loaders/LoaderRabbit";
 
 interface Props {
   dict: ICheckoutDict;

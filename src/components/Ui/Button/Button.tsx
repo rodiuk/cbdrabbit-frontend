@@ -3,6 +3,7 @@ import { ArrowLeftIcon } from "@/components/icons/ArrowLeft";
 
 import cn from "clsx";
 import s from "./s.module.css";
+import { LoaderRabbit } from "../Loaders/LoaderRabbit";
 
 interface ButtonProps {
   className?: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
   iconLeft?: boolean;
   icon?: React.ReactNode;
   handleClick?: () => void;
+  isLoading?: boolean;
   isDisabled?: boolean;
 }
 
@@ -20,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   handleClick,
   isDisabled,
+  isLoading,
 }) => {
   return (
     <button
@@ -35,6 +38,8 @@ const Button: React.FC<ButtonProps> = ({
         </span>
       )}
       {text}
+
+      {isLoading && <LoaderRabbit />}
     </button>
   );
 };

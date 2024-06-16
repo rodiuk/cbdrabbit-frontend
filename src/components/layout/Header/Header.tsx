@@ -13,20 +13,19 @@ interface Props {
 }
 
 export const Header = async ({ lang }: Props): Promise<React.JSX.Element> => {
-	const dict = await getDictionary(lang);
-	
- 
+  const dict = await getDictionary(lang);
+
   return (
     <header className={cn("", styles.container, styles.header)} id="headerId">
-      <div className={cn("container", styles.block)}> {/* этот класс - он для ограничения, глобальный */}
-			  <LogoContainer lang={lang} />
-			  
-        
+      <div className={cn("container", styles.block)}>
+        {" "}
+        {/* этот класс - он для ограничения, глобальный */}
+        <LogoContainer lang={lang} />
         <NavWrapper lang={lang} dict={dict.header} />
-		  </div>
-		  <div className="container">
-		  <PageTitle lang={lang} />
-		  </div>
+      </div>
+      <div className="container">
+        <PageTitle lang={lang} />
+      </div>
     </header>
   );
 };
