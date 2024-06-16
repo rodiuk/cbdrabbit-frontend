@@ -198,7 +198,6 @@ export const CheckoutWrapper = ({
         cart.fromCheckout,
         lang
       );
-      await sendWebhook(resOrder);
 
       if ("user" in resOrder && !data?.user?.id) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
