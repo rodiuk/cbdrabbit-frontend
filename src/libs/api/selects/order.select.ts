@@ -42,6 +42,7 @@ export const orderSelect: Prisma.OrderSelect = {
     select: {
       id: true,
       quantity: true,
+      productId: true,
       product: {
         select: {
           id: true,
