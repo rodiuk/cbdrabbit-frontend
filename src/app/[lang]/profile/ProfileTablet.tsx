@@ -10,11 +10,11 @@ import { maskEmailAddress } from "@/utils/maskEmailAddress";
 import { IProfileDict } from "@/interfaces/i18n.interface";
 import { useSession } from "next-auth/react";
 import { UserDeliveryInfoSection } from "@/components/UserDeliveryInfoSection/UserDeliveryInfoSection";
+import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
 
 import s from "./page.module.css";
 
 import np from "/public/img/np.svg";
-import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
 
 interface Props {
   user: IUserProfile | null;

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { PopupWrapper } from "./PopupWrapper";
 import ProfileTablet from "./ProfileTablet";
 import ProfileMobile from "./ProfileMobile";
@@ -12,7 +13,6 @@ import {
   IProfileDict,
   IRecoveryPasswordDict,
 } from "@/interfaces/i18n.interface";
-import { useSearchParams } from "next/navigation";
 
 interface Props {
   currency: string;
@@ -22,9 +22,9 @@ interface Props {
   lang: string;
 }
 
-export const ProfileWrapper = (props: Props): React.JSX.Element => {
+export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
   const { currency, profileDict, checkoutDict, recoveryDict, lang } = props;
-  const { data } = useSession();
+  const { data, status } = useSession();
   const [user, setUser] = React.useState<IUserProfile | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [actualLay, setActualLay] = React.useState("");
@@ -43,6 +43,8 @@ export const ProfileWrapper = (props: Props): React.JSX.Element => {
     setActualLay(info);
     setIsOpen(!!info);
   };
+
+  if (status === "loading") return null;
 
   return (
     <>

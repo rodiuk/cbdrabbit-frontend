@@ -27,7 +27,11 @@ interface Props {
 const MenuDrop = (props: Props) => {
   const { toggleMenu, lang, dict } = props;
   const { status } = useSession();
+
+  if (status === "loading") return null;
+
   const titles = dict.titles;
+
   const {
     buy,
     cabinet,
@@ -42,11 +46,12 @@ const MenuDrop = (props: Props) => {
     policy,
   } = titles;
   const isSignIn = status === "authenticated";
-  //
+
   const handleSignOut = () => {
     signOut();
     toggleMenu();
   };
+
   return (
     <div
       className={s.menu}

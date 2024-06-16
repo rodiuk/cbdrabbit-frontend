@@ -3,15 +3,14 @@
 import React from "react";
 import { Locale } from "../../../../i18n.config";
 import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
-//import Cart from "./Cart/Cart";
 import { Menu } from "./Menu/Menu";
 import MenuDrop from "./MenuDrop/MenuDrop";
 import { IHeaderDict } from "@/interfaces/i18n.interface";
 import dynamic from "next/dynamic";
 
 const Cart = dynamic(() => import("@/components/layout/Header/Cart/Cart"), {
-	ssr: false,
-  });
+  ssr: true,
+});
 
 import styles from "./Header.module.css";
 import ButtonTop from "./ButtonTop/ButtonTop";
@@ -30,8 +29,8 @@ export const NavWrapper = ({ lang, dict }: Props): React.JSX.Element => {
 
   return (
     <>
-		  <nav className={styles.navigation}>
-		  <ButtonTop lang={lang} />
+      <nav className={styles.navigation}>
+        <ButtonTop lang={lang} />
         <LocaleSwitcher current={lang} />
         <Cart lang={lang} />
         <Menu toggleMenu={toggleMenu} />

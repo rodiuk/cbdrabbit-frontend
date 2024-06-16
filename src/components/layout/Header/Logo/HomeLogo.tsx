@@ -2,14 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MobileMainLogoIcon from "@/components/icons/MobileMainLogo";
+import BaseLogoIcon from "@/components/icons/BaseLogo";
+import { ArrowRightIcon } from "@/components/icons/ArrowRight";
 
 import cn from "clsx";
 import styles from "./styles.module.css";
-import BaseLogoIcon from "@/components/icons/BaseLogo";
-import { usePathname } from "next/navigation";
-
-import { ArrowRightIcon } from "@/components/icons/ArrowRight";
 
 interface Props {
   lang: string;
@@ -18,8 +17,8 @@ interface Props {
 export const HomeLogo = ({ lang }: Props): React.JSX.Element => {
   const pathname = usePathname();
   const isPrevIcon =
-		pathname === `/${lang}/checkout` || pathname === `/${lang}/blog`;
-	
+    pathname === `/${lang}/checkout` || pathname === `/${lang}/blog`;
+
   return (
     <Link
       href={`/${lang}/`}
