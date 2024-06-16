@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "CBD Rabbit",
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
+  icons: {
+    icon: "/favicon-32x32.png",
+  },
   metadataBase: new URL(appConfig.DOMAIN),
 };
 
