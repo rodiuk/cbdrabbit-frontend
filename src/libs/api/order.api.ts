@@ -161,10 +161,11 @@ export const changeOrderStatusByCheckId = async (
     if (!existOrder) throw new Error("Order not found");
 
     if (existOrder.status !== status) {
+      existOrder.status = status;
       await sendWebhook(existOrder);
     }
 
-    if (existOrder.status === OrderStatus.PAID) {
+    if (status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );

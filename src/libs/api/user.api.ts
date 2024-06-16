@@ -427,7 +427,7 @@ export const updateUserTotalAmount = async (
         id: userId,
       },
       data: {
-        totalOrdersAmount: user?.totalOrdersAmount + orderAmount,
+        totalOrdersAmount: +user?.totalOrdersAmount + orderAmount,
       },
     });
   } catch (error) {
@@ -542,21 +542,23 @@ export const updateUserLoyalty = async (userId: string) => {
 
     let newDiscount: number = user?.loyalty?.percentDiscount;
 
+    const userAmount = +user?.totalOrdersAmount?.toFixed(0) ?? 0;
+
     switch (true) {
-      case user?.totalOrdersAmount >= 1000:
-        newDiscount = 5;
-        break;
-      case user?.totalOrdersAmount >= 3000:
-        newDiscount = 7;
-        break;
-      case user?.totalOrdersAmount >= 5000:
-        newDiscount = 10;
-        break;
-      case user?.totalOrdersAmount >= 7000:
+      case userAmount >= 7000:
         newDiscount = 12;
         break;
+      case userAmount >= 5000:
+        newDiscount = 10;
+        break;
+      case userAmount >= 3000:
+        newDiscount = 7;
+        break;
+      case userAmount >= 1000:
+        newDiscount = 5;
+        break;
       default:
-        newDiscount;
+        break;
     }
 
     const updatedUser = await prisma.user.update({
