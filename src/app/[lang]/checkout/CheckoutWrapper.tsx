@@ -59,7 +59,7 @@ export const CheckoutWrapper = ({
 		{name: "Населений пункт", value: false},
 		{name: "Відділення", value: false},
 	]);
- 
+
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
@@ -93,7 +93,9 @@ export const CheckoutWrapper = ({
       }
     })();
   }, [data?.user?.id]);
-	
+
+
+
 	const validateInputs = () => {
 		setValidateData([
 			{name: "firstName", value: false},
@@ -186,7 +188,7 @@ export const CheckoutWrapper = ({
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
-      const resOrder = await createOrder(payload, res?.invoiceId);
+      const resOrder = await createOrder(payload, res?.invoiceId, cart.fromCheckout, lang);
 
       if ("user" in resOrder && !data?.user?.id) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
@@ -201,6 +203,7 @@ export const CheckoutWrapper = ({
         payload,
         cart.products,
         cart.fromCheckout,
+        resOrder?.id,
         lang
       );
 
@@ -235,6 +238,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
 			  promocode={promocode}
 			  validateData={validateData}
+
       />
 
       <MobileCheckout
@@ -250,7 +254,7 @@ export const CheckoutWrapper = ({
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
 			  setUserInfo={setUserInfo}
-			  
+
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
@@ -258,6 +262,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
 			  promocode={promocode}
 			  validateData={validateData}
+
       />
     </>
   );

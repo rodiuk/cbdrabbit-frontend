@@ -1,8 +1,8 @@
 "use server";
 
 import { appConfig } from "@/configs/app.config";
-import { IOrderCreate } from "@/interfaces/order.interface";
-import { IProductCard } from "@/interfaces/product.interface";
+import { IOrderCreate, IUserOrder } from "@/interfaces/order.interface";
+import { IProductCard, IProductRes } from "@/interfaces/product.interface";
 import { Order, User } from "@prisma/client";
 
 const getBearerToken = async () => {
@@ -221,10 +221,10 @@ export const createOrderEmail = async (
   }
 };
 
-export const orderInProgress = async (
+export const orderInProgressEmail = async (
   userId: string,
-  order: IOrderCreate,
-  products: IProductCard[],
+  order: IUserOrder,
+  products: IProductRes[],
   firstOrder: boolean,
   orderId?: string,
   lang?: string
@@ -232,20 +232,19 @@ export const orderInProgress = async (
   try {
     const tokenData = await getBearerToken();
 
-    const productsForEmail = products
-      .filter(product => product.count > 0)
-      .map(product => ({
-        name: product.productName,
-        url: "not product url",
-        imageUrl: product?.images && product?.images[0]?.url,
-        description: product.description,
-        cost: order.itemPrice,
-        quantity: order.items.filter(item => item.productId === product.id)[0]
-          ?.quantity,
-      }));
+    const productsForEmail = products.map(product => ({
+      name: product.productName,
+      url: "not product url",
+      imageUrl: product?.images && product?.images[0]?.url,
+      description: product.description,
+      cost: order.itemPrice,
+      quantity: order.orderItems.filter(
+        item => item.product.id === product.id
+      )[0]?.quantity,
+    }));
 
     const res = await fetch(
-      `${appConfig.SENDPULSE_EVENTS_URL}/name/ordercreate`,
+      `${appConfig.SENDPULSE_EVENTS_URL}/name/orderin_progress`,
       {
         method: "POST",
         headers: {
@@ -253,15 +252,15 @@ export const orderInProgress = async (
           Authorization: `Bearer ${tokenData.access_token}`,
         },
         body: JSON.stringify({
-          email: order.email,
-          phone: order.address.phoneNumber,
+          email: order.user.email,
+          phone: order.user.address.phoneNumber,
           user_id: userId,
           event_date: Date.now().toString(),
           products: productsForEmail,
           language: lang,
           total: order.totalSum,
           order_id: orderId,
-          delivery_address: `${order.address.npDeliveryType}, ${order.address.city}, ${order.address.npDepartment}`,
+          delivery_address: `${order.user.address.npDeliveryType}, ${order.user.address.city}, ${order.user.address.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
           first_order: firstOrder ? "yes" : "no",

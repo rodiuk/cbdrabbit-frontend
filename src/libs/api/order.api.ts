@@ -4,9 +4,15 @@ import prisma from "@/libs/client/prisma.client";
 import { changedOrderStatusSelect, orderSelect } from "./selects/order.select";
 import { IOrderCreate } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
-import { createUser, updateUserTotalAmount } from "./user.api";
+import {
+  createUser,
+  updateUserLoyalty,
+  updateUserTotalAmount,
+} from "./user.api";
 import { OrderStatus } from "@prisma/client";
 import { nanoid } from "nanoid";
+import { orderInProgressEmail, sendWebhook } from "./emails.api";
+import { getProductsByIds } from "./products.api";
 
 export const getAllUserOrders = async (userId: string) => {
   try {
@@ -40,7 +46,9 @@ export const getOrderById = async (orderId: string) => {
 
 export const createOrder = async (
   orderData: IOrderCreate,
-  paymentId: string
+  paymentId: string,
+  firstOrder?: boolean,
+  lang?: string
 ) => {
   try {
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
@@ -85,6 +93,8 @@ export const createOrder = async (
             },
           },
         }),
+        ...(lang && { lang: lang }),
+        ...(!!firstOrder && { firstOrder: firstOrder }),
         ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
         ...(orderData.utm_source && { utm_source: orderData.utm_source }),
         ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
@@ -129,6 +139,28 @@ export const changeOrderStatusByInvoiceId = async (
   }
 
   try {
+    const existOrder = await getOrderById(invoiceId);
+
+    if (!existOrder) throw new Error("Order not found");
+
+    if (existOrder.status === status) return null;
+
+    await sendWebhook(existOrder);
+
+    if (existOrder.status === OrderStatus.PAID) {
+      const orderProducts = await getProductsByIds(
+        existOrder.orderItems.map(item => item.productId)
+      );
+      await updateUserLoyalty(existOrder.user.id);
+      await orderInProgressEmail(
+        existOrder.user.id,
+        existOrder as any,
+        orderProducts || [],
+        !!existOrder.firstOrder,
+        existOrder.lang || "uk"
+      );
+    }
+
     const order = await prisma.order.update({
       where: {
         paymentId: invoiceId,
