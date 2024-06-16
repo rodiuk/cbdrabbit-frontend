@@ -1,39 +1,38 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import Close from "@/components/icons/Close";
+import Button from "@/components/Ui/Button/Button";
+import { InfoIcon } from "@/components/icons/InfoIcon";
 
 import cn from "clsx";
 import styles from "./DiscountInfo.module.css";
-import Close from "@/components/icons/Close";
 
 import sale from "/public/img/salenew.jpg";
-import Image from "next/image";
-import Button from "@/components/Ui/Button/Button";
-import ButtonRed from "@/components/Ui/Button/ButtonRed";
-import { InfoIcon } from "@/components/icons/InfoIcon";
 
 interface Props {
   label: string;
-	discountList: string[];
-	className?: string
+  discountList: string[];
+  className?: string;
 }
 
 export const DiscountInfo = ({
   label,
-	discountList,
-	className
+  discountList,
+  className,
 }: Props): React.JSX.Element => {
-	const [show, setShow] = React.useState(false);
-	
-	const closeLay = () => {
-		setShow(false)
-	}
-	const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (e.currentTarget === e.target) {
-			setShow(false)
-		}
-	  };
+  const [show, setShow] = React.useState(false);
+
+  const closeLay = () => {
+    setShow(false);
+  };
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget === e.target) {
+      setShow(false);
+    }
+  };
   return (
     <div className={cn(styles.container, className)}>
       <p className={styles.label} onClick={() => setShow(prev => !prev)}>
@@ -43,7 +42,7 @@ export const DiscountInfo = ({
             [styles.icon_rotate]: show,
           })}
         /> */}
-			  <InfoIcon />
+        <InfoIcon />
       </p>
       <AnimatePresence mode="wait">
         {show && (
@@ -52,8 +51,8 @@ export const DiscountInfo = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "100vh" }}
             exit={{ opacity: 0, height: 0 }}
-					  transition={{ duration: 0.4 }}
-					  onClick={e => handleBackdropClick(e)}
+            transition={{ duration: 0.4 }}
+            onClick={e => handleBackdropClick(e)}
           >
             <div className={styles.lay}>
               <div className={styles.ttl}>Знижка на великі замовлення</div>
@@ -67,15 +66,13 @@ export const DiscountInfo = ({
                   </li>
                 ))}
                 <li className={styles.discount} />
-						  </ul>
-						  <button className={styles.close} onClick={closeLay}>
-						  	<Close iconStyle={styles.grey} />
-						  </button>
-						  <div className={styles.bb}>
-							  <Button text="Чудово" handleClick={closeLay} />
-						  </div>
-						  
-              
+              </ul>
+              <button className={styles.close} onClick={closeLay}>
+                <Close iconStyle={styles.grey} />
+              </button>
+              <div className={styles.bb}>
+                <Button text="Чудово" handleClick={closeLay} />
+              </div>
             </div>
           </motion.div>
         )}

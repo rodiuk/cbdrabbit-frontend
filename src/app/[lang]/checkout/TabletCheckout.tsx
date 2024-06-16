@@ -43,8 +43,8 @@ interface Props {
   homeDict: any;
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
-	isLoading?: boolean;
-	validateData?: any
+  isLoading?: boolean;
+  validateData?: any;
 }
 
 const TabletCheckout = (props: Props): React.JSX.Element => {
@@ -67,8 +67,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     setPromocode,
     promocode,
     isLoading,
-	  homeDict,
-	  validateData
+    homeDict,
+    validateData,
   } = props;
 
   return (
@@ -79,8 +79,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
           <UserCheckoutForm
             setUserInfo={setUserInfo}
             dict={dict}
-					  userInfo={userInfo}
-					  validateData={validateData}
+            userInfo={userInfo}
+            validateData={validateData}
           />
         </div>
         <div className={styles.checkoutBlock}>
@@ -100,8 +100,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             deliveryId={deliveryId}
             setCity={setCity}
             setPostPoint={setPostPoint}
-					  setDeliveryId={setDeliveryId}
-					  validateData={validateData}
+            setDeliveryId={setDeliveryId}
+            validateData={validateData}
           />
         </div>
 
@@ -127,7 +127,7 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
       </div>
 
       <div className={styles.right}>
-        <div className={styles.checkoutBlock}>
+        <div className={cn(styles.checkoutBlock, styles.checkoutBlock_cart)}>
           <h3 className={styles.checkoutBlock_h2}>{dict.orderTitle}</h3>
           <ProductsCheckout homeDict={homeDict} />
         </div>

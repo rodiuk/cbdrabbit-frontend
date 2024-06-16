@@ -143,7 +143,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
             </div>
           </div> */}
           <div className={s.checkoutRes_row}>
-            <div className={s.checkoutRes_nm}>Доставка</div>
+            <div className={s.checkoutRes_nm}>{dict.deliveryTitle}</div>
             <div className={s.checkoutRes_price}>
               {finalPrice >= freeDelivery ? (
                 <span className={s.free}>

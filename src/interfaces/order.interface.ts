@@ -29,8 +29,14 @@ export interface IUserOrder {
   totalSum: number;
   itemPrice: number;
   checkId: number;
-  comment: string;
-  status: string;
+  comment?: string | null;
+  status?: string | null;
+  utm_campaign?: string | null;
+  utm_content?: string | null;
+  utm_medium?: string | null;
+  utm_source?: string | null;
+  utm_term?: string | null;
+  promocodeId?: string | null;
   createdAt: Date;
   updatedAt: Date;
   user: {

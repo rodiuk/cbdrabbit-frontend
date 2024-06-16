@@ -35,6 +35,25 @@ export const getProductById = async (id: string, lang: string) => {
   }
 };
 
+export const getProductsByIds = async (
+  ids: string[]
+): Promise<IProductRes[]> => {
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      select: productSelect,
+    });
+
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const createProduct = async (productData: IProductCreate) => {
   try {
     const product = await prisma.$transaction(async prisma => {

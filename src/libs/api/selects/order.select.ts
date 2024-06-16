@@ -13,6 +13,8 @@ const orderBaseSelect: Prisma.OrderSelect = {
   utm_medium: true,
   utm_source: true,
   utm_term: true,
+  lang: true,
+  firstOrder: true,
   promocode: {
     select: {
       code: true,
