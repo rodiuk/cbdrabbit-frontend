@@ -5,7 +5,7 @@ import { IUserOrderItem } from "@/interfaces/order.interface";
 import s from "./OrderProduct.module.css";
 
 interface Props {
-  item: IUserOrderItem;
+  item: Partial<IUserOrderItem>;
   itemPrice: number;
 }
 
@@ -21,10 +21,11 @@ const OrderProduct = (props: Props): React.JSX.Element => {
       </div>
       <div className={s.productCheckout_info}>
         <div className={s.productCheckout_ttl}>
-          <p>{item.product.productName}</p>
+          <p>{item?.product?.productName}</p>
         </div>
         <div className={s.productCheckout_count}>
-          <span className={s.grey}>{item.quantity} &#215;</span> {itemPrice.toFixed(2)} ₴
+          <span className={s.grey}>{item.quantity} &#215;</span>{" "}
+          {itemPrice.toFixed(2)} ₴
         </div>
       </div>
     </div>
