@@ -17,7 +17,15 @@ interface Props {
   lang: string;
 }
 
-const excludedPaths = ["checkout", "profile"];
+const excludedPaths = [
+  "checkout",
+  "profile",
+  "signIn",
+  "signUp",
+  "privacy",
+  "policy",
+  "blog",
+];
 
 const CartBanner = (props: Props): React.JSX.Element | null => {
   const { currency, checkoutLabel, buttonLabel, lang } = props;
@@ -25,7 +33,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const pathname = usePathname()?.split("/")?.at(-1);
 
   const hasExcludedPath = !!pathname ? excludedPaths.includes(pathname) : false;
- 
+
   return (
     <AnimatePresence mode="wait">
       {total > 0 && !hasExcludedPath ? (

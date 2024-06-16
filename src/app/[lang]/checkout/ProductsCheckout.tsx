@@ -6,10 +6,10 @@ import { useAtom } from "jotai/react";
 import { cartAtom } from "@/libs/store/atoms";
 import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 import { PresentIcon } from "@/components/icons/PresentIcon";
-import ListSales from "@/components/ListSales/ListSales";
 import { IProductRes } from "@/interfaces/product.interface";
 import { useSession } from "next-auth/react";
 import { getAllUserOrders } from "@/libs/api/order.api";
+import ListSales from "@/components/ListSales/ListSales";
 
 import styles from "./page.module.css";
 
@@ -28,6 +28,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
 
   React.useEffect(() => {
     if (!data?.user?.id) return setIsRendered(true);
+
     (async function getOrders() {
       setIsRendered(false);
       const hasOrders = (await getAllUserOrders(data.user.id))?.length > 0;
@@ -70,7 +71,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
                       product={product as IProductRes}
                       className="checkout_input"
                     />
-                  </div> 
+                  </div>
                 </>
               ) : (
                 <>
@@ -90,6 +91,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
           До першого замовлення цукерка Rabbit Classic у&nbsp;подарунок
         </div>
       )}
+
       <ListSales home={homeDict} className={styles.checkoutList} />
     </>
   );
