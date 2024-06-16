@@ -94,6 +94,8 @@ export const CheckoutWrapper = ({
     })();
   }, [data?.user?.id]);
 
+
+
 	const validateInputs = () => {
 		setValidateData([
 			{name: "firstName", value: false},
@@ -236,6 +238,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
 			  promocode={promocode}
 			  validateData={validateData}
+
       />
 
       <MobileCheckout
@@ -259,6 +262,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
 			  promocode={promocode}
 			  validateData={validateData}
+
       />
     </>
   );
