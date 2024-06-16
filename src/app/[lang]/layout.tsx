@@ -9,6 +9,7 @@ import { i18n } from "../../../i18n.config";
 import { IPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import LabelListener from "@/components/LabelListener";
+import Favicon from "/public/favicon.ico";
 
 const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
   ssr: false,
@@ -23,9 +24,7 @@ export const metadata: Metadata = {
   title: "CBD Rabbit",
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
-  icons: {
-    icon: "/favicon-32x32.png",
-  },
+  icons: [{ rel: "icon", url: Favicon.src }],
   metadataBase: new URL(appConfig.DOMAIN),
 };
 
