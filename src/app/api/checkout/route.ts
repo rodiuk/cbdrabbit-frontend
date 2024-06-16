@@ -6,8 +6,6 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
 
-    console.log("data", data);
-
     if (!data) return;
 
     const validatedOrder = await checkOrderStatusOnMono(data.invoiceId);
