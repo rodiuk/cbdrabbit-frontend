@@ -51,7 +51,7 @@ export const ProductCard = async ({
           {properties?.map(property => (
             <li key={property.id} className={styles.property}>
               <Image
-                src={property?.image?.url}
+                src={property?.image?.url!}
                 width={20}
                 height={20}
                 alt={property.label}

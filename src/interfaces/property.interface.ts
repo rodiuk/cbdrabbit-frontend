@@ -12,5 +12,5 @@ export interface IPropertyUpdate {
 }
 
 export interface IPropertyRes extends Property {
-  image: Image;
+  image?: Image;
 }
