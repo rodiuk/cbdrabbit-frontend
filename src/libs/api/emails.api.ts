@@ -345,6 +345,12 @@ export const sendWebhook = async (order: Partial<IUserOrder>) => {
     npDeliveryType: order?.user?.address?.npDeliveryType,
 
     comment: order?.comment,
+
+    utm_source: order?.utm_source,
+    utm_medium: order?.utm_medium,
+    utm_campaign: order?.utm_campaign,
+    utm_content: order?.utm_content,
+    utm_term: order?.utm_term,
   };
   try {
     const res = await fetch(
