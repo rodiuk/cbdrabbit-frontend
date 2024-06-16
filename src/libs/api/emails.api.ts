@@ -3,7 +3,7 @@
 import { appConfig } from "@/configs/app.config";
 import { IOrderCreate, IUserOrder } from "@/interfaces/order.interface";
 import { IProductCard, IProductRes } from "@/interfaces/product.interface";
-import { Order, User } from "@prisma/client";
+import { User } from "@prisma/client";
 
 const getBearerToken = async () => {
   try {
