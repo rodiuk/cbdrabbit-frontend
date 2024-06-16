@@ -1,4 +1,4 @@
-import { Image, Product } from "@prisma/client";
+import { Address, Image, Product, Promocode } from "@prisma/client";
 import { IAddressData } from "./adress.interface";
 
 export interface IOrderCreate {
@@ -31,6 +31,7 @@ export interface IUserOrder {
   checkId: number;
   comment?: string | null;
   status?: string | null;
+  firstOrder?: boolean | null;
   utm_campaign?: string | null;
   utm_content?: string | null;
   utm_medium?: string | null;
@@ -38,21 +39,15 @@ export interface IUserOrder {
   utm_term?: string | null;
   promocodeId?: string | null;
   createdAt: Date;
-  updatedAt: Date;
   user: {
     id: string;
     email: string;
-    firstName: string;
-    lastName: string;
-    address: {
-      id: string;
-      city: string;
-      npDeliveryType: string;
-      npDepartment: string;
-      phoneNumber: string;
-    };
+    firstName?: string | null;
+    lastName?: string | null;
+    address?: Partial<Address> | null;
   };
-  orderItems: Array<IUserOrderItem>;
+  orderItems: Array<Partial<IUserOrderItem>>;
+  promocode?: Promocode | null;
 }
 
 export interface IUserOrderItem {

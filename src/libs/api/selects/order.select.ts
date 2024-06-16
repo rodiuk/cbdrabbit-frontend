@@ -6,7 +6,6 @@ const orderBaseSelect: Prisma.OrderSelect = {
   comment: true,
   itemPrice: true,
   status: true,
-  createdAt: true,
   checkId: true,
   utm_campaign: true,
   utm_content: true,
@@ -15,11 +14,9 @@ const orderBaseSelect: Prisma.OrderSelect = {
   utm_term: true,
   lang: true,
   firstOrder: true,
-  promocode: {
-    select: {
-      code: true,
-    },
-  },
+  promocode: true,
+  promocodeId: true,
+  createdAt: true,
   user: {
     select: {
       id: true,

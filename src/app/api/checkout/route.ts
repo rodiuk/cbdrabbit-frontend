@@ -1,5 +1,5 @@
 import { checkOrderStatusOnMono } from "@/libs/api/checkout.api";
-import { changeOrderStatusByInvoiceId } from "@/libs/api/order.api";
+import { changeOrderStatusByCheckId } from "@/libs/api/order.api";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -10,10 +10,10 @@ export async function POST(req: Request) {
 
     const validatedOrder = await checkOrderStatusOnMono(data.invoiceId);
 
-    if (!validatedOrder?.invoiceId) return;
+    if (!validatedOrder?.reference) return;
 
-    await changeOrderStatusByInvoiceId(
-      validatedOrder.invoiceId,
+    await changeOrderStatusByCheckId(
+      Number(validatedOrder.reference),
       validatedOrder.status
     );
 

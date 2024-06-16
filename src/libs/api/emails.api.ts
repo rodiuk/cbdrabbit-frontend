@@ -239,7 +239,7 @@ export const orderInProgressEmail = async (
       description: product.description,
       cost: order.itemPrice,
       quantity: order.orderItems.filter(
-        item => item.product.id === product.id
+        item => item?.product?.id === product.id
       )[0]?.quantity,
     }));
 
@@ -253,14 +253,14 @@ export const orderInProgressEmail = async (
         },
         body: JSON.stringify({
           email: order.user.email,
-          phone: order.user.address.phoneNumber,
+          phone: order.user?.address?.phoneNumber,
           user_id: userId,
           event_date: Date.now().toString(),
           products: productsForEmail,
           language: lang,
           total: order.totalSum,
           order_id: orderId,
-          delivery_address: `${order.user.address.npDeliveryType}, ${order.user.address.city}, ${order.user.address.npDepartment}`,
+          delivery_address: `${order.user?.address?.npDeliveryType}, ${order.user?.address?.city}, ${order.user?.address?.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
           first_order: firstOrder ? "yes" : "no",
@@ -319,7 +319,39 @@ export const emailUpdateSendEmail = async (
   }
 };
 
-export const sendWebhook = async (order: Order) => {
+export const sendWebhook = async (order: Partial<IUserOrder>) => {
+  const payload = {
+    id: order.id,
+    checkId: order.checkId,
+    status: order.status,
+    isFirstOrder: order.firstOrder,
+
+    products: order?.orderItems?.map(item => ({
+      name: item?.product?.productName,
+      count: item.quantity,
+    })),
+
+    totalAmount: order.totalSum,
+    itemPrice: order.itemPrice,
+    createdAt: order.createdAt,
+
+    firstName: order?.user?.firstName,
+    lastName: order?.user?.lastName,
+    email: order?.user?.email,
+    phoneNumber: order?.user?.address?.phoneNumber,
+
+    city: order?.user?.address?.city,
+    npDepartment: order?.user?.address?.npDepartment,
+    npDeliveryType: order?.user?.address?.npDeliveryType,
+
+    comment: order?.comment,
+
+    utm_source: order?.utm_source,
+    utm_medium: order?.utm_medium,
+    utm_campaign: order?.utm_campaign,
+    utm_content: order?.utm_content,
+    utm_term: order?.utm_term,
+  };
   try {
     const res = await fetch(
       "https://data.custom.systems/cbdrabbit/webhook.php",
@@ -328,7 +360,7 @@ export const sendWebhook = async (order: Order) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(order),
+        body: JSON.stringify(payload),
       }
     );
 

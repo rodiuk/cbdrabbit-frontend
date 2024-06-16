@@ -2,7 +2,7 @@
 
 import prisma from "@/libs/client/prisma.client";
 import { changedOrderStatusSelect, orderSelect } from "./selects/order.select";
-import { IOrderCreate } from "@/interfaces/order.interface";
+import { IOrderCreate, IUserOrder } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
 import {
   createUser,
@@ -34,6 +34,21 @@ export const getOrderById = async (orderId: string) => {
     const order = await prisma.order.findUnique({
       where: {
         id: orderId,
+      },
+      select: orderSelect,
+    });
+
+    return order;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getOrderByCheckId = async (checkId: number) => {
+  try {
+    const order = await prisma.order.findUnique({
+      where: {
+        checkId,
       },
       select: orderSelect,
     });
@@ -122,8 +137,8 @@ export const createOrder = async (
   }
 };
 
-export const changeOrderStatusByInvoiceId = async (
-  invoiceId: string,
+export const changeOrderStatusByCheckId = async (
+  checkId: number,
   statusLabel: string
 ) => {
   let status: OrderStatus | null = null;
@@ -141,13 +156,13 @@ export const changeOrderStatusByInvoiceId = async (
   }
 
   try {
-    const existOrder = await getOrderById(invoiceId);
+    const existOrder = await getOrderByCheckId(checkId);
 
     if (!existOrder) throw new Error("Order not found");
 
-    if (existOrder.status === status) return null;
-
-    await sendWebhook(existOrder);
+    if (existOrder.status !== status) {
+      await sendWebhook(existOrder);
+    }
 
     if (existOrder.status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
@@ -165,7 +180,7 @@ export const changeOrderStatusByInvoiceId = async (
 
     const order = await prisma.order.update({
       where: {
-        paymentId: invoiceId,
+        checkId,
       },
       data: {
         status,
