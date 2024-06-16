@@ -114,6 +114,8 @@ export const createOrder = async (
       select: orderSelect,
     });
 
+    await sendWebhook(order);
+
     return order;
   } catch (error) {
     throw error;

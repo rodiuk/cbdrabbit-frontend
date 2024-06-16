@@ -321,14 +321,20 @@ export const emailUpdateSendEmail = async (
 
 export const sendWebhook = async (order: Order) => {
   try {
-    return fetch("https://data.custom.systems/cbdrabbit/webhook.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(order),
-    });
+    const res = await fetch(
+      "https://data.custom.systems/cbdrabbit/webhook.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      }
+    );
+
+    return res?.status;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

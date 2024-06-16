@@ -15,6 +15,7 @@ import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { createOrderEmail, sendWebhook } from "@/libs/api/emails.api";
+
 import useLocalStorage from "@/hooks/useLocaleStorage";
 import { constants } from "@/configs/constants";
 import { Promocode } from "@prisma/client";
@@ -59,6 +60,7 @@ export const CheckoutWrapper = ({
     { name: "Населений пункт", value: false },
     { name: "Відділення", value: false },
   ]);
+
 
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
@@ -147,8 +149,10 @@ export const CheckoutWrapper = ({
     }
   };
 
+
   const handleCheckout = async () => {
     validateInputs();
+
     if (
       !city ||
       !postPoint ||
@@ -198,7 +202,6 @@ export const CheckoutWrapper = ({
         cart.fromCheckout,
         lang
       );
-      await sendWebhook(resOrder);
 
       if ("user" in resOrder && !data?.user?.id) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
@@ -248,6 +251,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}
+
       />
 
       <MobileCheckout
@@ -263,6 +267,7 @@ export const CheckoutWrapper = ({
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
         setUserInfo={setUserInfo}
+
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
@@ -270,6 +275,7 @@ export const CheckoutWrapper = ({
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}
+
       />
     </>
   );
