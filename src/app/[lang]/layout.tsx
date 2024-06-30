@@ -9,6 +9,7 @@ import { i18n } from "../../../i18n.config";
 import { IPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import LabelListener from "@/components/LabelListener";
+import { GlobalCssClassHandler } from "@/components/layout/GlobalCssClassHandler";
 import Favicon from "/public/favicon.ico";
 
 const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
@@ -55,6 +56,7 @@ export default async function RootLayout({
 
           <Suspense fallback={null}>
             <LabelListener />
+            <GlobalCssClassHandler />
           </Suspense>
         </Providers>
 
