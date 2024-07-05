@@ -34,7 +34,7 @@ export default async function RootLayout({
     <html lang={params.lang} suppressHydrationWarning>
       <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
         <Providers>
-          <Header lang={params.lang} />
+          
           {children}
 
 

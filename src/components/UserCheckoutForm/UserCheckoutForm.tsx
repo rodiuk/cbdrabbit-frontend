@@ -24,8 +24,6 @@ const UserCheckoutForm = ({
     setUserInfo((prev: IUserCheckoutForm) => ({ ...prev, [key]: field }));
 	};
 	
-	console.log(validateData)
-
   return (
 	  <div className={s.labels}>
 		  <div className={s.wrap_row}>

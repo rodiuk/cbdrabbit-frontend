@@ -7,6 +7,7 @@ import cn from "clsx";
 import s from "./page.module.css";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { getDictionary } from "@/libs/18n/getDictionary";
+import { Header } from "@/components/layout/Header/Header";
 
 export async function generateMetadata({
   params,
@@ -28,7 +29,8 @@ export default async function About({ params }: any) {
 	const {header} = dict
 	
   return (
-    <>
+	  <>
+		  <Header lang={params.lang} stylesName="noAfter" />
       <main className={cn("container", s.main)}>
         
       </main>

@@ -43,14 +43,35 @@ const Input: React.FC<InputProps> = ({
 	const [type, setType] = React.useState(input.type);
 	const [isEmpty, setIsEmpty] = React.useState(false)
 
-  const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-	  if (onInputChange) onInputChange(e.target.value);
+	const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value, name } = e.target;
+		if (name === "phone") {
+			const numericValue = value.replace(/(?!^)\D/g, '');
+			if (numericValue !== value) {
+				e.target.value = numericValue; 
+				return;
+			  }
+	  }
+	  if (onInputChange) onInputChange(value);
 	  setIsEmpty(false)
   };
 
   const handlerClick = (el: string) => {
     setType(el);
 	};
+
+	const handlerBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value, name } = e.target;
+		if (name === "email") {
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		
+			if (!emailRegex.test(value)) {
+				//console.log("Invalid email format");
+				setIsEmpty(true)
+			  return; 
+			}
+		  }
+	}
 
 	React.useEffect(() => {
 		setIsEmpty(false)
@@ -102,6 +123,7 @@ const Input: React.FC<InputProps> = ({
 
       <input
         onChange={e => handlerInput(e)}
+        onBlur={e => handlerBlur(e)}
         type={type}
         value={value}
         onClick={showLay ? () => showLay() : undefined}
