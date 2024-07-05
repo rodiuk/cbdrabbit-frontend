@@ -104,7 +104,7 @@ console.log(titles)
               {candies}
             </Link>
           </li>
-          <li className={s.mnu_link}>
+          {/* не видаляй. це тимчасово закоментовно <li className={s.mnu_link}>
             <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
 			{aboutCbd}
             </Link>
@@ -113,17 +113,17 @@ console.log(titles)
             <Link href={`/${lang}/about`} onClick={toggleMenu}>
 			{about}
             </Link>
-          </li>
+          </li> */}
           <li className={s.mnu_link}>
             <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
 			{checkoutInfo}
             </Link>
           </li>
-          <li className={s.mnu_link}>
+          {/* <li className={s.mnu_link}>
             <Link href={`/${lang}/blog`} onClick={toggleMenu}>
 			{blog}
             </Link>
-          </li>
+          </li> */}
           <li className={s.mnu_link}>
             <Link href={`/${lang}/contacts`} onClick={toggleMenu}>
 			{contacts}
