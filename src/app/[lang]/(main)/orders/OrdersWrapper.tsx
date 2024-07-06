@@ -2,7 +2,6 @@
 
 import React from "react";
 import EmptyOrders from "@/components/Orders/EmptyOrders/EmptyOrders";
-import { Locale } from "../../../../i18n.config";
 import { useSession } from "next-auth/react";
 import { getAllUserOrders } from "@/libs/api/order.api";
 import OrderItemCard from "@/components/Orders/OrderItem/OrderItem";
@@ -10,6 +9,7 @@ import { IUserOrder } from "@/interfaces/order.interface";
 import { IOrderDict } from "@/interfaces/i18n.interface";
 import { AnimatePresence, motion } from "framer-motion";
 import LayPopupOrderInfo from "@/components/LaysPopups/LayPopupOrderInfo/LayPopupOrderInfo";
+import { Locale } from "../../../../../i18n.config";
 
 import s from "./page.module.css";
 
