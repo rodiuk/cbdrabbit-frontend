@@ -9,20 +9,20 @@ interface Props {
   dict: ICheckoutDict;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   userInfo?: IUserCheckoutForm;
-  isPopup?: boolean;
-  validateData?: any;
+	isPopup?: boolean;
+	validateData?: any
 }
 
 const UserCheckoutForm = ({
   setUserInfo,
   dict,
   userInfo,
-  isPopup,
-  validateData,
+	isPopup,
+	validateData
 }: Props): React.JSX.Element => {
   const handleInputChange = (key: string, field: string): void => {
     setUserInfo((prev: IUserCheckoutForm) => ({ ...prev, [key]: field }));
-  };
+	};
 
   return (
     <div className={s.labels}>
@@ -34,8 +34,8 @@ const UserCheckoutForm = ({
           text={dict.userLabelLastName}
           required={true}
           placeholder={dict.userLabelPlaceholderLastName}
-          onInputChange={value => handleInputChange("lastName", value)}
-          validateData={validateData}
+				  onInputChange={value => handleInputChange("lastName", value)}
+				  validateData={validateData}
         />
         <Input
           type="text"
@@ -44,8 +44,8 @@ const UserCheckoutForm = ({
           text={dict.userLabelFirstName}
           required={true}
           placeholder={dict.userLabelPlaceholderFirstName}
-          onInputChange={value => handleInputChange("firstName", value)}
-          validateData={validateData}
+				  onInputChange={value => handleInputChange("firstName", value)}
+				  validateData={validateData}
         />
       </div>
       <Input
@@ -55,8 +55,8 @@ const UserCheckoutForm = ({
         required={true}
         value={userInfo?.phone}
         placeholder="+380 (__)___-__-__"
-        onInputChange={value => handleInputChange("phone", value)}
-        validateData={validateData}
+			  onInputChange={value => handleInputChange("phone", value)}
+			  validateData={validateData}
       />
       {!isPopup && (
         <Input
@@ -66,8 +66,8 @@ const UserCheckoutForm = ({
           placeholder={dict?.userLabelEmail}
           text={dict?.userLabelEmail}
           value={userInfo?.email}
-          onInputChange={value => handleInputChange("email", value)}
-          validateData={validateData}
+				  onInputChange={value => handleInputChange("email", value)}
+				  validateData={validateData}
         />
       )}
     </div>

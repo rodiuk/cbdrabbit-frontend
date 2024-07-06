@@ -7,6 +7,7 @@
     "prebuild": "npx prisma db push",
     "build": "next build",
     "start": "next start",
+	"dev:local": "set HOST=0.0.0.0 && next dev",
     "lint": "next lint"
   },
   "dependencies": {

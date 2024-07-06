@@ -1,30 +1,27 @@
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import type { Metadata } from "next";
-import { Providers } from "./providers";
+import { Providers } from "../providers";
 import { appConfig } from "@/configs/app.config";
 import { Scripts } from "@/components/layout/Scripts";
 import { Header } from "@/components/layout/Header/Header";
-import { i18n } from "../../../i18n.config";
-import { IPageProps } from "@/interfaces/page.interface";
+import { i18n } from "../../../../i18n.config";
+import { IPageParams, IPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import LabelListener from "@/components/LabelListener";
-import Favicon from "/public/favicon.ico";
+import dynamic from "next/dynamic";
 
 const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
   ssr: false,
 });
 
-import { fonts } from "./fonts";
-
+import { fonts } from "../fonts";
 import cn from "clsx";
-import "./globals.css";
+import "../globals.css";
+import LabelListener from "@/components/LabelListener";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "CBD Rabbit",
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
-  icons: [{ rel: "icon", url: Favicon.src }],
   metadataBase: new URL(appConfig.DOMAIN),
 };
 
@@ -35,7 +32,7 @@ export async function generateStaticParams() {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<IPageProps>) {
+}: Readonly<{ children: React.ReactNode; params: IPageParams }>) {
   const isProduction = process.env.NODE_ENV === "production";
   const dict = await getDictionary(params.lang);
 
