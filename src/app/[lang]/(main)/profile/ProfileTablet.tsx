@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import PencilIcon from "@/components/icons/PencilIcon";
-import ProfileDetail from "../../../components/Profile/ProfileDetail/ProfileDetail";
 import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
@@ -15,6 +14,7 @@ import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetai
 import s from "./page.module.css";
 
 import np from "/public/img/np.svg";
+import ProfileDetail from "@/components/Profile/ProfileDetail/ProfileDetail";
 
 interface Props {
   user: IUserProfile | null;

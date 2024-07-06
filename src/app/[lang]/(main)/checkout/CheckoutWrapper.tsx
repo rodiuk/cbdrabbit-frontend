@@ -14,8 +14,7 @@ import { useAtom } from "jotai";
 import { cartAtom } from "@/libs/store/atoms";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
-import { createOrderEmail, sendWebhook } from "@/libs/api/emails.api";
-
+import { createOrderEmail } from "@/libs/api/emails.api";
 import useLocalStorage from "@/hooks/useLocaleStorage";
 import { constants } from "@/configs/constants";
 import { Promocode } from "@prisma/client";
@@ -52,15 +51,14 @@ export const CheckoutWrapper = ({
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [promocode, setPromocode] = React.useState<Promocode | null>(null);
-  const [validateData, setValidateData] = React.useState([
-    { name: "firstName", value: false },
-    { name: "lastName", value: false },
-    { name: "phone", value: false },
-    { name: "email", value: false },
-    { name: "Населений пункт", value: false },
-    { name: "Відділення", value: false },
-  ]);
-
+	const [validateData, setValidateData] = React.useState([
+		{name: "firstName", value: false},
+		{name: "lastName", value: false},
+		{name: "phone", value: false},
+		{name: "email", value: false},
+		{name: "Населений пункт", value: false},
+		{name: "Відділення", value: false},
+	]);
 
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
@@ -96,63 +94,55 @@ export const CheckoutWrapper = ({
     })();
   }, [data?.user?.id]);
 
-  const validateInputs = () => {
-    setValidateData([
-      { name: "firstName", value: false },
-      { name: "lastName", value: false },
-      { name: "phone", value: false },
-      { name: "email", value: false },
-      { name: "Населений пункт", value: false },
-      { name: "Відділення", value: false },
-    ]);
-    if (!userInfo.firstName) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "firstName" ? { ...item, value: true } : item
-        )
-      );
-    }
-    if (!userInfo.lastName) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "lastName" ? { ...item, value: true } : item
-        )
-      );
-    }
-    if (!userInfo.phone) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "phone" ? { ...item, value: true } : item
-        )
-      );
-    }
-    if (!userInfo.email) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "email" ? { ...item, value: true } : item
-        )
-      );
-    }
-    if (!city) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "Населений пункт" ? { ...item, value: true } : item
-        )
-      );
-    }
-    if (!postPoint) {
-      setValidateData(prevState =>
-        prevState.map(item =>
-          item.name === "Відділення" ? { ...item, value: true } : item
-        )
-      );
-    }
-  };
+	const validateInputs = () => {
+		setValidateData([
+			{name: "firstName", value: false},
+			{name: "lastName", value: false},
+			{name: "phone", value: false},
+			{name: "email", value: false},
+			{name: "Населений пункт", value: false},
+			{name: "Відділення", value: false},
+		])
+		if (!userInfo.firstName) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "firstName" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.lastName) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "lastName" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.phone) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "phone" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!userInfo.email) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "email" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!city) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "Населений пункт" ?
+					{...item, value: true} : item
+			)));
+		}
+		if (!postPoint) {
+			setValidateData(prevState => prevState.map(item => (
+				item.name === "Відділення" ?
+					{...item, value: true} : item
+			)));
+		}
+	}
 
-
-  const handleCheckout = async () => {
-    validateInputs();
-
+	const handleCheckout = async () => {
+		validateInputs()
     if (
       !city ||
       !postPoint ||
@@ -196,12 +186,7 @@ export const CheckoutWrapper = ({
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
-      const resOrder = await createOrder(
-        payload,
-        res?.invoiceId,
-        cart.fromCheckout,
-        lang
-      );
+      const resOrder = await createOrder(payload, res?.invoiceId);
 
       if ("user" in resOrder && !data?.user?.id) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
@@ -216,7 +201,6 @@ export const CheckoutWrapper = ({
         payload,
         cart.products,
         cart.fromCheckout,
-        resOrder?.id,
         lang
       );
 
@@ -249,9 +233,8 @@ export const CheckoutWrapper = ({
         setComment={setComment}
         homeDict={homeDict}
         setPromocode={setPromocode}
-        promocode={promocode}
-        validateData={validateData}
-
+			  promocode={promocode}
+			  validateData={validateData}
       />
 
       <MobileCheckout
@@ -266,16 +249,15 @@ export const CheckoutWrapper = ({
         setFinalPrice={setFinalPrice}
         handleCheckout={handleCheckout}
         hasError={isEmptyFields}
-        setUserInfo={setUserInfo}
+			  setUserInfo={setUserInfo}
 
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
         homeDict={homeDict}
         setPromocode={setPromocode}
-        promocode={promocode}
-        validateData={validateData}
-
+			  promocode={promocode}
+			  validateData={validateData}
       />
     </>
   );

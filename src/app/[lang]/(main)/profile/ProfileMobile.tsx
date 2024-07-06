@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Button from "@/components/Ui/Button/Button";
 import PencilIcon from "@/components/icons/PencilIcon";
-import ProfileDetail from "../../../components/Profile/ProfileDetail/ProfileDetail";
 import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { IProfileDict } from "@/interfaces/i18n.interface";
@@ -16,6 +15,7 @@ import np from "/public/img/np.svg";
 
 import s from "./page.module.css";
 import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
+import ProfileDetail from "@/components/Profile/ProfileDetail/ProfileDetail";
 
 interface Props {
   user: IUserProfile | null;
@@ -41,38 +41,38 @@ const ProfileMobile = (props: Props): React.JSX.Element => {
           <p>{user?.loyalty?.percentDiscount}%</p>
         </div>
         <div className={s.profile_details}>
-            {(user?.loyalty?.percentDiscount ?? 0) < maxSale && (
-              <p
-                className={s.profile_detailsOne}
-                onClick={() => setShowDetail(!showDetail)}
-              >
-                {profileDict.personalDiscountLabel}
-                <ArrowDownIcon iconStyle={s.arr} />
-              </p>
-            )}
+          {(user?.loyalty?.percentDiscount ?? 0) < maxSale && (
+            <p
+              className={s.profile_detailsOne}
+              onClick={() => setShowDetail(!showDetail)}
+            >
+              {profileDict.personalDiscountLabel}
+              <ArrowDownIcon iconStyle={s.arr} />
+            </p>
+          )}
 
-            {(user?.loyalty?.percentDiscount ?? 0) < maxSale ? (
-              <>
-                {showDetail && (
-                  <ProfileDetail
-                    user={user}
-                    currency={currency}
-                    dict={profileDict}
-                  />
-                )}
-              </>
-            ) : (
-              <>
-                {showDetail && (
-                  <ProfileDetailMax
-                    user={user}
-                    currency={currency}
-                    dict={profileDict}
-                  />
-                )}
-              </>
-            )}
-          </div>
+          {(user?.loyalty?.percentDiscount ?? 0) < maxSale ? (
+            <>
+              {showDetail && (
+                <ProfileDetail
+                  user={user}
+                  currency={currency}
+                  dict={profileDict}
+                />
+              )}
+            </>
+          ) : (
+            <>
+              {showDetail && (
+                <ProfileDetailMax
+                  user={user}
+                  currency={currency}
+                  dict={profileDict}
+                />
+              )}
+            </>
+          )}
+        </div>
       </div>
 
       <div className={s.wrapper_wrap_tal}>
