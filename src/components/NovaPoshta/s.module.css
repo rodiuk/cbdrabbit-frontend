@@ -9,7 +9,7 @@
 	z-index: 999;
 }
 .content {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	left: 0;
 	top: 18vh;
