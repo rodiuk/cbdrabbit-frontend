@@ -22,7 +22,8 @@ interface InputProps {
   handleForgot?: () => void;
   errorText?: string;
 	showForgotPassword?: boolean;
-	validateData?: any,
+	validateData?: any;
+	readOnly?: boolean
 
 }
 
@@ -38,6 +39,7 @@ const Input: React.FC<InputProps> = ({
   showForgotPassword,
 	handleForgot,
 	validateData,
+	readOnly,
   ...input
 }) => {
 	const [type, setType] = React.useState(input.type);
@@ -46,7 +48,7 @@ const Input: React.FC<InputProps> = ({
 	const handlerInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value, name } = e.target;
 		if (name === "phone") {
-			const numericValue = value.replace(/(?!^)\D/g, '');
+			const numericValue = value.replace(/(?!^[\d+])\D/g, '');
 			if (numericValue !== value) {
 				e.target.value = numericValue;
 				return;
@@ -128,8 +130,9 @@ const Input: React.FC<InputProps> = ({
         value={value}
         onClick={showLay ? () => showLay() : undefined}
         className={s.input}
-        {...input}
-      />
+			  {...input}
+			  readOnly={readOnly}
+      /> 
 
 		  {errorText && <p className={s.error}>{errorText }</p>}
     </label>
