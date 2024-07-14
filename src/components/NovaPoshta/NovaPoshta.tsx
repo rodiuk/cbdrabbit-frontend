@@ -151,6 +151,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
             autoComplete="off"
 					  value={city}
 					  validateData={validateData}
+					  readOnly
           />
 
           {deliveryId === "3" ? (
@@ -159,7 +160,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
               text="Адреса"
               required={true}
               name="Адреса"
-              placeholder="Введи адресу"
+						  placeholder="Введи адресу"
               //  showLay={showLayFilial}
               autoComplete="off"
               //value={postPoint}
@@ -175,6 +176,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
               autoComplete="off"
 							  value={postPoint}
 							  validateData={validateData}
+							  readOnly
             />
           )}
         </>
@@ -185,7 +187,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
           <motion.div
             //style={{ height: "100vh" }} этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+					  animate={{ opacity: 1,/*  position: "absolute", width: "100%", height: "100vh", left: 0, top: 0  */}}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
