@@ -105,53 +105,60 @@ const MenuDrop = (props: Props) => {
             </li>
           </ul>
 
-        <ul className={s.mnu_list}>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}`} onClick={toggleMenu}>
-              <Image src={svd_icon.src} alt={candies} width={24} height={24} />
-              {candies}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
-			{aboutCbd}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/about`} onClick={toggleMenu}>
-			{about}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
-			{checkoutInfo}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/blog`} onClick={toggleMenu}>
-			{blog}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/contacts`} onClick={toggleMenu}>
-			{contacts}
-            </Link>
-          </li>
-          <li className={s.mnu_link}>
-            <Link href={`/${lang}/cooperation`} onClick={toggleMenu}>
-			{cooperation}
-            </Link>
-          </li>
-
-			  </ul>
-			  {isSignIn && (
-				  <>
-					  <div className={s.botton_link}>
-					  <Link href={`/${lang}`} className={s.out} onClick={handleSignOut}>
-				{dict.links.signOut}
-			</Link>
-				  </div>
-
+          <ul className={s.mnu_list}>
+            <li className={s.mnu_link}>
+              <Link href={`/${lang}`} onClick={toggleMenu}>
+                <Image
+                  src={svd_icon.src}
+                  alt={candies}
+                  width={24}
+                  height={24}
+                />
+                {candies}
+              </Link>
+            </li>
+            {/* <li className={s.mnu_link}>
+              <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
+                {aboutCbd}
+              </Link>
+            </li>
+            <li className={s.mnu_link}>
+              <Link href={`/${lang}/about`} onClick={toggleMenu}>
+                {about}
+              </Link>
+            </li> */}
+            <li className={s.mnu_link}>
+              <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
+                {checkoutInfo}
+              </Link>
+            </li>
+            {/* <li className={s.mnu_link}>
+              <Link href={`/${lang}/blog`} onClick={toggleMenu}>
+                {blog}
+              </Link>
+            </li> */}
+            <li className={s.mnu_link}>
+              <Link href={`/${lang}/contacts`} onClick={toggleMenu}>
+                {contacts}
+              </Link>
+            </li>
+            <li className={s.mnu_link}>
+              <Link href={`/${lang}/cooperation`} onClick={toggleMenu}>
+                {cooperation}
+              </Link>
+            </li>
+          </ul>
+          {isSignIn && (
+            <>
+              <div className={s.botton_link}>
+                <Link
+                  href={`/${lang}`}
+                  className={s.out}
+                  onClick={handleSignOut}
+                >
+                  {dict.links.signOut}
+                </Link>
+              </div>
             </>
           )}
         </div>
