@@ -3,8 +3,7 @@ import { Providers } from "../providers";
 import { appConfig } from "@/configs/app.config";
 import { Scripts } from "@/components/layout/Scripts";
 import { i18n } from "../../../../i18n.config";
-import { IPageParams, IPageProps } from "@/interfaces/page.interface";
-import { getDictionary } from "@/libs/18n/getDictionary";
+import { IPageParams } from "@/interfaces/page.interface";
 
 import { fonts } from "../fonts";
 import cn from "clsx";
@@ -15,6 +14,9 @@ export const metadata: Metadata = {
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
   metadataBase: new URL(appConfig.DOMAIN),
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export async function generateStaticParams() {
