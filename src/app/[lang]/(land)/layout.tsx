@@ -9,14 +9,14 @@ import { fonts } from "../fonts";
 import cn from "clsx";
 import "../globals.css";
 
+import Favicon from "/public/favicon.ico";
+
 export const metadata: Metadata = {
   title: "CBD Rabbit",
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
   metadataBase: new URL(appConfig.DOMAIN),
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: [{ rel: "icon", url: Favicon.src }],
 };
 
 export async function generateStaticParams() {

@@ -11,6 +11,8 @@ import dynamic from "next/dynamic";
 import LabelListener from "@/components/LabelListener";
 import { fonts } from "../fonts";
 
+import Favicon from "/public/favicon.ico";
+
 const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
   ssr: false,
 });
@@ -23,9 +25,7 @@ export const metadata: Metadata = {
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
   metadataBase: new URL(appConfig.DOMAIN),
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: [{ rel: "icon", url: Favicon.src }],
 };
 
 export async function generateStaticParams() {
