@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import type { Metadata } from "next";
 import { Providers } from "../providers";
 import { appConfig } from "@/configs/app.config";
@@ -6,10 +7,13 @@ import { Scripts } from "@/components/layout/Scripts";
 import { Header } from "@/components/layout/Header/Header";
 import { i18n } from "../../../../i18n.config";
 import { IPageParams } from "@/interfaces/page.interface";
+
 import { getDictionary } from "@/libs/18n/getDictionary";
 import dynamic from "next/dynamic";
 import LabelListener from "@/components/LabelListener";
 import { fonts } from "../fonts";
+
+import Favicon from "/public/favicon.ico";
 
 const CartBanner = dynamic(() => import("@/components/CartBanner/CartBanner"), {
   ssr: false,
@@ -23,9 +27,7 @@ export const metadata: Metadata = {
   description:
     "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
   metadataBase: new URL(appConfig.DOMAIN),
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: [{ rel: "icon", url: Favicon.src }],
 };
 
 export async function generateStaticParams() {
