@@ -6,21 +6,39 @@ import { authConfig } from "@/configs/auth.config";
 import MobileMainLogoIcon from "@/components/icons/MobileMainLogo";
 import { InstaWhiteIcon } from "@/components/icons/InstaWhiteIcon";
 import LinkToTop from "./LinkToTop/LinkToTop";
+import { Locale } from "../../../../i18n.config";
 
 import cn from "clsx";
 import s from "./Footer.module.css";
 
 import figureForFooter from "/public/img/figureForFooter.svg";
-import { Locale } from "../../../../i18n.config";
+
 interface Props {
-	lang?: Locale;
-	titles?: any;
-  }
-export const Footer = async ({lang, titles}: Props): Promise<React.JSX.Element> => {
+  lang?: Locale;
+  titles?: any;
+}
+
+export const Footer = async ({
+  lang,
+  titles,
+}: Props): Promise<React.JSX.Element> => {
   const session = await getServerSession(authConfig);
   const isAuth = !!session?.user.id;
-	
-	const {buy, cabinet, candies, aboutCbd, about, checkoutInfo, contacts, cooperation, blog, privacy, policy} = titles
+
+  const {
+    buy,
+    cabinet,
+    candies,
+    aboutCbd,
+    about,
+    checkoutInfo,
+    contacts,
+    cooperation,
+    blog,
+    privacy,
+    policy,
+  } = titles;
+
   return (
     <footer className={cn("footer", s.footer)}>
       <div className={s.figure}>
@@ -36,7 +54,7 @@ export const Footer = async ({lang, titles}: Props): Promise<React.JSX.Element> 
         <div className={s.mnu_row}>
           <ul className={s.ul}>
             <li>
-						  <Link href={`/${lang}`}>{buy}</Link>
+              <Link href={`/${lang}`}>{buy}</Link>
             </li>
             {isAuth && (
               <li>
@@ -46,14 +64,14 @@ export const Footer = async ({lang, titles}: Props): Promise<React.JSX.Element> 
           </ul>
           <ul className={s.ul}>
             <li>
-						  <Link href={`/${lang}`}>{ candies}</Link>
+              <Link href={`/${lang}`}>{candies}</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={`/${lang}/about-cbd`}>{aboutCbd}</Link>
             </li>
             <li>
               <Link href={`/${lang}/about`}>{about}</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={`/${lang}/checkout-info`}>{checkoutInfo}</Link>
             </li>
@@ -65,9 +83,9 @@ export const Footer = async ({lang, titles}: Props): Promise<React.JSX.Element> 
             <li>
               <Link href={`/${lang}/cooperation`}>{cooperation}</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={`/${lang}/blog`}>{blog}</Link>
-            </li>
+            </li> */}
           </ul>
           <div className={s.ul}>
             {/*  якщо залогінений - не виводимо контент але сам блок s.ul  повинен бути
