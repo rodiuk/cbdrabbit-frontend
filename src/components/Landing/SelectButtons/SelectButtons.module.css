@@ -1,0 +1,26 @@
+.productPage_select {
+	display: flex;
+	justify-content: center;
+}
+.productPage_selectButton {
+	max-width: 150px;
+	font-size: 16px;
+	color: rgba(145, 59, 15, 1);
+	padding: 5px 8px;
+	background: rgba(254, 226, 138, 1);
+	border: 4px solid rgba(254, 226, 138, 1);
+	margin: 0 6px;
+	display: flex;
+	align-items: center;
+	border-radius: 80px; 
+	cursor: pointer;
+}
+	.productPage_selectButton.active {
+	  background: rgba(251, 212, 100, 1);
+	  border: 4px solid rgba(244, 148, 13, 1);
+	 }
+
+	 .productPage_selectButton img {
+		min-width: 48px;
+	 }
+  

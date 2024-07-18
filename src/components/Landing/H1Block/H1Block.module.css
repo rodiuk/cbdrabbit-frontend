@@ -1,0 +1,80 @@
+.h1Block {
+	position: relative;
+}
+
+.row {
+	flex-wrap: nowrap;
+	position: relative;
+	margin-top: 50px;
+	display: flex;
+}
+.h1_pic {
+    width: 480px;
+    min-width: 480px;
+    position: relative;
+    height: 954px;
+}
+.banana {
+	z-index: 21;
+	position: relative;
+}
+.banana_2 {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	top: 285px;
+	left: 0;
+}
+.banana_2 img {
+	max-width: 406px;
+}
+.banana_3 {
+    position: absolute;
+    width: 100%;
+    top: 435px;
+    opacity: 1;
+    left: -100px;
+}
+.banana_3_img {
+	margin: auto;
+} 
+
+
+.h1block_content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 90px  0 60px 30px;
+}
+.h1 {
+	font-weight: 700;
+	font-size: 48px;
+	color: #fff;
+	text-shadow: 2px 2px 0 rgba(145, 59, 15, 1);
+	line-height: 1.33;
+}
+.h1 span {
+	display: block;
+}
+.descr {
+	font-size: 16px;
+	font-weight: 500;
+	color: rgba(145, 59, 15, 1);
+	margin: 0 0 15px;
+}
+
+.button {
+	font-size: 16px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 500;
+	background: rgba(145, 59, 15, 1);
+	border: 8px solid rgba(254, 241, 200, 0.5);
+	width: 298px;
+	border-radius: 50px;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

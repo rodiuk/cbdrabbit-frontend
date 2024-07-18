@@ -1,0 +1,48 @@
+.description {
+	position: relative;
+	width: 100%;
+}
+.img_lay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+.description_container {
+	display: flex;
+	position: relative;
+	gap: 0 55px;
+}
+.description_container {
+	max-width: 1100px;
+	margin: auto;
+}
+.wrap {
+	max-width: 200px;
+}
+.img img {
+	margin: auto;
+}
+.item {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 328px;
+	height: 328px;
+	background: rgba(254, 241, 200, 1);
+	border-radius: 50%;
+	outline: 16px solid rgba(255, 255, 255, 0.3);
+	color: rgba(82, 44, 41, 1);
+}
+.ttl {
+	font-size: 26px;
+	text-transform: uppercase;
+}
+.text {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.36;
+}
