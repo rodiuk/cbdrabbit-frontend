@@ -10,6 +10,8 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 import { Header } from "@/components/layout/Header/Header";
 import H1Block from "@/components/Landing/H1Block/H1Block";
 import Description2 from "@/components/Landing/Description2/Description2";
+import Accordeon from "@/components/Landing/Accordeon/Accordeon";
+import Buttons from "@/components/Landing/Buttons/Buttons";
 
 export async function generateMetadata({
   params,
@@ -38,6 +40,9 @@ export default async function About({ params }: any) {
 			  <H1Block />
 			  </div>
 			  <Description2 />
+			  <Accordeon />
+
+			  <Buttons />
 			  
         
       </main>

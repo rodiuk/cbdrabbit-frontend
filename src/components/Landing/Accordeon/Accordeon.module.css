@@ -1,0 +1,17 @@
+.accordeon {
+	width: 100%;
+	position: relative;
+}
+
+.accordeon_container {
+	max-width: 640px;
+	width: 100%;
+	margin: auto;
+	border-radius: 20px;
+	background: rgba(254, 241, 200, 1);
+	outline: 16px solid rgba(255, 255, 255, 0.3);
+	color: rgba(71, 12, 8, 1);
+	font-size: 16px;
+	font-weight: 500;
+}
+

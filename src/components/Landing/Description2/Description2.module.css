@@ -1,17 +1,24 @@
 .description {
 	position: relative;
 	width: 100%;
+	margin: 120px 0 50px;
 }
 .img_lay {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 100%;
 	left: 0;
 	top: 0;
 }
+.img_lay img {
+	width: 100%;
+}
 .description_container {
 	display: flex;
-	position: relative;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
 	gap: 0 55px;
 }
 .description_container {
