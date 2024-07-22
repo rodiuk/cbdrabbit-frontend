@@ -24,3 +24,19 @@
 .img img {
 	border-radius: 24px;
 }
+
+@media (max-width: 1230px) {
+	.item {
+		flex: 0 0 calc(100vw / 4 - 50px);
+	}
+}
+
+@media (max-width: 767px) {
+	.descBlock {
+		flex-direction: column;
+	}
+	.item {
+		flex: 0 0 240px;
+		max-width: 240px;
+	}
+}

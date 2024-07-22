@@ -74,6 +74,12 @@ a.button {
 .mobil_logo {
 	display: none;
 }
+.footer_yellow {
+	background: rgba(244, 148, 13, 1);
+  }
+.footer_pink {
+	background: rgba(254, 168, 163, 0.8);
+}
 @media (max-width: 991px) {
 	.ul:last-child {
 		min-width: 280px;

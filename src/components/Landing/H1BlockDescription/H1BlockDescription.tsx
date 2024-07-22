@@ -16,6 +16,12 @@ const H1BlockDescription = () => {
 				</div>
 			</div>
 			<div className={s.item}>
+				<div className={s.ttl}>Крафтовий білий шоколад на кокосовому молоці</div>
+				<div className={s.img}>
+					<Image src={h1d1} width={240} height={342} alt="kg" />
+				</div>
+			</div>
+			<div className={s.item}>
 				<div className={s.ttl}>Cублімовані банани</div>
 				<div className={s.img}>
 					<Image src={h1d2} width={240} height={342} alt="kg" />

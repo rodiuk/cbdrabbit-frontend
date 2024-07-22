@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "clsx";
 import s from "./Description2.module.css";
 
 import ic1 from "/public/img/lend-descr2-1.svg";
@@ -13,7 +14,7 @@ const Description2 = () => {
 		  <div className={s.img_lay}>
 		  <Image  src={bg}  alt="pic" />
 		  </div>
-      <div className={s.description_container}>
+      <div className={cn("container", s.description_container)}>
         <div className={s.item}>
           <div className={s.wrap}>
 					  <div className={s.img}>

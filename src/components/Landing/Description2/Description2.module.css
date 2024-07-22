@@ -53,3 +53,34 @@
 	font-weight: 500;
 	line-height: 1.36;
 }
+
+@media (max-width: 1230px) {
+	.item {
+		width: calc(100vw / 3 - 75px);
+		min-width: calc(100vw / 3 - 75px);
+		height: calc(100vw / 3 - 75px);
+	}
+	.img img {
+		max-width: 40%;
+	}
+}
+@media (max-width: 992px) {
+	.item {
+		width: 250px;
+		min-width: 250px;
+		height: 250px;
+		padding: 15px;
+		flex-grow: 0;
+	}
+	.description {
+		height: 600px;
+	}
+	.description_container {
+		gap:  40px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.description {
+		margin-top: 80px;
+	}
+}
