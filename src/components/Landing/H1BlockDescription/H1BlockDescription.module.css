@@ -33,10 +33,31 @@
 
 @media (max-width: 767px) {
 	.descBlock {
-		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 40px;
 	}
 	.item {
-		flex: 0 0 240px;
-		max-width: 240px;
+		flex: 0 0 180px;
+		max-width: 180px;
 	}
+	.ttl {
+		padding: 15px;
+	}
+	
+}
+
+@media (max-width: 580px) {
+	.descBlock {
+		flex-direction: column;
+		gap: 40px;
+		padding: 0 40px;
+		margin-top: 80px;
+	}
+	
+	.item:nth-child(odd) {
+		align-self: flex-start;
+	  }
+	  .item:nth-child(even) {
+		align-self: flex-end;
+	  }
 }

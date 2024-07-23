@@ -84,3 +84,9 @@
 		margin-top: 80px;
 	}
 }
+
+@media (max-width: 580px) {
+	.description {
+		height: 900px;
+	}
+}

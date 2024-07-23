@@ -8,7 +8,11 @@ import ic3 from "/public/img/lend-descr2-3.svg";
 import bg from "/public/img/lend-descr2-bg.svg";
 import Image from "next/image";
 
-const Description2 = () => {
+interface Props {
+	lendId: string
+}
+
+const Description2 = ({lendId}: Props) => {
   return (
 	  <div className={s.description}>
 		  <div className={s.img_lay}>

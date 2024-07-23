@@ -8,23 +8,21 @@ import s from "./H1Block.module.css";
 import SelectButtons from "../SelectButtons/SelectButtons";
 import Image from "next/image";
 
-import baban from "/public/img/baban.png";
-import banana_2 from "/public/img/banana_2.svg";
-import banana_3 from "/public/img/banana_3.svg";
-import banana_3_mob from "/public/img/banana_3_mob.svg";
 import Link from "next/link";
 import H1BlockDescription from "../H1BlockDescription/H1BlockDescription";
 
 interface Props {
 	productFined: any,
-	lang: any
+	lang: any,
+	imagesFined: any
 }
 
-const H1Block = ({productFined, lang}: Props) => {
+const H1Block = ({productFined, lang, imagesFined}: Props) => {
 	const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
 	const {title1, title2, title3} = productFined
+	const {image1, image2, image3, image3_mob} = imagesFined
   const bananaRef = useRef(null);
-
+ 
   useEffect(() => {
     setSizeWindow(window.innerWidth);
     const handleResize = () => {
@@ -49,20 +47,51 @@ const H1Block = ({productFined, lang}: Props) => {
         .to(`.${s.h1_3}`, { left: 0, duration: 0.5 })
         .to(`.${s.banana_2}`, { top: sizeWindow <= 560 ? "60vw" : "285", opacity: 1, duration: 1 })
         .to(`.${s.banana_3}`, {
-          top: sizeWindow <= 560 ? "auto" : "430", opacity: 1, duration: 1
+          top: sizeWindow <= 580 ? "30" : "430", opacity: 1, duration: 1
         });
 
-      ScrollTrigger.create({
-        trigger: bananaRef.current,
-        start: 'top 100%',
-        end: 'bottom top',
-        scrub: true,
-        onUpdate: self => {
-          let scrollTop = self.scroll();
-          scrollTop = sizeWindow <= 560 ? Math.min(Math.max(scrollTop, 50), 780) : Math.min(Math.max(scrollTop, 50), 435);
-          gsap.to(bananaRef.current, { height: sizeWindow <= 560 ? scrollTop : undefined, top: sizeWindow > 560 ? scrollTop : undefined, duration: 0.5 });
-        }
-      });
+		if (sizeWindow > 580) {
+			ScrollTrigger.create({
+				trigger: bananaRef.current,
+				start: 'top 100%',
+				end: 'bottom top',
+				scrub: true,
+				onUpdate: self => {
+					let scrollTop = self.scroll();
+					console.log(scrollTop)
+					scrollTop =  Math.min(Math.max(scrollTop, 50), 435);
+				  gsap.to(bananaRef.current, { height:  undefined, top:  scrollTop , duration: 0.5 });
+				}
+			  });
+		}
+    
+		
+	  if (sizeWindow <= 580) {
+		ScrollTrigger.create({
+		  trigger: bananaRef.current,
+		  start: 'top center', // Начало анимации, когда элемент находится в середине экрана
+		  end: '+=1200', // Конец анимации, когда нижняя часть элемента достигает верха экрана
+		  scrub: true,
+		  onUpdate: self => {
+			// Рассчитываем высоту в зависимости от прокрутки
+			let scrollTop = self.progress * (1464 - 0); // Прокрученный процент умножаем на разницу между максимальной и минимальной высотой
+			scrollTop = Math.min(Math.max(scrollTop, 0), 1464); // Ограничиваем высоту в пределах 0 и 1064
+	  
+			// Устанавливаем высоту элемента
+			gsap.to(bananaRef.current, { height: scrollTop });
+	  
+			// Выводим в консоль количество прокрученных пикселей
+			// console.log(`Прокручено пикселей после начала анимации: ${self.scroll() - self.start}`);
+			// console.log('Progress:', self.progress);
+			// console.log('Scroll:', self.scroll());
+			// console.log('Start:', self.start);
+			// console.log('End:', self.end);
+		  },
+		//   onEnter: self => console.log('Animation started'),
+		//   onLeave: self => console.log('Animation ended')
+		});
+	  }
+	  
     }
   }, [sizeWindow]);
 
@@ -85,20 +114,20 @@ const H1Block = ({productFined, lang}: Props) => {
           ) : null}
 			  <div className={s.h1_conte}>
 				  <div className={s.h1_pic}>
-          <Image className={s.banana} src={baban} alt="baban" width={480} height={480} />
+          <Image className={s.banana} src={image1} alt="baban" width={480} height={480} />
           <div className={s.banana_2}>
-            <Image src={banana_2} alt="banana_2" width={406} height={330} />
+            <Image src={image2} alt="banana_2" width={406} height={330} />
           </div>
           <div ref={ bananaRef } className={s.banana_3}>
 						  {sizeWindow !== null && sizeWindow <= 580 ? (
-				<Image className={s.banana_3_img} src={banana_3_mob} alt="banana_3" width={31} height={1064} />			  
-			): <Image className={s.banana_3_img} src={banana_3} alt="banana_3" width={31} height={502} />}
+				<Image className={s.banana_3_img} src={image3_mob} alt="banana_3_mob" width={31} height={1064} />			  
+			): <Image className={s.banana_3_img} src={image3} alt="banana_3" width={31}  height={502} />}
             
 					  </div>
 					  </div>
 				  {sizeWindow !== null && sizeWindow <= 992 ? (
             <div className={s.h1block_content2}>
-              <H1BlockDescription />
+              <H1BlockDescription productFinedDescr={productFined.description} productFinedImages={imagesFined.description} />
 					  </div>
           ) : null}
         </div>
@@ -114,7 +143,7 @@ const H1Block = ({productFined, lang}: Props) => {
               <div className={s.bb}>
                 <Link className={s.button} href="#">ПРИДБАТИ</Link>
               </div>
-					  <H1BlockDescription />
+					  <H1BlockDescription productFinedDescr={productFined.description} productFinedImages={imagesFined.description} />
 					  </div>
           ) : null}
         
