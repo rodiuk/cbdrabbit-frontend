@@ -2,7 +2,11 @@ import React from 'react';
 import s from "./AccordeonItem.module.css";
 
 interface Props {
-	item: any
+	item: {
+		id: string
+		title: string
+		text: string
+	}
 }
 
 const AccordeonItem = ({item}: Props) => {

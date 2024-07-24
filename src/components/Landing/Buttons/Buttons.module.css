@@ -25,3 +25,15 @@
 	font-weight: 500;
 	border-radius: 30px;
 }
+
+@media (max-width: 580px) {
+	.button, .button2 {
+		padding: 15px;
+		min-width: 157px;
+		text-align: center;
+	}
+	.buttons {
+		padding: 0 15px;
+		margin: 80px 0 0;
+	}
+}

@@ -13,7 +13,7 @@ import s from "./Footer.module.css";
 
 import figureForFooter from "/public/img/figureForFooter.svg";
 import figureForFooter_pink from "/public/img/figureForFooter_pink.svg";
-import figureForFooter_yellow from "/public/img/figureForFooter_yellow.png";
+import figureForFooter_yellow from "/public/img/figureForFooter_yellow.svg";
 
 interface Props {
   lang?: Locale;

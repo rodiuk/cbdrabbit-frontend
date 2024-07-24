@@ -10,14 +10,29 @@ import Image from "next/image";
 
 import Link from "next/link";
 import H1BlockDescription from "../H1BlockDescription/H1BlockDescription";
+import { Locale } from "../../../../i18n.config";
+import { ILandingsPictures } from "@/interfaces/lending.interface";
 
-interface Props {
-	productFined: any,
-	lang: any,
-	imagesFined: any
+interface IDescriptionItem {
+	id: number
+	descr: string
+}
+interface IProductFined {
+    id: number;
+    title1: string;
+    title2: string;
+    title3: string;
+    description: IDescriptionItem[];
 }
 
-const H1Block = ({productFined, lang, imagesFined}: Props) => {
+interface Props {
+	productFined: IProductFined
+	lang: Locale;
+	imagesFined: ILandingsPictures;
+}
+
+const H1Block = ({ productFined, lang, imagesFined }: Props) => {
+	//console.log(typeof(productFined.id))
 	const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
 	const {title1, title2, title3} = productFined
 	const {image1, image2, image3, image3_mob} = imagesFined
@@ -58,7 +73,7 @@ const H1Block = ({productFined, lang, imagesFined}: Props) => {
 				scrub: true,
 				onUpdate: self => {
 					let scrollTop = self.scroll();
-					console.log(scrollTop)
+					
 					scrollTop =  Math.min(Math.max(scrollTop, 50), 435);
 				  gsap.to(bananaRef.current, { height:  undefined, top:  scrollTop , duration: 0.5 });
 				}
@@ -77,18 +92,9 @@ const H1Block = ({productFined, lang, imagesFined}: Props) => {
 			let scrollTop = self.progress * (1464 - 0); // Прокрученный процент умножаем на разницу между максимальной и минимальной высотой
 			scrollTop = Math.min(Math.max(scrollTop, 0), 1464); // Ограничиваем высоту в пределах 0 и 1064
 	  
-			// Устанавливаем высоту элемента
 			gsap.to(bananaRef.current, { height: scrollTop });
 	  
-			// Выводим в консоль количество прокрученных пикселей
-			// console.log(`Прокручено пикселей после начала анимации: ${self.scroll() - self.start}`);
-			// console.log('Progress:', self.progress);
-			// console.log('Scroll:', self.scroll());
-			// console.log('Start:', self.start);
-			// console.log('End:', self.end);
 		  },
-		//   onEnter: self => console.log('Animation started'),
-		//   onLeave: self => console.log('Animation ended')
 		});
 	  }
 	  
@@ -97,7 +103,7 @@ const H1Block = ({productFined, lang, imagesFined}: Props) => {
 
   return (
     <div className={s.h1Block}>
-      <SelectButtons lang={lang} />
+      <SelectButtons lang={lang} langId={productFined.id} />
 		  <div className={cn("", s.row)}>
 		  {sizeWindow !== null && sizeWindow <= 992 ? (
             <div className={s.h1block_content}>

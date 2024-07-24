@@ -4,7 +4,15 @@ import React from 'react';
 import s from "./Accordeon.module.css";
 import AccordeonItem from './AccordeonItem/AccordeonItem';
 
-const Accordeon = () => {
+interface IAccordeonItem {
+	id: string
+	title: string
+	text: string
+}
+interface Props {
+	content: IAccordeonItem[]
+}
+const Accordeon = ({content}: Props) => {
 	
 	const accordeon = [{
 		title: "Користь",
@@ -22,7 +30,7 @@ const Accordeon = () => {
 		<div className={s.accordeon}>
 			<div className={s.accordeon_container}>
 				<ul>
-				{accordeon.map((item, index) => {
+				{content.map((item, index) => {
 					return (
 						<AccordeonItem  key={index} item={item} />
 					)

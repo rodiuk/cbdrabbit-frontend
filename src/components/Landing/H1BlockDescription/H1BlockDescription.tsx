@@ -12,12 +12,11 @@ interface Props {
 }
 
 const H1BlockDescription = ({ productFinedDescr, productFinedImages }: Props) => {
-	console.log(productFinedImages)
+	
 	return (
 		<div className={s.descBlock}>
 			{productFinedDescr && productFinedDescr.map((it: any, index: number) => {
 				const images = productFinedImages[index] || '';
-				console.log(images)
 				return (
 					<div className={s.item} key={index}>
 				<div className={s.ttl}>{it.descr}</div>

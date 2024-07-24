@@ -36,6 +36,8 @@ import h3d1 from "/public/img/h3d1.jpg";
 import h3d2 from "/public/img/h3d2.jpg";
 import h3d3 from "/public/img/h3d3.jpg";
 import h3d4 from "/public/img/h3d4.jpg";
+import { StaticImageData } from "next/image";
+import { ILandingsPictures } from "@/interfaces/lending.interface";
 
 export async function generateMetadata({
   params,
@@ -50,8 +52,10 @@ export async function generateMetadata({
     },
   };
 } 
+
+
  
-const landingsPictures = [
+const landingsPictures: ILandingsPictures[] = [
 	{
 		id: 1, title1: "ЧОРНИЙ ШОКОЛАД", title2: `ПОЛУНИЦЯ 50mg\u00A0CBD`, title3: "",
 		image1: banan1,
@@ -139,8 +143,10 @@ export default async function Landing({ params }: IMainPageProps) {
 	const { header, landings } = dict
 	const productFined = landings.landing.find((product: any) => product.id === Number(lendId))
 	const imagesFined = landingsPictures.find((product: any) => product.id === Number(lendId))
-	//console.log(params.lendId)
-	//console.log(imagesFined)
+	
+	if (!productFined || !imagesFined) {
+		return
+	}
   return (
 	  <>
 		  <Header lang={params.lang} stylesName={s.noAfter} />
@@ -152,10 +158,10 @@ export default async function Landing({ params }: IMainPageProps) {
 			  <div className={s.container}>
 			  <H1Block productFined={productFined} imagesFined={imagesFined}  lang={params.lang} />
 			  </div> 
-			  <Description2 lendId={lendId} />
-			  <Accordeon />
+			  <Description2 lendId={lendId} texts={landings.about} />
+			  <Accordeon content={landings.accordeon} />
 
-			  <Buttons />
+			  <Buttons button1Text={landings.firstButton} button2Text={landings.secondButton} />
 			  
         
       </main>
