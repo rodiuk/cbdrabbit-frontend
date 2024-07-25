@@ -39,7 +39,6 @@ export default async function Post({ params }: IMainPageProps) {
 	const { lang } = params;
 	const dict = await getDictionary(params.lang);
 	const {header} = dict
-
   return (
     <>
       <main className={cn("container", styles.main)}>

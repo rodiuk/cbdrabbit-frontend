@@ -1,0 +1,13 @@
+.li {
+	border-bottom: 1px solid rgba(212, 212, 212, 1);
+	padding-bottom: 8px;
+}
+.ttl {
+	font-size: 18px;
+	font-weight: 600;
+	padding: 15px 15px 8px;
+	cursor: pointer;
+}
+.text {
+	padding: 0px 15px 0px;
+}

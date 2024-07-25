@@ -99,7 +99,7 @@
     },
     "lastChance": {
       "title": "This is your last chance. There's no turning back...",
-      "description": "Choose the red candy - stay in wonderland, choose the yellow - same as before, but banana-flavored",
+      "description": "Choose the red candy - stay in wonderland, choose the yellow - same as before, but /public/img/banana-flavored",
       "button": "I'll take two"
     }
   },
@@ -214,5 +214,85 @@
   "meta": {
     "title": "CBD Rabbit",
     "description": "CBD Rabbit - is a store of delicious candies based on natural hemp"
+  },
+  "landings": {
+    "landing": [
+      {
+        "id": 1,
+        "title1": "Black ШОКОЛАД",
+        "title2": "ПОЛУНИЦЯ 50mg\u00A0CBD",
+        "title3": "",
+        "description": [
+          {
+            "id": 1,
+            "descr": "Бельгійський black шоколад"
+          },
+          {
+            "id": 2,
+            "descr": "Українські сублімовані полуниці"
+          },
+          {
+            "id": 3,
+            "descr": "50 мг СBD Ізолят канабідіолу"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title1": "БІЛИЙ ШОКОЛАД",
+        "title2": "КОКОСОВЕ МОЛОКО",
+        "title3": "БАНАН 50mg\u00A0CBD",
+		"description": [
+          {
+            "id": 1,
+            "descr": "Крафтовий білий шоколад на кокосовому молоці"
+          },
+          {
+            "id": 2,
+            "descr": "Cублімовані банани"
+          },
+          {
+            "id": 3,
+            "descr": "50 мг СBD Ізолят канабідіолу"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title1": "БІЛИЙ ШОКОЛАД",
+        "title2": "КОКОСОВЕ МОЛОКО",
+        "title3": "МАНГО МАТЧА 50mg\u00A0CBD",
+		"description": [
+          {
+            "id": 1,
+            "descr": "Крафтовий білий шоколад на кокосовому молоці"
+          },
+          {
+            "id": 2,
+            "descr": "Матча Японський тонізуючий чай"
+          },
+          {
+            "id": 3,
+            "descr": "Cублімований манго"
+          },
+		  {
+            "id": 4,
+            "descr": "50 мг СBD Ізолят канабідіолу"
+          }
+        ]
+      }
+    ],
+	"about": [
+		{"id": "1", "text1": "VEGAN", "text2": "The product does not contain milk powder"},
+		{"id": "2", "text1": "USEFUL", "text2": "Candy to relax"},
+		{"id": "3", "text1": "HOW TO EAT?", "text2": "Dissolve under the tongue"}
+	],
+	"accordeon": [
+		{"id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit"},
+		{"id": "2", "title": "Storage", "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"},
+		{"id": "3", "title": "Сomposition", "text": "composition composition composition"}
+	],
+	"firstButton": "More about CBD",
+	"secondButton": "Buy"
   }
 }
