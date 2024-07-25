@@ -12,15 +12,19 @@ import cn from "clsx";
 import s from "./Footer.module.css";
 
 import figureForFooter from "/public/img/figureForFooter.svg";
+import figureForFooter_pink from "/public/img/figureForFooter_pink.svg";
+import figureForFooter_yellow from "/public/img/figureForFooter_yellow.svg";
 
 interface Props {
   lang?: Locale;
-  titles?: any;
+	titles?: any;
+	idLand?: string | undefined
 }
 
 export const Footer = async ({
   lang,
-  titles,
+	titles,
+	idLand
 }: Props): Promise<React.JSX.Element> => {
   const session = await getServerSession(authConfig);
   const isAuth = !!session?.user.id;
@@ -38,11 +42,19 @@ export const Footer = async ({
     privacy,
     policy,
   } = titles;
-
+console.log(idLand)
   return (
-    <footer className={cn("footer", s.footer)}>
-      <div className={s.figure}>
-        <Image src={figureForFooter} width={720} height={80} alt="bg" />
+	  <footer className={cn("footer", s.footer, {
+		[s.footer_pink]: idLand === "1",
+		[s.footer_yellow]: idLand === "2",
+	})}>
+		  <div className={s.figure}>
+			  {idLand === "1" ? (
+				  <Image src={figureForFooter_pink} width={720} height={80} alt="bg" />
+			  ) : idLand === "2" ? (
+				<Image src={figureForFooter_yellow} width={720} height={80} alt="bg" />
+			  ) : <Image src={figureForFooter} width={720} height={80} alt="bg" />}
+        
         <LinkToTop />
       </div>
       <div className="container">

@@ -7,11 +7,11 @@
     "prebuild": "npx prisma db push",
     "build": "next build",
     "start": "next start",
-	"dev:local": "set HOST=0.0.0.0 && next dev",
     "lint": "next lint"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
+    "@gsap/react": "^2.1.1",
     "@next/third-parties": "^14.1.4",
     "@prisma/client": "^5.11.0",
     "axios": "^1.6.8",

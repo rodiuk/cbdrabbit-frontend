@@ -93,7 +93,8 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
             <Image src={np.src} alt="np" width={38} height={38} />
             <div className={styles.checkoutBlock_ttl}>{dict.npDelivery}</div>
             <div className={styles.checkoutBlock_price}>{dict.npCostLabel}</div>
-          </div>
+				  </div>
+				  
           <NovaPost
             city={city}
             postPoint={postPoint}

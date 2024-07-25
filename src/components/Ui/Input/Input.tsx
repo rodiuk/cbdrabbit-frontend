@@ -53,6 +53,16 @@ const Input: React.FC<InputProps> = ({
 				e.target.value = numericValue;
 				return;
 			  }
+		}
+		if (name === "email") {
+			console.log(5)
+			const emailValue = value.replace(/[А-Яа-яЁё]/g, '');
+			console.log(emailValue, value)
+			if (emailValue !== value) {
+				console.log(1)
+				e.target.value = emailValue;
+				return;
+			  }
 	  }
 	  if (onInputChange) onInputChange(value);
 	  setIsEmpty(false)
