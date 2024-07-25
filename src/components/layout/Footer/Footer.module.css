@@ -1,6 +1,6 @@
 .footer{
 	padding: 32px 0;
-  background: rgba(121, 189, 107, 0.8);
+  background: #73B965;
   color: #fff;
   position: relative;
 }
@@ -73,6 +73,12 @@ a.button {
 }
 .mobil_logo {
 	display: none;
+}
+.footer_yellow {
+	background: rgba(244, 148, 13, 1);
+  }
+.footer_pink {
+	background: #FD9F9A;
 }
 @media (max-width: 991px) {
 	.ul:last-child {

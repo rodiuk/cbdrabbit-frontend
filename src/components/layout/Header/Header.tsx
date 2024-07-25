@@ -14,12 +14,12 @@ interface Props {
 	stylesName?: string | undefined
 }
 
-export const Header = async ({ lang }: Props): Promise<React.JSX.Element> => {
+export const Header = async ({ lang, stylesName }: Props): Promise<React.JSX.Element> => {
 	const dict = await getDictionary(lang);
 
 
   return (
-    <header className={cn("", styles.container, styles.header)} id="headerId">
+    <header className={cn("", styles.container, styles.header, stylesName)} id="headerId">
       <div className={cn("container", styles.block)}> {/* этот класс - он для ограничения, глобальный */}
 			  <LogoContainer lang={lang} />
 
