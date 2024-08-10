@@ -13,6 +13,7 @@ const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
 });
 
 import styles from "./ProductCard.module.css";
+import Link from "next/link";
 
 interface Props {
   product: IProductRes;
@@ -26,12 +27,23 @@ export const ProductCard = async ({
   const { productName, description, price, properties } = product;
 
   const currency = (await getDictionary(lang))?.currency;
-  // const home = (await getDictionary(lang))?.home;
+	let idProuct
+	let valLang = ""
+	if (product.productName === "Rabbit Classic") {
+		idProuct = "1"
+	} else if (product.productName === "Rabbit Banana") {
+		idProuct = "2"
+	} else if (product.productName === "Rabbit Matcha") {
+		idProuct = "3"
+	}
 
+	if (lang === "en") {
+		valLang = "/en/"
+	}
+
+console.log(product.productName)
   return (
     <li className={styles.container}>
-      {/*  <RabbitEarIcon iconStyle={styles.left_ear} />
-      <RabbitEarIcon iconStyle={styles.right_ear} /> */}
 
       <div className={styles.img_wrapper}>
         <Image
@@ -44,7 +56,9 @@ export const ProductCard = async ({
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h2 className={styles.title}>{productName}</h2>
+				  <h2 className={styles.title}>
+					  {idProuct && <Link href={`${valLang}land1/${idProuct}`}>{productName}</Link>}
+				  </h2>
           <ProductPrice currentPrice={price} currency={currency} />
         </div>
         <ul className={styles.properties_list}>
