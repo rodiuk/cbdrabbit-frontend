@@ -107,7 +107,7 @@ const MenuDrop = (props: Props) => {
 
           <ul className={s.mnu_list}>
             <li className={s.mnu_link}>
-              <Link href={`/${lang}`} onClick={toggleMenu}>
+              <Link href={`/${lang}/land1/1`} onClick={toggleMenu}>
                 <Image
                   src={svd_icon.src}
                   alt={candies}
