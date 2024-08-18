@@ -16,14 +16,16 @@ datasource db {
 enum Role {
   USER
   ADMIN
+  MANAGER
 }
 
 enum OrderStatus {
+  CREATED
   CANCELED
   PAID
+  COMPLETED
   SENDED
   DELIVERED
-  CREATED
 }
 
 model User {
@@ -77,19 +79,20 @@ model Address {
 }
 
 model Order {
-  id           String       @id @default(uuid())
-  checkId      Int          @unique @default(autoincrement())
-  totalSum     Float
-  itemPrice    Float
-  comment      String?
-  status       OrderStatus? @default(CREATED)
-  utm_source   String?
-  utm_medium   String?
-  utm_campaign String?
-  utm_content  String?
-  utm_term     String?
-  lang         String?
-  firstOrder   Boolean?     @default(false)
+  id             String       @id @default(uuid())
+  checkId        Int          @unique @default(autoincrement())
+  totalSum       Float
+  itemPrice      Float
+  comment        String?
+  status         OrderStatus? @default(CREATED)
+  utm_source     String?
+  utm_medium     String?
+  utm_campaign   String?
+  utm_content    String?
+  utm_term       String?
+  lang           String?
+  firstOrder     Boolean?     @default(false)
+  serviceComment String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -98,9 +101,10 @@ model Order {
   userId      String
   promocodeId String?
 
-  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  orderItems OrderItem[]
-  promocode  Promocode?  @relation(fields: [promocodeId], references: [id])
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderItems   OrderItem[]
+  promocode    Promocode?    @relation(fields: [promocodeId], references: [id])
+  deliveryInfo DeliveryInfo?
 }
 
 model OrderItem {
@@ -183,4 +187,24 @@ model Promocode {
   updatedAt DateTime @updatedAt
 
   order Order[]
+}
+
+model DeliveryInfo {
+  id                   String  @id @default(uuid())
+  deliveryId           String?
+  trackingNumber       String?
+  deliveryStatus       String?
+  deliveryStatusCode   String?
+  deliveryCost         String?
+  deliveryCreateTime   String?
+  deliveryEstimateTime String?
+  deliveryPayedKeeping String?
+  isFreeDelivery       Boolean @default(false)
+
+  orderId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
