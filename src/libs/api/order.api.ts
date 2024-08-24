@@ -175,6 +175,7 @@ export const changeOrderStatusByCheckId = async (
         existOrder as any,
         orderProducts || [],
         !!existOrder.firstOrder,
+        String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
     }
