@@ -11,7 +11,11 @@ import {
 } from "./user.api";
 import { OrderStatus } from "@prisma/client";
 import { nanoid } from "nanoid";
-import { orderInProgressEmail, sendWebhook } from "./emails.api";
+import {
+  orderInProgressEmail,
+  sendWebhook,
+  senPasswordNewUserEmail,
+} from "./emails.api";
 import { getProductsByIds } from "./products.api";
 
 export const getAllUserOrders = async (userId: string) => {
@@ -84,6 +88,15 @@ export const createOrder = async (
         orderData.userId = user.id;
         await updateUserAddress(user.id, orderData.address);
         await updateUserTotalAmount(user.id, orderData.totalSum);
+        await senPasswordNewUserEmail(
+          user.id,
+          user.email,
+          orderData?.address?.phoneNumber,
+          orderData.firstName,
+          orderData?.lastName,
+          password,
+          lang
+        );
       }
     } else {
       await updateUserAddress(orderData.userId!, orderData.address);

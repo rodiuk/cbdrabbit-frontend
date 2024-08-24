@@ -221,6 +221,48 @@ export const createOrderEmail = async (
   }
 };
 
+export const senPasswordNewUserEmail = async (
+  userId: string,
+  userEmail: string,
+  phoneNumber: string,
+  firstName: string,
+  lastName: string,
+  password: string,
+  lang?: string
+) => {
+  try {
+    const tokenData = await getBearerToken();
+
+    const res = await fetch(
+      `${appConfig.SENDPULSE_EVENTS_URL}/id/13028c3942614eb2cbb66ee700ed7d45/8385164`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          phone: phoneNumber,
+          user_id: userId,
+          reg_date: Date.now().toString(),
+          location: "uk",
+          first_name: firstName,
+          last_name: lastName,
+          url_activator: password,
+          language: lang ?? "uk",
+        }),
+      }
+    );
+
+    const pulseRes = await res.json();
+    console.log({ pulseRes });
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const orderInProgressEmail = async (
   userId: string,
   order: IUserOrder,
