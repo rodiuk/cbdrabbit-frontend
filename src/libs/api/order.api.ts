@@ -183,7 +183,7 @@ export const changeOrderStatusByCheckId = async (
       await sendWebhook(existOrder);
     }
 
-    if (status === OrderStatus.PAID && existOrder.status !== OrderStatus.PAID) {
+    if (status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );

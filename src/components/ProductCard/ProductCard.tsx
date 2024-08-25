@@ -27,24 +27,22 @@ export const ProductCard = async ({
   const { productName, description, price, properties } = product;
 
   const currency = (await getDictionary(lang))?.currency;
-	let idProuct
-	let valLang = ""
-	if (product.productName === "Rabbit Classic") {
-		idProuct = "1"
-	} else if (product.productName === "Rabbit Banana") {
-		idProuct = "2"
-	} else if (product.productName === "Rabbit Matcha") {
-		idProuct = "3"
-	}
+  let idProuct;
+  let valLang = "";
+  if (product.productName === "Rabbit Classic") {
+    idProuct = "1";
+  } else if (product.productName === "Rabbit Banana") {
+    idProuct = "2";
+  } else if (product.productName === "Rabbit Matcha") {
+    idProuct = "3";
+  }
 
-	if (lang === "en") {
-		valLang = "/en/"
-	}
+  if (lang === "en") {
+    valLang = "/en/";
+  }
 
-console.log(product.productName)
   return (
     <li className={styles.container}>
-
       <div className={styles.img_wrapper}>
         <Image
           src={product?.images[0]?.url}
@@ -56,9 +54,11 @@ console.log(product.productName)
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
-				  <h2 className={styles.title}>
-					  {idProuct && <Link href={`${valLang}land1/${idProuct}`}>{productName}</Link>}
-				  </h2>
+          <h2 className={styles.title}>
+            {idProuct && (
+              <Link href={`${valLang}land1/${idProuct}`}>{productName}</Link>
+            )}
+          </h2>
           <ProductPrice currentPrice={price} currency={currency} />
         </div>
         <ul className={styles.properties_list}>
