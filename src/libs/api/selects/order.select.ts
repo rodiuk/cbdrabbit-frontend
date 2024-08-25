@@ -17,6 +17,7 @@ const orderBaseSelect: Prisma.OrderSelect = {
   promocode: true,
   promocodeId: true,
   createdAt: true,
+  deliveryInfo: true,
   user: {
     select: {
       id: true,
@@ -43,6 +44,7 @@ export const orderSelect: Prisma.OrderSelect = {
       id: true,
       quantity: true,
       productId: true,
+
       product: {
         select: {
           id: true,

@@ -99,14 +99,14 @@ export interface IHeaderDict {
     blog: string;
     post: string;
     about: string;
-	  whereToBuy: string; 
-	  checkoutInfo: string
-      aboutCbd: string
-      policy: string
-      privacy: string
-      buy: string
-      cabinet: string
-      candies: string
+    whereToBuy: string;
+    checkoutInfo: string;
+    aboutCbd: string;
+    policy: string;
+    privacy: string;
+    buy: string;
+    cabinet: string;
+    candies: string;
   };
   links: {
     signIn: string;
@@ -126,6 +126,12 @@ export interface IOrderDict {
   orderAgainBtn: string;
   orderSuccess: string;
   buttonLabel: string;
+  statusCreated: string;
+  statusCanceled: string;
+  statusPaid: string;
+  statusCompleted: string;
+  statusSended: string;
+  statusDelivered: string;
 }
 
 export interface IRecoveryPasswordDict {

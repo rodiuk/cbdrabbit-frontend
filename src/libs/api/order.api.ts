@@ -18,7 +18,9 @@ import {
 } from "./emails.api";
 import { getProductsByIds } from "./products.api";
 
-export const getAllUserOrders = async (userId: string) => {
+export const getAllUserOrders = async (
+  userId: string
+): Promise<IUserOrder[]> => {
   try {
     const orders = await prisma.order.findMany({
       where: {

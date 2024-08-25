@@ -1,4 +1,10 @@
-import { Address, Image, Product, Promocode } from "@prisma/client";
+import {
+  Address,
+  DeliveryInfo,
+  Image,
+  Product,
+  Promocode,
+} from "@prisma/client";
 import { IAddressData } from "./adress.interface";
 
 export interface IOrderCreate {
@@ -48,6 +54,7 @@ export interface IUserOrder {
   };
   orderItems: Array<Partial<IUserOrderItem>>;
   promocode?: Promocode | null;
+  deliveryInfo?: DeliveryInfo | null;
 }
 
 export interface IUserOrderItem {

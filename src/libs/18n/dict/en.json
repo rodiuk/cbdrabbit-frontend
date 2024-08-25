@@ -190,7 +190,13 @@
     "amountLabel": "Paid without delivery",
     "orderAgainBtn": "Reorder",
     "orderSuccess": "The order has been successfully placed!",
-    "buttonLabel": "Go home"
+    "buttonLabel": "Go home",
+    "statusCreated": "Created",
+    "statusPaid": "Paid",
+    "statusSended": "Sended",
+    "statusDelivered": "Delivered",
+    "statusCanceled": "Canceled",
+    "statusCompleted": "Completed"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",
@@ -242,7 +248,7 @@
         "title1": "БІЛИЙ ШОКОЛАД",
         "title2": "КОКОСОВЕ МОЛОКО",
         "title3": "БАНАН 50mg\u00A0CBD",
-		"description": [
+        "description": [
           {
             "id": 1,
             "descr": "Крафтовий білий шоколад на кокосовому молоці"
@@ -262,7 +268,7 @@
         "title1": "БІЛИЙ ШОКОЛАД",
         "title2": "КОКОСОВЕ МОЛОКО",
         "title3": "МАНГО МАТЧА 50mg\u00A0CBD",
-		"description": [
+        "description": [
           {
             "id": 1,
             "descr": "Крафтовий білий шоколад на кокосовому молоці"
@@ -275,24 +281,40 @@
             "id": 3,
             "descr": "Cублімований манго"
           },
-		  {
+          {
             "id": 4,
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
         ]
       }
     ],
-	"about": [
-		{"id": "1", "text1": "VEGAN", "text2": "The product does not contain milk powder"},
-		{"id": "2", "text1": "USEFUL", "text2": "Candy to relax"},
-		{"id": "3", "text1": "HOW TO EAT?", "text2": "Dissolve under the tongue"}
-	],
-	"accordeon": [
-		{"id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit"},
-		{"id": "2", "title": "Storage", "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"},
-		{"id": "3", "title": "Сomposition", "text": "composition composition composition"}
-	],
-	"firstButton": "More about CBD",
-	"secondButton": "Buy"
+    "about": [
+      {
+        "id": "1",
+        "text1": "VEGAN",
+        "text2": "The product does not contain milk powder"
+      },
+      { "id": "2", "text1": "USEFUL", "text2": "Candy to relax" },
+      {
+        "id": "3",
+        "text1": "HOW TO EAT?",
+        "text2": "Dissolve under the tongue"
+      }
+    ],
+    "accordeon": [
+      { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+      {
+        "id": "2",
+        "title": "Storage",
+        "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
+      },
+      {
+        "id": "3",
+        "title": "Сomposition",
+        "text": "composition composition composition"
+      }
+    ],
+    "firstButton": "More about CBD",
+    "secondButton": "Buy"
   }
 }

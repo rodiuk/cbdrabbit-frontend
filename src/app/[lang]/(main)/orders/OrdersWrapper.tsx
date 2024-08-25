@@ -51,7 +51,7 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
         if (!data?.user?.id) return;
 
         const orders = await getAllUserOrders(data?.user?.id);
-        setOrders(orders as unknown as IUserOrder[]);
+        setOrders(orders);
       } catch (error) {
         console.log(error);
       } finally {
