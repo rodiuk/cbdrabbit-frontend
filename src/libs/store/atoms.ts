@@ -1,9 +1,9 @@
-import { Product } from "@prisma/client";
 import { atom } from "jotai";
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { calculatePrice } from "@/utils/calculatePrice";
+import { Product } from "@prisma/client";
 import { Cart } from "@/interfaces/store.interface";
+import { calculatePrice } from "@/utils/calculatePrice";
 import { IProductRes } from "@/interfaces/product.interface";
+import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
 export const initialCartState = {
   products: [],

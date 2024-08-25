@@ -66,12 +66,13 @@ export const getOrderByCheckId = async (checkId: number) => {
 export const createOrder = async (
   orderData: IOrderCreate,
   paymentId: string,
-  firstOrder?: boolean,
   lang?: string
 ) => {
   try {
+    let firstOrder = false;
+
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
-      //TODO: need send for email
+      firstOrder = true;
       const password = nanoid(6);
       const user = await createUser(
         {
@@ -101,6 +102,8 @@ export const createOrder = async (
     } else {
       await updateUserAddress(orderData.userId!, orderData.address);
       await updateUserTotalAmount(orderData.userId!, orderData.totalSum);
+      const res = await hasUserOrders(orderData.userId!);
+      if (!res) firstOrder = res;
     }
 
     const order = await prisma.order.create({
@@ -122,8 +125,8 @@ export const createOrder = async (
           },
         }),
         ...(lang && { lang: lang }),
-        ...(!!firstOrder && { firstOrder: firstOrder }),
         ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
+        ...(!!firstOrder && { firstOrder: firstOrder }),
         ...(orderData.utm_source && { utm_source: orderData.utm_source }),
         ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
         ...(orderData.utm_term && { utm_term: orderData.utm_term }),
@@ -178,7 +181,7 @@ export const changeOrderStatusByCheckId = async (
       await sendWebhook(existOrder);
     }
 
-    if (status === OrderStatus.PAID) {
+    if (status === OrderStatus.PAID && existOrder.status !== OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );
@@ -224,4 +227,18 @@ export const getOrderNewReference = async () => {
 
     return String(+res?.checkId + 1);
   } catch (error) {}
+};
+
+export const hasUserOrders = async (userId: string) => {
+  try {
+    const ordersCount = await prisma.order.count({
+      where: {
+        userId,
+      },
+    });
+
+    return ordersCount > 0;
+  } catch (error) {
+    throw error;
+  }
 };

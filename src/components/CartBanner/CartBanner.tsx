@@ -4,9 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { useAtom } from "jotai";
 import { usePathname } from "next/navigation";
-import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { ArrowRightIcon } from "../icons/ArrowRight";
+import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { AnimatePresence, motion } from "framer-motion";
+import { useProcessUpdateCart } from "@/hooks/useProcessUpdateCart";
 
 import styles from "./CartBanner.module.css";
 
@@ -33,6 +34,8 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const pathname = usePathname()?.split("/")?.at(-1);
 
   const hasExcludedPath = !!pathname ? excludedPaths.includes(pathname) : false;
+
+  useProcessUpdateCart(props?.lang);
 
   return (
     <AnimatePresence mode="wait">

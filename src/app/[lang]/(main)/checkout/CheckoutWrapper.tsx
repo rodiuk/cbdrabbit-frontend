@@ -192,7 +192,7 @@ export const CheckoutWrapper = ({
 
       if (!res?.pageUrl || !res?.invoiceId) return;
 
-      const resOrder = await createOrder(payload, res?.invoiceId);
+      const resOrder = await createOrder(payload, res?.invoiceId, lang);
 
       if ("user" in resOrder && !data?.user?.id) {
         setCart(prev => ({ ...prev, fromCheckout: true }));

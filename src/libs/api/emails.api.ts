@@ -52,7 +52,7 @@ export const passwordResetSendEmail = async (
           user_id: user.id,
           first_name: user.firstName,
           last_name: user.lastName,
-          lang: lang,
+          language: lang,
           url_password: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
         }),
       }
@@ -347,7 +347,7 @@ export const emailUpdateSendEmail = async (
           user_id: user.id,
           first_name: user.firstName,
           last_name: user.lastName,
-          lang: lang,
+          language: lang,
           url_change_email: `https://cbdrabbit.shop/uk/signIn?resetPassword=${code}`,
         }),
       }
