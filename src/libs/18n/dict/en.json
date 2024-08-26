@@ -196,7 +196,8 @@
     "statusSended": "Sended",
     "statusDelivered": "Delivered",
     "statusCanceled": "Canceled",
-    "statusCompleted": "Completed"
+    "statusCompleted": "Completed",
+    "statusSuccess": "Success"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",

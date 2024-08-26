@@ -34,6 +34,8 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
         return dict.statusCanceled;
       case OrderStatus.DELIVERED:
         return dict.statusDelivered;
+      case OrderStatus.SUCCESS:
+        return dict.statusSuccess;
       default:
         return dict.statusCreated;
     }
