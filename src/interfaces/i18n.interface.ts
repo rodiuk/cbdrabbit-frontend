@@ -132,6 +132,7 @@ export interface IOrderDict {
   statusCompleted: string;
   statusSended: string;
   statusDelivered: string;
+  statusSuccess: string;
 }
 
 export interface IRecoveryPasswordDict {

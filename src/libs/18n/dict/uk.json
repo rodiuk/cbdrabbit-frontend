@@ -199,7 +199,8 @@
     "statusSended": "Передано перевізнику",
     "statusDelivered": "Доставлено у відділення",
     "statusCanceled": "Скасовано",
-    "statusCompleted": "Укоиплектовано"
+    "statusCompleted": "Укоиплектовано",
+    "statusSuccess": "Отримано клієнтом"
   },
   "home": {
     "title": "Привіт, ми CBD Rabbit",

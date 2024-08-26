@@ -26,6 +26,7 @@ enum OrderStatus {
   COMPLETED
   SENDED
   DELIVERED
+  SUCCESS
 }
 
 model User {
