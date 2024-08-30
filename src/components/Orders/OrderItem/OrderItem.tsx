@@ -41,6 +41,12 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
     }
   };
 
+  const totalQuantity = order?.orderItems?.reduce(
+    (acc, item) => acc + (item?.quantity || 0),
+    0
+  );
+  const sale = totalQuantity * 85 - order?.totalSum;
+
   return (
     <>
       <div className={s.orderInfo}>
@@ -97,13 +103,22 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
             {order?.totalSum} {currency}
           </div>
         </div>
-        <div className={s.sale_tttl}>
-          <span className={s.one}>
-            <Image src={sale_icon} width={22} height={14} alt="sale_icon" />
-            Знижка 20%
-          </span>
-          <span className={s.two}>- 64 ₴</span>
-        </div>
+        {order?.promocode && (
+          <div className={s.sale_tttl}>
+            <span className={s.one}>
+              <Image src={sale_icon} width={22} height={14} alt="sale_icon" />
+              <>
+                {!!order?.promocode?.percentDiscount && (
+                  <>Знижка {order?.promocode?.percentDiscount}%</>
+                )}
+                {!!order?.promocode?.newPrice && (
+                  <>Ціна за цукерку {order?.promocode?.newPrice}₴</>
+                )}
+              </>
+            </span>
+            <span className={s.two}>- {sale} ₴</span>
+          </div>
+        )}
         <div className={s.orderInfo_pay}>
           <div className={s.orderInfo_ttl2}>
             <p className={s.ttl2_2}>Доставка</p>
@@ -114,7 +129,7 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
         <div className={s.endBlock}>
           <div className={s.endBlock_wrap}>
             <div className={s.endBlock_o}>Усього сплачено</div>
-            <div className={s.endBlock_t}>680 ₴</div>
+            <div className={s.endBlock_t}>{order.totalSum} ₴</div>
           </div>
         </div>
       </div>
