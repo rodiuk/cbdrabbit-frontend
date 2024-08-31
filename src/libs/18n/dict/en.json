@@ -225,7 +225,7 @@
   "landings": {
     "landing": [
       {
-        "id": 1,
+        "id": "classic",
         "title1": "Black ШОКОЛАД",
         "title2": "ПОЛУНИЦЯ 50mg\u00A0CBD",
         "title3": "",
@@ -245,7 +245,7 @@
         ]
       },
       {
-        "id": 2,
+        "id": "banana",
         "title1": "БІЛИЙ ШОКОЛАД",
         "title2": "КОКОСОВЕ МОЛОКО",
         "title3": "БАНАН 50mg\u00A0CBD",
@@ -265,7 +265,7 @@
         ]
       },
       {
-        "id": 3,
+        "id": "matcha",
         "title1": "БІЛИЙ ШОКОЛАД",
         "title2": "КОКОСОВЕ МОЛОКО",
         "title3": "МАНГО МАТЧА 50mg\u00A0CBD",

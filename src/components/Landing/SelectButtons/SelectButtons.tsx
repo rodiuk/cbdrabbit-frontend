@@ -10,35 +10,43 @@ import Link from "next/link";
 import { Locale } from "../../../../i18n.config";
 
 interface Props {
-  lang: Locale
-  langId: number;
+  lang: Locale;
+  langId: string;
 }
 
 const SelectButtons = ({ lang, langId }: Props) => {
-	
   return (
     <div className={s.productPage_select}>
-		  <Link className={cn(s.productPage_selectButton, {
-		  [s.red]: langId === 1,
-		  [s.green]: langId === 3,
-		  [s.active]: langId === 1
-	  })} href={`/${lang}/land1/1`}>
+      <Link
+        className={cn(s.productPage_selectButton, {
+          [s.red]: langId === "classic",
+          [s.green]: langId === "banana",
+          [s.active]: langId === "matcha",
+        })}
+        href={`/${lang}/classic`}
+      >
         <Image src={ic1} alt="Rabbit Classic" width={48} height={48} /> Rabbit
         Classic
       </Link>
-      <Link className={cn(s.productPage_selectButton, {
-		  [s.red]: langId === 1,
-		  [s.green]: langId === 3,
-		  [s.active]: langId === 2
-	  })} href={`/${lang}/land1/2`}>
+      <Link
+        className={cn(s.productPage_selectButton, {
+          [s.red]: langId === "classic",
+          [s.green]: langId === "banana",
+          [s.active]: langId === "matcha",
+        })}
+        href={`/${lang}/banana`}
+      >
         <Image src={ic2} alt="Rabbit Banana" width={48} height={48} /> Rabbit
         Banana
       </Link>
-      <Link className={cn(s.productPage_selectButton, {
-		  [s.red]: langId === 1,
-		  [s.green]: langId === 3,
-		  [s.active]: langId === 3
-	  })} href={`/${lang}/land1/3`}>
+      <Link
+        className={cn(s.productPage_selectButton, {
+          [s.red]: langId === "classic",
+          [s.green]: langId === "banana",
+          [s.active]: langId === "matcha",
+        })}
+        href={`/${lang}/matcha`}
+      >
         <Image src={ic3} alt="Rabbit Matcha" width={48} height={48} /> Rabbit
         Matcha
       </Link>
