@@ -15,7 +15,6 @@ interface Props {
 }
 
 const SelectButtons = ({ lang, langId }: Props) => {
-	console.log(langId)
   return (
     <div className={s.productPage_select}>
       <Link
@@ -27,7 +26,7 @@ const SelectButtons = ({ lang, langId }: Props) => {
         href={`/${lang}/classic`}
       > 
         <Image src={ic1} alt="Rabbit Classic" width={48} height={48} /> Rabbit
-        Classic d
+        Classic
       </Link>
       <Link
         className={cn(s.productPage_selectButton, {

@@ -23,18 +23,20 @@ interface IProductFined {
   title2: string;
   title3: string;
   description: IDescriptionItem[];
+  weightCandy: string;
 }
 
 interface Props {
   productFined: IProductFined;
   lang: Locale;
-  imagesFined: ILandingsPictures;
+	imagesFined: ILandingsPictures;
+	texts: any
 }
 
-const H1Block = ({ productFined, lang, imagesFined }: Props) => {
-  //console.log(typeof(productFined.id))
+const H1Block = ({ productFined, lang, imagesFined, texts }: Props) => {
+  
   const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
-  const { title1, title2, title3 } = productFined;
+  const { title1, title2, title3, weightCandy } = productFined;
   const { image1, image2, image3, image3_mob } = imagesFined;
   const bananaRef = useRef(null);
 
@@ -120,9 +122,12 @@ const H1Block = ({ productFined, lang, imagesFined }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>1 цукерка - 8г</div>
+            <div className={s.descr}>{weightCandy}</div>
             <div className={s.bb}>
-              <Link className={s.button} href="#">
+						  <Link className={cn(s.button, {
+							  [s.pink]: productFined.id === "classic",
+							  [s.green]: productFined.id === "matcha",
+						  })} href={`${lang}`}>
                 ПРИДБАТИ
               </Link>
             </div>
@@ -177,9 +182,12 @@ const H1Block = ({ productFined, lang, imagesFined }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>1 цукерка - 8г</div>
+            <div className={s.descr}>{weightCandy}</div>
             <div className={s.bb}>
-              <Link className={s.button} href="#">
+						  <Link className={cn(s.button, {
+				  [s.pink]: productFined.id === "classic",
+				  [s.green]: productFined.id === "matcha",
+			  })} href={`${lang}`}>
                 ПРИДБАТИ
               </Link>
             </div>

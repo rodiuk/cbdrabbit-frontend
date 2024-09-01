@@ -226,8 +226,8 @@
     "landing": [
       {
         "id": "classic",
-        "title1": "Black ШОКОЛАД",
-        "title2": "ПОЛУНИЦЯ 50mg\u00A0CBD",
+        "title1": "DARK CHOCOLATE",
+        "title2": "STRAWBERRY 50mg\u00A0CBD",
         "title3": "",
         "description": [
           {
@@ -242,7 +242,8 @@
             "id": 3,
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
-        ]
+        ],
+		"weightCandy" : "1 candy  - 8g"
       },
       {
         "id": "banana",
@@ -262,13 +263,14 @@
             "id": 3,
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
-        ]
+        ],
+		"weightCandy" : "1 candy  - 8g"
       },
       {
         "id": "matcha",
         "title1": "БІЛИЙ ШОКОЛАД",
         "title2": "КОКОСОВЕ МОЛОКО",
-        "title3": "МАНГО МАТЧА 50mg\u00A0CBD",
+        "title3": "MANGO MATCHA 50mg\u00A0CBD",
         "description": [
           {
             "id": 1,
@@ -286,7 +288,8 @@
             "id": 4,
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
-        ]
+        ],
+		"weightCandy" : "1 candy  - 8g"
       }
     ],
     "about": [

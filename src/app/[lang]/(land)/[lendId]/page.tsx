@@ -154,10 +154,10 @@ export default async function Landing({ params }: IMainPageProps) {
   const imagesFined = landingsPictures.find(
     (product: any) => product.id === lendId
   );
-console.log(lendId)
   if (!productFined || !imagesFined) {
     return;
   }
+  
   return (
     <>
       <Header lang={params.lang} stylesName={s.noAfter} />
@@ -172,7 +172,8 @@ console.log(lendId)
           <H1Block
             productFined={productFined}
             imagesFined={imagesFined}
-            lang={params.lang}
+					  lang={params.lang}
+					  texts={landings.landing}
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
