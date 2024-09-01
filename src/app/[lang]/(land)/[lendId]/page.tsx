@@ -154,7 +154,7 @@ export default async function Landing({ params }: IMainPageProps) {
   const imagesFined = landingsPictures.find(
     (product: any) => product.id === lendId
   );
-
+console.log(lendId)
   if (!productFined || !imagesFined) {
     return;
   }
