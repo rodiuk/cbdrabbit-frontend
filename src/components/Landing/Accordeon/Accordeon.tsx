@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import cn from "clsx";
 
 import s from "./Accordeon.module.css";
 import AccordeonItem from './AccordeonItem/AccordeonItem';
@@ -11,24 +12,16 @@ interface IAccordeonItem {
 }
 interface Props {
 	content: IAccordeonItem[]
+	lendId: string
 }
-const Accordeon = ({content}: Props) => {
-	
-	const accordeon = [{
-		title: "Користь",
-		text: "super"
-	},{
-		title: "Зберігання",
-		text: "Зберігати у сухому місці від 4° до 20°С і відносній вологості повітря не більше 75%. Термін придатності до вживання: 10 місяців з дати виготовлення"
-	},{
-		title: "Cклад",
-		text: "Дофіга всього"
-		},]
-	
+const Accordeon = ({content, lendId}: Props) => {
 	
 	return (
 		<div className={s.accordeon}>
-			<div className={s.accordeon_container}>
+			<div className={cn(s.accordeon_container, {
+			[s.pink]: lendId === "classic",
+			[s.green]: lendId === "matcha",
+	  })}>
 				<ul>
 				{content.map((item, index) => {
 					return (

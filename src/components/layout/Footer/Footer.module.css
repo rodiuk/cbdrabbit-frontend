@@ -51,14 +51,21 @@
 	color: rgba(215, 255, 187, 1);
 	font-weight: 600;
 }
-.part:nth-child(2) a {
+.part:nth-child(2), .part:nth-child(2) a {
 	color: rgba(215, 255, 187, 1);
+}
+.part_pink:nth-child(2) , .part_pink:nth-child(2) a {
+	color: #FFE3E1;
+}
+.part_yellow:nth-child(2), .part_yellow:nth-child(2) a {
+	color: #FEF1C8;
 }
 .part:nth-child(3) {
 	text-align: right;
 	font-size: 16px;
 	font-weight: 600;
 }
+
 
 a.button {
 	background: rgba(255, 255, 255, 0.4);

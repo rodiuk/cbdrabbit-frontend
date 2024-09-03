@@ -44,19 +44,19 @@ const Description2 = ({ lendId, texts }: Props) => {
   }, []);
 
   React.useEffect(() => {
-    if (lendId === "1") {
+    if (lendId === "classic") {
       if (sizeWindow !== null && sizeWindow > 580) {
         setBackground(bg1);
       } else {
         setBackground(bg1_mobile);
       }
-    } else if (lendId === "2") {
+    } else if (lendId === "banana") {
       if (sizeWindow !== null && sizeWindow > 580) {
         setBackground(bg2);
       } else {
         setBackground(bg2_mobile);
       }
-    } else if (lendId === "3") {
+    } else if (lendId === "matcha") {
       if (sizeWindow !== null && sizeWindow > 580) {
         setBackground(bg3);
       } else {
@@ -76,7 +76,10 @@ const Description2 = ({ lendId, texts }: Props) => {
         {texts &&
           texts.map((item: any, i: number) => {
             return (
-              <div className={s.item} key={i}>
+				<div className={cn(s.item, {
+					[s.pink]: lendId === "classic",
+					[s.green]: lendId === "matcha",
+			  })} key={i}>
                 <div className={s.wrap}>
                   <div className={s.img}>
                     <Image src={icons[i]} width={160} height={160} alt="pic" />

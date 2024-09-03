@@ -30,10 +30,10 @@ interface Props {
   productFined: IProductFined;
   lang: Locale;
 	imagesFined: ILandingsPictures;
-	texts: any
+	textButton: string;
 }
 
-const H1Block = ({ productFined, lang, imagesFined, texts }: Props) => {
+const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
   
   const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
   const { title1, title2, title3, weightCandy } = productFined;
@@ -128,7 +128,7 @@ const H1Block = ({ productFined, lang, imagesFined, texts }: Props) => {
 							  [s.pink]: productFined.id === "classic",
 							  [s.green]: productFined.id === "matcha",
 						  })} href={`${lang}`}>
-                ПРИДБАТИ
+                {textButton}
               </Link>
             </div>
           </div>
@@ -183,12 +183,12 @@ const H1Block = ({ productFined, lang, imagesFined, texts }: Props) => {
               <span className={s.h1_3}>{title3}</span>
             </h1>
             <div className={s.descr}>{weightCandy}</div>
-            <div className={s.bb}>
+            <div className={s.bb}> 
 						  <Link className={cn(s.button, {
 				  [s.pink]: productFined.id === "classic",
 				  [s.green]: productFined.id === "matcha",
 			  })} href={`${lang}`}>
-                ПРИДБАТИ
+                {textButton}
               </Link>
             </div>
             <H1BlockDescription

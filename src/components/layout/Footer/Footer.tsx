@@ -45,13 +45,13 @@ export const Footer = async ({
 console.log(idLand)
   return (
 	  <footer className={cn("footer", s.footer, {
-		[s.footer_pink]: idLand === "1",
-		[s.footer_yellow]: idLand === "2",
+		[s.footer_pink]: idLand === "classic",
+		[s.footer_yellow]: idLand === "banana",
 	})}>
 		  <div className={s.figure}>
-			  {idLand === "1" ? (
+			  {idLand === "classic" ? (
 				  <Image src={figureForFooter_pink} width={720} height={80} alt="bg" />
-			  ) : idLand === "2" ? (
+			  ) : idLand === "banana" ? (
 				<Image src={figureForFooter_yellow} width={720} height={80} alt="bg" />
 			  ) : <Image src={figureForFooter} width={720} height={80} alt="bg" />}
         
@@ -120,7 +120,10 @@ console.log(idLand)
               <MobileMainLogoIcon iconStyle={s.mobile_home_logo} />
             </Link>
           </div>
-          <div className={s.part}>
+				  <div className={cn(s.part, {
+			  [s.part_pink]: idLand === "classic",
+			  [s.part_yellow]: idLand === "banana",
+		  })}>
             <p>© CBDRabbit. All Rights Reserved.</p>
             <p className={s.politics}>
               <Link href={`/${lang}/privacy`}>{privacy}</Link>{" "}

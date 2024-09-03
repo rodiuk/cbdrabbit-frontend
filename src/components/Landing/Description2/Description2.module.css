@@ -44,6 +44,12 @@
 	outline: 16px solid rgba(255, 255, 255, 0.3);
 	color: rgba(82, 44, 41, 1);
 }
+.pink {
+	background: #FFE8E7;
+}
+.green {
+	background: #E7F5E2;
+}
 .ttl {
 	font-size: 26px;
 	text-transform: uppercase;

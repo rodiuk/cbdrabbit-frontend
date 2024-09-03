@@ -9,21 +9,39 @@
 
 .button {
 	background: rgba(255, 255, 255, 0.8);
-	border: 3px solid rgba(254, 241, 200, 0.5);
+	outline: 3px solid rgba(254, 241, 200, 0.5);
 	padding: 15px  44px;
 	font-size: 16px;
 	color: rgba(105, 51, 43, 1);
 	font-weight: 500;
 	border-radius: 30px;
+	min-width: 218px;
+	text-align: center;
+}
+.button.pink  {
+	outline:  3px solid #FFCCC980;
+}
+.button.green  {
+	outline:  3px solid #CEEAC880;
 }
 .button2 {
-	background: rgba(145, 59, 15, 1);
-	border: 3px solid rgba(254, 241, 200, 0.5);
+	background: #913B0F;
+	outline: 3px solid rgba(254, 241, 200, 0.5);
 	padding: 15px  44px;
 	font-size: 16px;
 	color: #fff;
 	font-weight: 500;
 	border-radius: 30px;
+	min-width: 218px;
+	text-align: center;
+}
+.pink2 {
+	background: #9C2018;
+	outline:  3px solid #FFCCC980;
+}
+.green2  {
+	background: #42623B;
+	outline:  3px solid #CEEAC880;
 }
 
 @media (max-width: 580px) {
