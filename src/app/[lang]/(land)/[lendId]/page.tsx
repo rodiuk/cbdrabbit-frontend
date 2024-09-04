@@ -157,7 +157,7 @@ export default async function Landing({ params }: IMainPageProps) {
   if (!productFined || !imagesFined) {
     return;
   }
-  
+
   return (
     <>
       <Header lang={params.lang} stylesName={s.noAfter} />
