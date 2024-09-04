@@ -12,10 +12,10 @@
 }
 .img_lay img {
 	width: 100%;
-}
+} 
 .description_container {
 	display: flex;
-	position: absolute;
+	position: absolute !important;
 	left: 50%;
 	top: 0;
 	transform: translateX(-50%);
