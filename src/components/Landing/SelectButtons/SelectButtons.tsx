@@ -24,7 +24,7 @@ const SelectButtons = ({ lang, langId }: Props) => {
           [s.green]: langId === "matcha",
         })}
         href={`/${lang}/classic`}
-      > 
+      >
         <Image src={ic1} alt="Rabbit Classic" width={48} height={48} /> Rabbit
         Classic
       </Link>
@@ -37,7 +37,7 @@ const SelectButtons = ({ lang, langId }: Props) => {
         href={`/${lang}/banana`}
       >
         <Image src={ic2} alt="Rabbit Banana" width={48} height={48} /> Rabbit
-        Banana 
+        Banana
       </Link>
       <Link
         className={cn(s.productPage_selectButton, {
