@@ -30,11 +30,11 @@ export const ProductCard = async ({
   let idProuct;
   let valLang = "";
   if (product.productName === "Rabbit Classic") {
-    idProuct = "1";
+    idProuct = "classic";
   } else if (product.productName === "Rabbit Banana") {
-    idProuct = "2";
+    idProuct = "banana";
   } else if (product.productName === "Rabbit Matcha") {
-    idProuct = "3";
+    idProuct = "matcha";
   }
 
   if (lang === "en") {
@@ -56,7 +56,7 @@ export const ProductCard = async ({
         <div className={styles.header}>
           <h2 className={styles.title}>
             {idProuct && (
-              <Link href={`${valLang}land1/${idProuct}`}>{productName}</Link>
+              <Link href={`${valLang}${idProuct}`}>{productName}</Link>
             )}
           </h2>
           <ProductPrice currentPrice={price} currency={currency} />

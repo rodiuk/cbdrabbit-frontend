@@ -24,9 +24,9 @@ interface InputProps {
 	showForgotPassword?: boolean;
 	validateData?: any;
 	readOnly?: boolean
-
+	textOnTheRight?: string
 }
-
+ 
 const Input: React.FC<InputProps> = ({
   text,
   required,
@@ -40,6 +40,7 @@ const Input: React.FC<InputProps> = ({
 	handleForgot,
 	validateData,
 	readOnly,
+	textOnTheRight,
   ...input
 }) => {
 	const [type, setType] = React.useState(input.type);
@@ -54,7 +55,7 @@ const Input: React.FC<InputProps> = ({
 				return;
 			  }
 		}
-		if (name === "email") {
+		/* хз. поки що буде хай щоб знов не перероблювати як передумають)  if (name === "email") {
 			console.log(5)
 			const emailValue = value.replace(/[А-Яа-яЁё]/g, '');
 			console.log(emailValue, value)
@@ -63,13 +64,14 @@ const Input: React.FC<InputProps> = ({
 				e.target.value = emailValue;
 				return;
 			  }
-	  }
+	  } */
 	  if (onInputChange) onInputChange(value);
-	  setIsEmpty(false)
+		setIsEmpty(false)
   };
 
   const handlerClick = (el: string) => {
     setType(el);
+	console.log(type)
 	};
 
 	const handlerBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,6 +114,11 @@ const Input: React.FC<InputProps> = ({
 				<span className={s.right_text} onClick={handleForgot}>
 				  Забув пароль? {password}
 				</span>
+				  )}
+				  {textOnTheRight && (
+				<span className={s.right_text}>
+				  {textOnTheRight}
+				</span>
 			  )}
 			</div>
 		  )}
@@ -136,12 +143,12 @@ const Input: React.FC<InputProps> = ({
       <input
         onChange={e => handlerInput(e)}
         onBlur={e => handlerBlur(e)}
-        type={type}
         value={value}
         onClick={showLay ? () => showLay() : undefined}
         className={s.input}
 			  {...input}
 			  readOnly={readOnly}
+			  type={type || input.type}
       /> 
 
 		  {errorText && <p className={s.error}>{errorText }</p>}

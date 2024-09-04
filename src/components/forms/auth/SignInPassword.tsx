@@ -52,12 +52,13 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
         type="password"
         text={dict.inputLabel}
         placeholder={dict.inputPlaceholder}
-        isPassword
+			  isPassword
+			  showForgotPassword
         password={true}
         value={password}
         onInputChange={setPassword}
       />
-
+ 
       {notValid && <p className={styles.error}>{dict.error}</p>}
       {notActivated && <p className={styles.error}>{dict.errorNotActivated}</p>}
 

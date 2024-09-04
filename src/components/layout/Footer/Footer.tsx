@@ -42,7 +42,7 @@ export const Footer = async ({
     privacy,
     policy,
   } = titles;
-console.log(idLand)
+
   return (
 	  <footer className={cn("footer", s.footer, {
 		[s.footer_pink]: idLand === "classic",

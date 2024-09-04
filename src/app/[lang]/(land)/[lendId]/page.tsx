@@ -184,7 +184,7 @@ export default async function Landing({ params }: IMainPageProps) {
 				  button2Text={landings.secondButton}
 				  lendId={lendId}
         />
-      </main>
+      </main> 
       <Footer lang={lang} titles={header.titles} idLand={params.lendId} />
     </>
   );

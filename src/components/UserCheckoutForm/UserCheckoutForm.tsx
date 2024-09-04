@@ -28,7 +28,7 @@ const UserCheckoutForm = ({
     <div className={s.labels}>
       <div className={s.wrap_row}>
         <Input
-          type="text"
+          type="text" 
           name="lastName"
           value={userInfo?.lastName}
           text={dict.userLabelLastName}
@@ -57,6 +57,7 @@ const UserCheckoutForm = ({
         placeholder="+380 (__)___-__-__"
 			  onInputChange={value => handleInputChange("phone", value)}
 			  validateData={validateData}
+			  textOnTheRight="Потрібно для доставки"
       />
       {!isPopup && (
         <Input
@@ -68,6 +69,7 @@ const UserCheckoutForm = ({
           value={userInfo?.email}
 				  onInputChange={value => handleInputChange("email", value)}
 				  validateData={validateData}
+				  textOnTheRight="Сюди ми відправимо чек"
         />
       )}
     </div>
