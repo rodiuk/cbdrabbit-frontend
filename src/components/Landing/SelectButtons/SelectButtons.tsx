@@ -12,6 +12,7 @@ import { Locale } from "../../../../i18n.config";
 interface Props {
   lang: Locale;
   langId: string;
+
 }
 
 const SelectButtons = ({ lang, langId }: Props) => {

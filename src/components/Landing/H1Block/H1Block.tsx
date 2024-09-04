@@ -29,12 +29,11 @@ interface IProductFined {
 interface Props {
   productFined: IProductFined;
   lang: Locale;
-	imagesFined: ILandingsPictures;
-	textButton: string;
+  imagesFined: ILandingsPictures;
+  textButton: string;
 }
 
 const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
-  
   const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
   const { title1, title2, title3, weightCandy } = productFined;
   const { image1, image2, image3, image3_mob } = imagesFined;
@@ -47,6 +46,7 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
     };
 
     window.addEventListener("resize", handleResize);
+
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
@@ -65,7 +65,9 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
         .to(`.${s.h1_3}`, { left: 0, duration: 0.5 })
         .to(`.${s.banana_2}`, {
           top: sizeWindow <= 560 ? "60vw" : "285",
+
           opacity: 1,
+
           duration: 1,
         })
         .to(`.${s.banana_3}`, {
@@ -74,6 +76,21 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
           duration: 1,
         });
 
+      if (sizeWindow <= 580) {
+        ScrollTrigger.create({
+          trigger: bananaRef.current,
+          start: "top center", // Начало анимации, когда элемент находится в середине экрана
+          end: "+=1200", // Конец анимации, когда нижняя часть элемента достигает верха экрана
+          scrub: true,
+          onUpdate: self => {
+            // Рассчитываем высоту в зависимости от прокрутки
+            let scrollTop = self.progress * (1464 - 0); // Прокрученный процент умножаем на разницу между максимальной и минимальной высотой
+            scrollTop = Math.min(Math.max(scrollTop, 0), 1464); // Ограничиваем высоту в пределах 0 и 1064
+
+            gsap.to(bananaRef.current, { height: scrollTop });
+          },
+        });
+      }
       if (sizeWindow > 580) {
         ScrollTrigger.create({
           trigger: bananaRef.current,
@@ -122,13 +139,10 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>{weightCandy}</div>
+            <div className={s.descr}>1 цукерка - 8г</div>
             <div className={s.bb}>
-						  <Link className={cn(s.button, {
-							  [s.pink]: productFined.id === "classic",
-							  [s.green]: productFined.id === "matcha",
-						  })} href={`${lang}`}>
-                {textButton}
+              <Link className={s.button} href="#">
+                ПРИДБАТИ
               </Link>
             </div>
           </div>
@@ -182,13 +196,10 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>{weightCandy}</div>
-            <div className={s.bb}> 
-						  <Link className={cn(s.button, {
-				  [s.pink]: productFined.id === "classic",
-				  [s.green]: productFined.id === "matcha",
-			  })} href={`${lang}`}>
-                {textButton}
+            <div className={s.descr}>1 цукерка - 8г</div>
+            <div className={s.bb}>
+              <Link className={s.button} href="#">
+                ПРИДБАТИ
               </Link>
             </div>
             <H1BlockDescription
