@@ -31,7 +31,13 @@
       "socials": "Social Media"
     }
   },
-  "footer": {},
+  "footer": {
+	"texts": {
+		"text1": "Let`s to meet",
+		"text2": "Bunny gives discounts to friends!",
+		"logIn": "Registration / Login"
+	}
+  },
   "currency": "₴",
   "cartBanner": {
     "checkoutLabel": "Total amount:",

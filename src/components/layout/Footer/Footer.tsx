@@ -14,9 +14,10 @@ import s from "./Footer.module.css";
 import figureForFooter from "/public/img/figureForFooter.svg";
 import figureForFooter_pink from "/public/img/figureForFooter_pink.svg";
 import figureForFooter_yellow from "/public/img/figureForFooter_yellow.svg";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 interface Props {
-  lang?: Locale;
+  lang: Locale;
 	titles?: any;
 	idLand?: string | undefined
 }
@@ -27,8 +28,10 @@ export const Footer = async ({
 	idLand
 }: Props): Promise<React.JSX.Element> => {
   const session = await getServerSession(authConfig);
-  const isAuth = !!session?.user.id;
-
+	const isAuth = !!session?.user.id;
+	const dict = await getDictionary(lang);
+	const {footer} = dict
+console.log(footer)
   const {
     buy,
     cabinet,
@@ -104,10 +107,10 @@ export const Footer = async ({
 					  початок */}
             {!isAuth && (
               <>
-                <p>Давай знайомитись.</p>
-                <p>Друзям зайчик робить знижки!</p>
+                <p>{footer.texts.text1}</p>
+                <p>{footer.texts.text2}</p>
                 <Link href="/signIn" className={s.button}>
-                  Реєстрація / Вхід
+				{footer.texts.logIn}
                 </Link>
               </>
             )}
