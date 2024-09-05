@@ -31,7 +31,7 @@ export const Footer = async ({
 	const isAuth = !!session?.user.id;
 	const dict = await getDictionary(lang);
 	const {footer} = dict
-console.log(footer)
+
   const {
     buy,
     cabinet,

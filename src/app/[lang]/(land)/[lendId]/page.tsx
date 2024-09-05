@@ -174,6 +174,7 @@ export default async function Landing({ params }: IMainPageProps) {
             imagesFined={imagesFined}
 					  lang={params.lang}
 					  textButton={landings.secondButton}
+
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />

@@ -139,7 +139,7 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>1 цукерка - 8г</div>
+            <div className={s.descr}>{productFined.weightCandy}</div>
             <div className={s.bb}>
               <Link className={s.button} href="#">
                 ПРИДБАТИ
@@ -196,10 +196,10 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
               <span className={s.h1_2}>{title2} </span>
               <span className={s.h1_3}>{title3}</span>
             </h1>
-            <div className={s.descr}>1 цукерка - 8г</div>
+            <div className={s.descr}>{productFined.weightCandy}</div>
             <div className={s.bb}>
               <Link className={s.button} href="#">
-                ПРИДБАТИ
+                {textButton}
               </Link>
             </div>
             <H1BlockDescription
