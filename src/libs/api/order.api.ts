@@ -26,6 +26,9 @@ export const getAllUserOrders = async (
       where: {
         userId,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       select: orderSelect,
     });
 
