@@ -137,6 +137,7 @@ export interface IOrderDict {
 
 export interface IRecoveryPasswordDict {
   titleAsk: string;
+  titleAskNew: string;
   messageAsk: string;
   buttonAsk: string;
   titleSuccess: string;

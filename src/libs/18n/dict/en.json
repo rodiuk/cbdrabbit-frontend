@@ -32,11 +32,11 @@
     }
   },
   "footer": {
-	"texts": {
-		"text1": "Let`s to meet",
-		"text2": "Bunny gives discounts to friends!",
-		"logIn": "Registration / Login"
-	}
+    "texts": {
+      "text1": "Let`s to meet",
+      "text2": "Bunny gives discounts to friends!",
+      "logIn": "Registration / Login"
+    }
   },
   "currency": "₴",
   "cartBanner": {
@@ -44,6 +44,7 @@
     "checkoutButton": "Checkout"
   },
   "recoveryPassword": {
+    "titleAskNew": "Recover password",
     "titleAsk": "Forgot Password",
     "messageAsk": "Send password reset link to email?",
     "buttonAsk": "Send",
@@ -51,7 +52,7 @@
     "titleSuccessEmail": "Update email",
     "messageSuccess": "We sent a password reset link to your email",
     "messageSuccessBase": "We sent a link for activate to your email",
-    "labelSuccess": "Click the link in the email",
+    "labelSuccess": "Follow the link in the email to create a new password",
     "buttonSuccess": "To Email"
   },
   "auth": {
@@ -249,7 +250,7 @@
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
         ],
-		"weightCandy" : "1 candy  - 8g"
+        "weightCandy": "1 candy  - 8g"
       },
       {
         "id": "banana",
@@ -271,7 +272,7 @@
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
         ],
-		"weightCandy" : "1 candy  - 8g"
+        "weightCandy": "1 candy  - 8g"
       },
       {
         "id": "matcha",
@@ -297,7 +298,7 @@
             "descr": "50 мг СBD Ізолят канабідіолу"
           }
         ],
-		"weightCandy" : "1 candy  - 8g"
+        "weightCandy": "1 candy  - 8g"
       }
     ],
     "about": [

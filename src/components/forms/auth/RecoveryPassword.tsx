@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";
-import { ISignUpPasswordDict } from "@/interfaces/auth.interface";
 import { updatePasswordByCode } from "@/libs/api/user.api";
+import { ISignUpPasswordDict } from "@/interfaces/auth.interface";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./styles.module.css";
 
@@ -74,9 +74,11 @@ export const RecoveryPassword = ({
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.bb}>
         <Button
-          text={isLoading ? "Loading..." : btnText}
+          text={btnText}
           handleClick={handleUpdatePassword}
+          isLoading={isLoading}
           isDisabled={isLoading}
+          greenThemeLoader
         />
       </div>
     </section>

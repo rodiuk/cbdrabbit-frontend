@@ -1,13 +1,15 @@
 import React from "react";
-import { SignInEmailForm } from "@/components/forms/auth/SignInEmailForm";
-import { IMainPageProps } from "@/interfaces/page.interface";
-import { SignInNotExistEmail } from "@/components/forms/auth/SignInNotExistEmail";
-import { SignInPassword } from "@/components/forms/auth/SignInPassword";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import { SignUpPasswordForm } from "@/components/forms/auth/SignUpPasswordForm";
+import { IMainPageProps } from "@/interfaces/page.interface";
 import { SuccessAction } from "@/components/auth/SuccessAction";
-import { RecoveryPassword } from "@/components/forms/auth/RecoveryPassword";
+import { SignInPassword } from "@/components/forms/auth/SignInPassword";
+import { SignInEmailForm } from "@/components/forms/auth/SignInEmailForm";
 import { SuccessEmailChange } from "@/components/auth/SuccessEmailChange";
+import { RecoveryPassword } from "@/components/forms/auth/RecoveryPassword";
+import { SignUpPasswordForm } from "@/components/forms/auth/SignUpPasswordForm";
+import { SignInNotExistEmail } from "@/components/forms/auth/SignInNotExistEmail";
+import { AskRecoveryPassword } from "@/components/auth/RecoveryPassword/AskRecoveryPassword";
+import { EmailOnRecoverySendedSuccess } from "@/components/auth/RecoveryPassword/EmailOnRecoverySendedSuccess";
 
 import cn from "clsx";
 import styles from "./page.module.css";
@@ -17,16 +19,19 @@ export default async function About({ params, searchParams }: IMainPageProps) {
   const notExist = searchParams?.notExist;
   const signUp = searchParams?.signUp;
   const resetPassword = searchParams?.resetPassword;
+  const sendResetPassword = searchParams?.sendResetPassword;
+  const sendResetPasswordSuccess = searchParams?.sendResetPasswordSuccess;
   const resetSuccess = searchParams?.resetSuccess;
   const changeEmail = searchParams?.changeEmail;
 
+  const dict = await getDictionary(params.lang);
   const {
     signInEmail,
-    signInNotExist,
-    signUpPassword,
     signInPassword,
+    signUpPassword,
+    signInNotExist,
     general,
-  } = (await getDictionary(params.lang)).auth;
+  } = dict?.auth;
 
   const rendererContent = () => {
     switch (true) {
@@ -36,6 +41,22 @@ export default async function About({ params, searchParams }: IMainPageProps) {
         return <SignInNotExistEmail lang={params.lang} dict={signInNotExist} />;
       case !!signUp:
         return <SignUpPasswordForm dict={signUpPassword} />;
+      case !!sendResetPassword:
+        return (
+          <AskRecoveryPassword
+            email={sendResetPassword}
+            dict={dict.recoveryPassword}
+            lang={params.lang}
+            backLabel={dict.auth.signInPassword.buttonBack}
+          />
+        );
+      case !!sendResetPasswordSuccess:
+        return (
+          <EmailOnRecoverySendedSuccess
+            email={sendResetPasswordSuccess}
+            dict={dict.recoveryPassword}
+          />
+        );
       case !!resetPassword:
         return (
           <RecoveryPassword

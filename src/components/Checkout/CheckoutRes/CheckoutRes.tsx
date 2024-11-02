@@ -2,15 +2,15 @@
 
 import React from "react";
 import Image from "next/image";
+import { useAtom } from "jotai/react";
+import { Promocode } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { cartAtom } from "@/libs/store/atoms";
-import { useAtom } from "jotai/react";
 import { getUserInfo } from "@/libs/api/user.api";
-import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
-import { ICheckoutDict } from "@/interfaces/i18n.interface";
-import Button from "@/components/Ui/Button/Button";
-import { Promocode } from "@prisma/client";
 import { PromocodeBlock } from "./PromocodeBlock";
+import Button from "@/components/Ui/Button/Button";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
+import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
 
 import no_sum from "/public/img/no_sum.svg";
 import sale_icon from "/public/img/sale_icon.svg";
@@ -216,7 +216,9 @@ const CheckoutRes = React.memo(function CheckoutRes({
             </p>
           </div>
           <Button
-            text={isLoading ? "Loading..." : dict.checkoutButton}
+            isLoading={isLoading}
+            isDisabled={isLoading}
+            text={dict.checkoutButton}
             handleClick={handleCheckout}
           />
           <div className={s.checkoutTotal_check}>

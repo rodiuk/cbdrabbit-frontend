@@ -73,7 +73,10 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.bb}>
         <Button
-          text={isLoading ? "Loading..." : dict.buttonSignUp}
+          text={dict.buttonSignUp}
+          isLoading={isLoading}
+          isDisabled={isLoading}
+          greenThemeLoader
           handleClick={handleSignUp}
         />
       </div>

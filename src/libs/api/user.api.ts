@@ -468,7 +468,7 @@ export const checkVerifiedCode = async (code: string) => {
   }
 };
 
-export const resetPassword = async (email: string, lang: string) => {
+export const resetPasswordService = async (email: string, lang: string) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -542,7 +542,7 @@ export const updateUserLoyalty = async (userId: string) => {
 
     let newDiscount: number = user?.loyalty?.percentDiscount;
 
-    const userAmount = +user?.totalOrdersAmount?.toFixed(0) ?? 0;
+    const userAmount = +user?.totalOrdersAmount?.toFixed(0) || 0;
 
     switch (true) {
       case userAmount >= 7000:

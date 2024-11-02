@@ -13,29 +13,37 @@ import { checkIsUserExistByEmail } from "@/libs/api/user.api";
 import icon_1 from "/public/img/icon_1.svg";
 
 import styles from "./styles.module.css";
-import Link from "next/link";
 
 interface Props {
   dict: ISignInEmailDict;
 }
- 
+
 export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
   const [email, setEmail] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleCheckEmail = async () => {
-    if (!email) return;
+    setIsLoading(true);
 
-    const isExist = await checkIsUserExistByEmail(email);
+    try {
+      if (!email) return;
 
-    if (isExist) {
-      return router.push(
-        pathname + `?${handleCreateQueryString("email", email)}`
-      );
+      const isExist = await checkIsUserExistByEmail(email);
+
+      if (isExist) {
+        return router.push(
+          pathname + `?${handleCreateQueryString("email", email)}`
+        );
+      }
+      router.push(pathname + `?${handleCreateQueryString("notExist", email)}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
-    router.push(pathname + `?${handleCreateQueryString("notExist", email)}`);
   };
 
   const handleCreateQueryString = React.useCallback(
@@ -60,17 +68,23 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
         onInputChange={setEmail}
       />
       <div className={styles.bb}>
-        <Button text={dict?.button} handleClick={handleCheckEmail} />
+        <Button
+          text={dict?.button}
+          isLoading={isLoading}
+          isDisabled={isLoading}
+          greenThemeLoader
+          handleClick={handleCheckEmail}
+        />
       </div>
 
       <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
 
-		  <GoogleButton label={dict?.buttonGoogle} />
-		  <div className={styles.add_akk}>
+      <GoogleButton label={dict?.buttonGoogle} />
+      {/* <div className={styles.add_akk}>
 			  <Link href="/" className={styles.akk}>
 			  Створити акаунт
 			  </Link>
-		  </div>
+		  </div> */}
     </section>
   );
 };

@@ -3,13 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import { useAtom } from "jotai";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { AnimatePresence, motion } from "framer-motion";
 import { useProcessUpdateCart } from "@/hooks/useProcessUpdateCart";
 
 import styles from "./CartBanner.module.css";
+import Loader from "../Ui/Loader";
 
 interface Props {
   currency: string;
@@ -33,6 +34,10 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const [total] = useAtom(getTotalPriceAtom);
   const pathname = usePathname()?.split("/")?.at(-1);
 
+  const router = useRouter();
+
+  const [state, startTransition] = React.useTransition();
+
   const hasExcludedPath = !!pathname ? excludedPaths.includes(pathname) : false;
 
   useProcessUpdateCart(props?.lang);
@@ -51,10 +56,15 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
             <h3 className={styles.label}>{checkoutLabel}</h3>
             <p className={styles.amount}>{`${total} ${currency}`}</p>
           </div>
-          <Link href={`/${lang}/checkout`} className={styles.button}>
-            {buttonLabel}
-            <ArrowRightIcon iconStyle={styles.icon} />
-          </Link>
+          <div
+            className={styles.button}
+            onClick={() =>
+              startTransition(() => router.push(`${lang}/checkout`))
+            }
+          >
+            {state ? <Loader /> : buttonLabel}
+            {!state && <ArrowRightIcon iconStyle={styles.icon} />}
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>

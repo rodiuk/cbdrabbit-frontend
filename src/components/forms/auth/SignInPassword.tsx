@@ -23,25 +23,33 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
   const [notValid, setNotValid] = React.useState<boolean>(false);
   const [password, setPassword] = React.useState<string>("");
   const [notActivated, setNotActivated] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleSignIn = async () => {
-    setNotActivated(false);
-    setNotValid(false);
-    if (!password || !userEmail) return setNotValid(true);
+    setIsLoading(true);
+    try {
+      setNotActivated(false);
+      setNotValid(false);
+      if (!password || !userEmail) return setNotValid(true);
 
-    const isAccActive = await isAccountActivated(userEmail);
+      const isAccActive = await isAccountActivated(userEmail);
 
-    if (!isAccActive) return setNotActivated(true);
+      if (!isAccActive) return setNotActivated(true);
 
-    const serverResult = await signIn("credentials", {
-      redirect: false,
-      email: userEmail,
-      password: password,
-    });
+      const serverResult = await signIn("credentials", {
+        redirect: false,
+        email: userEmail,
+        password: password,
+      });
 
-    if (serverResult?.error || !serverResult?.ok) return setNotValid(true);
+      if (serverResult?.error || !serverResult?.ok) return setNotValid(true);
 
-    router.push("/profile");
+      router.push("/profile");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,13 +60,16 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
         type="password"
         text={dict.inputLabel}
         placeholder={dict.inputPlaceholder}
-			  isPassword
-			  showForgotPassword
+        isPassword
+        showForgotPassword
         password={true}
         value={password}
         onInputChange={setPassword}
+        handleForgot={() => {
+          router.push(`/signIn?sendResetPassword=${userEmail}`);
+        }}
       />
- 
+
       {notValid && <p className={styles.error}>{dict.error}</p>}
       {notActivated && <p className={styles.error}>{dict.errorNotActivated}</p>}
 
@@ -69,7 +80,13 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
           iconLeft={true}
           handleClick={() => router.back()}
         />
-        <Button text={dict.buttonSignIn} handleClick={handleSignIn} />
+        <Button
+          text={dict.buttonSignIn}
+          isLoading={isLoading}
+          isDisabled={isLoading}
+          greenThemeLoader
+          handleClick={handleSignIn}
+        />
       </div>
     </section>
   );

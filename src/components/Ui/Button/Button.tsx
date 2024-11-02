@@ -1,9 +1,9 @@
 import React from "react";
+import Loader from "../Loader";
 import { ArrowLeftIcon } from "@/components/icons/ArrowLeft";
 
 import cn from "clsx";
 import s from "./s.module.css";
-import { LoaderRabbit } from "../Loaders/LoaderRabbit";
 
 interface ButtonProps {
   className?: string;
@@ -13,6 +13,7 @@ interface ButtonProps {
   handleClick?: () => void;
   isLoading?: boolean;
   isDisabled?: boolean;
+  greenThemeLoader?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   handleClick,
   isDisabled,
+  greenThemeLoader,
   isLoading,
 }) => {
   return (
@@ -37,9 +39,9 @@ const Button: React.FC<ButtonProps> = ({
           {icon ? icon : <ArrowLeftIcon iconStyle={s.icon_left} />}
         </span>
       )}
-      {text}
+      {!isLoading && text}
 
-      {isLoading && <LoaderRabbit />}
+      {isLoading && <Loader greenTheme={greenThemeLoader} />}
     </button>
   );
 };
