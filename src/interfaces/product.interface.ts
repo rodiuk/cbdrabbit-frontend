@@ -1,4 +1,4 @@
-import { Image, Product, Property } from "@prisma/client";
+import { Image, Product } from "@prisma/client";
 import { IPropertyRes } from "./property.interface";
 
 export interface IProductCreate {

@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { Product } from "@prisma/client";
+import { constants } from "@/configs/constants";
 import { Cart } from "@/interfaces/store.interface";
-import { calculatePrice } from "@/utils/calculatePrice";
 import { IProductRes } from "@/interfaces/product.interface";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
@@ -55,7 +55,8 @@ const addProductToCartAtom = atom(
       totalCount += 1;
     }
 
-    const newPrice = calculatePrice(totalCount);
+    // const newPrice = calculatePrice(totalCount);
+    const newPrice = constants.DEFAULT_PRICE;
 
     cart.totalAmount = newPrice * totalCount;
 
@@ -75,13 +76,14 @@ const removeProductFromCartAtom = atom(
     const updatedProducts = [...cart.products];
     const existingProduct = updatedProducts.find(p => p.id === update.id);
     let totalCount = cart.totalCount;
-    let newPrice = calculatePrice(cart.totalCount);
+    // let newPrice = calculatePrice(cart.totalCount);
+    const newPrice = constants.DEFAULT_PRICE;
 
     if (existingProduct && existingProduct.count > 0) {
       existingProduct.count -= 1;
-      newPrice = calculatePrice(totalCount);
+      // newPrice = calculatePrice(totalCount);
       totalCount -= 1;
-      newPrice = calculatePrice(totalCount);
+      // newPrice = calculatePrice(totalCount);
       cart.totalAmount = totalCount * newPrice;
     }
 
@@ -101,7 +103,8 @@ const changeProductCountAtom = atom(
     const updatedProducts = [...cart.products];
     const existingProduct = updatedProducts.find(p => p.id === product.id);
     let totalCount = cart.totalCount;
-    let newPrice = calculatePrice(cart.totalCount);
+    // let newPrice = calculatePrice(cart.totalCount);
+    let newPrice = constants.DEFAULT_PRICE;
     let totalAmount = cart.totalAmount;
     countValue = countValue >= 500 ? 500 : countValue;
 
@@ -109,7 +112,7 @@ const changeProductCountAtom = atom(
       totalAmount -= existingProduct.count * newPrice;
       totalCount -= existingProduct.count;
       totalCount += countValue;
-      newPrice = calculatePrice(totalCount);
+      // newPrice = calculatePrice(totalCount);
       totalAmount += newPrice * countValue;
 
       if (countValue > 0) {
@@ -120,7 +123,7 @@ const changeProductCountAtom = atom(
     } else {
       updatedProducts.push({ ...product, count: countValue });
       totalCount += countValue;
-      newPrice = calculatePrice(totalCount);
+      // newPrice = calculatePrice(totalCount);
       totalAmount += newPrice * countValue;
     }
 
