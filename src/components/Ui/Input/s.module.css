@@ -123,3 +123,6 @@ input[type="password"].input:focus-visible {
 .isEmpty input {
 	border: 1px solid red !important;
 }
+.isEmptyCity input, .isEmptyPostPoint input {
+	border: 1px solid transparent !important;
+}

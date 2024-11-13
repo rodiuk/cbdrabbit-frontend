@@ -149,9 +149,10 @@ const NovaPost = (props: Props): React.JSX.Element => {
             placeholder="Введи населений пункт"
             showLay={showLay}
             autoComplete="off"
-					  value={city}
-					  validateData={validateData}
+			value={city}
+			validateData={validateData}
 					  readOnly
+					  isCity={city}
           />
 
           {deliveryId === "3" ? (
@@ -162,7 +163,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
               name="Адреса"
 						  placeholder="Введи адресу"
               //  showLay={showLayFilial}
-              autoComplete="off"
+						  autoComplete="off"
+						 
               //value={postPoint}
             />
           ) : (
@@ -177,6 +179,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
 							  value={postPoint}
 							  validateData={validateData}
 							  readOnly
+							  isPostPoint={postPoint}
             />
           )}
         </>

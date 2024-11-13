@@ -24,9 +24,11 @@ interface InputProps {
   showForgotPassword?: boolean;
   validateData?: any;
   readOnly?: boolean;
-  textOnTheRight?: string;
+	textOnTheRight?: string;
+	isCity?: string;
+	isPostPoint?: string;
 }
-
+ 
 const Input: React.FC<InputProps> = ({
   text,
   required,
@@ -40,7 +42,9 @@ const Input: React.FC<InputProps> = ({
   handleForgot,
   validateData,
   readOnly,
-  textOnTheRight,
+	textOnTheRight,
+	isCity,
+	isPostPoint,
   ...input
 }) => {
   const [type, setType] = React.useState(input.type);
@@ -53,7 +57,7 @@ const Input: React.FC<InputProps> = ({
       if (numericValue !== value) {
         e.target.value = numericValue;
         return;
-      }
+		}
     }
     /* хз. поки що буде хай щоб знов не перероблювати як передумають)  if (name === "email") {
 			console.log(5)
@@ -69,6 +73,7 @@ const Input: React.FC<InputProps> = ({
     setIsEmpty(false);
   };
 
+  
   const handlerClick = (el: string) => {
     setType(el);
     console.log(type);
@@ -98,12 +103,14 @@ const Input: React.FC<InputProps> = ({
         }
       });
   }, [validateData]);
-
+  console.log(isCity, "sss")
   return (
     <label
       className={cn(s.label, {
         error: false,
         [s.isEmpty]: isEmpty,
+        [s.isEmptyCity]: isCity,
+        [s.isEmptyPostPoint]: isPostPoint,
       })}
     >
       {text && (
