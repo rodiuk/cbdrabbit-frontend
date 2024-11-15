@@ -209,6 +209,8 @@
   "home": {
     "title": "Hello, we are CBD Rabbit",
     "product": {
+      "firstOrder": "Rabbit Classic candy is a gift for the first order",
+      "notAvailable": "Not available yet",
       "discountLabel": "Discount for large orders",
       "discountList": [
         "1-5 шт - 85 uah/candy",
