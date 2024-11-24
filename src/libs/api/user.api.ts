@@ -54,6 +54,7 @@ export const checkIsUserExistByEmail = async (email: string) => {
     const user = await prisma.user.findUnique({
       where: {
         email,
+        acceptedSignUp: true,
       },
     });
 
@@ -140,28 +141,78 @@ export const createUser = async (
         },
       });
 
-      if (isUserExist) return isUserExist;
+      if (isUserExist && isUserExist?.acceptedSignUp) return isUserExist;
+
+      if (isUserExist && userData?.acceptedSignUp === false) {
+        const user = await prisma.user.update({
+          where: {
+            email: userData.email,
+          },
+          data: {
+            acceptedSignUp: false,
+            password: hashPassword,
+            ...(!!userData?.firstName && { firstName: userData.firstName }),
+            ...(!!userData?.lastName && { lastName: userData.lastName }),
+            ...(userData?.phoneNumber?.length > 0 && {
+              address: {
+                update: {
+                  phoneNumber: userData.phoneNumber,
+                },
+              },
+            }),
+          },
+        });
+
+        return user;
+      }
 
       const code = nanoid(16);
+      let user: User | null = null;
 
-      const user = await prisma.user.create({
-        data: {
-          email: userData.email,
-          password: hashPassword,
-          ...(!!userData?.firstName && { firstName: userData.firstName }),
-          ...(!!userData?.lastName && { lastName: userData.lastName }),
-          verifiedCode: code,
-          isVerified: isVerified ? true : false,
-          loyalty: { create: { percentDiscount: 2 } },
-          ...(userData?.phoneNumber?.length > 0 && {
-            address: {
-              create: {
-                phoneNumber: userData.phoneNumber,
+      if (isUserExist && userData?.acceptedSignUp === true) {
+        user = await prisma.user.update({
+          where: {
+            email: userData.email,
+          },
+          data: {
+            email: userData.email,
+            password: hashPassword,
+            ...(!!userData?.firstName && { firstName: userData.firstName }),
+            ...(!!userData?.lastName && { lastName: userData.lastName }),
+            verifiedCode: code,
+            acceptedSignUp: true,
+            isVerified: isVerified ? true : false,
+            loyalty: { update: { percentDiscount: 2 } },
+            ...(userData?.phoneNumber?.length > 0 && {
+              address: {
+                update: {
+                  phoneNumber: userData.phoneNumber,
+                },
               },
-            },
-          }),
-        },
-      });
+            }),
+          },
+        });
+      } else {
+        user = await prisma.user.create({
+          data: {
+            email: userData.email,
+            password: hashPassword,
+            ...(!!userData?.firstName && { firstName: userData.firstName }),
+            ...(!!userData?.lastName && { lastName: userData.lastName }),
+            verifiedCode: code,
+            acceptedSignUp: userData.acceptedSignUp,
+            isVerified: isVerified ? true : false,
+            loyalty: { create: { percentDiscount: 2 } },
+            ...(userData?.phoneNumber?.length > 0 && {
+              address: {
+                create: {
+                  phoneNumber: userData.phoneNumber,
+                },
+              },
+            }),
+          },
+        });
+      }
 
       await updateContactInSendPulse(
         user.email,

@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Input from "@/components/Ui/Input/Input";
-import Button from "@/components/Ui/Button/Button";
-import { ISignUpPasswordDict } from "@/interfaces/auth.interface";
 import { createUser } from "@/libs/api/user.api";
+import Button from "@/components/Ui/Button/Button";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
+import { ISignUpPasswordDict } from "@/interfaces/auth.interface";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import styles from "./styles.module.css";
-import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   dict: ISignUpPasswordDict;
@@ -36,6 +36,7 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
         email: userEmail,
         password: password1,
         phoneNumber: "",
+        acceptedSignUp: true,
       });
 
       if (!user || "error" in user) return setError(user.error);

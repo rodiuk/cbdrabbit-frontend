@@ -34,7 +34,7 @@ export const createUrlForCheckout = async (
         uktzed: "uktzedcode",
       })),
     },
-    redirectUrl: "https://cbdrabbit.shop/uk/checkout?successOrder=true",
+    redirectUrl: `https://cbdrabbit.shop/uk/checkout?successOrder=${reference}`,
     webHookUrl: "https://cbdrabbit.shop/api/checkout",
     validity: 3600,
     paymentType: "debit",

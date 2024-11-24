@@ -15,6 +15,7 @@ import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
+import { IValidateData } from "./CheckoutWrapper";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -24,8 +25,8 @@ const CheckoutRes = dynamic(
   { ssr: false }
 );
 
-interface Props {
-  dict: ICheckoutDict;
+export interface TabletCheckoutProps {
+  dict: any;
   city: string;
   postPoint: string;
   deliveryId: string;
@@ -40,14 +41,16 @@ interface Props {
   currency: string;
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
-  homeDict: any;
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
-	isLoading?: boolean;
-	validateData?: any
+  isLoading?: boolean;
+  validateData?: IValidateData[];
+  signUpUser: boolean;
+  setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
+  isAuthorized: boolean;
 }
 
-const TabletCheckout = (props: Props): React.JSX.Element => {
+const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
   const {
     dict,
     city,
@@ -67,75 +70,90 @@ const TabletCheckout = (props: Props): React.JSX.Element => {
     setPromocode,
     promocode,
     isLoading,
-	  homeDict,
-	  validateData
+    validateData,
+    signUpUser,
+    setSignUpUser,
+    isAuthorized,
   } = props;
 
   return (
     <section className={styles.tablet}>
       <div className={styles.left}>
         <div className={styles.checkoutBlock}>
-          <h1 className={styles.checkoutBlock_h2}>{dict.contactTitle}</h1>
+          <h1 className={styles.checkoutBlock_h2}>
+            {dict.checkout.contactTitle}
+          </h1>
           <UserCheckoutForm
             setUserInfo={setUserInfo}
             dict={dict}
-					  userInfo={userInfo}
-					  validateData={validateData}
+            userInfo={userInfo}
+            validateData={validateData}
+            signUpUser={signUpUser}
+            setSignUpUser={setSignUpUser}
+            isAuthorized={isAuthorized}
           />
         </div>
         <div className={styles.checkoutBlock}>
           <h2
             className={cn(styles.checkoutBlock_h2, styles.checkoutBlock_h2mb)}
           >
-            {dict.deliveryTitle}
+            {dict.checkout.deliveryTitle}
           </h2>
           <div className={styles.checkoutBlock_np}>
             <Image src={np.src} alt="np" width={38} height={38} />
-            <div className={styles.checkoutBlock_ttl}>{dict.npDelivery}</div>
-            <div className={styles.checkoutBlock_price}>{dict.npCostLabel}</div>
-				  </div>
-				  
+            <div className={styles.checkoutBlock_ttl}>
+              {dict.checkout.npDelivery}
+            </div>
+            <div className={styles.checkoutBlock_price}>
+              {dict.checkout.npCostLabel}
+            </div>
+          </div>
+
           <NovaPost
             city={city}
             postPoint={postPoint}
             deliveryId={deliveryId}
             setCity={setCity}
             setPostPoint={setPostPoint}
-					  setDeliveryId={setDeliveryId}
-					  validateData={validateData}
+            setDeliveryId={setDeliveryId}
+            validateData={validateData}
           />
         </div>
 
         <div className={styles.checkoutBlock}>
-          <div className={styles.checkoutBlock_h2}>{dict.commentTitle}</div>
+          <div className={styles.checkoutBlock_h2}>
+            {dict.checkout.commentTitle}
+          </div>
           <Textarea
-            placeholder={dict.commentLabel}
+            placeholder={dict.checkout.commentLabel}
             value={comment}
             setValue={setComment}
           />
         </div>
 
         <div className={styles.checkoutBlock}>
-          <h3 className={styles.checkoutBlock_h2}>{dict.payTitle}</h3>
+          <h3 className={styles.checkoutBlock_h2}>{dict.checkout.payTitle}</h3>
           <div className={styles.checkoutBlock_img}>
             <Image src={money.src} alt="money" width={112} height={32} />
           </div>
           <div className={styles.checkoutBlock_list}>
-            <p>{dict.payLabelFirst}</p>
-            <p>{dict.payLabelSecond}</p>
+            <p>{dict.checkout.payLabelFirst}</p>
+            <p>{dict.checkout.payLabelSecond}</p>
           </div>
         </div>
       </div>
 
       <div className={styles.right}>
         <div className={styles.checkoutBlock}>
-          <h3 className={styles.checkoutBlock_h2}>{dict.orderTitle}</h3>
-          <ProductsCheckout homeDict={homeDict} />
+          <h3 className={styles.checkoutBlock_h2}>
+            {dict.checkout.orderTitle}
+          </h3>
+          <ProductsCheckout homeDict={dict.home} />
         </div>
 
         <CheckoutRes
           currency={currency}
-          dict={dict}
+          dict={dict.checkout}
           setFinalPrice={setFinalPrice}
           handleCheckout={handleCheckout}
           hasError={hasError}

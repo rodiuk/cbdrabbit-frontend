@@ -1,15 +1,16 @@
 import React from "react";
-import { IUserOrder } from "@/interfaces/order.interface";
+import Image from "next/image";
+import { OrderStatus } from "@prisma/client";
 import { formatDate } from "@/utils/formatDate";
+import OrderProduct from "./OrderProduct/OrderProduct";
+import { InfoIcon } from "@/components/icons/InfoIcon";
 import { IOrderDict } from "@/interfaces/i18n.interface";
+import { IUserOrder } from "@/interfaces/order.interface";
+import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 
 import s from "./OrderItem.module.css";
 
-import OrderProduct from "./OrderProduct/OrderProduct";
 import sale_icon from "/public/img/sale_icon.svg";
-import Image from "next/image";
-import { InfoIcon } from "@/components/icons/InfoIcon";
-import { OrderStatus } from "@prisma/client";
 
 interface Prop {
   menu?: boolean;
@@ -52,7 +53,7 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
       <div className={s.orderInfo}>
         <div className={s.top_info}>
           <div className={s.orderInfo_num}>
-            <p>№ {order.checkId}</p>
+            <p>№ {formatDisplayedCheckId(order.checkId)}</p>
           </div>
           <div className={s.butt_info} onClick={openPoup}>
             <InfoIcon iconStyle={s.icon_info} />{" "}

@@ -16,17 +16,27 @@ import styles from "./styles.module.css";
 
 interface Props {
   dict: ISignInEmailDict;
+  hideTitle?: boolean;
+  externalPath?: string;
+  externalUse?: boolean;
 }
 
-export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
+export const SignInEmailForm = ({
+  dict,
+  hideTitle,
+  externalPath,
+  externalUse,
+}: Props): React.JSX.Element => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
   const [email, setEmail] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [showError, setShowError] = React.useState<boolean>(false);
 
   const handleCheckEmail = async () => {
     setIsLoading(true);
+    setShowError(false);
 
     try {
       if (!email) return;
@@ -38,7 +48,12 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
           pathname + `?${handleCreateQueryString("email", email)}`
         );
       }
-      router.push(pathname + `?${handleCreateQueryString("notExist", email)}`);
+      !externalUse &&
+        router.push(
+          pathname + `?${handleCreateQueryString("notExist", email)}`
+        );
+
+      externalUse && setShowError(true);
     } catch (error) {
       console.error(error);
     } finally {
@@ -55,10 +70,15 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
 
   return (
     <section className={styles.lay_item}>
-      <div className={styles.ttl}>{dict?.title}</div>
-      <div className={styles.img_center}>
-        <Image src={icon_1.src} width={256} height={256} alt="icon_1" />
-      </div>
+      {!hideTitle && (
+        <>
+          <div className={styles.ttl}>{dict?.title}</div>
+          <div className={styles.img_center}>
+            <Image src={icon_1.src} width={256} height={256} alt="icon_1" />
+          </div>
+        </>
+      )}
+
       <Input
         type="email"
         name="email"
@@ -66,6 +86,7 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
         text={dict?.inputLabel}
         value={email}
         onInputChange={setEmail}
+        errorText={showError ? "Такого корситувача не існує" : undefined}
       />
       <div className={styles.bb}>
         <Button
@@ -79,7 +100,7 @@ export const SignInEmailForm = ({ dict }: Props): React.JSX.Element => {
 
       <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
 
-      <GoogleButton label={dict?.buttonGoogle} />
+      <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
       {/* <div className={styles.add_akk}>
 			  <Link href="/" className={styles.akk}>
 			  Створити акаунт

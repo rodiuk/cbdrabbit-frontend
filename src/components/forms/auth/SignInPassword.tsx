@@ -1,22 +1,26 @@
 "use client";
 
 import React from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";
-import { ISignInPasswordDict } from "@/interfaces/auth.interface";
 import { isAccountActivated } from "@/libs/api/user.api";
+import { maskEmailAddress } from "@/utils/maskEmailAddress";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ISignInPasswordDict } from "@/interfaces/auth.interface";
 
 import cn from "clsx";
 import styles from "./styles.module.css";
-import { maskEmailAddress } from "@/utils/maskEmailAddress";
 
 interface Props {
   dict: ISignInPasswordDict;
+  externalPath?: string;
 }
 
-export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
+export const SignInPassword = ({
+  dict,
+  externalPath,
+}: Props): React.JSX.Element => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const userEmail = searchParams?.get("email");
@@ -44,7 +48,7 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
 
       if (serverResult?.error || !serverResult?.ok) return setNotValid(true);
 
-      router.push("/profile");
+      router.push(externalPath ? externalPath : "/profile");
     } catch (error) {
       console.error(error);
     } finally {
@@ -55,6 +59,7 @@ export const SignInPassword = ({ dict }: Props): React.JSX.Element => {
   return (
     <section className={styles.lay_item}>
       <h1 className={styles.ttl}>{dict.title}</h1>
+
       <p className={styles.descr}>{maskEmailAddress(userEmail ?? "")}</p>
       <Input
         type="password"

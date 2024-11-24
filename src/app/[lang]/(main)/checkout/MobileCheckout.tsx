@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import Textarea from "@/components/Ui/Textarea/Textarea";
 import { Promocode } from "@prisma/client";
 
@@ -24,7 +23,7 @@ const CheckoutRes = dynamic(
 );
 
 interface Props {
-  dict: ICheckoutDict;
+  dict: any;
   city: string;
   postPoint: string;
   deliveryId: string;
@@ -40,9 +39,12 @@ interface Props {
   setComment: React.Dispatch<React.SetStateAction<string>>;
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
-  homeDict: any;
   isLoading?: boolean;
   validateData?: any;
+  userInfo: IUserCheckoutForm;
+  signUpUser: boolean;
+  setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
+  isAuthorized: boolean;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -62,33 +64,53 @@ const MobileCheckout = (props: Props) => {
     comment,
     setComment,
     isLoading,
-    homeDict,
     setPromocode,
     promocode,
     validateData,
+    userInfo,
+    signUpUser,
+    setSignUpUser,
+    isAuthorized,
   } = props;
 
   return (
     <section className={styles.mobile}>
       <div className={styles.checkoutBlock}>
-        <div className={styles.checkoutBlock_h2}>{dict.orderTitle}</div>
+        <div className={styles.checkoutBlock_h2}>
+          {dict.checkout.orderTitle}
+        </div>
 
-        <ProductsCheckout homeDict={homeDict} />
+        <ProductsCheckout homeDict={dict.home} />
       </div>
       <div className={styles.checkoutBlock}>
-        <div className={styles.checkoutBlock_h2}>{dict.contactTitle}</div>
-        <UserCheckoutForm setUserInfo={setUserInfo} dict={dict}  validateData={validateData} />
+        <div className={styles.checkoutBlock_h2}>
+          {dict.checkout.contactTitle}
+        </div>
+        <UserCheckoutForm
+          setUserInfo={setUserInfo}
+          userInfo={userInfo}
+          dict={dict}
+          validateData={validateData}
+          isPopup={false}
+          signUpUser={signUpUser}
+          setSignUpUser={setSignUpUser}
+          isAuthorized={isAuthorized}
+        />
       </div>
       <div className={styles.checkoutBlock}>
         <div
           className={`${styles.checkoutBlock_h2} ${styles.checkoutBlock_h2mb}`}
         >
-          {dict.deliveryTitle}
+          {dict.checkout.deliveryTitle}
         </div>
         <div className={styles.checkoutBlock_np}>
           <Image src={np.src} alt="np" width={38} height={38} />
-          <div className={styles.checkoutBlock_ttl}>{dict.npDelivery}</div>
-          <div className={styles.checkoutBlock_price}>{dict.npCostLabel}</div>
+          <div className={styles.checkoutBlock_ttl}>
+            {dict.checkout.npDelivery}
+          </div>
+          <div className={styles.checkoutBlock_price}>
+            {dict.checkout.npCostLabel}
+          </div>
         </div>
 
         <NovaPost
@@ -97,33 +119,33 @@ const MobileCheckout = (props: Props) => {
           postPoint={postPoint}
           setPostPoint={setPostPoint}
           deliveryId={deliveryId}
-				  setDeliveryId={setDeliveryId}
-				  validateData={validateData}
+          setDeliveryId={setDeliveryId}
+          validateData={validateData}
         />
       </div>
 
       <div className={styles.checkoutBlock}>
-        <div className={styles.checkoutBlock_h2}>{dict.payTitle}</div>
+        <div className={styles.checkoutBlock_h2}>{dict.checkout.payTitle}</div>
         <div className={styles.checkoutBlock_img}>
           <Image src={money.src} alt="money" width={112} height={32} />
         </div>
         <div className={styles.checkoutBlock_list}>
-          <p>{dict.payLabelFirst}</p>
-          <p>{dict.payLabelSecond}</p>
+          <p>{dict.checkout.payLabelFirst}</p>
+          <p>{dict.checkout.payLabelSecond}</p>
         </div>
       </div>
 
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>Коментар</div>
         <Textarea
-          placeholder={dict.commentLabel}
+          placeholder={dict.checkout.commentLabel}
           value={comment}
           setValue={setComment}
         />
       </div>
 
       <CheckoutRes
-        dict={dict}
+        dict={dict.checkout}
         currency={currency}
         setFinalPrice={setFinalPrice}
         handleCheckout={handleCheckout}

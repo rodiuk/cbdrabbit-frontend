@@ -1,67 +1,78 @@
 .label {
-	display: block;
-	position: relative;
-	margin: 15px 0;
+  display: block;
+  position: relative;
+  margin: 15px 0;
 }
 .label:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 .label.error input {
-	border: 2px solid #FF1111 !important;
+  border: 2px solid #ff1111 !important;
 }
 .label p.error {
-	color: #f11;
-	font-size: 16px;
+  color: #f11;
+  font-size: 16px;
 }
 .label .label_ttl {
-	margin-bottom: 5px;
-	position: relative;
-	display: flex;
-	align-items: center;
-	font-weight: 500;
+  margin-bottom: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
 }
 .label .label_ttl .oldPass {
-	position: absolute;
-	right: 0;
-	top: 2px;
-	font-size: 16px;
-	color: #42623B; /* В SASS переменная $a не определена */
+  position: absolute;
+  right: 0;
+  top: 2px;
+  font-size: 16px;
+  color: #42623b; /* В SASS переменная $a не определена */
 }
 .label.radio {
-	display: flex;
-	padding-left: 30px;
-	position: relative;
-	transition: all .3s;
+  display: flex;
+  padding-left: 30px;
+  position: relative;
+  transition: all 0.3s;
 }
 .label.radio .label_ttl {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 .label.radio input {
-	display: none;
+  display: none;
 }
 .label.radio::before {
-	content: '';
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	border: 2px solid #D2D4DF;
-	left: 0;
-	top: calc(50% - 10px);
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #d2d4df;
+  left: 0;
+  top: calc(50% - 10px);
 }
 .label.radio.active::before {
-	border: 6px solid #42623B; /* В SASS переменная $a не определена */
+  border: 6px solid #42623b; /* В SASS переменная $a не определена */
 }
 .label.radio:hover::before {
-	border: 2px solid rgba(168, 171, 180, 1);
+  border: 2px solid rgba(168, 171, 180, 1);
 }
 .label.radio.active:hover::before {
-	border: 6px solid #42623B; /* В SASS переменная $a не определена */
+  border: 6px solid #42623b; /* В SASS переменная $a не определена */
 }
 .right_text {
-	display: block;
-	flex-grow: 1;
-	text-align: right;
-	color: var(--primary-color);
-	font-size: 16px;
+  display: block;
+  flex-grow: 1;
+  text-align: right;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.check_wrapper {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.check_wrapper label {
+  margin: 0px;
 }

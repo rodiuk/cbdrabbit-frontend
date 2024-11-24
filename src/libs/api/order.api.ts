@@ -86,6 +86,7 @@ export const createOrder = async (
           phoneNumber: orderData.address?.phoneNumber,
           firstName: orderData.firstName,
           lastName: orderData.lastName,
+          acceptedSignUp: orderData.acceptedSignUp,
         },
         true
       );
@@ -93,16 +94,19 @@ export const createOrder = async (
       if ("id" in user) {
         orderData.userId = user.id;
         await updateUserAddress(user.id, orderData.address);
-        await updateUserTotalAmount(user.id, orderData.totalSum);
-        await senPasswordNewUserEmail(
-          user.id,
-          user.email,
-          orderData?.address?.phoneNumber,
-          orderData.firstName,
-          orderData?.lastName,
-          password,
-          lang
-        );
+
+        if (orderData.acceptedSignUp) {
+          await updateUserTotalAmount(user.id, orderData.totalSum);
+          await senPasswordNewUserEmail(
+            user.id,
+            user.email,
+            orderData?.address?.phoneNumber,
+            orderData.firstName,
+            orderData?.lastName,
+            password,
+            lang
+          );
+        }
       }
     } else {
       await updateUserAddress(orderData.userId!, orderData.address);

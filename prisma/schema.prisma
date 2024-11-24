@@ -41,6 +41,8 @@ model User {
   role              String  @default("USER")
   totalOrdersAmount Float   @default(0)
 
+  acceptedSignUp Boolean @default(true)
+
   verifiedCode String?
   successCode  String?
 

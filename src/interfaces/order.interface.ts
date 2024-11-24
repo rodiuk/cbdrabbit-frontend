@@ -17,6 +17,7 @@ export interface IOrderCreate {
   itemPrice: number;
   address: IAddressData;
   items: IOrderItem[];
+  acceptedSignUp: boolean;
   utm_campaign?: string;
   utm_content?: string;
   utm_medium?: string;

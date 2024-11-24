@@ -6,7 +6,6 @@ import MobileCheckout from "./MobileCheckout";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { signIn, useSession } from "next-auth/react";
-import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
 import { IOrderCreate } from "@/interfaces/order.interface";
@@ -21,23 +20,26 @@ import { Promocode } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  dict: ICheckoutDict;
-  homeDict: any;
+  dict: any;
   currency: string;
   lang?: string;
 }
 
-const initial = {
+const userInitial = {
   firstName: "",
   lastName: "",
   phone: "",
   email: "",
 };
 
+export interface IValidateData {
+  name: string;
+  value: boolean;
+}
+
 export const CheckoutWrapper = ({
   dict,
   currency,
-  homeDict,
   lang,
 }: Props): React.JSX.Element => {
   const { data } = useSession();
@@ -45,13 +47,15 @@ export const CheckoutWrapper = ({
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
-  const [userInfo, setUserInfo] = React.useState<IUserCheckoutForm>(initial);
+  const [userInfo, setUserInfo] =
+    React.useState<IUserCheckoutForm>(userInitial);
   const [finalPrice, setFinalPrice] = React.useState<number>(0);
   const [isEmptyFields, setIsEmptyFields] = React.useState<boolean>(false);
   const [comment, setComment] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [promocode, setPromocode] = React.useState<Promocode | null>(null);
-  const [validateData, setValidateData] = React.useState([
+  const [signUpUser, setSignUpUser] = React.useState<boolean>(true);
+  const [validateData, setValidateData] = React.useState<IValidateData[]>([
     { name: "firstName", value: false },
     { name: "lastName", value: false },
     { name: "phone", value: false },
@@ -180,6 +184,7 @@ export const CheckoutWrapper = ({
           npDeliveryType: deliveryId,
           phoneNumber: userInfo?.phone,
         },
+        acceptedSignUp: signUpUser,
         ...utmLabels,
         ...(!!promocode?.code && { promocodeId: promocode?.id }),
       };
@@ -194,7 +199,7 @@ export const CheckoutWrapper = ({
 
       const resOrder = await createOrder(payload, res?.invoiceId, lang);
 
-      if ("user" in resOrder && !data?.user?.id) {
+      if ("user" in resOrder && !data?.user?.id && signUpUser) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
         await signIn("autoSignIn", {
           redirect: false,
@@ -238,10 +243,12 @@ export const CheckoutWrapper = ({
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
-        homeDict={homeDict}
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}
+        signUpUser={signUpUser}
+        setSignUpUser={setSignUpUser}
+        isAuthorized={!!data?.user?.id}
       />
 
       <MobileCheckout
@@ -260,10 +267,13 @@ export const CheckoutWrapper = ({
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
-        homeDict={homeDict}
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}
+        userInfo={userInfo}
+        signUpUser={signUpUser}
+        setSignUpUser={setSignUpUser}
+        isAuthorized={!!data?.user?.id}
       />
     </>
   );

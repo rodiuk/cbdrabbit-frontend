@@ -1,0 +1,22 @@
+.check_wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.check_label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.divider {
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-color);
+}

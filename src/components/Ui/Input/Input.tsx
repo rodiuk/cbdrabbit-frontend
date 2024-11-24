@@ -3,6 +3,7 @@
 import React from "react";
 import EyeClosed from "@/components/icons/EyeClosed";
 import EyeOpened from "@/components/icons/EyeOpened";
+import { IValidateData } from "@/app/[lang]/(main)/checkout/CheckoutWrapper";
 
 import cn from "clsx";
 import s from "./s.module.css";
@@ -22,13 +23,13 @@ interface InputProps {
   handleForgot?: () => void;
   errorText?: string;
   showForgotPassword?: boolean;
-  validateData?: any;
+  validateData?: IValidateData[];
   readOnly?: boolean;
-	textOnTheRight?: string;
-	isCity?: string;
-	isPostPoint?: string;
+  textOnTheRight?: string;
+  isCity?: string;
+  isPostPoint?: string;
 }
- 
+
 const Input: React.FC<InputProps> = ({
   text,
   required,
@@ -42,9 +43,9 @@ const Input: React.FC<InputProps> = ({
   handleForgot,
   validateData,
   readOnly,
-	textOnTheRight,
-	isCity,
-	isPostPoint,
+  textOnTheRight,
+  isCity,
+  isPostPoint,
   ...input
 }) => {
   const [type, setType] = React.useState(input.type);
@@ -57,7 +58,7 @@ const Input: React.FC<InputProps> = ({
       if (numericValue !== value) {
         e.target.value = numericValue;
         return;
-		}
+      }
     }
     /* хз. поки що буде хай щоб знов не перероблювати як передумають)  if (name === "email") {
 			console.log(5)
@@ -73,7 +74,6 @@ const Input: React.FC<InputProps> = ({
     setIsEmpty(false);
   };
 
-  
   const handlerClick = (el: string) => {
     setType(el);
     console.log(type);
@@ -103,7 +103,7 @@ const Input: React.FC<InputProps> = ({
         }
       });
   }, [validateData]);
-  console.log(isCity, "sss")
+  console.log(isCity, "sss");
   return (
     <label
       className={cn(s.label, {

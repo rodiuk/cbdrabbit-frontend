@@ -19,6 +19,7 @@ export interface ICreateUser {
   email: string;
   phoneNumber: string;
   password: string;
+  acceptedSignUp: boolean;
   firstName?: string | null;
   lastName?: string | null;
 }

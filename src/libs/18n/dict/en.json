@@ -61,7 +61,8 @@
       "successEmailUpdateMessage": "Email successfully updated!",
       "successPassUpdateBtn": "Go to Home",
       "updatePassTitle": "Update password",
-      "updatePassButton": "Update"
+      "updatePassButton": "Update",
+      "signUpProcess": "Log in"
     },
     "activate": {
       "title": "You've got a personal discount on all purchases",
@@ -111,6 +112,8 @@
     }
   },
   "checkout": {
+    "existedClient": "Am I a regular customer?",
+    "divider": "or",
     "contactTitle": "Contact Information",
     "deliveryTitle": "Delivery",
     "npDelivery": "New Post",
@@ -192,6 +195,11 @@
     "step4": "From 7000₴"
   },
   "orders": {
+    "successPayed": "Successfully paid!",
+    "successOrderNumber": "Your order number:",
+    "successOrderLabel": "Candies will soon hop to you 🐇",
+    "successOrderButton": "Great!",
+
     "noOrdersTitle": "You don't have any orders yet",
     "choiceCandy": "Choose candies",
     "amountLabel": "Paid without delivery",
