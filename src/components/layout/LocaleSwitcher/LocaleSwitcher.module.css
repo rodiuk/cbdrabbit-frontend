@@ -1,9 +1,8 @@
 .container {
   position: relative;
   color: #69332b;
-  display: none;
 }
-
+ 
 .container:hover {
   cursor: pointer;
 }
@@ -67,8 +66,4 @@
   pointer-events: all;
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    display: flex;
-  }
-}
+

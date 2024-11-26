@@ -19,6 +19,11 @@
 	flex-direction: column;
 	overflow-y: auto;
 }
+.localeSwitcher {
+	position: absolute;
+	left: 16px;
+	top: 26px;
+}
 .button {
     display: flex;
     align-items: center;

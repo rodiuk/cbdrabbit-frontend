@@ -30,8 +30,11 @@ export const NavWrapper = ({ lang, dict }: Props): React.JSX.Element => {
   return (
     <>
       <nav className={styles.navigation}>
-        <ButtonTop lang={lang} />
-        <LocaleSwitcher current={lang} />
+			  <ButtonTop lang={lang} />
+			  <div className={styles.headerSwitcher}>
+			  <LocaleSwitcher current={lang} />
+			  </div>
+        
         <Cart lang={lang} />
         <Menu toggleMenu={toggleMenu} />
       </nav>

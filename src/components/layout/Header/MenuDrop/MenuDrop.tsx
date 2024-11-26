@@ -17,6 +17,7 @@ import basket_icom from "/public/img/basket_icom.svg";
 import svd_icon from "/public/img/svd_icon.svg";
 import my_page_icon from "/public/img/my_page_icon.svg";
 import my_orders from "/public/img/my_orders.svg";
+import { LocaleSwitcher } from "../../LocaleSwitcher/LocaleSwitcher";
 
 interface Props {
   toggleMenu: () => void;
@@ -56,7 +57,9 @@ const MenuDrop = (props: Props) => {
     <div
       className={s.menu}
       onClick={e => e.currentTarget === e.target && toggleMenu()}
-    >
+	  >
+		  
+		  
       <div className={s.mnu}>
         {!isSignIn && (
           <Link
@@ -182,6 +185,9 @@ const MenuDrop = (props: Props) => {
             <TelegrammIcon />
           </a>
         </div> */}
+			  <div className={s.localeSwitcher}>
+		  <LocaleSwitcher current={lang} />
+		  </div>
         <div className={s.close} onClick={() => toggleMenu()}>
           <Close />
         </div>

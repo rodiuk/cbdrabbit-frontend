@@ -41,8 +41,13 @@
   align-items: center;
   z-index: 3;
 }
-
+.headerSwitcher {
+	display: none;
+}
 @media screen and (min-width: 768px) {
+	.headerSwitcher {
+		display: flex;
+	}
   .container {
     padding: 8px 30px;
   }
