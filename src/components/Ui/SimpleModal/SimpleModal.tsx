@@ -8,14 +8,14 @@ interface SimpleModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode;
+  content: React.ReactNode;
 }
 
 const SimpleModal = ({
   isOpen,
   onClose,
   title,
-  children,
+  content,
 }: SimpleModalProps): React.JSX.Element | null => {
   if (!isOpen) return null;
 
@@ -30,7 +30,7 @@ const SimpleModal = ({
             <Close />
           </button>
         </div>
-        <div className={cn(s.modal_body)}>{children}</div>
+        <div className={cn(s.modal_body)}>{content}</div>
       </div>
     </div>
   );

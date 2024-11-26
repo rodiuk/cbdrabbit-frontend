@@ -35,7 +35,7 @@ export const AuthInCheckout = (
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
         title={dict.auth.general.signUpProcess}
-        children={<AuthModalContent dict={dict} />}
+        content={<AuthModalContent dict={dict} />}
       />
     </>
   );
