@@ -89,13 +89,13 @@ const UserCheckoutForm = ({
 
       {!isAuthorized && (
         <label className={cn(s.checkbox)}>
-          <input
-            type="checkbox"
-            className={s.customCheckbox}
-            checked={signUpUser}
-            onChange={() => setSignUpUser(!signUpUser)}
-          />
           <span className="label_ttl">
+            <input
+              type="checkbox"
+              className={s.customCheckbox}
+              checked={signUpUser}
+              onChange={() => setSignUpUser(!signUpUser)}
+            />
             Створити акаунт та накопичувати персональну скидку
           </span>
         </label>

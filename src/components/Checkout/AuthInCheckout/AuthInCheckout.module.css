@@ -20,3 +20,15 @@
   font-weight: 500;
   color: var(--primary-color);
 }
+
+@media screen and (min-width: 481px) {
+  .main_wrapper {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main_wrapper {
+    width: 100%;
+  }
+}

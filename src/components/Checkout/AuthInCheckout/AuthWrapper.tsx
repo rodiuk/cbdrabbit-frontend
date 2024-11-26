@@ -3,6 +3,8 @@ import { useSearchParams } from "next/navigation";
 import { SignInPassword } from "@/components/forms/auth/SignInPassword";
 import { SignInEmailForm } from "@/components/forms/auth/SignInEmailForm";
 
+import s from "./AuthInCheckout.module.css";
+
 interface AuthWrapperProps {
   dict: any;
 }
@@ -36,5 +38,5 @@ export const AuthModalContent = (
     }
   }, [searchParams]);
 
-  return <>{renderedContent}</>;
+  return <div className={s.main_wrapper}>{renderedContent}</div>;
 };

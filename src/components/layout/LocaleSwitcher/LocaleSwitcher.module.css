@@ -2,7 +2,7 @@
   position: relative;
   color: #69332b;
 }
- 
+
 .container:hover {
   cursor: pointer;
 }
@@ -65,5 +65,3 @@
   transform: translateY(0);
   pointer-events: all;
 }
-
-

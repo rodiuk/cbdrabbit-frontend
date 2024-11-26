@@ -29,6 +29,8 @@
   width: fit-content;
   position: relative;
   z-index: 1000;
+  overflow-y: auto;
+  min-width: 90%;
 }
 
 .modal_header {
@@ -44,6 +46,16 @@
   cursor: pointer;
 }
 
+.close_button svg {
+  color: #000;
+}
+
 .modal_body {
   margin-top: 10px;
+}
+
+@media screen and (min-width: 480px) {
+  .modal_content {
+    min-width: auto;
+  }
 }
