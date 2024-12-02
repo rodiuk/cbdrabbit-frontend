@@ -13,6 +13,7 @@ import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
+import { GreetingBlock } from "./GreetingBlock";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -75,11 +76,12 @@ const MobileCheckout = (props: Props) => {
 
   return (
     <section className={styles.mobile}>
+      {isAuthorized && <GreetingBlock userInfo={userInfo} />}
+
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>
           {dict.checkout.orderTitle}
         </div>
-
         <ProductsCheckout homeDict={dict.home} />
       </div>
       <div className={styles.checkoutBlock}>

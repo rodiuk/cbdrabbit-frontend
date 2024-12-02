@@ -6,16 +6,16 @@ import dynamic from "next/dynamic";
 import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import Textarea from "@/components/Ui/Textarea/Textarea";
+import { IValidateData } from "./CheckoutWrapper";
 import { Promocode } from "@prisma/client";
+import { GreetingBlock } from "./GreetingBlock";
 
 import cn from "clsx";
 import styles from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import money from "/public/img/money.svg";
-import { IValidateData } from "./CheckoutWrapper";
 
 const ProductsCheckout = dynamic(() => import("./ProductsCheckout"), {
   ssr: false,
@@ -79,6 +79,8 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
   return (
     <section className={styles.tablet}>
       <div className={styles.left}>
+        {isAuthorized && <GreetingBlock userInfo={userInfo} />}
+
         <div className={styles.checkoutBlock}>
           <h1 className={styles.checkoutBlock_h2}>
             {dict.checkout.contactTitle}
@@ -93,6 +95,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
             isAuthorized={isAuthorized}
           />
         </div>
+
         <div className={styles.checkoutBlock}>
           <h2
             className={cn(styles.checkoutBlock_h2, styles.checkoutBlock_h2mb)}

@@ -237,7 +237,15 @@
   }
 }
 @media (max-width: 767px) {
-	.checoutPage {
-		padding-top: 100px;
-	}
+  .checoutPage {
+    padding-top: 100px;
+  }
+}
+
+.greeting_block {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--primary-color);
+  line-height: 1.4;
+  margin: 4px 0;
 }

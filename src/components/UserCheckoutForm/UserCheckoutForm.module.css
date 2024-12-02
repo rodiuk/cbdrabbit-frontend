@@ -36,7 +36,7 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid #42623b;
+  border: 2px solid var(--primary-color);
   background-color: #fff;
   transition: background-color 0.3s, border-color 0.3s;
   position: absolute;
@@ -45,8 +45,8 @@
 }
 
 .checkbox input[type="checkbox"]:checked::before {
-  background-color: #42623b;
-  border-color: #42623b;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .checkbox input[type="checkbox"]:checked::after {
@@ -64,4 +64,11 @@
   cursor: pointer;
   position: relative;
   user-select: none;
+}
+
+.greeting_block {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--primary-color);
+  line-height: 1.4;
 }

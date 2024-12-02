@@ -3,9 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
-import { useSession } from "next-auth/react";
 import { cartAtom } from "@/libs/store/atoms";
-import { getAllUserOrders } from "@/libs/api/order.api";
 import ListSales from "@/components/ListSales/ListSales";
 import { PresentIcon } from "@/components/icons/PresentIcon";
 import { IProductRes } from "@/interfaces/product.interface";
@@ -20,23 +18,9 @@ interface Props {
 
 const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
-  const { data } = useSession();
-  const [hasOrders, setHasOrders] = React.useState<boolean>(false);
-  const [isRendered, setIsRendered] = React.useState<boolean>(false);
 
   const rendererProducts = cart?.products?.filter(product => product.count > 0);
   const [products, setProduct] = React.useState(rendererProducts);
-
-  React.useEffect(() => {
-    if (!data?.user?.id) return setIsRendered(true);
-
-    (async function getOrders() {
-      setIsRendered(false);
-      const hasOrders = (await getAllUserOrders(data.user.id))?.length > 0;
-      setHasOrders(hasOrders);
-      setIsRendered(true);
-    })();
-  }, [data]);
 
   React.useEffect(() => {
     setProduct(rendererProducts);
@@ -86,14 +70,14 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
         ))}
       </ul>
 
-      {!hasOrders && isRendered && (
+      {/* {!hasOrders && isRendered && (
         <div className={styles.first_client}>
           <div className={styles.img_client}>
             <PresentIcon />
           </div>
           {homeDict?.product?.firstOrder}
         </div>
-      )}
+      )} */}
 
       {cart?.totalCount >= 7 && (
         <div className={styles.first_client}>
@@ -105,7 +89,7 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
         </div>
       )}
 
-      <ListSales home={homeDict} className={styles.checkoutList} />
+      {/* <ListSales home={homeDict} className={styles.checkoutList} /> */}
     </>
   );
 };
