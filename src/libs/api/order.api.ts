@@ -1,7 +1,11 @@
 "use server";
 
 import prisma from "@/libs/client/prisma.client";
-import { changedOrderStatusSelect, orderSelect } from "./selects/order.select";
+import {
+  changedOrderStatusSelect,
+  instaOrderSelect,
+  orderSelect,
+} from "./selects/order.select";
 import { IOrderCreate, IUserOrder } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
 import {
@@ -60,6 +64,21 @@ export const getOrderByCheckId = async (checkId: number) => {
         checkId,
       },
       select: orderSelect,
+    });
+
+    return order;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getInstaOrderByCheckId = async (checkId: number) => {
+  try {
+    const order = await prisma.instagramOrder.findUnique({
+      where: {
+        checkId,
+      },
+      select: instaOrderSelect,
     });
 
     return order;
@@ -183,14 +202,18 @@ export const changeOrderStatusByCheckId = async (
   try {
     const existOrder = await getOrderByCheckId(checkId);
 
-    if (!existOrder) throw new Error("Order not found");
+    const existInstaOrder = await getInstaOrderByCheckId(checkId);
 
-    if (existOrder.status !== status) {
+    if (!existOrder && !existInstaOrder) throw new Error("Order not found");
+
+    if (existOrder && existOrder?.status !== status) {
       existOrder.status = status;
       await sendWebhook(existOrder);
+    } else if (existInstaOrder && existInstaOrder.status !== status) {
+      existInstaOrder.status = status;
     }
 
-    if (status === OrderStatus.PAID) {
+    if (existOrder && status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );
@@ -203,19 +226,45 @@ export const changeOrderStatusByCheckId = async (
         String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
+    } else if (existInstaOrder && status === OrderStatus.PAID) {
+      const orderProducts = await getProductsByIds(
+        existInstaOrder.orderItems.map(item => item.productId)
+      );
+      await orderInProgressEmail(
+        existInstaOrder.customerInitials || "No name",
+        existOrder as any,
+        orderProducts || [],
+        false,
+        String(existOrder?.checkId),
+        "uk"
+      );
     }
 
-    const order = await prisma.order.update({
-      where: {
-        checkId,
-      },
-      data: {
-        status,
-      },
-      select: changedOrderStatusSelect,
-    });
+    if (existOrder) {
+      const order = await prisma.order.update({
+        where: {
+          checkId,
+        },
+        data: {
+          status,
+        },
+        select: changedOrderStatusSelect,
+      });
 
-    return order;
+      return order;
+    } else if (existInstaOrder) {
+      const order = await prisma.instagramOrder.update({
+        where: {
+          checkId,
+        },
+        data: {
+          status,
+        },
+        select: changedOrderStatusSelect,
+      });
+
+      return order;
+    }
   } catch (error) {
     throw error;
   }

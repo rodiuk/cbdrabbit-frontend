@@ -61,6 +61,30 @@ export const orderSelect: Prisma.OrderSelect = {
   },
 };
 
+export const instaOrderSelect: Prisma.InstagramOrderSelect = {
+  ...orderBaseSelect,
+  orderItems: {
+    select: {
+      id: true,
+      quantity: true,
+      productId: true,
+
+      product: {
+        select: {
+          id: true,
+          productName: true,
+          price: true,
+          images: {
+            select: {
+              url: true,
+            },
+          },
+        },
+      },
+    },
+  },
+};
+
 export const changedOrderStatusSelect: Prisma.OrderSelect = {
   ...orderBaseSelect,
   orderItems: {
