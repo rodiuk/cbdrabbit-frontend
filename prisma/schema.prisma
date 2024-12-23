@@ -133,7 +133,8 @@ model InstagramOrder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  orderItems OrderItem[]
+  orderItems   OrderItem[]
+  deliveryInfo DeliveryInfo?
 }
 
 model OrderItem {
@@ -232,10 +233,12 @@ model DeliveryInfo {
   deliveryPayedKeeping String?
   isFreeDelivery       Boolean @default(false)
 
-  orderId String @unique
+  orderId          String? @unique
+  instagramOrderId String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order          Order?          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  instagramOrder InstagramOrder? @relation(fields: [instagramOrderId], references: [id], onDelete: Cascade)
 }
