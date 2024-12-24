@@ -211,6 +211,8 @@ export const changeOrderStatusByCheckId = async (
       await sendWebhook(existOrder);
     } else if (existInstaOrder && existInstaOrder.status !== status) {
       existInstaOrder.status = status;
+      await sendWebhook(existInstaOrder);
+
     }
 
     if (existOrder && status === OrderStatus.PAID) {

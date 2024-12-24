@@ -207,7 +207,7 @@ export const createOrderEmail = async (
           delivery_address: `${order.address.npDeliveryType}, ${order.address.city}, ${order.address.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
-          presentQuantity: Math.floor(presentQuantity / 7) || 0,
+          present_quantity: Math.floor(presentQuantity / 7) || 0,
           utm_source: order?.utm_source,
           utm_medium: order?.utm_medium,
           utm_campaign: order?.utm_campaign,
@@ -308,7 +308,7 @@ export const orderInProgressEmail = async (
           delivery_address: `${order.user?.address?.npDeliveryType}, ${order.user?.address?.city}, ${order.user?.address?.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
-          presentQuantity: order?.presentQuantity || 0,
+          present_quantity: order?.presentQuantity || 0,
           utm_source: order?.utm_source,
           utm_medium: order?.utm_medium,
           utm_campaign: order?.utm_campaign,
@@ -369,7 +369,7 @@ export const sendWebhook = async (order: Partial<IUserOrder>) => {
     id: order.id,
     checkId: order.checkId,
     status: order.status,
-    presentQuantity: order.presentQuantity,
+    present_quantity: order.presentQuantity,
 
     products: order?.orderItems?.map(item => ({
       name: item?.product?.productName,
