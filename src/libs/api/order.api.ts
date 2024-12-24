@@ -93,10 +93,7 @@ export const createOrder = async (
   lang?: string
 ) => {
   try {
-    let firstOrder = false;
-
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
-      firstOrder = true;
       const password = nanoid(6);
       const user = await createUser(
         {
@@ -130,9 +127,12 @@ export const createOrder = async (
     } else {
       await updateUserAddress(orderData.userId!, orderData.address);
       await updateUserTotalAmount(orderData.userId!, orderData.totalSum);
-      const res = await hasUserOrders(orderData.userId!);
-      if (!res) firstOrder = res;
     }
+
+    const candiesQuantity = orderData.items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
 
     const order = await prisma.order.create({
       data: {
@@ -154,11 +154,11 @@ export const createOrder = async (
         }),
         ...(lang && { lang: lang }),
         ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
-        ...(!!firstOrder && { firstOrder: firstOrder }),
         ...(orderData.utm_source && { utm_source: orderData.utm_source }),
         ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
         ...(orderData.utm_term && { utm_term: orderData.utm_term }),
         ...(orderData.utm_content && { utm_content: orderData.utm_content }),
+        presentQuantity: Math.floor(candiesQuantity / 7),
         orderItems: {
           create: orderData.items.map(item => ({
             quantity: item.quantity,
@@ -222,7 +222,6 @@ export const changeOrderStatusByCheckId = async (
         existOrder.user.id,
         existOrder as any,
         orderProducts || [],
-        !!existOrder.firstOrder,
         String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
@@ -234,7 +233,6 @@ export const changeOrderStatusByCheckId = async (
         existInstaOrder.customerInitials || "No name",
         existOrder as any,
         orderProducts || [],
-        false,
         String(existOrder?.checkId),
         "uk"
       );

@@ -164,7 +164,6 @@ export const createOrderEmail = async (
   userId: string,
   order: IOrderCreate,
   products: IProductCard[],
-  firstOrder: boolean,
   orderId?: string,
   lang?: string
 ) => {
@@ -182,6 +181,11 @@ export const createOrderEmail = async (
         quantity: order.items.filter(item => item.productId === product.id)[0]
           ?.quantity,
       }));
+
+    const presentQuantity = productsForEmail?.reduce((acc, item) => {
+      acc += Number(item.quantity);
+      return acc;
+    }, 0);
 
     const res = await fetch(
       `${appConfig.SENDPULSE_EVENTS_URL}/name/ordercreate`,
@@ -203,7 +207,7 @@ export const createOrderEmail = async (
           delivery_address: `${order.address.npDeliveryType}, ${order.address.city}, ${order.address.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
-          first_order: firstOrder ? "yes" : "no",
+          presentQuantity: Math.floor(presentQuantity / 7) || 0,
           utm_source: order?.utm_source,
           utm_medium: order?.utm_medium,
           utm_campaign: order?.utm_campaign,
@@ -267,7 +271,6 @@ export const orderInProgressEmail = async (
   userId: string,
   order: IUserOrder,
   products: IProductRes[],
-  firstOrder: boolean,
   orderId?: string,
   lang?: string
 ) => {
@@ -305,7 +308,7 @@ export const orderInProgressEmail = async (
           delivery_address: `${order.user?.address?.npDeliveryType}, ${order.user?.address?.city}, ${order.user?.address?.npDepartment}`,
           delivery_price: "",
           payment_method: "online",
-          first_order: firstOrder ? "yes" : "no",
+          presentQuantity: order?.presentQuantity || 0,
           utm_source: order?.utm_source,
           utm_medium: order?.utm_medium,
           utm_campaign: order?.utm_campaign,
@@ -366,7 +369,7 @@ export const sendWebhook = async (order: Partial<IUserOrder>) => {
     id: order.id,
     checkId: order.checkId,
     status: order.status,
-    isFirstOrder: order.firstOrder,
+    presentQuantity: order.presentQuantity,
 
     products: order?.orderItems?.map(item => ({
       name: item?.product?.productName,

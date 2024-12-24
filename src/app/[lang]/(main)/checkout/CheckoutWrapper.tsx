@@ -211,7 +211,6 @@ export const CheckoutWrapper = ({
         resOrder.user.id,
         payload,
         cart.products,
-        cart.fromCheckout,
         resOrder.id,
         lang
       );

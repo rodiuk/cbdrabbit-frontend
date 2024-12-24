@@ -82,20 +82,20 @@ model Address {
 }
 
 model Order {
-  id             String       @id @default(uuid())
-  checkId        Int          @unique @default(autoincrement())
-  totalSum       Float
-  itemPrice      Float
-  comment        String?
-  status         OrderStatus? @default(CREATED)
-  utm_source     String?
-  utm_medium     String?
-  utm_campaign   String?
-  utm_content    String?
-  utm_term       String?
-  lang           String?
-  firstOrder     Boolean?     @default(false)
-  serviceComment String?
+  id              String       @id @default(uuid())
+  checkId         Int          @unique @default(autoincrement())
+  totalSum        Float
+  itemPrice       Float
+  comment         String?
+  status          OrderStatus? @default(CREATED)
+  utm_source      String?
+  utm_medium      String?
+  utm_campaign    String?
+  utm_content     String?
+  utm_term        String?
+  lang            String?
+  presentQuantity Int?
+  serviceComment  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

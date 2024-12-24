@@ -38,7 +38,7 @@ export interface IUserOrder {
   checkId: number;
   comment?: string | null;
   status?: string | null;
-  firstOrder?: boolean | null;
+  presentQuantity: number | null;
   utm_campaign?: string | null;
   utm_content?: string | null;
   utm_medium?: string | null;
