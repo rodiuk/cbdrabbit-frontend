@@ -93,13 +93,6 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
           })}
         </div>
 
-        {order?.firstOrder && (
-          <div className={s.orderInfo_pay}>
-            <div className={s.orderInfo_ttl2}>Подарунок</div>
-            <div className={s.orderInfo_descr2}>Rabbit Classic × 1</div>
-          </div>
-        )}
-
         <div className={s.orderInfo_pay}>
           <div className={s.orderInfo_ttl2}>{dict.amountLabel}</div>
           <div className={s.orderInfo_descr2}>

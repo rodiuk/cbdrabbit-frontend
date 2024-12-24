@@ -1,23 +1,23 @@
 "use client";
 
 import React from "react";
-import TabletCheckout from "./TabletCheckout";
-import MobileCheckout from "./MobileCheckout";
-import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
-import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { signIn, useSession } from "next-auth/react";
-import { getUserInfo } from "@/libs/api/user.api";
-import { createOrder } from "@/libs/api/order.api";
-import { IOrderCreate } from "@/interfaces/order.interface";
 import { useAtom } from "jotai";
-import { cartAtom } from "@/libs/store/atoms";
-import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
-import { createUrlForCheckout } from "@/libs/api/checkout.api";
-import { createOrderEmail } from "@/libs/api/emails.api";
-import useLocalStorage from "@/hooks/useLocaleStorage";
-import { constants } from "@/configs/constants";
 import { Promocode } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { cartAtom } from "@/libs/store/atoms";
+import TabletCheckout from "./TabletCheckout";
+import MobileCheckout from "./MobileCheckout";
+import { constants } from "@/configs/constants";
+import { getUserInfo } from "@/libs/api/user.api";
+import { createOrder } from "@/libs/api/order.api";
+import { signIn, useSession } from "next-auth/react";
+import useLocalStorage from "@/hooks/useLocaleStorage";
+import { createOrderEmail } from "@/libs/api/emails.api";
+import { IOrderCreate } from "@/interfaces/order.interface";
+import { createUrlForCheckout } from "@/libs/api/checkout.api";
+import { IUserCheckoutForm } from "@/interfaces/user.interface";
+import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
+import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 
 interface Props {
   dict: any;
