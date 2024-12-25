@@ -123,6 +123,9 @@ model InstagramOrder {
   customerInitials String?
   customerPhone    String?
   customerAddress  String?
+  customerNickname String?
+
+  attachmentUrl String?
 
   trackingNumber String?
 
