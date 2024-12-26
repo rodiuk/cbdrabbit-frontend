@@ -62,7 +62,26 @@ export const orderSelect: Prisma.OrderSelect = {
 };
 
 export const instaOrderSelect: Prisma.InstagramOrderSelect = {
-  ...orderBaseSelect,
+  id: true,
+  checkId: true,
+  status: true,
+  totalSum: true,
+  itemPrice: true,
+  comment: true,
+
+  customerAddress: true,
+  customerPhone: true,
+  customerInitials: true,
+  customerNickname: true,
+
+  attachmentUrl: true,
+  trackingNumber: true,
+
+  paymentLink: true,
+
+  createdAt: true,
+  updatedAt: true,
+
   orderItems: {
     select: {
       id: true,

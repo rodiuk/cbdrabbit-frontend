@@ -74,7 +74,7 @@ export const getOrderByCheckId = async (checkId: number) => {
 
 export const getInstaOrderByCheckId = async (checkId: number) => {
   try {
-    const order = await prisma.instagramOrder.findFirst({
+    const order = await prisma.instagramOrder.findUnique({
       where: {
         checkId,
       },
