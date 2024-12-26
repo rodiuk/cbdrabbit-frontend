@@ -74,7 +74,7 @@ export const getOrderByCheckId = async (checkId: number) => {
 
 export const getInstaOrderByCheckId = async (checkId: number) => {
   try {
-    const order = await prisma.instagramOrder.findUnique({
+    const order = await prisma.instagramOrder.findFirst({
       where: {
         checkId,
       },
@@ -212,7 +212,6 @@ export const changeOrderStatusByCheckId = async (
     } else if (existInstaOrder && existInstaOrder.status !== status) {
       existInstaOrder.status = status;
       await sendWebhook(existInstaOrder);
-
     }
 
     if (existOrder && status === OrderStatus.PAID) {
