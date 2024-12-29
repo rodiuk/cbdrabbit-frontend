@@ -5,6 +5,8 @@ import { CheckoutWrapper } from "./CheckoutWrapper";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { SuccessOrder } from "@/components/auth/SuccessOrder/SuccessOrder";
 
+export const dynamic = "force-dynamic";
+
 import cn from "clsx";
 import styles from "./page.module.css";
 

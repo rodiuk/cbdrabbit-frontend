@@ -203,8 +203,6 @@ export const CheckoutWrapper = ({
       //   setCart(prev => ({ ...prev, fromCheckout: true }));
       // }
 
-      console.log("resOrder", resOrder);
-
       if (resOrder?.["user"] && resOrder?.["user"]?.["isVerified"]) {
         await signIn("autoSignIn", {
           redirect: false,
