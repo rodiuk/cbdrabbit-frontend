@@ -36,7 +36,7 @@ export const LocaleSwitcher = (props: Props) => {
 
   const handleChangeLocale = (locale: string) => {
     const localePath = redirectedPathName(locale.toLowerCase());
-    router.push(localePath);
+    router.replace(localePath);
   };
 
   return (
