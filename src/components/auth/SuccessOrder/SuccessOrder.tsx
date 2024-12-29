@@ -20,7 +20,7 @@ export const SuccessOrder = async ({
 }: SuccessOrderProps): Promise<React.JSX.Element> => {
   const user = await userByOrderId(Number(orderNumber));
 
-  const mailDomain = user?.email?.split("@")[1] ?? "https://google.com";
+  const mailDomain = user?.email?.split("@")[1] ?? "google.com";
 
   return (
     <div className="container">
@@ -46,8 +46,8 @@ export const SuccessOrder = async ({
                 </Link>
               ) : (
                 <Link
-                  href=""
-                  onClick={() => window.open(`https://${mailDomain}`, "_blank")}
+                  href={`https://${mailDomain}`}
+                  target="_blank"
                   className={s.button}
                 >
                   {dict.openEmail}
