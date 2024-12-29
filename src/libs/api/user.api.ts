@@ -148,7 +148,8 @@ export const getUserInfo = async (userId: string) => {
 
 export const createUser = async (
   userData: ICreateUser,
-  isVerified?: boolean
+  isVerified?: boolean,
+  createdPassword?: string
 ) => {
   try {
     if (!userData?.password) return { error: "Password is required" };
@@ -251,7 +252,8 @@ export const createUser = async (
           user.id,
           code,
           userData?.firstName,
-          userData?.lastName
+          userData?.lastName,
+          createdPassword
         );
       }
 

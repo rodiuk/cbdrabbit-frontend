@@ -72,7 +72,8 @@ export const signUpActivateSendEmail = async (
   userId: string,
   code: string,
   firstName?: string | null,
-  lastName?: string | null
+  lastName?: string | null,
+  password?: string | null
 ) => {
   try {
     const tokenData = await getBearerToken();
@@ -96,6 +97,7 @@ export const signUpActivateSendEmail = async (
           reg_date: Date.now().toString(),
           location: "uk",
           url_activator: `https://cbdrabbit.shop/uk/signUp?code=${code}`,
+          password: password ?? "",
         }),
       }
     );
