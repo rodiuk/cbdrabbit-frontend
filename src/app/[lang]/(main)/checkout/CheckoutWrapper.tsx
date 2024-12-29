@@ -199,9 +199,9 @@ export const CheckoutWrapper = ({
 
       const resOrder = await createOrder(payload, res?.invoiceId, lang);
 
-      if ("user" in resOrder && !data?.user?.id && signUpUser) {
-        setCart(prev => ({ ...prev, fromCheckout: true }));
-      }
+      // if ("user" in resOrder && !data?.user?.id && signUpUser) {
+      //   setCart(prev => ({ ...prev, fromCheckout: true }));
+      // }
 
       if ("user" in resOrder && resOrder?.user?.isVerified) {
         await signIn("autoSignIn", {
