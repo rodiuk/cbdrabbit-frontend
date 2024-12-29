@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { userByOrderId } from "@/libs/api/user.api";
-import { SuccessClearStorage } from "./SUccessClearStorage";
+import { SuccessClearStorage } from "./SuccessClearStorage";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 
 import s from "./SuccessOrder.module.css";
