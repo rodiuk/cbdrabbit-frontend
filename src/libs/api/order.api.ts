@@ -215,11 +215,7 @@ export const changeOrderStatusByCheckId = async (
       await sendWebhook(existInstaOrder);
     }
 
-    if (
-      existOrder &&
-      status === OrderStatus.PAID &&
-      status !== existOrder.status
-    ) {
+    if (existOrder && status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );
@@ -231,11 +227,7 @@ export const changeOrderStatusByCheckId = async (
         String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
-    } else if (
-      existInstaOrder &&
-      status === OrderStatus.PAID &&
-      status !== existInstaOrder.status
-    ) {
+    } else if (existInstaOrder && status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existInstaOrder.orderItems.map(item => item.productId)
       );
