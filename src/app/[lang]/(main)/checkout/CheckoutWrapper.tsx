@@ -73,7 +73,7 @@ export const CheckoutWrapper = ({
     if (!data?.user?.id) return;
     (async function fetchUser() {
       try {
-        const res = await getUserInfo(data.user.id);
+        const res = await getUserInfo(data?.user?.id);
 
         const deliveryType =
           res?.address?.npDeliveryType?.length === 1
@@ -208,7 +208,7 @@ export const CheckoutWrapper = ({
       if (resOrder?.["user"] && resOrder?.["user"]?.["isVerified"]) {
         await signIn("autoSignIn", {
           redirect: false,
-          userId: resOrder.user.id,
+          userId: resOrder?.user?.id,
         });
       }
 
