@@ -3,7 +3,6 @@ import Image from "next/image";
 import { OrderStatus } from "@prisma/client";
 import { formatDate } from "@/utils/formatDate";
 import OrderProduct from "./OrderProduct/OrderProduct";
-import { InfoIcon } from "@/components/icons/InfoIcon";
 import { IOrderDict } from "@/interfaces/i18n.interface";
 import { IUserOrder } from "@/interfaces/order.interface";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
@@ -55,9 +54,9 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
           <div className={s.orderInfo_num}>
             <p>№ {formatDisplayedCheckId(order.checkId)}</p>
           </div>
-          <div className={s.butt_info} onClick={openPoup}>
+          {/* <div className={s.butt_info} onClick={openPoup}>
             <InfoIcon iconStyle={s.icon_info} />{" "}
-          </div>
+          </div> */}
         </div>
         <div className={s.orderInfo_descr}>{formatDate(order.createdAt)}</div>
         <div className={s.orderInfo_ttl}>{orderStatus()}</div>

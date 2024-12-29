@@ -16,11 +16,7 @@ import {
 } from "./user.api";
 import { OrderStatus } from "@prisma/client";
 import { nanoid } from "nanoid";
-import {
-  orderInProgressEmail,
-  sendWebhook,
-  senPasswordNewUserEmail,
-} from "./emails.api";
+import { orderInProgressEmail, sendWebhook } from "./emails.api";
 import { getProductsByIds } from "./products.api";
 
 export const getAllUserOrders = async (
