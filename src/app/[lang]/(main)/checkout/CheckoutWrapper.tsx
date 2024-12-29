@@ -203,7 +203,7 @@ export const CheckoutWrapper = ({
       //   setCart(prev => ({ ...prev, fromCheckout: true }));
       // }
 
-      if ("user" in resOrder && resOrder?.user?.isVerified) {
+      if (resOrder?.user?.isVerified) {
         await signIn("autoSignIn", {
           redirect: false,
           userId: resOrder.user.id,
