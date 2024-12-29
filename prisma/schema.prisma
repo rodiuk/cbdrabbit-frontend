@@ -257,7 +257,7 @@ model InstagramMedia {
   mediaPath String
   type      MediaType @default(IMAGE)
 
-  instagramOrderId String
+  instagramOrderId String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
