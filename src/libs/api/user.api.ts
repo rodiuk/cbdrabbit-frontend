@@ -51,13 +51,17 @@ export const getUserById = async (
 
 export const userByOrderId = async (orderId: number) => {
   try {
-    const user = await prisma.user.findFirst({
+    const order = await prisma.order.findFirst({
       where: {
-        order: {
-          some: {
-            checkId: orderId,
-          },
-        },
+        checkId: +orderId,
+      },
+    });
+
+    if (!order) return null;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: order.userId,
       },
     });
 
