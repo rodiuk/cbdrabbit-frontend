@@ -46,6 +46,7 @@ export const CheckoutWrapper = ({
   const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
+  const [deliveryAddress, setDeliveryAddress] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
   const [userInfo, setUserInfo] =
     React.useState<IUserCheckoutForm>(userInitial);
@@ -67,7 +68,7 @@ export const CheckoutWrapper = ({
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-  const [cart, setCart] = useAtom(cartAtom);
+  const [cart] = useAtom(cartAtom);
 
   React.useEffect(() => {
     if (!data?.user?.id) return;
@@ -106,6 +107,7 @@ export const CheckoutWrapper = ({
       { name: "email", value: false },
       { name: "Населений пункт", value: false },
       { name: "Відділення", value: false },
+      { name: "Адреса", value: false },
     ]);
     if (!userInfo.firstName) {
       setValidateData(prevState =>
@@ -142,10 +144,16 @@ export const CheckoutWrapper = ({
         )
       );
     }
-    if (!postPoint) {
+    if (!postPoint && deliveryId !== "3") {
       setValidateData(prevState =>
         prevState.map(item =>
           item.name === "Відділення" ? { ...item, value: true } : item
+        )
+      );
+    } else if (!deliveryAddress && deliveryId === "3") {
+      setValidateData(prevState =>
+        prevState.map(item =>
+          item.name === "Адреса" ? { ...item, value: true } : item
         )
       );
     }
@@ -154,9 +162,7 @@ export const CheckoutWrapper = ({
   const handleCheckout = async () => {
     validateInputs();
     if (
-      !city ||
-      !postPoint ||
-      !deliveryId ||
+      Object.values(validateData)?.some(x => x.value === true) ||
       !userInfo?.phone?.length ||
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
@@ -247,6 +253,8 @@ export const CheckoutWrapper = ({
         promocode={promocode}
         validateData={validateData}
         signUpUser={signUpUser}
+        deliveryAddress={deliveryAddress}
+        setDeliveryAddress={setDeliveryAddress}
         setSignUpUser={setSignUpUser}
         isAuthorized={!!data?.user?.id}
       />
@@ -267,6 +275,8 @@ export const CheckoutWrapper = ({
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
+        setDeliveryAddress={setDeliveryAddress}
+        deliveryAddress={deliveryAddress}
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}

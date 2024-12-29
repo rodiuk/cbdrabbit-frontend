@@ -33,6 +33,8 @@ interface Props {
   setPostPoint: (postPoint: string) => void;
   setDeliveryId: (deliveryId: string) => void;
   setFinalPrice: (finalPrice: number) => void;
+  deliveryAddress: string;
+  setDeliveryAddress: (deliveryAddress: string) => void;
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
@@ -60,6 +62,8 @@ const MobileCheckout = (props: Props) => {
     setFinalPrice,
     handleCheckout,
     setUserInfo,
+    deliveryAddress,
+    setDeliveryAddress,
     hasError,
     currency,
     comment,
@@ -121,6 +125,8 @@ const MobileCheckout = (props: Props) => {
           postPoint={postPoint}
           setPostPoint={setPostPoint}
           deliveryId={deliveryId}
+          deliveryAddress={deliveryAddress}
+          setDeliveryAddress={setDeliveryAddress}
           setDeliveryId={setDeliveryId}
           validateData={validateData}
         />

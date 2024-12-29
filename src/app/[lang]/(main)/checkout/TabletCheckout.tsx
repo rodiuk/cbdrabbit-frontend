@@ -34,6 +34,8 @@ export interface TabletCheckoutProps {
   setCity: (city: string) => void;
   setPostPoint: (postPoint: string) => void;
   setDeliveryId: (deliveryId: string) => void;
+  deliveryAddress: string;
+  setDeliveryAddress: (deliveryAddress: string) => void;
   setFinalPrice: (finalPrice: number) => void;
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
@@ -62,6 +64,8 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
     setFinalPrice,
     handleCheckout,
     setUserInfo,
+    deliveryAddress,
+    setDeliveryAddress,
     hasError,
     currency,
     userInfo,
@@ -117,6 +121,8 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
             postPoint={postPoint}
             deliveryId={deliveryId}
             setCity={setCity}
+            deliveryAddress={deliveryAddress}
+            setDeliveryAddress={setDeliveryAddress}
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
             validateData={validateData}

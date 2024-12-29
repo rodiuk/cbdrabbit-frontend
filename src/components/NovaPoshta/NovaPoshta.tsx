@@ -15,14 +15,25 @@ interface Props {
   postPoint: string;
   setCity: (city: string) => void;
   setPostPoint: (postPoint: string) => void;
+  deliveryAddress: string;
+  setDeliveryAddress: (deliveryAddress: string) => void;
   deliveryId: string;
-	setDeliveryId: (deliveryId: string) => void;
-	validateData?: any
+  setDeliveryId: (deliveryId: string) => void;
+  validateData?: any;
 }
 
 const NovaPost = (props: Props): React.JSX.Element => {
-  const { city, setCity, postPoint, setPostPoint, deliveryId, setDeliveryId, validateData } =
-    props;
+  const {
+    city,
+    setCity,
+    postPoint,
+    deliveryAddress,
+    setDeliveryAddress,
+    setPostPoint,
+    deliveryId,
+    setDeliveryId,
+    validateData,
+  } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenFilial, setIsOpenFilial] = React.useState(false);
   const [sities, setSities] = React.useState([]);
@@ -149,10 +160,10 @@ const NovaPost = (props: Props): React.JSX.Element => {
             placeholder="Введи населений пункт"
             showLay={showLay}
             autoComplete="off"
-			value={city}
-			validateData={validateData}
-					  readOnly
-					  isCity={city}
+            value={city}
+            validateData={validateData}
+            readOnly
+            isCity={city}
           />
 
           {deliveryId === "3" ? (
@@ -161,10 +172,13 @@ const NovaPost = (props: Props): React.JSX.Element => {
               text="Адреса"
               required={true}
               name="Адреса"
-						  placeholder="Введи адресу"
+              value={deliveryAddress}
+              onInputChange={(e: string) => setDeliveryAddress(e)}
+              placeholder="Введи адресу"
               //  showLay={showLayFilial}
-						  autoComplete="off"
-						 
+              autoComplete="off"
+              validateData={validateData}
+
               //value={postPoint}
             />
           ) : (
@@ -176,10 +190,10 @@ const NovaPost = (props: Props): React.JSX.Element => {
               placeholder="Введи номер відділення"
               showLay={showLayFilial}
               autoComplete="off"
-							  value={postPoint}
-							  validateData={validateData}
-							  readOnly
-							  isPostPoint={postPoint}
+              value={postPoint}
+              validateData={validateData}
+              readOnly
+              isPostPoint={postPoint}
             />
           )}
         </>
@@ -190,7 +204,9 @@ const NovaPost = (props: Props): React.JSX.Element => {
           <motion.div
             //style={{ height: "100vh" }} этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
-					  animate={{ opacity: 1,/*  position: "absolute", width: "100%", height: "100vh", left: 0, top: 0  */}}
+            animate={{
+              opacity: 1 /*  position: "absolute", width: "100%", height: "100vh", left: 0, top: 0  */,
+            }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
