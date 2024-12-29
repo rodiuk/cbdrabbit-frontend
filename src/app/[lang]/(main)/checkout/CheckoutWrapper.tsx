@@ -213,7 +213,7 @@ export const CheckoutWrapper = ({
       }
 
       await createOrderEmail(
-        resOrder.user.id,
+        resOrder?.user?.id,
         payload,
         cart.products,
         resOrder.id,
