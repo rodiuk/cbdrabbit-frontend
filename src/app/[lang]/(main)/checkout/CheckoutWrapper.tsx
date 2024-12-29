@@ -201,6 +201,9 @@ export const CheckoutWrapper = ({
 
       if ("user" in resOrder && !data?.user?.id && signUpUser) {
         setCart(prev => ({ ...prev, fromCheckout: true }));
+      }
+
+      if ("user" in resOrder && resOrder?.user?.isVerified) {
         await signIn("autoSignIn", {
           redirect: false,
           userId: resOrder.user.id,
