@@ -14,7 +14,7 @@ function getLocale(request: NextRequest): string | undefined {
   const locales: string[] = i18n.locales;
   const languages = new Negotiator({ headers: negotiatorHeaders })
     .languages()
-    ?.map(lang => lang.replace("*", "en"));
+    ?.map(lang => lang.replace("*", "uk"));
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale);
   return locale;
