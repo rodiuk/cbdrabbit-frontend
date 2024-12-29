@@ -236,7 +236,7 @@ export const createUser = async (
         });
       }
 
-      await updateContactInSendPulse(
+      updateContactInSendPulse(
         user.email,
         user.isPromo,
         user?.firstName,
@@ -245,7 +245,7 @@ export const createUser = async (
       );
 
       if (!isVerified) {
-        await signUpActivateSendEmail(
+        signUpActivateSendEmail(
           user.email,
           userData.phoneNumber,
           user.id,
