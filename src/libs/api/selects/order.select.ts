@@ -24,6 +24,7 @@ const orderBaseSelect: Prisma.OrderSelect = {
       email: true,
       firstName: true,
       lastName: true,
+      isVerified: true,
       address: {
         select: {
           id: true,
@@ -120,7 +121,6 @@ export const changedOrderStatusSelect: Prisma.OrderSelect = {
     },
   },
 };
-
 
 export const changedInstaOrderStatusSelect: Prisma.InstagramOrderSelect = {
   id: true,
