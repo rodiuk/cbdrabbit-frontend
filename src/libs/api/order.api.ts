@@ -2,6 +2,7 @@
 
 import prisma from "@/libs/client/prisma.client";
 import {
+  changedInstaOrderStatusSelect,
   changedOrderStatusSelect,
   instaOrderSelect,
   orderSelect,
@@ -104,7 +105,7 @@ export const createOrder = async (
           lastName: orderData.lastName,
           acceptedSignUp: orderData.acceptedSignUp,
         },
-        true
+        false
       );
 
       if ("id" in user) {
@@ -214,7 +215,11 @@ export const changeOrderStatusByCheckId = async (
       await sendWebhook(existInstaOrder);
     }
 
-    if (existOrder && status === OrderStatus.PAID) {
+    if (
+      existOrder &&
+      status === OrderStatus.PAID &&
+      status !== existOrder.status
+    ) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );
@@ -226,7 +231,11 @@ export const changeOrderStatusByCheckId = async (
         String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
-    } else if (existInstaOrder && status === OrderStatus.PAID) {
+    } else if (
+      existInstaOrder &&
+      status === OrderStatus.PAID &&
+      status !== existInstaOrder.status
+    ) {
       const orderProducts = await getProductsByIds(
         existInstaOrder.orderItems.map(item => item.productId)
       );
@@ -259,7 +268,7 @@ export const changeOrderStatusByCheckId = async (
         data: {
           status,
         },
-        select: changedOrderStatusSelect,
+        select: changedInstaOrderStatusSelect,
       });
 
       return order;

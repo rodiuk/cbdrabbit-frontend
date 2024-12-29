@@ -49,6 +49,24 @@ export const getUserById = async (
   }
 };
 
+export const userByOrderId = async (orderId: number) => {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        order: {
+          some: {
+            checkId: orderId,
+          },
+        },
+      },
+    });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const checkIsUserExistByEmail = async (email: string) => {
   try {
     const user = await prisma.user.findUnique({

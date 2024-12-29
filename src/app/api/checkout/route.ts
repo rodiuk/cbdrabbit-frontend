@@ -1,6 +1,6 @@
+import { NextResponse } from "next/server";
 import { checkOrderStatusOnMono } from "@/libs/api/checkout.api";
 import { changeOrderStatusByCheckId } from "@/libs/api/order.api";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {

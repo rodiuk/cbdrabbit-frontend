@@ -218,8 +218,6 @@ export const CheckoutWrapper = ({
       router.replace(res.pageUrl);
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   };
 

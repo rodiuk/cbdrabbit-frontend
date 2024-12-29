@@ -208,11 +208,13 @@
     "buttonLabel": "Go home",
     "statusCreated": "Created",
     "statusPaid": "Paid",
-    "statusSended": "Sended",
+    "statusSended": "Sent",
     "statusDelivered": "Delivered",
     "statusCanceled": "Canceled",
     "statusCompleted": "Completed",
-    "statusSuccess": "Success"
+    "statusSuccess": "Success",
+    "notVerifiedAccount": "Account created — check your email to verify your account and set a password",
+    "openEmail": "Open email"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",

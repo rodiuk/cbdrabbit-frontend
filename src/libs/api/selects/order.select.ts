@@ -120,3 +120,49 @@ export const changedOrderStatusSelect: Prisma.OrderSelect = {
     },
   },
 };
+
+
+export const changedInstaOrderStatusSelect: Prisma.InstagramOrderSelect = {
+  id: true,
+  checkId: true,
+  status: true,
+  totalSum: true,
+  itemPrice: true,
+  comment: true,
+  customerAddress: true,
+  customerPhone: true,
+  customerInitials: true,
+  customerNickname: true,
+  attachmentUrl: true,
+  trackingNumber: true,
+  paymentLink: true,
+  deliveryInfo: {
+    select: {
+      id: true,
+      deliveryId: true,
+      trackingNumber: true,
+      deliveryStatus: true,
+      deliveryCost: true,
+      deliveryCreateTime: true,
+      deliveryEstimateTime: true,
+      deliveryPayedKeeping: true,
+      deliveryStatusCode: true,
+      isFreeDelivery: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  },
+  orderItems: {
+    select: {
+      id: true,
+      quantity: true,
+      product: {
+        select: {
+          id: true,
+          productName: true,
+          price: true,
+        },
+      },
+    },
+  },
+};
