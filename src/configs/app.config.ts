@@ -8,6 +8,8 @@ interface AppConfig {
   SENDPULSE_API_URL: string;
   SENDPULSE_CLIENT_ID: string;
   SENDPULSE_CLIENT_SECRET: string;
+  MONOBANK: string;
+  NOVA_POSHTA: string;
 }
 
 export const appConfig: AppConfig = {
@@ -20,4 +22,6 @@ export const appConfig: AppConfig = {
   SENDPULSE_API_URL: process.env.SENDPULSE_API_URL as string,
   SENDPULSE_CLIENT_ID: process.env.SENDPULSE_CLIENT_ID as string,
   SENDPULSE_CLIENT_SECRET: process.env.SENDPULSE_CLIENT_SECRET as string,
+  MONOBANK: process.env.MONOBANK as string,
+  NOVA_POSHTA: process.env.NOVA_POSHTA as string,
 };

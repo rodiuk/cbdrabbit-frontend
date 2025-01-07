@@ -9,6 +9,7 @@ import Input from "../Ui/Input/Input";
 import { npDeliveryType } from "./npDelivery";
 
 import RadioButtonsContainer from "../RadioButtonsContainer/RadioButtonsContainer";
+import { appConfig } from "@/configs/app.config";
 
 interface Props {
   city: string;
@@ -75,7 +76,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const novaposhtaCities = (e: string) => {
     let requestData = {
-      apiKey: "5f7142ac0b82581bc8ac1ece8253bf11",
+      apiKey: appConfig.NOVA_POSHTA,
       modelName: "Address",
       calledMethod: "searchSettlements",
       methodProperties: {
@@ -103,7 +104,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
 
   const newPostNum = (e: any) => {
     let requestData = {
-      apiKey: "5f7142ac0b82581bc8ac1ece8253bf11",
+      apiKey: appConfig.NOVA_POSHTA,
       modelName: "Address",
       calledMethod: "getWarehouses",
       methodProperties: {
