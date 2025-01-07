@@ -147,8 +147,9 @@ model InstagramOrder {
 }
 
 model OrderItem {
-  id       String @id @default(uuid())
-  quantity Int    @default(1)
+  id           String @id @default(uuid())
+  quantity     Int    @default(0)
+  giftQuantity Int?   @default(0)
 
   productId        String
   orderId          String?

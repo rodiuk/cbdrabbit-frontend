@@ -1,50 +1,26 @@
-"use client";
-
 import React from "react";
-import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import Close from "@/components/icons/Close";
-import Button from "@/components/Ui/Button/Button";
 import { InfoIcon } from "@/components/icons/InfoIcon";
 
 import cn from "clsx";
 import styles from "./DiscountInfo.module.css";
 
-import sale from "/public/img/salenew.jpg";
-
 interface Props {
   label: string;
-  discountList: string[];
   className?: string;
 }
 
 export const DiscountInfo = ({
   label,
-  discountList,
   className,
 }: Props): React.JSX.Element => {
-  const [show, setShow] = React.useState(false);
-
-  const closeLay = () => {
-    setShow(false);
-  };
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.currentTarget === e.target) {
-      setShow(false);
-    }
-  };
   return (
     <div className={cn(styles.container, className)}>
-      <p className={styles.label} onClick={() => setShow(prev => !prev)}>
+      <h1 className={styles.label}>
         {label}
-        {/* <ArrowDownIcon
-          iconStyle={cn(styles.icon, {
-            [styles.icon_rotate]: show,
-          })}
-        /> */}
+
         <InfoIcon />
-      </p>
-      <AnimatePresence mode="wait">
+      </h1>
+      {/* <AnimatePresence mode="wait">
         {show && (
           <motion.div
             className={styles.list}
@@ -76,7 +52,7 @@ export const DiscountInfo = ({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </div>
   );
 };
