@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoIcon } from "@/components/icons/InfoIcon";
+import GiftIcon from "@/components/icons/GigtIcon";
 
 import cn from "clsx";
 import styles from "./DiscountInfo.module.css";
@@ -18,7 +18,7 @@ export const DiscountInfo = ({
       <h1 className={styles.label}>
         {label}
 
-        <InfoIcon />
+        <GiftIcon />
       </h1>
       {/* <AnimatePresence mode="wait">
         {show && (

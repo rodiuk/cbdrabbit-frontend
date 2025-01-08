@@ -2,14 +2,14 @@
 
 import React from "react";
 import axios from "axios";
-import { AnimatePresence, motion } from "framer-motion";
+import Input from "../Ui/Input/Input";
 import LayShowCities from "./LayShowCities";
 import LayShowFilial from "./LayShowFilial";
-import Input from "../Ui/Input/Input";
 import { npDeliveryType } from "./npDelivery";
+import { appConfig } from "@/configs/app.config";
+import { AnimatePresence, motion } from "framer-motion";
 
 import RadioButtonsContainer from "../RadioButtonsContainer/RadioButtonsContainer";
-import { appConfig } from "@/configs/app.config";
 
 interface Props {
   city: string;
