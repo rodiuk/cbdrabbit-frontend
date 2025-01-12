@@ -48,6 +48,7 @@ interface Props {
   signUpUser: boolean;
   setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
   isAuthorized: boolean;
+  userData: any;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -76,6 +77,7 @@ const MobileCheckout = (props: Props) => {
     signUpUser,
     setSignUpUser,
     isAuthorized,
+    userData,
   } = props;
 
   return (
@@ -153,6 +155,7 @@ const MobileCheckout = (props: Props) => {
       </div>
 
       <CheckoutRes
+        userData={userData}
         dict={dict.checkout}
         currency={currency}
         setFinalPrice={setFinalPrice}

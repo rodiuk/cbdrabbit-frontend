@@ -8,7 +8,6 @@ import { cartAtom } from "@/libs/store/atoms";
 import TabletCheckout from "./TabletCheckout";
 import MobileCheckout from "./MobileCheckout";
 import { constants } from "@/configs/constants";
-import { getUserInfo } from "@/libs/api/user.api";
 import { createOrder } from "@/libs/api/order.api";
 import { signIn, useSession } from "next-auth/react";
 import useLocalStorage from "@/hooks/useLocaleStorage";
@@ -251,6 +250,7 @@ export const CheckoutWrapper = ({
         deliveryAddress={deliveryAddress}
         setDeliveryAddress={setDeliveryAddress}
         setSignUpUser={setSignUpUser}
+        userData={userData}
         isAuthorized={!!userData?.id}
       />
 
@@ -276,6 +276,7 @@ export const CheckoutWrapper = ({
         promocode={promocode}
         validateData={validateData}
         userInfo={userInfo}
+        userData={userData}
         signUpUser={signUpUser}
         setSignUpUser={setSignUpUser}
         isAuthorized={!!userData?.id}

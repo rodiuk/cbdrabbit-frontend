@@ -48,6 +48,7 @@ export interface TabletCheckoutProps {
   isLoading?: boolean;
   validateData?: IValidateData[];
   signUpUser: boolean;
+  userData: any;
   setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
   isAuthorized: boolean;
 }
@@ -78,6 +79,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
     signUpUser,
     setSignUpUser,
     isAuthorized,
+    userData,
   } = props;
 
   return (
@@ -162,6 +164,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
 
         <CheckoutRes
           currency={currency}
+          userData={userData}
           dict={dict.checkout}
           setFinalPrice={setFinalPrice}
           handleCheckout={handleCheckout}
