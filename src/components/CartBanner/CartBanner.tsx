@@ -58,9 +58,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
           </div>
           <div
             className={styles.button}
-            onClick={() =>
-              startTransition(() => router.push(`${lang}/checkout`))
-            }
+            onClick={() => startTransition(() => router.push(`/checkout`))}
           >
             {state ? <Loader /> : buttonLabel}
             {!state && <ArrowRightIcon iconStyle={styles.icon} />}

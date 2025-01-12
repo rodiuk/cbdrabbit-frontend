@@ -22,6 +22,7 @@ import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 interface Props {
   dict: any;
   currency: string;
+  userData: any;
   lang?: string;
 }
 
@@ -39,6 +40,7 @@ export interface IValidateData {
 
 export const CheckoutWrapper = ({
   dict,
+  userData,
   currency,
   lang,
 }: Props): React.JSX.Element => {
@@ -71,33 +73,26 @@ export const CheckoutWrapper = ({
   const [cart] = useAtom(cartAtom);
 
   React.useEffect(() => {
-    if (!data?.user?.id) return;
-    (async function fetchUser() {
-      try {
-        const res = await getUserInfo(data?.user?.id);
+    if (!userData?.id) return;
 
-        const deliveryType =
-          res?.address?.npDeliveryType?.length === 1
-            ? npDeliveryType.filter(
-                d => d.id === res.address?.npDeliveryType
-              )[0]?.text
-            : res?.address?.npDeliveryType;
+    const deliveryType =
+      userData?.address?.npDeliveryType?.length === 1
+        ? npDeliveryType.filter(
+            d => d.id === userData.address?.npDeliveryType
+          )[0]?.text
+        : userData?.address?.npDeliveryType;
 
-        setUserInfo({
-          firstName: res?.firstName ?? "",
-          lastName: res?.lastName ?? "",
-          phone: res?.address?.phoneNumber ?? "",
-          email: res?.email ?? "",
-        });
-        setCity(res?.address?.city ?? "");
-        setPostPoint(res?.address?.npDepartment ?? "");
+    setUserInfo({
+      firstName: userData?.firstName ?? "",
+      lastName: userData?.lastName ?? "",
+      phone: userData?.address?.phoneNumber ?? "",
+      email: userData?.email ?? "",
+    });
+    setCity(userData?.address?.city ?? "");
+    setPostPoint(userData?.address?.npDepartment ?? "");
 
-        setDeliveryId(deliveryType || "");
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [data?.user?.id]);
+    setDeliveryId(deliveryType || "");
+  }, [userData]);
 
   const validateInputs = () => {
     setValidateData([
@@ -256,7 +251,7 @@ export const CheckoutWrapper = ({
         deliveryAddress={deliveryAddress}
         setDeliveryAddress={setDeliveryAddress}
         setSignUpUser={setSignUpUser}
-        isAuthorized={!!data?.user?.id}
+        isAuthorized={!!userData?.id}
       />
 
       <MobileCheckout
@@ -283,7 +278,7 @@ export const CheckoutWrapper = ({
         userInfo={userInfo}
         signUpUser={signUpUser}
         setSignUpUser={setSignUpUser}
-        isAuthorized={!!data?.user?.id}
+        isAuthorized={!!userData?.id}
       />
     </>
   );

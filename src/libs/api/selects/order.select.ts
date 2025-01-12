@@ -40,6 +40,14 @@ const orderBaseSelect: Prisma.OrderSelect = {
 
 export const orderSelect: Prisma.OrderSelect = {
   ...orderBaseSelect,
+  orderStatusHistory: {
+    select: {
+      id: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  },
   orderItems: {
     select: {
       id: true,

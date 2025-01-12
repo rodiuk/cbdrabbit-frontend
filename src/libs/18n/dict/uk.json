@@ -213,7 +213,7 @@
     "statusSended": "Передано перевізнику",
     "statusDelivered": "Доставлено у відділення",
     "statusCanceled": "Скасовано",
-    "statusCompleted": "Укоиплектовано",
+    "statusCompleted": "Укомплектовано",
     "statusSuccess": "Отримано клієнтом",
     "notVerifiedAccount": "Аккаунт створено — перейдіть на пошту, щоб підтвердити акаунт та встановити пароль",
     "openEmail": "Відкрити пошту"

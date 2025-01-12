@@ -1,23 +1,61 @@
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
-import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
-import Input from "@/components/Ui/Input/Input";
-import { IProfileDict } from "@/interfaces/i18n.interface";
-import { maskEmailAddress } from "@/utils/maskEmailAddress";
-import { updateEmailRequest } from "@/libs/api/user.api";
-import { useSession } from "next-auth/react";
-
-import s from "./LayPopupOrderInfo.module.css";
+import { format } from "date-fns";
+import { OrderStatus } from "@prisma/client";
 import Button from "@/components/Ui/Button/Button";
 import CheckIcon from "@/components/icons/CheckIcon";
+import { IUserOrder } from "@/interfaces/order.interface";
 import { CloseRedIcon } from "@/components/icons/CloseRedIcon";
+import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
+
+import s from "./LayPopupOrderInfo.module.css";
 
 interface Props {
-	closePoup: () => void;
-	handleBadkdropClick: any
+  order: IUserOrder;
+  closePoup: () => void;
+  handleBadkdropClick: any;
 }
 
-const LayPopupOrderInfo = ({ closePoup, handleBadkdropClick }: Props): React.JSX.Element => {
+const LayPopupOrderInfo = ({
+  order,
+  closePoup,
+  handleBadkdropClick,
+}: Props): React.JSX.Element => {
+  const statuses = React.useMemo(() => {
+    const created = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.CREATED
+    );
+    const paid = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.PAID
+    );
+    const completed = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.COMPLETED
+    );
+    const canceled = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.CANCELED
+    );
+    const sended = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.SENDED
+    );
+    const delivered = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.DELIVERED
+    );
+    const success = order?.orderStatusHistory?.find(
+      status => status.status === OrderStatus.SUCCESS
+    );
+
+    return {
+      created,
+      paid,
+      completed,
+      canceled,
+      sended,
+      delivered,
+      success,
+    };
+  }, [order]);
+
+  console.log("statuses", statuses);
+
   return (
     <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
@@ -46,68 +84,134 @@ const LayPopupOrderInfo = ({ closePoup, handleBadkdropClick }: Props): React.JSX
                   </span>
                 </p>
               </div>
-              <div className={s.number_order}>№ 00124456</div>
+              <div className={s.number_order}>
+                № {formatDisplayedCheckId(order?.checkId)}
+              </div>
               <div className="comment_block">
                 <div className={s.comment_ttl}>Коментар</div>
-                <div className={s.comment_context}>Відсутній</div>
+                <div className={s.comment_context}>
+                  {order?.comment || "Відсутній"}
+                </div>
               </div>
 
-              <div className={s.number_pos}>Посилка №: 20 4003 9139 7777</div>
+              {order?.deliveryInfo?.trackingNumber && (
+                <div className={s.number_pos}>
+                  Посилка №: {order?.deliveryInfo?.trackingNumber}
+                </div>
+              )}
               <div className={s.bdr}>
                 <div className={s.st_ttl}>Статус</div>
                 <div className="statuses">
-                  <div className={s.status}>
-                    <div className={s.status1}>
-                      <CheckIcon /> Оплачений
+                  {statuses?.created && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Створений
+                      </div>
+                      <div className={s.status2}>
+                        {format(statuses?.created.updatedAt, "dd.MM.yy, HH:mm")}
+                      </div>
                     </div>
-                    <div className={s.status2}>17.03.24, 11:52</div>
-                  </div>
-                  <div className={s.status}>
-                    <div className={s.status1}>
-                      <CheckIcon /> Комплектується
+                  )}
+                  {statuses?.paid?.updatedAt && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Оплачений
+                      </div>
+                      <div className={s.status2}>
+                        {format(statuses?.paid.updatedAt, "dd.MM.yy, HH:mm")}
+                      </div>
                     </div>
-                  </div>
-                  <div className={s.status}>
-                    <div className={s.status1}>
-                      <CheckIcon /> Відправлено
+                  )}
+
+                  {statuses?.completed?.updatedAt && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Комплектується
+                      </div>
+                      <div className={s.status2}>
+                        {format(
+                          statuses?.completed.updatedAt,
+                          "dd.MM.yy, HH:mm"
+                        )}
+                      </div>
                     </div>
-                    <div className={s.status2}>17.03.24, 11:52</div>
-                  </div>
-                  <div className={s.status}>
-                    <div className={s.status1}>
-                      <CheckIcon /> Доставлено
+                  )}
+
+                  {statuses?.sended?.updatedAt && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Відправлено
+                      </div>
+                      <div className={s.status2}>
+                        {format(statuses?.sended.updatedAt, "dd.MM.yy, HH:mm")}
+                      </div>
                     </div>
-                    <div className={s.status2}>17.03.24, 11:52</div>
-								  </div>
-                  <div className={s.status}>
-                    <div className={s.status1}>
-                      <CheckIcon /> Отримано
+                  )}
+
+                  {statuses?.delivered?.updatedAt && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Доставлено
+                      </div>
+                      <div className={s.status2}>
+                        {format(
+                          statuses?.delivered.updatedAt,
+                          "dd.MM.yy, HH:mm"
+                        )}
+                      </div>
                     </div>
-                    <div className={s.status2}>17.03.24, 11:52</div>
-                  </div>
-                  <div className={s.status}>
+                  )}
+
+                  {statuses?.success?.updatedAt && (
+                    <div className={s.status}>
+                      <div className={s.status1}>
+                        <CheckIcon /> Отримано
+                      </div>
+                      <div className={s.status2}>
+                        {format(statuses?.success.updatedAt, "dd.MM.yy, HH:mm")}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* <div className={s.status}>
                     <div className={`${s.status1} ${s.red_text}`}>
                       <CheckIcon iconStyle={s.red_check} /> Не отримано
                     </div>
                     <div className={s.status2}>17.03.24, 11:52</div>
-                  </div>
-                  <div className={s.status}>
+                  </div> */}
+
+                  {/* <div className={s.status}>
                     <div className={`${s.status1} ${s.red_text}`}>
                       <CloseRedIcon iconStyle={s.red_check} /> Кошти повернуто
                     </div>
                     <div className={s.status2}>17.03.24, 11:52</div>
-                  </div>
-								  <div className={s.red_info}>Зберігається до 21.03.24, 11:52</div>
-								  <div className={s.grey_info}>Отримано </div>
-								  <div className={s.warning}>Посилку повернуто назад, кошти буде повернуто впродовж 7 днів</div>
+                  </div> */}
+                  {/* <div className={s.red_info}>
+                    Зберігається до 21.03.24, 11:52
+                  </div> */}
+
+                  {/* <div className={s.grey_info}>Отримано </div> */}
+                  {statuses?.canceled && (
+                    <div className={s.warning}>
+                      Посилку повернуто назад. Якщо за товар було оплачено
+                      кошти, їх буде повернено впродовж 7 днів
+                    </div>
+                  )}
                 </div>
               </div>
               <div className={s.bdr}>
                 <div className={s.st_ttl}>Отримувач замовлення</div>
                 <div className={s.info}>
-                  <p>Іванюк Іван</p>
-                  <p>+380633433131</p>
-                  <p>Київ, Поштомат 123</p>
+                  <p>
+                    {order?.user?.firstName} {order?.user?.lastName}
+                  </p>
+                  {order?.user?.address?.phoneNumber && (
+                    <p>{order?.user?.address?.phoneNumber}</p>
+                  )}
+                  <p>
+                    {`${order?.user?.address?.city}, `}
+                    {`${order?.user?.address?.npDepartment}`}
+                  </p>
                 </div>
               </div>
               <div className={s.buttonBlock} onClick={() => closePoup()}>

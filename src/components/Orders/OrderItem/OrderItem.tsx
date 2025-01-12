@@ -10,6 +10,7 @@ import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 import s from "./OrderItem.module.css";
 
 import sale_icon from "/public/img/sale_icon.svg";
+import { InfoIcon } from "@/components/icons/InfoIcon";
 
 interface Prop {
   menu?: boolean;
@@ -54,9 +55,9 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
           <div className={s.orderInfo_num}>
             <p>№ {formatDisplayedCheckId(order.checkId)}</p>
           </div>
-          {/* <div className={s.butt_info} onClick={openPoup}>
+          <div className={s.butt_info} onClick={openPoup}>
             <InfoIcon iconStyle={s.icon_info} />{" "}
-          </div> */}
+          </div>
         </div>
         <div className={s.orderInfo_descr}>{formatDate(order.createdAt)}</div>
         <div className={s.orderInfo_ttl}>{orderStatus()}</div>

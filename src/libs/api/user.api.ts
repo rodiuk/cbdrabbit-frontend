@@ -119,7 +119,9 @@ export const createGoogleUser = async (
   }
 };
 
-export const getUserInfo = async (userId: string) => {
+export const getUserInfo = async (userId: string | null) => {
+  if (userId === null) return null;
+
   try {
     const user = await prisma.user.findUnique({
       where: {

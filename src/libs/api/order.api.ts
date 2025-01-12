@@ -20,8 +20,9 @@ import { orderInProgressEmail, sendWebhook } from "./emails.api";
 import { getProductsByIds } from "./products.api";
 
 export const getAllUserOrders = async (
-  userId: string
+  userId?: string
 ): Promise<IUserOrder[]> => {
+  if (!userId) return [];
   try {
     const orders = await prisma.order.findMany({
       where: {
@@ -157,6 +158,11 @@ export const createOrder = async (
         ...(orderData.utm_term && { utm_term: orderData.utm_term }),
         ...(orderData.utm_content && { utm_content: orderData.utm_content }),
         presentQuantity: Math.floor(candiesQuantity / 7),
+        orderStatusHistory: {
+          create: {
+            status: OrderStatus.CREATED,
+          },
+        },
         orderItems: {
           create: orderData.items.map(item => ({
             quantity: item.quantity,
@@ -244,6 +250,22 @@ export const changeOrderStatusByCheckId = async (
         },
         data: {
           status,
+          orderStatusHistory: {
+            upsert: {
+              create: {
+                status: status,
+              },
+              update: {
+                status: status,
+              },
+              where: {
+                orderId_status: {
+                  orderId: existOrder.id,
+                  status: status,
+                },
+              },
+            },
+          },
         },
         select: changedOrderStatusSelect,
       });

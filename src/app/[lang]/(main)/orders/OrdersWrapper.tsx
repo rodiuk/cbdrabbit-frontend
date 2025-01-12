@@ -1,70 +1,39 @@
 "use client";
 
 import React from "react";
-import EmptyOrders from "@/components/Orders/EmptyOrders/EmptyOrders";
-import { useSession } from "next-auth/react";
-import { getAllUserOrders } from "@/libs/api/order.api";
-import OrderItemCard from "@/components/Orders/OrderItem/OrderItem";
-import { IUserOrder } from "@/interfaces/order.interface";
-import { IOrderDict } from "@/interfaces/i18n.interface";
-import { AnimatePresence, motion } from "framer-motion";
-import LayPopupOrderInfo from "@/components/LaysPopups/LayPopupOrderInfo/LayPopupOrderInfo";
 import { Locale } from "../../../../../i18n.config";
-
-import s from "./page.module.css";
+import { AnimatePresence, motion } from "framer-motion";
+import { IOrderDict } from "@/interfaces/i18n.interface";
+import { IUserOrder } from "@/interfaces/order.interface";
+import OrderItemCard from "@/components/Orders/OrderItem/OrderItem";
+import EmptyOrders from "@/components/Orders/EmptyOrders/EmptyOrders";
+import LayPopupOrderInfo from "@/components/LaysPopups/LayPopupOrderInfo/LayPopupOrderInfo";
 
 interface Props {
   lang: Locale;
   dict: IOrderDict;
   currency: string;
+  orders: IUserOrder[];
 }
 
 export const OrdersWrapper = (props: Props): React.JSX.Element => {
-  const { lang, dict, currency } = props;
-  const [orders, setOrders] = React.useState<IUserOrder[]>([]);
-  const [fetchOrders, setFetchOrders] = React.useState<boolean>(false);
-  const { data, status } = useSession();
-
-  const isLoading = status === "loading" || fetchOrders;
+  const { lang, dict, currency, orders } = props;
 
   const hasOrders = orders?.length > 0;
 
-  const [isOpenPopup, setIsOpenPopup] = React.useState(false);
-
-  const closePoup = () => {
-    setIsOpenPopup(false);
-  };
-  const openPoup = () => {
-    setIsOpenPopup(true);
-  };
+  const [isOpenPopup, setIsOpenPopup] = React.useState<IUserOrder | null>(null);
 
   const handleBadkdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
-      setIsOpenPopup(false);
+      setIsOpenPopup(null);
     }
   };
 
-  React.useEffect(() => {
-    (async function fetchOrders() {
-      try {
-        setFetchOrders(true);
-        if (!data?.user?.id) return;
-
-        const orders = await getAllUserOrders(data?.user?.id);
-        setOrders(orders);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFetchOrders(false);
-      }
-    })();
-  }, [data?.user?.id]);
-
   return (
     <>
-      {!hasOrders && !isLoading && <EmptyOrders lang={lang} dict={dict} />}
+      {!hasOrders && <EmptyOrders lang={lang} dict={dict} />}
 
-      {hasOrders && !isLoading && (
+      {hasOrders && (
         <>
           {orders?.map(order => {
             return (
@@ -73,13 +42,13 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
                 order={order}
                 dict={dict}
                 currency={currency}
-                openPoup={openPoup}
+                openPoup={() => setIsOpenPopup(order)}
               />
             );
           })}
 
           <AnimatePresence mode="wait">
-            {isOpenPopup && (
+            {!!isOpenPopup?.id && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -87,7 +56,8 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
                 transition={{ duration: 0.5 }}
               >
                 <LayPopupOrderInfo
-                  closePoup={closePoup}
+                  order={isOpenPopup}
+                  closePoup={() => setIsOpenPopup(null)}
                   handleBadkdropClick={handleBadkdropClick}
                 />
               </motion.div>

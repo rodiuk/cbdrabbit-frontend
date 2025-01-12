@@ -109,10 +109,11 @@ model Order {
   userId      String
   promocodeId String?
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  orderItems   OrderItem[]
-  promocode    Promocode?    @relation(fields: [promocodeId], references: [id])
-  deliveryInfo DeliveryInfo?
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderItems         OrderItem[]
+  promocode          Promocode?           @relation(fields: [promocodeId], references: [id])
+  deliveryInfo       DeliveryInfo?
+  orderStatusHistory OrderStatusHistory[]
 }
 
 model InstagramOrder {
@@ -264,4 +265,17 @@ model InstagramMedia {
   updatedAt DateTime @updatedAt
 
   instagramOrder InstagramOrder? @relation(fields: [instagramOrderId], references: [id])
+}
+
+model OrderStatusHistory {
+  id      String      @id @default(uuid())
+  status  OrderStatus
+  orderId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@unique([orderId, status])
 }
