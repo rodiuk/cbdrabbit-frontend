@@ -1,5 +1,3 @@
-import { appConfig } from "./src/configs/app.config";
-
 export const i18n = {
   defaultLocale: "uk",
   locales: ["en", "uk"],
