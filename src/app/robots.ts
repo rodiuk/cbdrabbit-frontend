@@ -3,10 +3,10 @@ import { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      //   userAgent: "*",
-      disallow: "*",
+      userAgent: "*",
+      // disallow: "*",
     },
-    host: "https://www.cbd.ua",
-    sitemap: "https://www.cbd.ua/sitemap.xml",
+    host: "https://cbdrabbit.shop",
+    sitemap: "https://cbdrabbit.shop/sitemap.xml",
   };
 }
