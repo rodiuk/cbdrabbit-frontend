@@ -19,6 +19,10 @@ export async function generateMetadata({
   return {
     alternates: {
       canonical: `/contact`,
+      languages: {
+        en: `/en/contact`,
+        uk: `/uk/contact`,
+      },
     },
     openGraph: {
       ...openGraphBase,
@@ -28,27 +32,32 @@ export async function generateMetadata({
 }
 
 export default async function Cooperation({ params }: any) {
-	const { lang } = params;
-	const dict = await getDictionary(lang);
-	const {header} = dict
+  const { lang } = params;
+  const dict = await getDictionary(lang);
+  const { header } = dict;
   return (
     <>
-		  <main className={cn("container", s.main)}>
-			  <div className={s.wrap}>
-				  <div className={s.img}>
-					  <Image src={okIcon} width={160} height={160} alt="ok" />
-				  </div>
-				  <div className={s.ttl2}>
-					  <p>Ви заклад, кавʼярня, магазин чи івент?</p>
-					  <p>Це чудово!</p>
-					  <p>Наші цукерочки-зайчики дуже люблять нові місця 🐇</p>
-				  </div>
-				  <div className={s.tg_block}>
-					  <div className={s.tt}>Щодо співпраці пишіть нам в телеграм 🤠</div>
-					  <div className={s.linl1}><Link href="https://t.me/cbdrabbit" target="_blank"><TelegramGreenIcon iconStyle={s.gree_icon} />CBDrabbit</Link></div>
-				  </div>
-			  </div>
-	  </main>
+      <main className={cn("container", s.main)}>
+        <div className={s.wrap}>
+          <div className={s.img}>
+            <Image src={okIcon} width={160} height={160} alt="ok" />
+          </div>
+          <div className={s.ttl2}>
+            <p>Ви заклад, кавʼярня, магазин чи івент?</p>
+            <p>Це чудово!</p>
+            <p>Наші цукерочки-зайчики дуже люблять нові місця 🐇</p>
+          </div>
+          <div className={s.tg_block}>
+            <div className={s.tt}>Щодо співпраці пишіть нам в телеграм 🤠</div>
+            <div className={s.linl1}>
+              <Link href="https://t.me/cbdrabbit" target="_blank">
+                <TelegramGreenIcon iconStyle={s.gree_icon} />
+                CBDrabbit
+              </Link>
+            </div>
+          </div>
+        </div>
+      </main>
       <Footer lang={lang} titles={header.titles} />
     </>
   );

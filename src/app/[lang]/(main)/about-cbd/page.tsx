@@ -14,6 +14,10 @@ export async function generateMetadata({
   return {
     alternates: {
       canonical: `/about`,
+      languages: {
+        en: `/en/about`,
+        uk: `/uk/about`,
+      },
     },
     openGraph: {
       ...openGraphBase,
@@ -23,9 +27,9 @@ export async function generateMetadata({
 }
 
 export default async function AboutCBD({ params }: any) {
-	const { lang } = params;
-	const dict = await getDictionary(params.lang);
-	const {header} = dict
+  const { lang } = params;
+  const dict = await getDictionary(params.lang);
+  const { header } = dict;
   return (
     <>
       <main className={cn("container", s.main)}>
