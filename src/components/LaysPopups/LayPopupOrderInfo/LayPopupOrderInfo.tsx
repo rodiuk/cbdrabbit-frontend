@@ -8,6 +8,8 @@ import { CloseRedIcon } from "@/components/icons/CloseRedIcon";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 
 import s from "./LayPopupOrderInfo.module.css";
+import { toZonedTime } from "date-fns-tz";
+import { appConfig } from "@/configs/app.config";
 
 interface Props {
   order: IUserOrder;
@@ -108,7 +110,13 @@ const LayPopupOrderInfo = ({
                         <CheckIcon /> Створений
                       </div>
                       <div className={s.status2}>
-                        {format(statuses?.created.updatedAt, "dd.MM.yy, HH:mm")}
+                        {format(
+                          toZonedTime(
+                            statuses?.created.updatedAt,
+                            appConfig.CURRENT_TIMEZONE
+                          ),
+                          "dd.MM.yyyy HH:mm"
+                        )}
                       </div>
                     </div>
                   )}
@@ -118,7 +126,13 @@ const LayPopupOrderInfo = ({
                         <CheckIcon /> Оплачений
                       </div>
                       <div className={s.status2}>
-                        {format(statuses?.paid.updatedAt, "dd.MM.yy, HH:mm")}
+                        {format(
+                          toZonedTime(
+                            statuses?.paid.updatedAt,
+                            appConfig.CURRENT_TIMEZONE
+                          ),
+                          "dd.MM.yyyy HH:mm"
+                        )}
                       </div>
                     </div>
                   )}
@@ -130,8 +144,11 @@ const LayPopupOrderInfo = ({
                       </div>
                       <div className={s.status2}>
                         {format(
-                          statuses?.completed.updatedAt,
-                          "dd.MM.yy, HH:mm"
+                          toZonedTime(
+                            statuses?.completed.updatedAt,
+                            appConfig.CURRENT_TIMEZONE
+                          ),
+                          "dd.MM.yyyy HH:mm"
                         )}
                       </div>
                     </div>
@@ -143,7 +160,13 @@ const LayPopupOrderInfo = ({
                         <CheckIcon /> Відправлено
                       </div>
                       <div className={s.status2}>
-                        {format(statuses?.sended.updatedAt, "dd.MM.yy, HH:mm")}
+                        {format(
+                          toZonedTime(
+                            statuses?.sended.updatedAt,
+                            appConfig.CURRENT_TIMEZONE
+                          ),
+                          "dd.MM.yyyy HH:mm"
+                        )}
                       </div>
                     </div>
                   )}
