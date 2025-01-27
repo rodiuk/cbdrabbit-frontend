@@ -36,7 +36,6 @@ import h3d1 from "/public/img/h3d1.jpg";
 import h3d2 from "/public/img/h3d2.jpg";
 import h3d3 from "/public/img/h3d3.jpg";
 import h3d4 from "/public/img/h3d4.jpg";
-import { StaticImageData } from "next/image";
 import { ILandingsPictures } from "@/interfaces/lending.interface";
 
 export async function generateMetadata({
@@ -44,7 +43,11 @@ export async function generateMetadata({
 }: Readonly<IMainPageProps>): Promise<Metadata> {
   return {
     alternates: {
-      canonical: `/landingall`,
+      canonical: `/${params?.["landId"]}`,
+      languages: {
+        en: `/en/${params?.["landId"]}`,
+        uk: `/uk/${params?.["landId"]}`,
+      },
     },
     openGraph: {
       ...openGraphBase,
@@ -172,9 +175,8 @@ export default async function Landing({ params }: IMainPageProps) {
           <H1Block
             productFined={productFined}
             imagesFined={imagesFined}
-					  lang={params.lang}
-					  textButton={landings.secondButton}
-
+            lang={params.lang}
+            textButton={landings.secondButton}
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
@@ -182,10 +184,10 @@ export default async function Landing({ params }: IMainPageProps) {
 
         <Buttons
           button1Text={landings.firstButton}
-				  button2Text={landings.secondButton}
-				  lendId={lendId}
+          button2Text={landings.secondButton}
+          lendId={lendId}
         />
-      </main> 
+      </main>
       <Footer lang={lang} titles={header.titles} idLand={params.lendId} />
     </>
   );
