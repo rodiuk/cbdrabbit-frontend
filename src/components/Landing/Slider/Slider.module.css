@@ -1,0 +1,31 @@
+.sliderContainer {
+	width: 100%;
+	overflow: hidden; /* Скрыть всё, что выходит за пределы контейнера */
+  }
+  
+  .slider {
+	display: flex;
+	width: 400%; /* Умножаем на количество слайдов */
+	animation: moveSlider 10s linear infinite; /* Анимация движения */
+  }
+  
+  .slide {
+	width: 25%; /* Каждый слайд будет занимать 25% ширины контейнера */
+	height: 200px; /* Высота слайдов */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #4CAF50; /* Зеленый фон для слайдов */
+	color: white;
+	font-size: 24px;
+  }
+  
+  @keyframes moveSlider {
+	0% {
+	  transform: translateX(0);
+	}
+	100% {
+	  transform: translateX(-100%); /* Двигаем слайдер влево */
+	}
+  }
+  

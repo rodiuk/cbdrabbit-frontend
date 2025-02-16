@@ -15,7 +15,7 @@ interface Props {
 	lendId: string
 }
 const Accordeon = ({content, lendId}: Props) => {
-	
+
 	return (
 		<div className={s.accordeon}>
 			<div className={cn(s.accordeon_container, {

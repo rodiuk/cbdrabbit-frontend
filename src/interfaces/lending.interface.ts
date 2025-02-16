@@ -15,4 +15,5 @@ export interface ILandingsPictures {
   image3: StaticImageData;
   image3_mob: StaticImageData;
   description: IDescriptionLandingsPictures[];
+  accordeon: any[];
 }

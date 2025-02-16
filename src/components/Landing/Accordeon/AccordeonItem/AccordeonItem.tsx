@@ -18,7 +18,8 @@ const AccordeonItem = ({item}: Props) => {
 	return (
 		<li className={s.li}>
 							<div className={s.ttl} onClick={handlerClick}>{item.title}</div>
-							{isOpen && <div className={s.text}>{item.text}</div>}
+							{isOpen && <div className={s.text} dangerouslySetInnerHTML={{ __html: item.text }}></div>}
+			
 							
 						</li>
 	);

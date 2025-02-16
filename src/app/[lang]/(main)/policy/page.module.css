@@ -14,30 +14,30 @@
 	position: relative;
 	max-width: 960px;
 }
-.h1 {
+.wrapper h1 {
 	font-size: 28px;
 	font-weight: 600;
 	color: rgba(66, 98, 59, 1);
 }
-.h2 {
+.wrapper h2 {
 	font-size: 18px;
 	margin: 15px 0;
 	font-weight: 600;
 }
-.p, .m0	{
+.wrapper p	{
 	margin: 15px 0;
 	font-size: 14px;
 }
 
-.m0 {
+.wrapper p:last-child {
 	margin: 0;
 }
-.li {
+.wrapper li {
 	padding-left: 10px;
 	font-size: 14px;
 	position: relative;
 }
-.li::before {
+.wrapper li::before , .wrapper .li::before{
 	content: '';
 	position: absolute;
 	left: 0;

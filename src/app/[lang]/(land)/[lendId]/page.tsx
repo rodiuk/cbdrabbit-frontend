@@ -38,6 +38,7 @@ import h3d3 from "/public/img/h3d3.jpg";
 import h3d4 from "/public/img/h3d4.jpg";
 import { StaticImageData } from "next/image";
 import { ILandingsPictures } from "@/interfaces/lending.interface";
+import { Slider } from "@/components/Landing/Slider/Slider";
 
 export async function generateMetadata({
   params,
@@ -79,7 +80,8 @@ const landingsPictures: ILandingsPictures[] = [
         descr: "50 мг СBD Ізолят канабідіолу",
         image: h1d3,
       },
-    ],
+		],
+		accordeon: []
   },
   {
     id: "banana",
@@ -107,6 +109,7 @@ const landingsPictures: ILandingsPictures[] = [
         image: h2d3,
       },
     ],
+	accordeon: []
   },
   {
     id: "matcha",
@@ -139,6 +142,7 @@ const landingsPictures: ILandingsPictures[] = [
         image: h3d4,
       },
     ],
+	accordeon: []
   },
 ];
 
@@ -178,8 +182,8 @@ export default async function Landing({ params }: IMainPageProps) {
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
-        <Accordeon lendId={lendId} content={landings.accordeon} />
-
+        <Accordeon lendId={lendId} content={productFined.accordeon} />
+		<Slider />
         <Buttons
           button1Text={landings.firstButton}
 				  button2Text={landings.secondButton}
