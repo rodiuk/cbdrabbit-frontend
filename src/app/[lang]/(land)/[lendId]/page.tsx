@@ -38,7 +38,7 @@ import h3d3 from "/public/img/h3d3.jpg";
 import h3d4 from "/public/img/h3d4.jpg";
 import { StaticImageData } from "next/image";
 import { ILandingsPictures } from "@/interfaces/lending.interface";
-import { Slider } from "@/components/Landing/Slider/Slider";
+import { Slider } from "@/components/Slider/Slider";
 
 export async function generateMetadata({
   params,
