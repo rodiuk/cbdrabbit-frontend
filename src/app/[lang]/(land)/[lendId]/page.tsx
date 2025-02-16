@@ -183,7 +183,7 @@ export default async function Landing({ params }: IMainPageProps) {
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
         <Accordeon lendId={lendId} content={productFined.accordeon} />
-		<Slider />
+		{/* <Slider /> */}
         <Buttons
           button1Text={landings.firstButton}
 				  button2Text={landings.secondButton}
