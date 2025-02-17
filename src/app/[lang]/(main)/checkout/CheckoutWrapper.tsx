@@ -180,7 +180,7 @@ export const CheckoutWrapper = ({
         items: formatItemsForOrder(cart?.products),
         address: {
           city,
-          npDepartment: postPoint,
+          npDepartment: postPoint || deliveryAddress,
           npDeliveryType: deliveryId,
           phoneNumber: userInfo?.phone,
         },
