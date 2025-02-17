@@ -1,27 +1,27 @@
 "use client";
 
 import React from "react";
-import TabletCheckout from "./TabletCheckout";
-import MobileCheckout from "./MobileCheckout";
-import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
-import { IUserCheckoutForm } from "@/interfaces/user.interface";
-import { signIn, useSession } from "next-auth/react";
-import { getUserInfo } from "@/libs/api/user.api";
-import { createOrder } from "@/libs/api/order.api";
-import { IOrderCreate } from "@/interfaces/order.interface";
 import { useAtom } from "jotai";
-import { cartAtom } from "@/libs/store/atoms";
-import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
-import { createUrlForCheckout } from "@/libs/api/checkout.api";
-import { createOrderEmail } from "@/libs/api/emails.api";
-import useLocalStorage from "@/hooks/useLocaleStorage";
-import { constants } from "@/configs/constants";
 import { Promocode } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { cartAtom } from "@/libs/store/atoms";
+import TabletCheckout from "./TabletCheckout";
+import MobileCheckout from "./MobileCheckout";
+import { constants } from "@/configs/constants";
+import { createOrder } from "@/libs/api/order.api";
+import { signIn, useSession } from "next-auth/react";
+import useLocalStorage from "@/hooks/useLocaleStorage";
+import { createOrderEmail } from "@/libs/api/emails.api";
+import { IOrderCreate } from "@/interfaces/order.interface";
+import { createUrlForCheckout } from "@/libs/api/checkout.api";
+import { IUserCheckoutForm } from "@/interfaces/user.interface";
+import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
+import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 
 interface Props {
   dict: any;
   currency: string;
+  userData: any;
   lang?: string;
 }
 
@@ -39,6 +39,7 @@ export interface IValidateData {
 
 export const CheckoutWrapper = ({
   dict,
+  userData,
   currency,
   lang,
 }: Props): React.JSX.Element => {
@@ -46,6 +47,7 @@ export const CheckoutWrapper = ({
   const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
+  const [deliveryAddress, setDeliveryAddress] = React.useState<string>("");
   const [deliveryId, setDeliveryId] = React.useState<string>("");
   const [userInfo, setUserInfo] =
     React.useState<IUserCheckoutForm>(userInitial);
@@ -67,36 +69,29 @@ export const CheckoutWrapper = ({
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
 
   // const delivery = npDeliveryType.filter(d => d.id === deliveryId)[0]?.text;
-  const [cart, setCart] = useAtom(cartAtom);
+  const [cart] = useAtom(cartAtom);
 
   React.useEffect(() => {
-    if (!data?.user?.id) return;
-    (async function fetchUser() {
-      try {
-        const res = await getUserInfo(data.user.id);
+    if (!userData?.id) return;
 
-        const deliveryType =
-          res?.address?.npDeliveryType?.length === 1
-            ? npDeliveryType.filter(
-                d => d.id === res.address?.npDeliveryType
-              )[0]?.text
-            : res?.address?.npDeliveryType;
+    const deliveryType =
+      userData?.address?.npDeliveryType?.length === 1
+        ? npDeliveryType.filter(
+            d => d.id === userData.address?.npDeliveryType
+          )[0]?.text
+        : userData?.address?.npDeliveryType;
 
-        setUserInfo({
-          firstName: res?.firstName ?? "",
-          lastName: res?.lastName ?? "",
-          phone: res?.address?.phoneNumber ?? "",
-          email: res?.email ?? "",
-        });
-        setCity(res?.address?.city ?? "");
-        setPostPoint(res?.address?.npDepartment ?? "");
+    setUserInfo({
+      firstName: userData?.firstName ?? "",
+      lastName: userData?.lastName ?? "",
+      phone: userData?.address?.phoneNumber ?? "",
+      email: userData?.email ?? "",
+    });
+    setCity(userData?.address?.city ?? "");
+    setPostPoint(userData?.address?.npDepartment ?? "");
 
-        setDeliveryId(deliveryType || "");
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [data?.user?.id]);
+    setDeliveryId(deliveryType || "");
+  }, [userData]);
 
   const validateInputs = () => {
     setValidateData([
@@ -106,6 +101,7 @@ export const CheckoutWrapper = ({
       { name: "email", value: false },
       { name: "Населений пункт", value: false },
       { name: "Відділення", value: false },
+      { name: "Адреса", value: false },
     ]);
     if (!userInfo.firstName) {
       setValidateData(prevState =>
@@ -142,10 +138,16 @@ export const CheckoutWrapper = ({
         )
       );
     }
-    if (!postPoint) {
+    if (!postPoint && deliveryId !== "3") {
       setValidateData(prevState =>
         prevState.map(item =>
           item.name === "Відділення" ? { ...item, value: true } : item
+        )
+      );
+    } else if (!deliveryAddress && deliveryId === "3") {
+      setValidateData(prevState =>
+        prevState.map(item =>
+          item.name === "Адреса" ? { ...item, value: true } : item
         )
       );
     }
@@ -154,9 +156,7 @@ export const CheckoutWrapper = ({
   const handleCheckout = async () => {
     validateInputs();
     if (
-      !city ||
-      !postPoint ||
-      !deliveryId ||
+      Object.values(validateData)?.some(x => x.value === true) ||
       !userInfo?.phone?.length ||
       !userInfo?.firstName?.length ||
       !userInfo?.lastName?.length ||
@@ -199,28 +199,28 @@ export const CheckoutWrapper = ({
 
       const resOrder = await createOrder(payload, res?.invoiceId, lang);
 
-      if ("user" in resOrder && !data?.user?.id && signUpUser) {
-        setCart(prev => ({ ...prev, fromCheckout: true }));
+      // if ("user" in resOrder && !data?.user?.id && signUpUser) {
+      //   setCart(prev => ({ ...prev, fromCheckout: true }));
+      // }
+
+      if (resOrder?.["user"] && resOrder?.["user"]?.["isVerified"]) {
         await signIn("autoSignIn", {
           redirect: false,
-          userId: resOrder.user.id,
+          userId: resOrder?.user?.id,
         });
       }
 
       await createOrderEmail(
-        resOrder.user.id,
+        resOrder?.user?.id,
         payload,
         cart.products,
-        cart.fromCheckout,
-        resOrder.id,
+        resOrder?.id,
         lang
       );
 
       router.replace(res.pageUrl);
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -247,8 +247,11 @@ export const CheckoutWrapper = ({
         promocode={promocode}
         validateData={validateData}
         signUpUser={signUpUser}
+        deliveryAddress={deliveryAddress}
+        setDeliveryAddress={setDeliveryAddress}
         setSignUpUser={setSignUpUser}
-        isAuthorized={!!data?.user?.id}
+        userData={userData}
+        isAuthorized={!!userData?.id}
       />
 
       <MobileCheckout
@@ -267,13 +270,16 @@ export const CheckoutWrapper = ({
         isLoading={isLoading}
         comment={comment}
         setComment={setComment}
+        setDeliveryAddress={setDeliveryAddress}
+        deliveryAddress={deliveryAddress}
         setPromocode={setPromocode}
         promocode={promocode}
         validateData={validateData}
         userInfo={userInfo}
+        userData={userData}
         signUpUser={signUpUser}
         setSignUpUser={setSignUpUser}
-        isAuthorized={!!data?.user?.id}
+        isAuthorized={!!userData?.id}
       />
     </>
   );

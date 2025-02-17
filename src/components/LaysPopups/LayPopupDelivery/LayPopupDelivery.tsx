@@ -36,6 +36,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
   const [deliveryId, setDeliveryId] = React.useState("");
   const [isLoadingSave, setIsLoadingSave] = React.useState(false);
   const [isLoadingReset, setIsLoadingReset] = React.useState(false);
+  const [deliveryAddress, setDeliveryAddress] = React.useState<string>("");
   const { data } = useSession();
 
   React.useEffect(() => {
@@ -132,6 +133,8 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
               postPoint={postPoint}
               setPostPoint={setPostPoint}
               deliveryId={deliveryId}
+              deliveryAddress={deliveryAddress}
+              setDeliveryAddress={setDeliveryAddress}
               setDeliveryId={setDeliveryId}
             />
             <div className={s.buttons}>
@@ -144,14 +147,14 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
                       ? "Loading..."
                       : profileDict.changeDeliveryButtonReset
                   }
-				  className={s.button}
+                  className={s.button}
                 />
               </div>
               <div className={s.buttonBlock}>
                 <ButtonWhite
                   text={profileDict.changeDeliveryButtonCancel}
-								  handleClick={() => bottomBlock("")}
-								  className={s.button}
+                  handleClick={() => bottomBlock("")}
+                  className={s.button}
                 />
               </div>
               <div className={s.buttonBlock}>
@@ -162,8 +165,8 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
                       : profileDict.changeDeliveryButtonSave
                   }
                   isDisabled={isLoadingSave}
-								  handleClick={handleUpdateDelivery}
-								  className={s.button}
+                  handleClick={handleUpdateDelivery}
+                  className={s.button}
                 />
               </div>
             </div>

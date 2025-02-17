@@ -1,7 +1,12 @@
 "use server";
 
 import prisma from "@/libs/client/prisma.client";
-import { changedOrderStatusSelect, orderSelect } from "./selects/order.select";
+import {
+  changedInstaOrderStatusSelect,
+  changedOrderStatusSelect,
+  instaOrderSelect,
+  orderSelect,
+} from "./selects/order.select";
 import { IOrderCreate, IUserOrder } from "@/interfaces/order.interface";
 import { updateUserAddress } from "./address.api";
 import {
@@ -11,16 +16,13 @@ import {
 } from "./user.api";
 import { OrderStatus } from "@prisma/client";
 import { nanoid } from "nanoid";
-import {
-  orderInProgressEmail,
-  sendWebhook,
-  senPasswordNewUserEmail,
-} from "./emails.api";
+import { orderInProgressEmail, sendWebhook } from "./emails.api";
 import { getProductsByIds } from "./products.api";
 
 export const getAllUserOrders = async (
-  userId: string
+  userId?: string
 ): Promise<IUserOrder[]> => {
+  if (!userId) return [];
   try {
     const orders = await prisma.order.findMany({
       where: {
@@ -68,16 +70,28 @@ export const getOrderByCheckId = async (checkId: number) => {
   }
 };
 
+export const getInstaOrderByCheckId = async (checkId: number) => {
+  try {
+    const order = await prisma.instagramOrder.findUnique({
+      where: {
+        checkId,
+      },
+      select: instaOrderSelect,
+    });
+
+    return order;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const createOrder = async (
   orderData: IOrderCreate,
   paymentId: string,
   lang?: string
 ) => {
   try {
-    let firstOrder = false;
-
     if (!orderData?.userId && !!orderData?.address?.phoneNumber) {
-      firstOrder = true;
       const password = nanoid(6);
       const user = await createUser(
         {
@@ -88,7 +102,8 @@ export const createOrder = async (
           lastName: orderData.lastName,
           acceptedSignUp: orderData.acceptedSignUp,
         },
-        true
+        false,
+        password
       );
 
       if ("id" in user) {
@@ -97,23 +112,26 @@ export const createOrder = async (
 
         if (orderData.acceptedSignUp) {
           await updateUserTotalAmount(user.id, orderData.totalSum);
-          await senPasswordNewUserEmail(
-            user.id,
-            user.email,
-            orderData?.address?.phoneNumber,
-            orderData.firstName,
-            orderData?.lastName,
-            password,
-            lang
-          );
+          // await senPasswordNewUserEmail(
+          //   user.id,
+          //   user.email,
+          //   orderData?.address?.phoneNumber,
+          //   orderData.firstName,
+          //   orderData?.lastName,
+          //   password,
+          //   lang
+          // );
         }
       }
     } else {
       await updateUserAddress(orderData.userId!, orderData.address);
       await updateUserTotalAmount(orderData.userId!, orderData.totalSum);
-      const res = await hasUserOrders(orderData.userId!);
-      if (!res) firstOrder = res;
     }
+
+    const candiesQuantity = orderData.items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
 
     const order = await prisma.order.create({
       data: {
@@ -135,11 +153,16 @@ export const createOrder = async (
         }),
         ...(lang && { lang: lang }),
         ...(orderData.utm_campaign && { utm_campaign: orderData.utm_campaign }),
-        ...(!!firstOrder && { firstOrder: firstOrder }),
         ...(orderData.utm_source && { utm_source: orderData.utm_source }),
         ...(orderData.utm_medium && { utm_medium: orderData.utm_medium }),
         ...(orderData.utm_term && { utm_term: orderData.utm_term }),
         ...(orderData.utm_content && { utm_content: orderData.utm_content }),
+        presentQuantity: Math.floor(candiesQuantity / 7),
+        orderStatusHistory: {
+          create: {
+            status: OrderStatus.CREATED,
+          },
+        },
         orderItems: {
           create: orderData.items.map(item => ({
             quantity: item.quantity,
@@ -183,14 +206,19 @@ export const changeOrderStatusByCheckId = async (
   try {
     const existOrder = await getOrderByCheckId(checkId);
 
-    if (!existOrder) throw new Error("Order not found");
+    const existInstaOrder = await getInstaOrderByCheckId(checkId);
 
-    if (existOrder.status !== status) {
+    if (!existOrder && !existInstaOrder) throw new Error("Order not found");
+
+    if (existOrder && existOrder?.status !== status) {
       existOrder.status = status;
       await sendWebhook(existOrder);
+    } else if (existInstaOrder && existInstaOrder.status !== status) {
+      existInstaOrder.status = status;
+      await sendWebhook(existInstaOrder);
     }
 
-    if (status === OrderStatus.PAID) {
+    if (existOrder && status === OrderStatus.PAID) {
       const orderProducts = await getProductsByIds(
         existOrder.orderItems.map(item => item.productId)
       );
@@ -199,23 +227,63 @@ export const changeOrderStatusByCheckId = async (
         existOrder.user.id,
         existOrder as any,
         orderProducts || [],
-        !!existOrder.firstOrder,
         String(existOrder?.checkId),
         existOrder.lang || "uk"
       );
+    } else if (existInstaOrder && status === OrderStatus.PAID) {
+      const orderProducts = await getProductsByIds(
+        existInstaOrder.orderItems.map(item => item.productId)
+      );
+      await orderInProgressEmail(
+        existInstaOrder.customerInitials || "No name",
+        existOrder as any,
+        orderProducts || [],
+        String(existOrder?.checkId),
+        "uk"
+      );
     }
 
-    const order = await prisma.order.update({
-      where: {
-        checkId,
-      },
-      data: {
-        status,
-      },
-      select: changedOrderStatusSelect,
-    });
+    if (existOrder) {
+      const order = await prisma.order.update({
+        where: {
+          checkId,
+        },
+        data: {
+          status,
+          orderStatusHistory: {
+            upsert: {
+              create: {
+                status: status,
+              },
+              update: {
+                status: status,
+              },
+              where: {
+                orderId_status: {
+                  orderId: existOrder.id,
+                  status: status,
+                },
+              },
+            },
+          },
+        },
+        select: changedOrderStatusSelect,
+      });
 
-    return order;
+      return order;
+    } else if (existInstaOrder) {
+      const order = await prisma.instagramOrder.update({
+        where: {
+          checkId,
+        },
+        data: {
+          status,
+        },
+        select: changedInstaOrderStatusSelect,
+      });
+
+      return order;
+    }
   } catch (error) {
     throw error;
   }

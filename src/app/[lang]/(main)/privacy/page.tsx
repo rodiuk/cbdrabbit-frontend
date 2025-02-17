@@ -14,6 +14,10 @@ export async function generateMetadata({
   return {
     alternates: {
       canonical: `/privacy`,
+      languages: {
+        en: `/en/privacy`,
+        uk: `/uk/privacy`,
+      },
     },
     openGraph: {
       ...openGraphBase,
@@ -23,10 +27,10 @@ export async function generateMetadata({
 }
 
 export default async function Policy({ params }: IMainPageProps) {
-	const { lang } = params;
-	const dict = await getDictionary(lang);
-	const {header} = dict
-	
+  const { lang } = params;
+  const dict = await getDictionary(lang);
+  const { header } = dict;
+
   return (
     <>
       <main className={cn("container", styles.main)}>

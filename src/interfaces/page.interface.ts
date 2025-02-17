@@ -13,6 +13,7 @@ export interface IPageProps extends IMainPageProps {
 export interface IPageParams {
   lang: Locale;
   postId: string;
+  landId: string;
   [key: string]: string;
 }
 

@@ -19,6 +19,7 @@
   border-top-right-radius: 24px;
   border-top-left-radius: 24px;
   overflow-y: auto;
+  height: fit-content;
 }
 
 .flexLay {
@@ -91,29 +92,29 @@
   color: var(--primary-color);
 }
 .buttonBlock {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 .button {
-	width: auto;
+  width: auto;
 }
 .red_info {
-	color: var(--red);
+  color: var(--red);
 }
 .grey_info {
-	font-weight: 500;
-	color: rgba(152, 151, 154, 1);
+  font-weight: 500;
+  color: rgba(152, 151, 154, 1);
 }
 .warning {
-	font-weight: 500;
-	color: rgba(33, 33, 33, 1);
-	text-align: center;
+  font-weight: 500;
+  color: rgba(33, 33, 33, 1);
+  text-align: center;
 }
 .red_text {
-	color: var(--red);
+  color: var(--red);
 }
-.red_check path  {
-	stroke: var(--red);
+.red_check path {
+  stroke: var(--red);
 }
 
 @media (min-width: 769px) {

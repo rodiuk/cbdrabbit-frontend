@@ -49,6 +49,28 @@ export const getUserById = async (
   }
 };
 
+export const userByOrderId = async (orderId: number) => {
+  try {
+    const order = await prisma.order.findFirst({
+      where: {
+        checkId: +orderId,
+      },
+    });
+
+    if (!order) return null;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: order.userId,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const checkIsUserExistByEmail = async (email: string) => {
   try {
     const user = await prisma.user.findUnique({
@@ -97,7 +119,9 @@ export const createGoogleUser = async (
   }
 };
 
-export const getUserInfo = async (userId: string) => {
+export const getUserInfo = async (userId: string | null) => {
+  if (userId === null) return null;
+
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -126,7 +150,8 @@ export const getUserInfo = async (userId: string) => {
 
 export const createUser = async (
   userData: ICreateUser,
-  isVerified?: boolean
+  isVerified?: boolean,
+  createdPassword?: string
 ) => {
   try {
     if (!userData?.password) return { error: "Password is required" };
@@ -214,7 +239,7 @@ export const createUser = async (
         });
       }
 
-      await updateContactInSendPulse(
+      updateContactInSendPulse(
         user.email,
         user.isPromo,
         user?.firstName,
@@ -223,13 +248,14 @@ export const createUser = async (
       );
 
       if (!isVerified) {
-        await signUpActivateSendEmail(
+        signUpActivateSendEmail(
           user.email,
           userData.phoneNumber,
           user.id,
           code,
           userData?.firstName,
-          userData?.lastName
+          userData?.lastName,
+          createdPassword
         );
       }
 

@@ -34,6 +34,8 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const [total] = useAtom(getTotalPriceAtom);
   const pathname = usePathname()?.split("/")?.at(-1);
 
+  const navPath = `/${lang}/checkout`;
+
   const router = useRouter();
 
   const [state, startTransition] = React.useTransition();
@@ -58,9 +60,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
           </div>
           <div
             className={styles.button}
-            onClick={() =>
-              startTransition(() => router.push(`${lang}/checkout`))
-            }
+            onClick={() => startTransition(() => router.push(navPath))}
           >
             {state ? <Loader /> : buttonLabel}
             {!state && <ArrowRightIcon iconStyle={styles.icon} />}

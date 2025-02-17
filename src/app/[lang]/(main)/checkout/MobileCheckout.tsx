@@ -33,6 +33,8 @@ interface Props {
   setPostPoint: (postPoint: string) => void;
   setDeliveryId: (deliveryId: string) => void;
   setFinalPrice: (finalPrice: number) => void;
+  deliveryAddress: string;
+  setDeliveryAddress: (deliveryAddress: string) => void;
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
   hasError: boolean;
@@ -46,6 +48,7 @@ interface Props {
   signUpUser: boolean;
   setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
   isAuthorized: boolean;
+  userData: any;
 }
 
 const MobileCheckout = (props: Props) => {
@@ -60,6 +63,8 @@ const MobileCheckout = (props: Props) => {
     setFinalPrice,
     handleCheckout,
     setUserInfo,
+    deliveryAddress,
+    setDeliveryAddress,
     hasError,
     currency,
     comment,
@@ -72,6 +77,7 @@ const MobileCheckout = (props: Props) => {
     signUpUser,
     setSignUpUser,
     isAuthorized,
+    userData,
   } = props;
 
   return (
@@ -121,6 +127,8 @@ const MobileCheckout = (props: Props) => {
           postPoint={postPoint}
           setPostPoint={setPostPoint}
           deliveryId={deliveryId}
+          deliveryAddress={deliveryAddress}
+          setDeliveryAddress={setDeliveryAddress}
           setDeliveryId={setDeliveryId}
           validateData={validateData}
         />
@@ -147,6 +155,7 @@ const MobileCheckout = (props: Props) => {
       </div>
 
       <CheckoutRes
+        userData={userData}
         dict={dict.checkout}
         currency={currency}
         setFinalPrice={setFinalPrice}

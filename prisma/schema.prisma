@@ -19,6 +19,11 @@ enum Role {
   MANAGER
 }
 
+enum MediaType {
+  IMAGE
+  PDF
+}
+
 enum OrderStatus {
   CREATED
   CANCELED
@@ -82,20 +87,20 @@ model Address {
 }
 
 model Order {
-  id             String       @id @default(uuid())
-  checkId        Int          @unique @default(autoincrement())
-  totalSum       Float
-  itemPrice      Float
-  comment        String?
-  status         OrderStatus? @default(CREATED)
-  utm_source     String?
-  utm_medium     String?
-  utm_campaign   String?
-  utm_content    String?
-  utm_term       String?
-  lang           String?
-  firstOrder     Boolean?     @default(false)
-  serviceComment String?
+  id              String       @id @default(uuid())
+  checkId         Int          @unique @default(autoincrement())
+  totalSum        Float
+  itemPrice       Float
+  comment         String?
+  status          OrderStatus? @default(CREATED)
+  utm_source      String?
+  utm_medium      String?
+  utm_campaign    String?
+  utm_content     String?
+  utm_term        String?
+  lang            String?
+  presentQuantity Int?
+  serviceComment  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -104,24 +109,59 @@ model Order {
   userId      String
   promocodeId String?
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  orderItems   OrderItem[]
-  promocode    Promocode?    @relation(fields: [promocodeId], references: [id])
-  deliveryInfo DeliveryInfo?
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderItems         OrderItem[]
+  promocode          Promocode?           @relation(fields: [promocodeId], references: [id])
+  deliveryInfo       DeliveryInfo?
+  orderStatusHistory OrderStatusHistory[]
 }
 
-model OrderItem {
-  id       String @id @default(uuid())
-  quantity Int    @default(1)
+model InstagramOrder {
+  id      String @id @default(uuid())
+  checkId Int    @unique @default(autoincrement())
 
-  productId String
-  orderId   String
+  status OrderStatus? @default(CREATED)
+
+  totalSum  Float
+  itemPrice Float
+  comment   String?
+
+  customerInitials String?
+  customerPhone    String?
+  customerAddress  String?
+  customerNickname String?
+
+  attachmentUrl  String?
+  attachmentUrls InstagramMedia[]
+
+  trackingNumber String?
+
+  paymentId String? @unique
+
+  paymentLink String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  product Product @relation(fields: [productId], references: [id])
-  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderItems   OrderItem[]
+  deliveryInfo DeliveryInfo?
+}
+
+model OrderItem {
+  id           String @id @default(uuid())
+  quantity     Int    @default(0)
+  giftQuantity Int?   @default(0)
+
+  productId        String
+  orderId          String?
+  instagramOrderId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product        Product         @relation(fields: [productId], references: [id])
+  order          Order?          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  instagramOrder InstagramOrder? @relation(fields: [instagramOrderId], references: [id], onDelete: Cascade)
 }
 
 model Product {
@@ -204,10 +244,38 @@ model DeliveryInfo {
   deliveryPayedKeeping String?
   isFreeDelivery       Boolean @default(false)
 
-  orderId String @unique
+  orderId          String? @unique
+  instagramOrderId String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order          Order?          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  instagramOrder InstagramOrder? @relation(fields: [instagramOrderId], references: [id], onDelete: Cascade)
+}
+
+model InstagramMedia {
+  id        String    @id @default(uuid())
+  mediaPath String
+  type      MediaType @default(IMAGE)
+
+  instagramOrderId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  instagramOrder InstagramOrder? @relation(fields: [instagramOrderId], references: [id])
+}
+
+model OrderStatusHistory {
+  id      String      @id @default(uuid())
+  status  OrderStatus
+  orderId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@unique([orderId, status])
 }

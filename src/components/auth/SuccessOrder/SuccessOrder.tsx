@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { userByOrderId } from "@/libs/api/user.api";
+import { SuccessClearStorage } from "./SuccessClearStorage";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 
 import s from "./SuccessOrder.module.css";
@@ -12,10 +14,14 @@ interface SuccessOrderProps {
   orderNumber: string;
 }
 
-export const SuccessOrder = ({
+export const SuccessOrder = async ({
   dict,
   orderNumber,
-}: SuccessOrderProps): React.JSX.Element => {
+}: SuccessOrderProps): Promise<React.JSX.Element> => {
+  const user = await userByOrderId(Number(orderNumber));
+
+  const mailDomain = user?.email?.split("@")[1] ?? "google.com";
+
   return (
     <div className="container">
       <div className={s.wrap}>
@@ -30,14 +36,28 @@ export const SuccessOrder = ({
               <p className={s.num}>{formatDisplayedCheckId(orderNumber)}</p>
             </div>
             <div className={s.bot_text}>{dict.successOrderLabel}</div>
+            {!user?.isVerified && (
+              <div className={s.bot_text}>{dict.notVerifiedAccount}</div>
+            )}
             <div className="bb">
-              <Link href="/" className={s.button}>
-                {dict.successOrderButton}
-              </Link>
+              {user?.isVerified ? (
+                <Link href="/" className={s.button}>
+                  {dict.successOrderButton}
+                </Link>
+              ) : (
+                <Link
+                  href={`https://${mailDomain}`}
+                  target="_blank"
+                  className={s.button}
+                >
+                  {dict.openEmail}
+                </Link>
+              )}
             </div>
           </div>
         </div>
       </div>
+      <SuccessClearStorage />
     </div>
   );
 };

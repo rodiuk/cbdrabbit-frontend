@@ -213,15 +213,17 @@
     "statusSended": "Передано перевізнику",
     "statusDelivered": "Доставлено у відділення",
     "statusCanceled": "Скасовано",
-    "statusCompleted": "Укоиплектовано",
-    "statusSuccess": "Отримано клієнтом"
+    "statusCompleted": "Укомплектовано",
+    "statusSuccess": "Отримано клієнтом",
+    "notVerifiedAccount": "Аккаунт створено — перейдіть на пошту, щоб підтвердити акаунт та встановити пароль",
+    "openEmail": "Відкрити пошту"
   },
   "home": {
     "title": "Привіт, ми CBD Rabbit",
     "product": {
       "firstOrder": "До першого замовлення цукерка Rabbit Classic у подарунок",
       "notAvailable": "Поки немає в наявності",
-      "discountLabel": "Знижка на великі замовлення",
+      "discountLabel": "До кожної 7 цукерки - цукерка в подарунок",
       "discountList": [
         "1-5 шт - 85 грн/цукерка",
         "6-10 шт - 82 грн/цукерка",

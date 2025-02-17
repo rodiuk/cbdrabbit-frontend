@@ -208,18 +208,20 @@
     "buttonLabel": "Go home",
     "statusCreated": "Created",
     "statusPaid": "Paid",
-    "statusSended": "Sended",
+    "statusSended": "Sent",
     "statusDelivered": "Delivered",
     "statusCanceled": "Canceled",
     "statusCompleted": "Completed",
-    "statusSuccess": "Success"
+    "statusSuccess": "Success",
+    "notVerifiedAccount": "Account created — check your email to verify your account and set a password",
+    "openEmail": "Open email"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",
     "product": {
       "firstOrder": "Rabbit Classic candy is a gift for the first order",
       "notAvailable": "Not available yet",
-      "discountLabel": "Discount for large orders",
+      "discountLabel": "Every 7th candy is a gift",
       "discountList": [
         "1-5 шт - 85 uah/candy",
         "6-10 шт - 82 uah/candy",

@@ -4,9 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
 import { Promocode } from "@prisma/client";
-import { useSession } from "next-auth/react";
 import { cartAtom } from "@/libs/store/atoms";
-import { getUserInfo } from "@/libs/api/user.api";
 import { PromocodeBlock } from "./PromocodeBlock";
 import Button from "@/components/Ui/Button/Button";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
@@ -18,8 +16,9 @@ import sale_icon from "/public/img/sale_icon.svg";
 import s from "./s.module.css";
 
 interface Props {
-  dict: ICheckoutDict;
   currency: string;
+  userData: any;
+  dict: ICheckoutDict;
   setFinalPrice: (finalPrice: number) => void;
   handleCheckout: () => void;
   hasError: boolean;
@@ -31,6 +30,7 @@ interface Props {
 
 const CheckoutRes = React.memo(function CheckoutRes({
   dict,
+  userData,
   currency,
   setFinalPrice,
   handleCheckout,
@@ -40,7 +40,6 @@ const CheckoutRes = React.memo(function CheckoutRes({
   setPromocode,
 }: Props): React.JSX.Element {
   const [cart] = useAtom(cartAtom);
-  const { data } = useSession();
   const [userDiscount, setUserDiscount] = React.useState<number>(0);
 
   const currentPrice = 85;
@@ -87,20 +86,19 @@ const CheckoutRes = React.memo(function CheckoutRes({
     }
 
     (async function () {
-      if (!!data?.user?.id) {
-        const userInfo = await getUserInfo(data.user.id);
-        if (!userInfo?.loyalty?.percentDiscount) return;
+      if (!!userData.id) {
+        if (!userData?.loyalty?.percentDiscount) return;
 
-        setUserDiscount(userInfo?.loyalty?.percentDiscount);
+        setUserDiscount(userData?.loyalty?.percentDiscount);
         setFinalPrice(
           calculateTotalUserPrice(
             cart?.totalAmount,
-            userInfo?.loyalty?.percentDiscount
+            userData?.loyalty?.percentDiscount
           )
         );
       }
     })();
-  }, [data, cart, setFinalPrice, promocode, finalPrice]);
+  }, [userData, cart, setFinalPrice, promocode, finalPrice]);
 
   return (
     <div className={s.checkoutRes}>

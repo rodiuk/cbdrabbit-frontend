@@ -5,8 +5,13 @@ import { CheckoutWrapper } from "./CheckoutWrapper";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { SuccessOrder } from "@/components/auth/SuccessOrder/SuccessOrder";
 
+export const dynamic = "force-dynamic";
+
 import cn from "clsx";
 import styles from "./page.module.css";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/configs/auth.config";
+import { getUserInfo } from "@/libs/api/user.api";
 
 export default async function Checkout({
   params,
@@ -15,6 +20,11 @@ export default async function Checkout({
   const { lang } = params;
   const dict = await getDictionary(lang);
   const { header } = dict;
+
+  const session = await getServerSession(authConfig);
+
+  const user = await getUserInfo(session?.user?.id || null);
+
   const successOrder = searchParams?.successOrder;
 
   return (
@@ -25,6 +35,7 @@ export default async function Checkout({
             <div className={styles.checkoutBlocks}>
               <CheckoutWrapper
                 dict={dict}
+                userData={user}
                 currency={dict.currency}
                 lang={lang}
               />
