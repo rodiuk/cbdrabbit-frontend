@@ -9,6 +9,7 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
 
 export async function generateMetadata({
   params,
@@ -48,8 +49,10 @@ export default async function Home({ params }: IMainPageProps) {
               lang={params.lang}
             />
           ))}
-        </ul>
-        <ListSales home={home} />
+			  </ul>
+			  
+			  <ListSales home={home} />
+			  <HomeBaner />
       </div>
     </main>
   );

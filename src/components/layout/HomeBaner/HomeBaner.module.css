@@ -1,0 +1,52 @@
+.baner {
+	margin: 0 auto;
+	max-width: 480px;
+	background: #79BD6BCC; 
+	padding: 30px 56px;
+	position: relative;
+	min-height: 200px;
+	border-radius: 16px;
+	border: 4px solid #FFFFFF4D;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.tb {
+	text-align: right;
+	font-size: 20px;
+	line-height: 1.4;
+	font-weight: 500;
+	color: #fff;
+}
+.baner .bb {
+	background: #fff;
+	color: #42623B;
+	max-width: 147px;
+	margin:  24px 0  0 auto;
+}
+.baner .bb:hover {
+	background: #F5FAF3;
+}
+.imgBlock {
+	position: absolute;
+	left: 0;
+	top: -60px;
+}
+@media (max-width: 580px) {
+	.baner {
+		min-height: 262px;
+		padding-top: 104px;
+		justify-content: center;
+	}
+	.tb {
+		text-align: center;
+	}
+	.baner .bb {
+		margin: 16px auto 0;
+	}
+	.imgBlock {
+		top: -165px;
+		left: calc(50% - 128px);
+	}
+}

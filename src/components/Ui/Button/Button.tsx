@@ -9,6 +9,7 @@ interface ButtonProps {
   className?: string;
   text: string;
   iconLeft?: boolean;
+  iconRight?: boolean;
   icon?: React.ReactNode;
   handleClick?: () => void;
   isLoading?: boolean;
@@ -18,7 +19,8 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   className,
-  iconLeft,
+	iconLeft,
+	iconRight,
   text,
   icon,
   handleClick,
@@ -40,7 +42,11 @@ const Button: React.FC<ButtonProps> = ({
         </span>
       )}
       {!isLoading && text}
-
+	  {iconRight && (
+        <span className={s.icon_block_right}>
+          {icon ? icon : <ArrowLeftIcon iconStyle={s.icon_right} />}
+        </span>
+      )}
       {isLoading && <Loader greenTheme={greenThemeLoader} />}
     </button>
   );
