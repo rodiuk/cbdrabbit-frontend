@@ -1,23 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { withAuth } from "next-auth/middleware";
-import Negotiator from "negotiator";
+// import Negotiator from "negotiator";
 
-import { match as matchLocale } from "@formatjs/intl-localematcher";
+// import { match as matchLocale } from "@formatjs/intl-localematcher";
 
 import { i18n } from "../i18n.config";
 
 function getLocale(request: NextRequest): string | undefined {
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+  // const negotiatorHeaders: Record<string, string> = {};
+  // request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
   // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-  const languages = new Negotiator({ headers: negotiatorHeaders })
-    .languages()
-    ?.map(lang => lang.replace("*", "en"));
+  // const locales: string[] = i18n.locales;
+  // const languages = new Negotiator({ headers: negotiatorHeaders })
+  //   .languages()
+  //   ?.map(lang => lang.replace("*", "uk"));
 
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  return locale;
+  // const locale = matchLocale(languages, locales, i18n.defaultLocale);
+  // return locale;
+  return i18n.defaultLocale;
 }
 
 function intlMiddleware(request: NextRequest) {
@@ -75,6 +76,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|img|_next/image|favicon.ico|robots.txt|site.webmanifest|sitemap.xml).*)",
+    "/((?!api|_next/static|img|_next/image|favicon.ico|robots.txt|site.webmanifest|google900468595d9ed7b3.html|sitemap.xml).*)",
   ],
 };

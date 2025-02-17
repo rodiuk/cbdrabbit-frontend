@@ -4,13 +4,12 @@ import React from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
 import { cartAtom } from "@/libs/store/atoms";
-import ListSales from "@/components/ListSales/ListSales";
 import { PresentIcon } from "@/components/icons/PresentIcon";
 import { IProductRes } from "@/interfaces/product.interface";
+import { calculateGiftCandies } from "@/utils/calculateGiftCandies";
 import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 
 import styles from "./page.module.css";
-import { calculateGiftCandies } from "@/utils/calculateGiftCandies";
 
 interface Props {
   homeDict: any;

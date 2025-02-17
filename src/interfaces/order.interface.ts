@@ -2,6 +2,7 @@ import {
   Address,
   DeliveryInfo,
   Image,
+  OrderStatusHistory,
   Product,
   Promocode,
 } from "@prisma/client";
@@ -38,13 +39,14 @@ export interface IUserOrder {
   checkId: number;
   comment?: string | null;
   status?: string | null;
-  firstOrder?: boolean | null;
+  presentQuantity: number | null;
   utm_campaign?: string | null;
   utm_content?: string | null;
   utm_medium?: string | null;
   utm_source?: string | null;
   utm_term?: string | null;
   promocodeId?: string | null;
+  orderStatusHistory?: Array<OrderStatusHistory>;
   createdAt: Date;
   user: {
     id: string;

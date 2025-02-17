@@ -34,6 +34,8 @@ export interface TabletCheckoutProps {
   setCity: (city: string) => void;
   setPostPoint: (postPoint: string) => void;
   setDeliveryId: (deliveryId: string) => void;
+  deliveryAddress: string;
+  setDeliveryAddress: (deliveryAddress: string) => void;
   setFinalPrice: (finalPrice: number) => void;
   handleCheckout: () => void;
   setUserInfo: React.Dispatch<React.SetStateAction<IUserCheckoutForm>>;
@@ -46,6 +48,7 @@ export interface TabletCheckoutProps {
   isLoading?: boolean;
   validateData?: IValidateData[];
   signUpUser: boolean;
+  userData: any;
   setSignUpUser: React.Dispatch<React.SetStateAction<boolean>>;
   isAuthorized: boolean;
 }
@@ -62,6 +65,8 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
     setFinalPrice,
     handleCheckout,
     setUserInfo,
+    deliveryAddress,
+    setDeliveryAddress,
     hasError,
     currency,
     userInfo,
@@ -74,6 +79,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
     signUpUser,
     setSignUpUser,
     isAuthorized,
+    userData,
   } = props;
 
   return (
@@ -117,6 +123,8 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
             postPoint={postPoint}
             deliveryId={deliveryId}
             setCity={setCity}
+            deliveryAddress={deliveryAddress}
+            setDeliveryAddress={setDeliveryAddress}
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
             validateData={validateData}
@@ -156,6 +164,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
 
         <CheckoutRes
           currency={currency}
+          userData={userData}
           dict={dict.checkout}
           setFinalPrice={setFinalPrice}
           handleCheckout={handleCheckout}

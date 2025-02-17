@@ -16,6 +16,10 @@ export async function generateMetadata({
   return {
     alternates: {
       canonical: `/`,
+      languages: {
+        en: `/en`,
+        uk: `/uk`,
+      },
     },
     openGraph: {
       ...openGraphBase,

@@ -6,6 +6,7 @@ import {
 } from "@/interfaces/checkout.interface";
 import { IProductCard } from "@/interfaces/product.interface";
 import { getOrderNewReference } from "./order.api";
+import { appConfig } from "@/configs/app.config";
 
 export const createUrlForCheckout = async (
   totalSum: number,
@@ -47,7 +48,7 @@ export const createUrlForCheckout = async (
         method: "POST",
         headers: {
           "Content-type": "application/json",
-          "X-Token": "uuQ6VjssSwihvTMlQGy3tWsdeiwSN_3TmQw8TU1fKRFo",
+          "X-Token": appConfig.MONOBANK,
         },
         body: JSON.stringify(arg),
       }
@@ -78,7 +79,7 @@ export const checkOrderStatusOnMono = async (
         method: "GET",
         headers: {
           "Content-type": "application/json",
-          "X-Token": "uuQ6VjssSwihvTMlQGy3tWsdeiwSN_3TmQw8TU1fKRFo",
+          "X-Token": appConfig.MONOBANK,
         },
       }
     );

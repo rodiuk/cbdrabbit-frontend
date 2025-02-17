@@ -1,16 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import { OrderStatus } from "@prisma/client";
-import { formatDate } from "@/utils/formatDate";
 import OrderProduct from "./OrderProduct/OrderProduct";
-import { InfoIcon } from "@/components/icons/InfoIcon";
 import { IOrderDict } from "@/interfaces/i18n.interface";
 import { IUserOrder } from "@/interfaces/order.interface";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
+import { format, toZonedTime } from "date-fns-tz";
 
 import s from "./OrderItem.module.css";
 
 import sale_icon from "/public/img/sale_icon.svg";
+import { InfoIcon } from "@/components/icons/InfoIcon";
+import { appConfig } from "@/configs/app.config";
 
 interface Prop {
   menu?: boolean;
@@ -59,7 +60,12 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
             <InfoIcon iconStyle={s.icon_info} />{" "}
           </div>
         </div>
-        <div className={s.orderInfo_descr}>{formatDate(order.createdAt)}</div>
+        <div className={s.orderInfo_descr}>
+          {format(
+            toZonedTime(order.createdAt, appConfig.CURRENT_TIMEZONE),
+            "dd.MM.yyyy HH:mm"
+          )}
+        </div>
         <div className={s.orderInfo_ttl}>{orderStatus()}</div>
         {/* <div className={s.orderInfo_ttl}>
           Відправлено <span className={s.ttl_end}>18.03.24, 11:52</span>
@@ -92,13 +98,6 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
             );
           })}
         </div>
-
-        {order?.firstOrder && (
-          <div className={s.orderInfo_pay}>
-            <div className={s.orderInfo_ttl2}>Подарунок</div>
-            <div className={s.orderInfo_descr2}>Rabbit Classic × 1</div>
-          </div>
-        )}
 
         <div className={s.orderInfo_pay}>
           <div className={s.orderInfo_ttl2}>{dict.amountLabel}</div>
