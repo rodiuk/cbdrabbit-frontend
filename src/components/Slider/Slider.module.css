@@ -1,17 +1,21 @@
 .sliderContainer {
+	position: relative;
 	width: 100%;
 	overflow: hidden; /* Скрыть всё, что выходит за пределы контейнера */
   }
   
   .slider {
 	display: flex;
-	width: 400%; /* Умножаем на количество слайдов */
-	animation: moveSlider 10s linear infinite; /* Анимация движения */
+	gap: 0 48px;
+	min-width: 100%; /* Умножаем на количество слайдов */
+	
+	/* animation: moveSlider 10s linear infinite; */ /* Анимация движения */
   }
   
   .slide {
-	width: 25%; /* Каждый слайд будет занимать 25% ширины контейнера */
-	height: 200px; /* Высота слайдов */
+	flex: none;
+	 /* Каждый слайд будет занимать 25% ширины контейнера */
+	 /* Высота слайдов */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -19,7 +23,12 @@
 	color: white;
 	font-size: 24px;
   }
-  
+  .slide img {
+	min-width: 240px;
+  }
+  .slide:hover {
+	
+  }
   @keyframes moveSlider {
 	0% {
 	  transform: translateX(0);
