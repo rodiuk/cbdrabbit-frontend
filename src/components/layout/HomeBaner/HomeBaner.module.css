@@ -36,7 +36,8 @@
 @media (max-width: 580px) {
 	.baner {
 		min-height: 262px;
-		padding-top: 104px;
+		padding: 104px 15px 30px;
+		margin-top: 180px;
 		justify-content: center;
 	}
 	.tb {

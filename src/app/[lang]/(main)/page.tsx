@@ -10,6 +10,7 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 import cn from "clsx";
 import styles from "./page.module.css";
 import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
+import { Slider } from "@/components/Slider/Slider";
 
 export async function generateMetadata({
   params,
@@ -50,10 +51,17 @@ export default async function Home({ params }: IMainPageProps) {
             />
           ))}
 			  </ul>
+		  </div>
+		  <div className="container">
+		  <ListSales home={home} />
+		  </div>  
+			 
+		  <Slider className="homeslider" />
+		  <div className="container">
+		  <HomeBaner />
+		  </div>
 			  
-			  <ListSales home={home} />
-			  <HomeBaner />
-      </div>
+      
     </main>
   );
 }
