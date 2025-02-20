@@ -38,24 +38,52 @@ interface Props {
   className?: string;
 }
 const imageCount = images.length;
-const baseDuration = 5; 
+
 
 export const Slider: React.FC<Props> = ({ className }) => {
+	const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
+	const [baseDuration, setBaseDuration] = React.useState(100); 
 	const xValue = useMotionValue(0);
 	const handleClick = () => {
 		console.log(xValue.get()); // Выводим текущее значение x
-	  };
+	};
+	React.useEffect(() => {
+		if (typeof window !== "undefined") { // Проверка, что код выполняется в браузере
+		  setSizeWindow(window.innerWidth);
+	  
+		  const handleResize = () => {
+			setSizeWindow(window.innerWidth);
+		  };
+	  console.log(sizeWindow)
+		  window.addEventListener("resize", handleResize);
+	  
+		  return () => window.removeEventListener("resize", handleResize);
+		}
+	}, []);
+
+	React.useEffect(() => {
+		console.log(sizeWindow);
+		
+		if (sizeWindow !== null && sizeWindow <= 580) {
+			setBaseDuration(25)
+		} else {
+			setBaseDuration(100)
+		}
+	  }, [sizeWindow]);
+	  
+	
   return (
 	  <div className={cn(s.sliderContainer, {
 		[s.homeslider]: className === "homeslider",
 	})}>
-      <motion.div
+		  <motion.div
+			  key={baseDuration}
   className={s.slider}
   animate={{ x: ["0%", "-450%"] }}
   transition={{
     ease: "linear",
     repeat: Infinity,
-    duration: baseDuration * (images.length), // Длительность зависит от количества картинок
+    duration: baseDuration , // Длительность зависит от количества картинок
 			  }}
 			//   onUpdate={() => {
 			// 	// Обновление значения xValue с каждым кадром
