@@ -11,6 +11,7 @@ import cn from "clsx";
 import styles from "./page.module.css";
 import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
 import { Slider } from "@/components/Slider/Slider";
+import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 export async function generateMetadata({
   params,
@@ -55,8 +56,8 @@ export default async function Home({ params }: IMainPageProps) {
 		  <div className="container">
 		  <ListSales home={home} />
 		  </div>  
-			 
-		  <Slider className="homeslider" />
+			  <SplideSlider  className="homeslider" />
+		  
 		  <div className="container">
 		  <HomeBaner />
 		  </div>

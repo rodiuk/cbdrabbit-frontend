@@ -1,0 +1,21 @@
+.sliserCont {
+	width: 100%;
+	margin-top: 160px;
+}
+.slide {
+	width: 200px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 20px;
+}
+.slide img {
+	width: 100%;
+	object-fit: contain;
+}
+@media (max-width: 580px) {
+	.sliserCont.homeslider {
+		margin-top: 80px;
+	  }
+  }
