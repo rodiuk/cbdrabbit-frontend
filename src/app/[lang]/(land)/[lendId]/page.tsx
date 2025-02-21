@@ -38,6 +38,7 @@ import h3d3 from "/public/img/h3d3.jpg";
 import h3d4 from "/public/img/h3d4.jpg";
 import { ILandingsPictures } from "@/interfaces/lending.interface";
 import { Slider } from "@/components/Slider/Slider";
+import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 export async function generateMetadata({
   params,
@@ -184,8 +185,9 @@ export default async function Landing({ params }: IMainPageProps) {
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
-        <Accordeon lendId={lendId} content={productFined.accordeon} />
-		<Slider />
+			  <Accordeon lendId={lendId} content={productFined.accordeon} />
+			  <SplideSlider />
+		{/* <Slider /> */}
         <Buttons
           button1Text={landings.firstButton}
           button2Text={landings.secondButton}
