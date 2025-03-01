@@ -1,17 +1,17 @@
 import React from "react";
-import { IMainPageProps } from "@/interfaces/page.interface";
-import { getDictionary } from "@/libs/18n/getDictionary";
+import { getServerSession } from "next-auth";
+import { getUserInfo } from "@/libs/api/user.api";
+import { authConfig } from "@/configs/auth.config";
 import { CheckoutWrapper } from "./CheckoutWrapper";
+import { getDictionary } from "@/libs/18n/getDictionary";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { IMainPageProps } from "@/interfaces/page.interface";
 import { SuccessOrder } from "@/components/auth/SuccessOrder/SuccessOrder";
 
 export const dynamic = "force-dynamic";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/configs/auth.config";
-import { getUserInfo } from "@/libs/api/user.api";
 
 export default async function Checkout({
   params,
@@ -23,7 +23,11 @@ export default async function Checkout({
 
   const session = await getServerSession(authConfig);
 
-  const user = await getUserInfo(session?.user?.id || null);
+  let user = null;
+
+  if (session?.user?.id) {
+    user = await getUserInfo(session?.user?.id);
+  }
 
   const successOrder = searchParams?.successOrder;
 

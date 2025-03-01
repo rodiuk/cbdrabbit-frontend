@@ -86,17 +86,16 @@ const CheckoutRes = React.memo(function CheckoutRes({
     }
 
     (async function () {
-      if (!!userData.id) {
-        if (!userData?.loyalty?.percentDiscount) return;
+      if (!userData || !("id" in userData)) return;
+      if (!userData?.loyalty?.percentDiscount) return;
 
-        setUserDiscount(userData?.loyalty?.percentDiscount);
-        setFinalPrice(
-          calculateTotalUserPrice(
-            cart?.totalAmount,
-            userData?.loyalty?.percentDiscount
-          )
-        );
-      }
+      setUserDiscount(userData?.loyalty?.percentDiscount);
+      setFinalPrice(
+        calculateTotalUserPrice(
+          cart?.totalAmount,
+          userData?.loyalty?.percentDiscount
+        )
+      );
     })();
   }, [userData, cart, setFinalPrice, promocode, finalPrice]);
 

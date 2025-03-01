@@ -103,7 +103,6 @@ const Input: React.FC<InputProps> = ({
         }
       });
   }, [validateData]);
-  console.log(isCity, "sss");
   return (
     <label
       className={cn(s.label, {
