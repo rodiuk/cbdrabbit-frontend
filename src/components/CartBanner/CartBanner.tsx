@@ -34,8 +34,7 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const [total] = useAtom(getTotalPriceAtom);
   const pathname = usePathname()?.split("/")?.at(-1);
 
-  // const navPath = `/${lang}/checkout`;
-  const navPath = `/checkout`;
+  const navPath = `/${lang}/checkout`;
 
   const router = useRouter();
 
