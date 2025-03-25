@@ -51,18 +51,16 @@ export default async function Home({ params }: IMainPageProps) {
               lang={params.lang}
             />
           ))}
-			  </ul>
-		  </div>
-		  <div className="container">
-		  <ListSales home={home} />
-		  </div>  
-			  <SplideSlider  className="homeslider" />
-		  
-		  <div className="container">
-		  <HomeBaner />
-		  </div>
-			  
-      
+        </ul>
+      </div>
+      <div className="container">
+        <ListSales home={home} />
+      </div>
+      <SplideSlider className="homeslider" />
+
+      <div className="container">
+        <HomeBaner />
+      </div>
     </main>
   );
 }

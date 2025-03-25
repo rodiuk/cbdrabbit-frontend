@@ -1,7 +1,6 @@
 "use client";
 import InputRadio from "@/components/Ui/InputRadio/InputRadio";
 import React from "react";
-import { string } from "zod";
 
 interface Options {
   id: string;
@@ -24,7 +23,7 @@ const RadioButtonsContainer = ({
 }: Props) => {
   const checkedId =
     deliveryId?.length > 1
-      ? options.filter(el => el.value === deliveryId)[0].id
+      ? options.filter(el => el.text === deliveryId)[0]?.id
       : deliveryId;
 
   return (

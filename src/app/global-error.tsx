@@ -1,4 +1,6 @@
-"use client"; // Error boundaries must be Client Components
+"use client";
+
+import ErrorPage from "@/components/ErrorPage/ErrorPage";
 
 export default function GlobalError({
   error,
@@ -11,8 +13,8 @@ export default function GlobalError({
     // global-error must include html and body tags
     <html>
       <body>
-        <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
+        <ErrorPage />
+        {/* <button onClick={() => reset()}>Try again</button> */}
       </body>
     </html>
   );
