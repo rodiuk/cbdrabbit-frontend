@@ -6,7 +6,11 @@ import s from "./page.module.css";
 
 import errorIcon from "/public/img/errorPage.jpg";
 
-export default function ErrorPage(): React.JSX.Element {
+interface Props {
+  handleReset: () => void;
+}
+
+export default function ErrorPage({ handleReset }: Props): React.JSX.Element {
   return (
     <>
       <main className={cn("container", s.main)}>
@@ -18,6 +22,15 @@ export default function ErrorPage(): React.JSX.Element {
             <p className={s.first}>Якась помилка 🙅</p>
             <p className={s.two}>Спробуйте пізніше</p>
           </div>
+
+          <button
+            className={s.button}
+            onClick={() => {
+              handleReset();
+            }}
+          >
+            Перезавантажити
+          </button>
         </div>
       </main>
     </>

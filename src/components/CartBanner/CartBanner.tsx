@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { useAtom } from "jotai";
-import { usePathname, useRouter } from "next/navigation";
 import { ArrowRightIcon } from "../icons/ArrowRight";
 import { getTotalPriceAtom } from "@/libs/store/atoms";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 import { useProcessUpdateCart } from "@/hooks/useProcessUpdateCart";
 
 import styles from "./CartBanner.module.css";
@@ -37,6 +36,10 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
   const navPath = `/${lang}/checkout`;
 
   const router = useRouter();
+
+  React.useEffect(() => {
+    router.prefetch(navPath);
+  }, [lang, navPath, router]);
 
   const [state, startTransition] = React.useTransition();
 

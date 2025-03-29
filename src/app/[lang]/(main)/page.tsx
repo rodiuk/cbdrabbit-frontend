@@ -10,7 +10,6 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 import cn from "clsx";
 import styles from "./page.module.css";
 import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
-import { Slider } from "@/components/Slider/Slider";
 import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 export async function generateMetadata({
