@@ -1,38 +1,29 @@
 import React from "react";
-import { Metadata } from "next";
-import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import Link from "next/link";
+import Image from "next/image";
+import { Locale } from "../../../i18n.config";
+import { Footer } from "@/components/layout/Footer/Footer";
+import { HeaderLocales } from "@/interfaces/locales.interface";
 
 import cn from "clsx";
 import s from "./page.module.css";
-import { Footer } from "@/components/layout/Footer/Footer";
-import Image from "next/image";
 
 import iconRubbit from "/public/img/last.jpg";
-import Link from "next/link";
-import { getDictionary } from "@/libs/18n/getDictionary";
+import { Header } from "../layout/Header/Header";
 
-export async function generateMetadata({
-  params,
-}: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/notfound`,
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+interface INotFoundPageProps {
+  headerLocales: HeaderLocales;
+  lang: Locale;
 }
 
-export default async function NotFound({ params }: any) {
-  const { lang } = params;
-  const dict = await getDictionary(lang);
-  const { header } = dict;
-
+export default function NotFoundPage({
+  headerLocales,
+  lang,
+}: INotFoundPageProps) {
   return (
     <>
+      <Header lang={lang} />
+
       <main className={cn("container", s.main)}>
         <div className={s.wrap}>
           <div className={s.img}>
@@ -54,7 +45,7 @@ export default async function NotFound({ params }: any) {
           реально?
         </div>
       </main>
-      <Footer lang={lang} titles={header.titles} />
+      <Footer lang={lang} titles={headerLocales.titles} />
     </>
   );
 }

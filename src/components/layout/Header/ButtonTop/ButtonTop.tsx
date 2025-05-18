@@ -1,6 +1,6 @@
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import { useSession } from "next-auth/react";
 
 import s from "./ButtonTop.module.css";
 import { Locale } from "../../../../../i18n.config";
@@ -9,10 +9,10 @@ interface Props {
   lang: Locale;
 }
 
-const ButtonTop = ({ lang }: Props) => {
+const LoginButton = ({ lang }: Props) => {
   const { status } = useSession();
 
-  if (status === "loading") return null;
+  if (status === "loading") return <div className={s.placeholder} />;
 
   const isSignIn = status === "authenticated";
 
@@ -31,4 +31,4 @@ const ButtonTop = ({ lang }: Props) => {
   );
 };
 
-export default ButtonTop;
+export default LoginButton;

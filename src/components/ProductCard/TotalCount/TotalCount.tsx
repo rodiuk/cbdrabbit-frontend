@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
 import { useAtom } from "jotai";
-import { getAllProductsAtom, changeProductCountAtom } from "@/libs/store/atoms";
+import React, { useMemo } from "react";
 import { IProductRes } from "@/interfaces/product.interface";
+import { getAllProductsAtom, changeProductCountAtom } from "@/libs/store/atoms";
 
 import cn from "clsx";
 import styles from "./TotalCount.module.css";
@@ -20,38 +20,29 @@ export const TotalCount = ({
   const [products, _] = useAtom(getAllProductsAtom);
   const [, changeCount] = useAtom(changeProductCountAtom);
 
-  const count =
-    products.find(p => p.productName === product.productName)?.count ?? 0;
-  const [localCount, setLocalCount] = React.useState<string>(count.toString());
-
-  React.useEffect(() => {
-    setLocalCount(count.toString());
-  }, [count]);
-
-  // React.useEffect(() => {
-  //   changeCount({ product, countValue: Number(localCount) });
-  // }, [localCount]);
+  const count = useMemo(() => {
+    return (
+      products.find(p => p.productName === product.productName)?.count ?? 0
+    );
+  }, [products, product.productName]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      if (/^\d*$/.test(value)) {
-        setLocalCount(value);
-      } else {
-        setLocalCount("0");
-      }
+
       changeCount({ product, countValue: Number(value) });
     },
-    []
+    [changeCount, product]
   );
 
   return (
     <input
       className={cn(styles.container, {
-        [styles.disabled]: count <= 0,
-        [styles[className ?? ""]]: className,
+        [styles.disabled]: count !== undefined && count <= 0,
+        [styles.enabled]: count > 0,
+        [styles?.[className ?? ""]]: className !== undefined,
       })}
-      value={localCount}
+      value={count}
       onChange={handleChange}
       suppressHydrationWarning
     />

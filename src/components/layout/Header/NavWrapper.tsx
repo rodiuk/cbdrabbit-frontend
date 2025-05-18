@@ -9,11 +9,13 @@ import { IHeaderDict } from "@/interfaces/i18n.interface";
 import dynamic from "next/dynamic";
 
 const Cart = dynamic(() => import("@/components/layout/Header/Cart/Cart"), {
-  ssr: true,
+  ssr: false,
+  loading: () => <CartCounterSkeleton />,
 });
 
 import styles from "./Header.module.css";
-import ButtonTop from "./ButtonTop/ButtonTop";
+import LoginButton from "./ButtonTop/ButtonTop";
+import { CartCounterSkeleton } from "@/components/skeletons/CartCounterSkeleton";
 
 interface Props {
   lang: Locale;
@@ -30,11 +32,11 @@ export const NavWrapper = ({ lang, dict }: Props): React.JSX.Element => {
   return (
     <>
       <nav className={styles.navigation}>
-			  <ButtonTop lang={lang} />
-			  <div className={styles.headerSwitcher}>
-			  <LocaleSwitcher current={lang} />
-			  </div>
-        
+        <LoginButton lang={lang} />
+        <div className={styles.headerSwitcher}>
+          <LocaleSwitcher current={lang} />
+        </div>
+
         <Cart lang={lang} />
         <Menu toggleMenu={toggleMenu} />
       </nav>

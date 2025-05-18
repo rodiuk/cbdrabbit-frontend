@@ -1,19 +1,23 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { IProductRes } from "@/interfaces/product.interface";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
+import { IProductRes } from "@/interfaces/product.interface";
 
 const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
   ssr: false,
+  loading: () => <CurrentPriceSkeleton />,
 });
 const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
   ssr: false,
+  loading: () => <TotalCountSkeleton />,
 });
 
 import styles from "./ProductCard.module.css";
 import Link from "next/link";
+import { TotalCountSkeleton } from "../skeletons/TotalCountSkeleton";
+import { CurrentPriceSkeleton } from "../skeletons/CurrentPriceSkeleton";
 
 interface Props {
   product: IProductRes;
@@ -84,6 +88,7 @@ export const ProductCard = async ({
         <p className={styles.description}>{description}</p>
 
         <div className={styles.divider} />
+
         {product.isStock ? (
           <ActionBar product={product} />
         ) : (

@@ -16,9 +16,13 @@
 .disabled {
   color: #98979a;
 }
+
+.enabled {
+  color: #112a0b;
+}
+
 .checkout_input {
-	max-width: 60px;
+  max-width: 60px;
 }
 @media (max-width: 767px) {
-	
 }

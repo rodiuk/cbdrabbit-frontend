@@ -39,6 +39,7 @@ import h3d4 from "/public/img/h3d4.jpg";
 import { ILandingsPictures } from "@/interfaces/lending.interface";
 import { Slider } from "@/components/Slider/Slider";
 import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
+import NotFoundPage from "@/components/NotFoundPage/page";
 
 export async function generateMetadata({
   params,
@@ -84,8 +85,8 @@ const landingsPictures: ILandingsPictures[] = [
         descr: "50 мг СBD Ізолят канабідіолу",
         image: h1d3,
       },
-		],
-		accordeon: []
+    ],
+    accordeon: [],
   },
   {
     id: "banana",
@@ -113,7 +114,7 @@ const landingsPictures: ILandingsPictures[] = [
         image: h2d3,
       },
     ],
-	accordeon: []
+    accordeon: [],
   },
   {
     id: "matcha",
@@ -146,7 +147,7 @@ const landingsPictures: ILandingsPictures[] = [
         image: h3d4,
       },
     ],
-	accordeon: []
+    accordeon: [],
   },
 ];
 
@@ -163,7 +164,7 @@ export default async function Landing({ params }: IMainPageProps) {
     (product: any) => product.id === lendId
   );
   if (!productFined || !imagesFined) {
-    return;
+    return <NotFoundPage headerLocales={header} lang={params.lang} />;
   }
 
   return (
@@ -185,9 +186,9 @@ export default async function Landing({ params }: IMainPageProps) {
           />
         </div>
         <Description2 lendId={lendId} texts={landings.about} />
-			  <Accordeon lendId={lendId} content={productFined.accordeon} />
-			  <SplideSlider />
-		{/* <Slider /> */}
+        <Accordeon lendId={lendId} content={productFined.accordeon} />
+        <SplideSlider />
+        {/* <Slider /> */}
         <Buttons
           button1Text={landings.firstButton}
           button2Text={landings.secondButton}

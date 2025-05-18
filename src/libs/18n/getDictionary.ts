@@ -1,5 +1,6 @@
 "use server";
 
+import { Localization } from "@/interfaces/locales.interface";
 import { Locale } from "../../../i18n.config";
 
 // We enumerate all dictionaries here for better linting and typescript support
@@ -9,4 +10,5 @@ const dictionaries = {
   uk: () => import("./dict/uk.json").then(module => module.default),
 };
 
-export const getDictionary = async (locale: Locale) => dictionaries[locale]();
+export const getDictionary = async (locale: Locale): Promise<Localization> =>
+  dictionaries[locale]();
