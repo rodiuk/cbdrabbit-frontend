@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Input from "../Ui/Input/Input";
 import LayShowCities from "./LayShowCities";
@@ -37,9 +37,16 @@ const NovaPost = (props: Props): React.JSX.Element => {
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenFilial, setIsOpenFilial] = React.useState(false);
-  const [sities, setSities] = React.useState([]);
+  const [sities, setSities] = React.useState<any[]>([]);
   const [deliveryRef, setDeliveryRef] = React.useState("");
-  const [arrayNpFilials, setArrayNpFilials] = React.useState([]);
+  const [arrayNpFilials, setArrayNpFilials] = React.useState<any[]>([]);
+
+  // Підвантажуємо філіали при зміні міста або типу доставки
+  useEffect(() => {
+    if (deliveryRef && deliveryId !== "3") {
+      newPostNum("");
+    }
+  }, [deliveryRef, deliveryId]);
 
   const handleRadioChange = (id: string) => {
     setDeliveryId(id);
@@ -61,8 +68,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
   };
   const showLayFilial = () => {
     setIsOpenFilial(true);
-    newPostNum("1");
   };
+
   const selectedCity = (obj: any) => {
     setCity(obj.sity);
     setDeliveryRef(obj.deliveryCity);
@@ -75,7 +82,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
   };
 
   const novaposhtaCities = (e: string) => {
-    let requestData = {
+    const requestData = {
       apiKey: appConfig.NOVA_POSHTA,
       modelName: "Address",
       calledMethod: "searchSettlements",
@@ -85,15 +92,8 @@ const NovaPost = (props: Props): React.JSX.Element => {
       },
     };
 
-    let settings = {
-      method: "post",
-      url: "https://api.novaposhta.ua/v2.0/json/",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: requestData,
-    };
-    axios(settings)
+    axios
+      .post("https://api.novaposhta.ua/v2.0/json/", requestData)
       .then(response => {
         setSities(response.data.data[0].Addresses);
       })
@@ -102,45 +102,31 @@ const NovaPost = (props: Props): React.JSX.Element => {
       });
   };
 
-  const newPostNum = (e: any) => {
-    let requestData = {
+  const newPostNum = (filter: string = "") => {
+    const requestData = {
       apiKey: appConfig.NOVA_POSHTA,
       modelName: "Address",
       calledMethod: "getWarehouses",
       methodProperties: {
-        //CityRef: cityRef,
         CityRef: deliveryRef,
         Language: "ua",
       },
     };
 
-    // Настройка параметров запроса
-    let settings = {
-      method: "post",
-      url: "https://api.novaposhta.ua/v2.0/json/",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: requestData,
-    };
-    axios(settings)
+    axios
+      .post("https://api.novaposhta.ua/v2.0/json/", requestData)
       .then(response => {
-        let results;
-        if (deliveryId === "1") {
-          results = response.data.data.filter((el: any) =>
-            el.CategoryOfWarehouse.includes("Branch")
-          );
-        } else if (deliveryId === "2") {
-          results = response.data.data.filter((el: any) =>
-            el.CategoryOfWarehouse.includes("Postomat")
-          );
-        }
-        const filteredData = results.filter((el: any) => el.Number.includes(e));
-        setArrayNpFilials(filteredData);
+        const byType = response.data.data.filter((el: any) =>
+          deliveryId === "1"
+            ? el.CategoryOfWarehouse.includes("Branch")
+            : el.CategoryOfWarehouse.includes("Postomat")
+        );
+        const filtered = filter
+          ? byType.filter((el: any) => el.Number.includes(filter))
+          : byType;
+        setArrayNpFilials(filtered);
       })
-      .catch(error => {
-        console.error("Ошибка при отправке запроса:", error);
-      });
+      .catch(err => console.error("Ошибка при отправке запроса:", err));
   };
 
   return (
@@ -156,7 +142,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
           <Input
             type="text"
             text="Населений пункт"
-            required={true}
+            required
             name="Населений пункт"
             placeholder="Введи населений пункт"
             showLay={showLay}
@@ -171,22 +157,19 @@ const NovaPost = (props: Props): React.JSX.Element => {
             <Input
               type="text"
               text="Адреса"
-              required={true}
+              required
               name="Адреса"
               value={deliveryAddress}
-              onInputChange={(e: string) => setDeliveryAddress(e)}
+              onInputChange={setDeliveryAddress}
               placeholder="Введи адресу"
-              //  showLay={showLayFilial}
               autoComplete="off"
               validateData={validateData}
-
-              //value={postPoint}
             />
           ) : (
             <Input
               type="text"
               text="Відділення"
-              required={true}
+              required
               name="Відділення"
               placeholder="Введи номер відділення"
               showLay={showLayFilial}
@@ -201,13 +184,10 @@ const NovaPost = (props: Props): React.JSX.Element => {
       )}
 
       <AnimatePresence mode="wait">
-        {isOpen ? ( // для выбора города
+        {isOpen && (
           <motion.div
-            //style={{ height: "100vh" }} этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
-            animate={{
-              opacity: 1 /*  position: "absolute", width: "100%", height: "100vh", left: 0, top: 0  */,
-            }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -218,10 +198,10 @@ const NovaPost = (props: Props): React.JSX.Element => {
               selectedCity={selectedCity}
             />
           </motion.div>
-        ) : null}
-        {isOpenFilial ? (
+        )}
+
+        {isOpenFilial && (
           <motion.div
-            //style={{ height: "100vh" }}  этот стиль удлиняет блок, убираем его
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -235,7 +215,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
               selectedFilial={selectedFilial}
             />
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
     </>
   );
