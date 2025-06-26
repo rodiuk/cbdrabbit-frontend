@@ -32,7 +32,7 @@ export const createUrlForCheckout = async (
         unit: "шт.",
         code: item.id,
         // tax: [0],
-        tax: [1, "Є"],
+        tax: [1],
         uktzed: "uktzedcode",
       })),
     },
