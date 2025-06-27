@@ -91,12 +91,12 @@ import { i18n } from "../i18n.config";
 
 function getLocale(request: NextRequest): string {
   const headers: Record<string, string> = {};
-  request.headers.forEach((value, key) => (headers[key] = value));
+  request.headers.forEach((v, k) => (headers[k] = v));
   const locales = i18n.locales as unknown as string[];
-  const languages = new Negotiator({ headers })
+  const langs = new Negotiator({ headers })
     .languages()
     ?.map(l => l.replace("*", "uk"));
-  return matchLocale(languages, locales, i18n.defaultLocale);
+  return matchLocale(langs, locales, i18n.defaultLocale);
 }
 
 function intlMiddleware(request: NextRequest): NextResponse {
@@ -109,51 +109,60 @@ function intlMiddleware(request: NextRequest): NextResponse {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     url.search = search;
-    return NextResponse.rewrite(url);
+
+    const res = NextResponse.rewrite(url);
+    res.headers.set("Cache-Control", "no-store, max-age=0");
+    return res;
   }
-  return NextResponse.next();
+
+  const res = NextResponse.next();
+  res.headers.set("Cache-Control", "no-store, max-age=0");
+  return res;
 }
 
-// з конфігом сторінки входу
-const authMiddleware = withAuth(() => NextResponse.next(), {
-  callbacks: { authorized: ({ token }) => !!token },
-  pages: { signIn: "/signin" },
-});
+const authMiddleware = withAuth(
+  () => {
+    const res = NextResponse.next();
+    res.headers.set("Cache-Control", "no-store, max-age=0");
+    return res;
+  },
+  {
+    callbacks: { authorized: ({ token }) => !!token },
+    pages: { signIn: "/signin" },
+  }
+);
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1) Пропускаємо NextAuth API та сторінку входу
-  if (
-    pathname.startsWith("/api/auth") ||
-    pathname === "/signin" ||
-    pathname.startsWith("/api/webhooks") // якщо є інші API, додайте сюди
-  ) {
-    return NextResponse.next();
+  if (pathname.startsWith("/api/auth") || pathname === "/signin") {
+    const res = NextResponse.next();
+    res.headers.set("Cache-Control", "no-store, max-age=0");
+    return res;
   }
 
-  // 2) Інтернаціоналізація для всіх публічних маршрутів
-  const intlResult = intlMiddleware(request);
-  if (intlResult !== NextResponse.next()) {
-    return intlResult;
-  }
+  // 2) Intl
+  const intlRes = intlMiddleware(request);
+  if (intlRes) return intlRes;
 
-  // 3) Захищені маршрути (/profile, /orders) з урахуванням локалі
+  // 3) Захищені маршрути
   const protectedPaths = ["profile", "orders"];
-  const isProtected = protectedPaths.some(p =>
+  const isProtected = protectedPaths?.some(p =>
     i18n.locales.some(loc => pathname.startsWith(`/${loc}/${p}`))
   );
   if (isProtected) {
     return authMiddleware(request as any, request as any);
   }
 
-  // 4) Все інше — просто пропускаємо
-  return NextResponse.next();
+  // 4) Інші — лише no-cache
+  const res = NextResponse.next();
+  res.headers.set("Cache-Control", "no-store, max-age=0");
+  return res;
 }
 
 export const config = {
   matcher: [
-    // всі шляхи, крім статики й image optimizer
     "/((?!_next/static|_next/image|favicon.ico|robots.txt|site.webmanifest).*)",
   ],
 };
