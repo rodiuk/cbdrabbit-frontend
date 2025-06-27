@@ -6,11 +6,11 @@ import { ProductCard } from "@/components/ProductCard/ProductCard";
 import { IProductRes } from "@/interfaces/product.interface";
 import ListSales from "@/components/ListSales/ListSales";
 import { getDictionary } from "@/libs/18n/getDictionary";
+import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
+import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
-import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 export async function generateMetadata({
   params,

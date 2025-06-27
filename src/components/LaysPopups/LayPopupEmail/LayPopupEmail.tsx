@@ -5,38 +5,38 @@ import Input from "@/components/Ui/Input/Input";
 import { IProfileDict } from "@/interfaces/i18n.interface";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
 import { updateEmailRequest } from "@/libs/api/user.api";
-import { useSession } from "next-auth/react";
 
 import s from "./LayPopupEmail.module.css";
+import { Session } from "next-auth";
 
 interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
   lang: string;
+  user: Session["user"] | null;
 }
- 
+
 const LayPopupEmail = (props: Props): React.JSX.Element => {
   const { bottomBlock, dict, lang } = props;
   const pathname = usePathname();
   const router = useRouter();
-  const { data } = useSession();
   const [email, setEmail] = React.useState<string>("");
   const [hasError, setHasError] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+  const maskedEmail = maskEmailAddress(props?.user?.email ?? "");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const validEmail = emailRegex.test(email);
 
   const handleChangeEmail = async () => {
-    if (!email?.length || !validEmail || !data?.user?.email)
+    if (!email?.length || !validEmail || !props?.user?.email)
       return setHasError(true);
 
     try {
       setIsLoading(true);
 
-      const res = await updateEmailRequest(data.user.email, email, lang);
+      const res = await updateEmailRequest(props.user.email, email, lang);
       if ("error" in res) return setHasError(true);
 
       router.push(pathname + `?newEmail=${email}`);

@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { PopupWrapper } from "./PopupWrapper";
 import ProfileTablet from "./ProfileTablet";
 import ProfileMobile from "./ProfileMobile";
-import { useSession } from "next-auth/react";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { getUserInfo } from "@/libs/api/user.api";
 import {
@@ -13,6 +12,7 @@ import {
   IProfileDict,
   IRecoveryPasswordDict,
 } from "@/interfaces/i18n.interface";
+import { Session } from "next-auth";
 
 interface Props {
   currency: string;
@@ -20,11 +20,11 @@ interface Props {
   recoveryDict: IRecoveryPasswordDict;
   checkoutDict: ICheckoutDict;
   lang: string;
+  user: Session["user"] | null;
 }
 
 export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
   const { currency, profileDict, checkoutDict, recoveryDict, lang } = props;
-  const { data, status } = useSession();
   const [user, setUser] = React.useState<IUserProfile | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [actualLay, setActualLay] = React.useState("");
@@ -32,19 +32,19 @@ export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
 
   React.useEffect(() => {
     (async function fetchUser() {
-      if (data?.user?.id) {
-        const userInfo = await getUserInfo(data.user.id);
+      if (props?.user?.id) {
+        const userInfo = await getUserInfo(props?.user?.id);
         setUser(userInfo ?? null);
       }
     })();
-  }, [data?.user?.id, searchParams, isOpen]);
+  }, [props?.user?.id, searchParams, isOpen]);
 
   const handleInfoSet = (info: string) => {
     setActualLay(info);
     setIsOpen(!!info);
   };
 
-  if (status === "loading") return null;
+  if (!user) return <></>;
 
   return (
     <>
@@ -53,6 +53,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
         currency={currency}
         bottomBlock={handleInfoSet}
         profileDict={profileDict}
+        userSession={props.user}
       />
 
       <ProfileMobile
@@ -60,6 +61,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
         profileDict={profileDict}
         currency={currency}
         bottomBlock={handleInfoSet}
+        userSession={props.user}
       />
 
       <PopupWrapper
@@ -71,6 +73,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
         checkoutDict={checkoutDict}
         user={user}
         lang={lang}
+        userSession={props.user}
       />
     </>
   );

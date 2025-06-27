@@ -7,6 +7,8 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 
 import cn from "clsx";
 import styles from "./Header.module.css";
+import { authConfig } from "@/configs/auth.config";
+import { getServerSession, Session } from "next-auth";
 
 interface Props {
   lang: Locale;
@@ -18,6 +20,7 @@ export const Header = async ({
   stylesName,
 }: Props): Promise<React.JSX.Element> => {
   const dict = await getDictionary(lang);
+  const session = await getServerSession(authConfig);
 
   return (
     <header
@@ -28,7 +31,12 @@ export const Header = async ({
         {" "}
         {/* этот класс - он для ограничения, глобальный */}
         <LogoContainer lang={lang} />
-        <NavWrapper lang={lang} dict={dict.header} />
+        <NavWrapper
+          lang={lang}
+          session={session}
+          dict={dict.header}
+          isAuthenticated={!!session?.user?.id}
+        />
       </div>
       <div className="container">
         <PageTitle lang={lang} />

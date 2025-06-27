@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useAtom } from "jotai";
+import { signIn } from "next-auth/react";
 import { Promocode } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { cartAtom } from "@/libs/store/atoms";
@@ -9,7 +10,6 @@ import TabletCheckout from "./TabletCheckout";
 import MobileCheckout from "./MobileCheckout";
 import { constants } from "@/configs/constants";
 import { createOrder } from "@/libs/api/order.api";
-import { signIn, useSession } from "next-auth/react";
 import useLocalStorage from "@/hooks/useLocaleStorage";
 import { createOrderEmail } from "@/libs/api/emails.api";
 import { IOrderCreate } from "@/interfaces/order.interface";
@@ -17,11 +17,13 @@ import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
+import { Session } from "next-auth";
 
 interface Props {
   dict: any;
   currency: string;
   userData: any;
+  user: Session["user"] | null;
   lang?: string;
 }
 
@@ -42,8 +44,8 @@ export const CheckoutWrapper = ({
   userData,
   currency,
   lang,
+  user,
 }: Props): React.JSX.Element => {
-  const { data } = useSession();
   const router = useRouter();
   const [city, setCity] = React.useState<string>("");
   const [postPoint, setPostPoint] = React.useState<string>("");
@@ -170,7 +172,7 @@ export const CheckoutWrapper = ({
       const totalCalcSum = finalPrice > 0 ? finalPrice : cart.totalAmount;
 
       const payload: IOrderCreate = {
-        userId: data?.user?.id,
+        userId: user?.id,
         firstName: userInfo?.firstName,
         lastName: userInfo?.lastName,
         email: userInfo?.email,

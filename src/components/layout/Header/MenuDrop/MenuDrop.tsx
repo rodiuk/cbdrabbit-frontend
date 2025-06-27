@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import Close from "@/components/icons/Close";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import RabbitWiteIcon from "@/components/icons/RabbitWiteIcon";
 import { IHeaderDict } from "@/interfaces/i18n.interface";
@@ -18,18 +17,17 @@ import svd_icon from "/public/img/svd_icon.svg";
 import my_page_icon from "/public/img/my_page_icon.svg";
 import my_orders from "/public/img/my_orders.svg";
 import { LocaleSwitcher } from "../../LocaleSwitcher/LocaleSwitcher";
+import { Session } from "next-auth";
 
 interface Props {
   toggleMenu: () => void;
   lang: Locale;
   dict: IHeaderDict;
+  session: Session | null;
 }
 
 const MenuDrop = (props: Props) => {
   const { toggleMenu, lang, dict } = props;
-  const { status } = useSession();
-
-  if (status === "loading") return null;
 
   const titles = dict.titles;
 
@@ -46,7 +44,7 @@ const MenuDrop = (props: Props) => {
     privacy,
     policy,
   } = titles;
-  const isSignIn = status === "authenticated";
+  const isSignIn = !!props?.session?.user?.id;
 
   const handleSignOut = () => {
     signOut();
@@ -57,9 +55,7 @@ const MenuDrop = (props: Props) => {
     <div
       className={s.menu}
       onClick={e => e.currentTarget === e.target && toggleMenu()}
-	  >
-		  
-		  
+    >
       <div className={s.mnu}>
         {!isSignIn && (
           <Link
@@ -185,9 +181,9 @@ const MenuDrop = (props: Props) => {
             <TelegrammIcon />
           </a>
         </div> */}
-			  <div className={s.localeSwitcher}>
-		  <LocaleSwitcher current={lang} />
-		  </div>
+        <div className={s.localeSwitcher}>
+          <LocaleSwitcher current={lang} />
+        </div>
         <div className={s.close} onClick={() => toggleMenu()}>
           <Close />
         </div>

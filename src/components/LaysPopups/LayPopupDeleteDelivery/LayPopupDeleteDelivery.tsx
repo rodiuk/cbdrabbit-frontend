@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { updateDeliveryInfo } from "@/libs/api/user.api";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
 import ButtonRed from "@/components/Ui/Button/ButtonRed";
@@ -10,14 +9,15 @@ import cn from "clsx";
 import s from "./LayPopupDeleteDelivery.module.css";
 
 import deleteAkkIcon from "/public/img/clean.jpg";
+import { Session } from "next-auth";
 
 interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
+  user: Session["user"] | null;
 }
 
-const LayPopupDeleteDelivery = ({ bottomBlock, dict }: Props) => {
-  const { data } = useSession();
+const LayPopupDeleteDelivery = ({ bottomBlock, dict, user }: Props) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
@@ -26,11 +26,11 @@ const LayPopupDeleteDelivery = ({ bottomBlock, dict }: Props) => {
   };
 
   const handleDeleteDelivery = async () => {
-    if (!data?.user?.id) return;
+    if (!user?.id) return;
     try {
       setIsLoading(true);
 
-      await updateDeliveryInfo(data.user.id, {
+      await updateDeliveryInfo(user.id, {
         firstName: "",
         lastName: "",
         phoneNumber: "",

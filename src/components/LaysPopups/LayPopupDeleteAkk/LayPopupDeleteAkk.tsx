@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { deleteAccount } from "@/libs/api/user.api";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
 import ButtonRed from "@/components/Ui/Button/ButtonRed";
@@ -10,14 +10,15 @@ import cn from "clsx";
 import s from "./LayPopupDeleteAkk.module.css";
 
 import deleteAkkIcon from "/public/img/deleteAkk.svg";
+import { Session } from "next-auth";
 
 interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
+  user: Session["user"] | null;
 }
 
-const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
-  const { data } = useSession();
+const LayPopupDeleteAkk = ({ bottomBlock, dict, user }: Props) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
@@ -26,11 +27,11 @@ const LayPopupDeleteAkk = ({ bottomBlock, dict }: Props) => {
   };
 
   const handleDeleteAccount = async () => {
-    if (!data?.user?.id) return;
+    if (!user?.id) return;
     try {
       setIsLoading(true);
 
-      await deleteAccount(data?.user?.id);
+      await deleteAccount(user?.id);
       signOut();
     } catch (error) {
       console.log(error);

@@ -40,6 +40,7 @@ export default async function Checkout({
                 userData={user}
                 currency={dict.currency}
                 lang={lang}
+                user={session?.user || null}
               />
             </div>
           )}

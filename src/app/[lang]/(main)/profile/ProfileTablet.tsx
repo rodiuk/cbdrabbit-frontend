@@ -7,7 +7,6 @@ import { ArrowDownIcon } from "@/components/icons/ArrowDown";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { maskEmailAddress } from "@/utils/maskEmailAddress";
 import { IProfileDict } from "@/interfaces/i18n.interface";
-import { useSession } from "next-auth/react";
 import { UserDeliveryInfoSection } from "@/components/UserDeliveryInfoSection/UserDeliveryInfoSection";
 import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
 
@@ -15,19 +14,20 @@ import s from "./page.module.css";
 
 import np from "/public/img/np.svg";
 import ProfileDetail from "@/components/Profile/ProfileDetail/ProfileDetail";
+import { Session } from "next-auth";
 
 interface Props {
   user: IUserProfile | null;
   currency: string;
   bottomBlock: (info: string) => void;
   profileDict: IProfileDict;
+  userSession: Session["user"] | null;
 }
 
 const ProfileTablet = (props: Props) => {
   const { user, currency, bottomBlock, profileDict } = props;
-  const { data } = useSession();
   const [showDetail, setShowDetail] = React.useState(true);
-  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+  const maskedEmail = maskEmailAddress(props?.userSession?.email ?? "");
 
   let maxSale = 12;
 

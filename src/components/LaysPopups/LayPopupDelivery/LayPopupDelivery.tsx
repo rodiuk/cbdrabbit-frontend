@@ -3,12 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
-import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import { ICheckoutDict, IProfileDict } from "@/interfaces/i18n.interface";
 import Button from "@/components/Ui/Button/Button";
 import ButtonRed from "@/components/Ui/Button/ButtonRed";
-import { useSession } from "next-auth/react";
 import { getUserInfo, updateDeliveryInfo } from "@/libs/api/user.api";
 import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
 
@@ -16,11 +14,13 @@ import s from "./LayPopupDelivery.module.css";
 
 import np from "/public/img/np.svg";
 import UserCheckoutFormRow from "@/components/UserCheckoutFormRow/UserCheckoutFormRow";
+import { Session } from "next-auth";
 
 interface Props {
   bottomBlock: (e: string) => void;
   profileDict: IProfileDict;
   checkoutDict: ICheckoutDict;
+  user: Session["user"] | null;
 }
 
 const LayPopupDelivery = (props: Props): React.JSX.Element => {
@@ -37,13 +37,12 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
   const [isLoadingSave, setIsLoadingSave] = React.useState(false);
   const [isLoadingReset, setIsLoadingReset] = React.useState(false);
   const [deliveryAddress, setDeliveryAddress] = React.useState<string>("");
-  const { data } = useSession();
 
   React.useEffect(() => {
     (async function fetchUser() {
       try {
-        if (!data?.user?.id) return;
-        const res = await getUserInfo(data.user.id);
+        if (!props?.user?.id) return;
+        const res = await getUserInfo(props.user.id);
         setUserInfo({
           firstName: res?.firstName ?? "",
           lastName: res?.lastName ?? "",
@@ -57,11 +56,11 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
         console.log(error);
       }
     })();
-  }, [data?.user?.id]);
+  }, [props?.user?.id]);
 
   const handleUpdateDelivery = async () => {
     try {
-      if (!data?.user?.id) return;
+      if (!props?.user?.id) return;
       setIsLoadingSave(true);
       const payload = {
         firstName: userInfo.firstName,
@@ -74,7 +73,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
           deliveryId,
       };
 
-      await updateDeliveryInfo(data.user.id, payload);
+      await updateDeliveryInfo(props.user.id, payload);
       bottomBlock("");
     } catch (error) {
       console.log(error);

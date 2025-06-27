@@ -5,7 +5,6 @@ import { Scripts } from "@/components/layout/Scripts";
 import { i18n } from "../../../../i18n.config";
 import { IPageParams } from "@/interfaces/page.interface";
 
-
 import { fonts } from "../fonts";
 import cn from "clsx";
 import "../globals.css";

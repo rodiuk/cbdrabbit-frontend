@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Button from "@/components/Ui/Button/Button";
 import PencilIcon from "@/components/icons/PencilIcon";
@@ -16,20 +15,21 @@ import np from "/public/img/np.svg";
 import s from "./page.module.css";
 import ProfileDetailMax from "@/components/Profile/ProfileDetailMax/ProfileDetailMax";
 import ProfileDetail from "@/components/Profile/ProfileDetail/ProfileDetail";
+import { Session } from "next-auth";
 
 interface Props {
   user: IUserProfile | null;
   profileDict: IProfileDict;
   currency: string;
   bottomBlock: (info: string) => void;
+  userSession: Session["user"] | null;
 }
 
 const ProfileMobile = (props: Props): React.JSX.Element => {
   const { user, profileDict, currency, bottomBlock } = props;
-  const { data } = useSession();
   const [showDetail, setShowDetail] = React.useState(true);
 
-  const maskedEmail = maskEmailAddress(data?.user?.email ?? "");
+  const maskedEmail = maskEmailAddress(props?.userSession?.email ?? "");
   let maxSale = 12;
   return (
     <div className={s.wrap_mobile}>

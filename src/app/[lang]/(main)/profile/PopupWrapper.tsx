@@ -18,6 +18,7 @@ import LayPopupDeleteAkk from "@/components/LaysPopups/LayPopupDeleteAkk/LayPopu
 import LayPopupDeleteDelivery from "@/components/LaysPopups/LayPopupDeleteDelivery/LayPopupDeleteDelivery";
 
 import s from "./page.module.css";
+import { Session } from "next-auth";
 
 interface Props {
   isOpen: boolean;
@@ -27,6 +28,7 @@ interface Props {
   profileDict: IProfileDict;
   checkoutDict: ICheckoutDict;
   user: IUserProfile | null;
+  userSession: Session["user"] | null;
   lang: string;
 }
 
@@ -40,6 +42,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
     user,
     recoveryDict,
     lang,
+    userSession,
   } = props;
 
   return (
@@ -55,6 +58,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
         >
           {actualLay === "email" && (
             <LayPopupEmail
+              user={userSession}
               bottomBlock={handleInfo}
               dict={profileDict}
               lang={lang}
@@ -95,6 +99,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
 
           {actualLay === "delivery" && (
             <LayPopupDelivery
+              user={userSession}
               bottomBlock={handleInfo}
               profileDict={profileDict}
               checkoutDict={checkoutDict}
@@ -103,13 +108,18 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
 
           {actualLay === "deleteDelivery" && (
             <LayPopupDeleteDelivery
+              user={userSession}
               bottomBlock={handleInfo}
               dict={profileDict}
             />
           )}
 
           {actualLay === "deleteAccount" && (
-            <LayPopupDeleteAkk bottomBlock={handleInfo} dict={profileDict} />
+            <LayPopupDeleteAkk
+              user={userSession}
+              bottomBlock={handleInfo}
+              dict={profileDict}
+            />
           )}
         </motion.div>
       ) : null}

@@ -42,9 +42,11 @@ export default async function RootLayout({
   const dict = await getDictionary(params.lang);
 
   return (
-    <html lang={params.lang} suppressHydrationWarning>
-      <body className={cn(fonts.manrope.variable, fonts.merriweather.variable)}>
-        <Providers>
+    <Providers>
+      <html lang={params.lang} suppressHydrationWarning>
+        <body
+          className={cn(fonts.manrope.variable, fonts.merriweather.variable)}
+        >
           <Header lang={params.lang} />
           {children}
 
@@ -58,10 +60,10 @@ export default async function RootLayout({
           <Suspense fallback={null}>
             <LabelListener />
           </Suspense>
-        </Providers>
 
-        {isProduction && <Scripts />}
-      </body>
-    </html>
+          {isProduction && <Scripts />}
+        </body>
+      </html>
+    </Providers>
   );
 }
