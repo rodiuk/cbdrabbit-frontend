@@ -17,10 +17,7 @@ interface Props {
   externalPath?: string;
 }
 
-export const SignInPassword = ({
-  dict,
-  externalPath,
-}: Props): React.JSX.Element => {
+const SignInPassword = ({ dict, externalPath }: Props): React.JSX.Element => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const userEmail = searchParams?.get("email");
@@ -96,3 +93,5 @@ export const SignInPassword = ({
     </section>
   );
 };
+
+export default SignInPassword;

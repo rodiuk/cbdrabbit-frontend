@@ -2,7 +2,8 @@ import React from "react";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { SuccessAction } from "@/components/auth/SuccessAction";
-import { SignInPassword } from "@/components/forms/auth/SignInPassword";
+// import  SignInPassword  from "@/components/forms/auth/SignInPassword";
+
 import { SignInEmailForm } from "@/components/forms/auth/SignInEmailForm";
 import { SuccessEmailChange } from "@/components/auth/SuccessEmailChange";
 import { RecoveryPassword } from "@/components/forms/auth/RecoveryPassword";
@@ -11,8 +12,14 @@ import { SignInNotExistEmail } from "@/components/forms/auth/SignInNotExistEmail
 import { AskRecoveryPassword } from "@/components/auth/RecoveryPassword/AskRecoveryPassword";
 import { EmailOnRecoverySendedSuccess } from "@/components/auth/RecoveryPassword/EmailOnRecoverySendedSuccess";
 
+const SignInPassword = dynamic(
+  () => import("@/components/forms/auth/SignInPassword"),
+  { ssr: false }
+);
+
 import cn from "clsx";
 import styles from "./page.module.css";
+import dynamic from "next/dynamic";
 
 export default async function About({ params, searchParams }: IMainPageProps) {
   const email = searchParams?.email;
