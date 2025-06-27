@@ -17,13 +17,10 @@ const GoogleButton = ({ label, externalPath }: Props): React.JSX.Element => {
       type="button"
       aria-label={label}
       className={styles.container}
-      onClick={async () =>
-        await signIn("google", {
+      onClick={() =>
+        signIn("google", {
           redirect: true,
-          callbackUrl:
-            externalPath && externalPath?.length > 0
-              ? externalPath
-              : "/profile",
+          callbackUrl: !!externalPath ? externalPath : "/profile",
         })
       }
     >

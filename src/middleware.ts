@@ -67,6 +67,8 @@ export function middleware(request: NextRequest) {
   const publicPathnameRegex = RegExp(excludePattern, "i");
   const isPublicPage = !publicPathnameRegex.test(request.nextUrl.pathname);
 
+  request.headers.set("Cache-Control", "no-store, max-age=0");
+
   if (isPublicPage) {
     return intlMiddleware(request);
   } else {

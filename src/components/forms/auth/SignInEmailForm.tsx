@@ -105,9 +105,7 @@ export const SignInEmailForm = ({
 
       <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
 
-      <Suspense>
-        <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
-      </Suspense>
+      <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
       {/* <div className={styles.add_akk}>
 			  <Link href="/" className={styles.akk}>
 			  Створити акаунт

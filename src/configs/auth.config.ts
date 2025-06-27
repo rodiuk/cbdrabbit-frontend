@@ -9,6 +9,7 @@ import {
   getUserById,
 } from "@/libs/api/user.api";
 import { User } from "@prisma/client";
+import NextAuth from "next-auth";
 
 export const authConfig: AuthOptions = {
   providers: [
@@ -126,3 +127,5 @@ export const authConfig: AuthOptions = {
     signIn: "/signIn",
   },
 };
+
+export const handler = NextAuth(authConfig);

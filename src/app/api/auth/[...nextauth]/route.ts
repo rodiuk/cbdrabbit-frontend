@@ -1,6 +1,3 @@
-import { authConfig } from "@/configs/auth.config";
-import NextAuth from "next-auth/next";
-
-const handler = NextAuth(authConfig);
+import { handler } from "@/configs/auth.config";
 
 export { handler as GET, handler as POST };
