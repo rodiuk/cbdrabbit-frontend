@@ -1,18 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";
-import { GoogleButton } from "@/components/GoogleButton/GoogleButton";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+// import { GoogleButton } from "@/components/GoogleButton/GoogleButton";
 import { createQueryString } from "@/utils/createQueryString";
-import { ISignInEmailDict } from "@/interfaces/auth.interface";
 import { checkIsUserExistByEmail } from "@/libs/api/user.api";
+import { ISignInEmailDict } from "@/interfaces/auth.interface";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+const GoogleButton = dynamic(
+  () => import("@/components/GoogleButton/GoogleButton"),
+  { ssr: false }
+);
 
 import icon_1 from "/public/img/icon_1.svg";
 
 import styles from "./styles.module.css";
+import dynamic from "next/dynamic";
 
 interface Props {
   dict: ISignInEmailDict;
@@ -100,7 +106,9 @@ export const SignInEmailForm = ({
 
       <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
 
-      <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
+      <Suspense>
+        <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
+      </Suspense>
       {/* <div className={styles.add_akk}>
 			  <Link href="/" className={styles.akk}>
 			  Створити акаунт

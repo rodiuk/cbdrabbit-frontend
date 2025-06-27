@@ -11,10 +11,7 @@ interface Props {
   externalPath?: string;
 }
 
-export const GoogleButton = ({
-  label,
-  externalPath,
-}: Props): React.JSX.Element => {
+const GoogleButton = ({ label, externalPath }: Props): React.JSX.Element => {
   return (
     <button
       type="button"
@@ -32,3 +29,5 @@ export const GoogleButton = ({
     </button>
   );
 };
+
+export default GoogleButton;
