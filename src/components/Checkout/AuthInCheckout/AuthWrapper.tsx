@@ -1,9 +1,15 @@
 import React from "react";
 import { useSearchParams } from "next/navigation";
-import { SignInPassword } from "@/components/forms/auth/SignInPassword";
+// import { SignInPassword } from "@/components/forms/auth/SignInPassword";
 import { SignInEmailForm } from "@/components/forms/auth/SignInEmailForm";
 
+const SignInPassword = dynamic(
+  () => import("@/components/forms/auth/SignInPassword"),
+  { ssr: false }
+);
+
 import s from "./AuthInCheckout.module.css";
+import dynamic from "next/dynamic";
 
 interface AuthWrapperProps {
   dict: any;
