@@ -9,6 +9,7 @@ export const getAllProducts = async (lang: string) => {
     const product = await prisma.product.findMany({
       where: {
         locale: lang,
+        isStock: true,
       },
       select: productSelect,
     });

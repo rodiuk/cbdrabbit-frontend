@@ -12,7 +12,6 @@ import { Locale } from "../../../../i18n.config";
 interface Props {
   lang: Locale;
   langId: string;
-
 }
 
 const SelectButtons = ({ lang, langId }: Props) => {
@@ -40,7 +39,7 @@ const SelectButtons = ({ lang, langId }: Props) => {
         <Image src={ic2} alt="Rabbit Banana" width={48} height={48} /> Rabbit
         Banana
       </Link>
-      <Link
+      {/* <Link
         className={cn(s.productPage_selectButton, {
           [s.red]: langId === "classic",
           [s.green]: langId === "matcha",
@@ -50,7 +49,7 @@ const SelectButtons = ({ lang, langId }: Props) => {
       >
         <Image src={ic3} alt="Rabbit Matcha" width={48} height={48} /> Rabbit
         Matcha
-      </Link>
+      </Link> */}
     </div>
   );
 };

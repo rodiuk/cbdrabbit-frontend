@@ -116,39 +116,39 @@ const landingsPictures: ILandingsPictures[] = [
     ],
     accordeon: [],
   },
-  {
-    id: "matcha",
-    title1: "БІЛИЙ ШОКОЛАД",
-    title2: "КОКОСОВЕ МОЛОКО",
-    title3: `МАНГО МАТЧА 50mg\u00A0CBD`,
-    image1: banan3,
-    image2: banana3_2,
-    image3: banana3_3,
-    image3_mob: banana3_3_mob,
-    description: [
-      {
-        id: 1,
-        descr: "Крафтовий білий шоколад на кокосовому молоці",
-        image: h3d1,
-      },
-      {
-        id: 2,
-        descr: "Матча Японський тонізуючий чай",
-        image: h3d2,
-      },
-      {
-        id: 3,
-        descr: "Cублімований манго",
-        image: h3d3,
-      },
-      {
-        id: 4,
-        descr: "50 мг СBD Ізолят канабідіолу",
-        image: h3d4,
-      },
-    ],
-    accordeon: [],
-  },
+  // {
+  //   id: "matcha",
+  //   title1: "БІЛИЙ ШОКОЛАД",
+  //   title2: "КОКОСОВЕ МОЛОКО",
+  //   title3: `МАНГО МАТЧА 50mg\u00A0CBD`,
+  //   image1: banan3,
+  //   image2: banana3_2,
+  //   image3: banana3_3,
+  //   image3_mob: banana3_3_mob,
+  //   description: [
+  //     {
+  //       id: 1,
+  //       descr: "Крафтовий білий шоколад на кокосовому молоці",
+  //       image: h3d1,
+  //     },
+  //     {
+  //       id: 2,
+  //       descr: "Матча Японський тонізуючий чай",
+  //       image: h3d2,
+  //     },
+  //     {
+  //       id: 3,
+  //       descr: "Cублімований манго",
+  //       image: h3d3,
+  //     },
+  //     {
+  //       id: 4,
+  //       descr: "50 мг СBD Ізолят канабідіолу",
+  //       image: h3d4,
+  //     },
+  //   ],
+  //   accordeon: [],
+  // },
 ];
 
 export default async function Landing({ params }: IMainPageProps) {
