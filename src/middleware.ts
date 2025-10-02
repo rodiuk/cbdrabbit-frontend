@@ -82,7 +82,6 @@
 //   ],
 // };
 
-// middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { withAuth } from "next-auth/middleware";
 import Negotiator from "negotiator";
@@ -105,7 +104,9 @@ function intlMiddleware(request: NextRequest): NextResponse {
     loc => !pathname.startsWith(`/${loc}/`) && pathname !== `/${loc}`
   );
   if (missingLocale) {
-    const locale = getLocale(request);
+    // const locale = getLocale(request);
+    console.log(getLocale(request));
+    const locale = "uk";
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     url.search = search;

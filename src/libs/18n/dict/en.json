@@ -20,7 +20,7 @@
       "buy": "Buy",
       "cabinet": "My office",
       "candies": "CBD candies"
-    }, 
+    },
     "links": {
       "signIn": "SignIn / SignUp",
       "profile": "My Profile",
@@ -221,7 +221,7 @@
     "product": {
       "firstOrder": "Rabbit Classic candy is a gift for the first order",
       "notAvailable": "Not available yet",
-      "discountLabel": "Every 7th candy is a gift",
+      "discountLabel": "Buy 7, get 1 as a gift",
       "discountList": [
         "1-5 шт - 85 uah/candy",
         "6-10 шт - 82 uah/candy",
@@ -263,19 +263,19 @@
           }
         ],
         "weightCandy": "1 candy  - 8g",
-		"accordeon": [
-		  { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
-		  {
-			"id": "2",
-			"title": "Storage",
-			"text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
-		  },
-		  {
-			"id": "3",
-			"title": "Сomposition",
-			"text": "composition composition composition"
-		  }
-		]
+        "accordeon": [
+          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "2",
+            "title": "Storage",
+            "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
+          },
+          {
+            "id": "3",
+            "title": "Сomposition",
+            "text": "composition composition composition"
+          }
+        ]
       },
       {
         "id": "banana",
@@ -298,19 +298,19 @@
           }
         ],
         "weightCandy": "1 candy  - 8g",
-		"accordeon": [
-		  { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
-		  {
-			"id": "2",
-			"title": "Storage",
-			"text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
-		  },
-		  {
-			"id": "3",
-			"title": "Сomposition",
-			"text": "composition composition composition"
-		  }
-		]
+        "accordeon": [
+          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "2",
+            "title": "Storage",
+            "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
+          },
+          {
+            "id": "3",
+            "title": "Сomposition",
+            "text": "composition composition composition"
+          }
+        ]
       },
       {
         "id": "matcha",
@@ -337,19 +337,19 @@
           }
         ],
         "weightCandy": "1 candy  - 8g",
-		"accordeon": [
-		  { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
-		  {
-			"id": "2",
-			"title": "Storage",
-			"text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
-		  },
-		  {
-			"id": "3",
-			"title": "Сomposition",
-			"text": "composition composition composition"
-		  }
-		]
+        "accordeon": [
+          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "2",
+            "title": "Storage",
+            "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
+          },
+          {
+            "id": "3",
+            "title": "Сomposition",
+            "text": "composition composition composition"
+          }
+        ]
       }
     ],
     "about": [
