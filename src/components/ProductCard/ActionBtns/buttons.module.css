@@ -15,41 +15,42 @@
 
 .container:hover {
   cursor: pointer;
-  background: #79BD6B;
+  background: #79bd6b;
 }
 .container:active {
-  background: #55A146;
+  background: #55a146;
 }
 .container:focus-visible {
-	border: 4px solid #0D9AD6;
+  border: 4px solid #0d9ad6;
 }
 
 .disabled {
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
   background: none;
   cursor: not-allowed;
-  color: #DBDBDB;
+  color: #dbdbdb;
 }
 
 .icon {
   color: inherit;
 }
 .decrement {
-	background: transparent;
-	border: 1px solid #CBCBCB;
+  background: transparent;
+  border: 1px solid #cbcbcb;
 }
 .decrement:hover {
-    background: #F5FAF3;
-	border: 1px solid #9BD28F;
+  background: #f5faf3;
+  border: 1px solid #9bd28f;
 }
 .decrement:focus-visible {
-    border: 4px solid #0D9AD6;
+  border: 4px solid #0d9ad6;
 }
 .decrement:active {
-    background: #E7F5E3;
-    border: 1px solid #9BD28F
+  background: #e7f5e3;
+  border: 1px solid #9bd28f;
 }
-.decrement:disabled, .button.disabled {
-    background: #DBDBDB;
-    color: #DBDBDB;
+.decrement:disabled,
+.button.disabled {
+  background: #dbdbdb;
+  color: #dbdbdb;
 }

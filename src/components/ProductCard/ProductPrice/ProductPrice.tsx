@@ -24,6 +24,7 @@ const ProductPrice = ({
 
   return (
     <div className={styles.container} suppressHydrationWarning>
+      <span className={styles.currency}>{currency}</span>
       <p
         className={cn(styles.current, {
           [styles.crossed]: hasPriceChange,
@@ -32,7 +33,6 @@ const ProductPrice = ({
         {defaultPrice}
       </p>
       {hasPriceChange && <p className={styles.sale}>{newPrice}</p>}
-      {currency}
     </div>
   );
 };

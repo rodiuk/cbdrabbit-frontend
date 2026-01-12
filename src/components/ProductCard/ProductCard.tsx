@@ -5,6 +5,8 @@ import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IProductRes } from "@/interfaces/product.interface";
 
+import cn from "clsx";
+
 const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
   ssr: false,
   loading: () => <CurrentPriceSkeleton />,
@@ -30,15 +32,24 @@ export const ProductCard = async ({
 }: Props): Promise<React.JSX.Element> => {
   const { productName, description, price, properties } = product;
 
+  const filteredProperties = properties?.filter(
+    property => !property.label?.includes("CBD")
+  );
+  const cbdProperty = properties?.find(property =>
+    property.label?.includes("CBD")
+  );
+
   const currency = (await getDictionary(lang))?.currency;
   let idProuct;
   let valLang = "";
-  if (product.productName === "Rabbit Classic") {
+  if (product.productName === "🍓 Calmberry") {
     idProuct = "classic";
-  } else if (product.productName === "Rabbit Banana") {
+  } else if (product.productName === "🍌 Banana Chill") {
     idProuct = "banana";
-  } else if (product.productName === "Rabbit Matcha") {
+  } else if (product.productName === "🍵 Matcha Focus") {
     idProuct = "matcha";
+  } else if (product.productName === "☕️ Coffee Break") {
+    idProuct = "coffee";
   }
 
   if (lang === "en") {
@@ -63,10 +74,36 @@ export const ProductCard = async ({
               <Link href={`${valLang}${idProuct}`}>{productName}</Link>
             )}
           </h2>
+        </div>
+
+        <p className={styles.description}>{description}</p>
+
+        <div className={styles.price_row}>
+          {cbdProperty && (
+            <div className={cn(styles.property, styles.cbd_property)}>
+              <Image
+                src={cbdProperty?.image?.url!}
+                width={20}
+                height={20}
+                alt={cbdProperty.label}
+              />
+              {cbdProperty.label?.includes("CBD") ? (
+                <>
+                  <span className={styles.cbd}>
+                    {cbdProperty.label.split("CBD")[0]}
+                  </span>
+                  CBD
+                </>
+              ) : (
+                cbdProperty.label
+              )}
+            </div>
+          )}
+
           <ProductPrice currentPrice={price} currency={currency} />
         </div>
         <ul className={styles.properties_list}>
-          {properties?.map(property => (
+          {filteredProperties?.map(property => (
             <li key={property.id} className={styles.property}>
               <Image
                 src={property?.image?.url!}
@@ -85,7 +122,6 @@ export const ProductCard = async ({
             </li>
           ))}
         </ul>
-        <p className={styles.description}>{description}</p>
 
         <div className={styles.divider} />
 

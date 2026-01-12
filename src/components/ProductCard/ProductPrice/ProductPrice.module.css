@@ -2,16 +2,25 @@
   display: flex;
   gap: 5px;
 
-  color: var(--primary-color);
-  font-size: 24px;
+  color: #212121;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 24px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  background-color: #9bd28f33;
 }
 
 .current {
   position: relative;
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 16px;
+  color: #212121;
+}
+
+.currency {
+  font-size: 21px;
 }
 
 .crossed::before {
