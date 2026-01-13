@@ -17,7 +17,7 @@ const storage = typeof window !== "undefined" ? window.localStorage : null;
 
 // Cart atom
 const cartAtom = atomWithStorage<Cart>(
-  "cart",
+  "cart-n",
   initialCartState,
   { ...createJSONStorage(() => storage as Storage) },
   {
