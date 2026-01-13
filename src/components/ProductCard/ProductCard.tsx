@@ -76,7 +76,12 @@ export const ProductCard = async ({
           </h2>
         </div>
 
-        <p className={styles.description}>{description}</p>
+        <p
+          className={styles.description}
+          dangerouslySetInnerHTML={{
+            __html: description,
+          }}
+        />
 
         <div className={styles.price_row}>
           {cbdProperty && (
