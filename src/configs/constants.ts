@@ -7,5 +7,5 @@ export const constants = {
 
   UTM_LABELS: "utm_labels",
 
-  DEFAULT_PRICE: 85,
+  DEFAULT_PRICE: 90,
 };

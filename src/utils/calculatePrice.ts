@@ -5,7 +5,7 @@ interface PriceRange {
 }
 
 const priceRanges: PriceRange[] = [
-  { min: 1, max: 5, price: 85 },
+  { min: 1, max: 5, price: 90 },
   { min: 6, max: 10, price: 82 },
   { min: 11, max: 15, price: 80 },
   { min: 16, max: 20, price: 78.5 },

@@ -47,7 +47,7 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
     (acc, item) => acc + (item?.quantity || 0),
     0
   );
-  const sale = totalQuantity * 85 - order?.totalSum;
+  const sale = totalQuantity * 90 - order?.totalSum;
 
   return (
     <>
