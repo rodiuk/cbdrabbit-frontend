@@ -42,7 +42,7 @@ const CheckoutRes = React.memo(function CheckoutRes({
   const [cart] = useAtom(cartAtom);
   const [userDiscount, setUserDiscount] = React.useState<number>(0);
 
-  const currentPrice = 85;
+  const currentPrice = 90;
   const freeDelivery = 2200; // это если сумма достаточна для безкошновної доставки
 
   const saleDiff = cart?.totalCount * currentPrice - cart?.totalAmount;
@@ -68,8 +68,8 @@ const CheckoutRes = React.memo(function CheckoutRes({
   const totalAmount = promocode?.newPrice
     ? cart.totalCount * promocode.newPrice
     : promocode?.percentDiscount && percentPromoDiscount
-    ? cart.totalCount * currentPrice - percentPromoDiscount
-    : cart?.totalAmount;
+      ? cart.totalCount * currentPrice - percentPromoDiscount
+      : cart?.totalAmount;
 
   const finalPrice = React.useMemo(() => {
     return totalAmount - (!!promocode?.code ? 0 : userDiscountSum);
