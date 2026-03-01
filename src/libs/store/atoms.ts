@@ -155,6 +155,12 @@ const getTotalPriceAtom = atom(get => {
   return totalAmount;
 });
 
+// Get gift candies count
+const getCardGiftCountAtom = atom(get => {
+  const { totalCount } = get(cartAtom);
+  return Math.floor(totalCount / 7);
+});
+
 export {
   cartAtom,
   clearCartAtom,
@@ -164,4 +170,5 @@ export {
   removeProductFromCartAtom,
   changeProductCountAtom,
   getTotalPriceAtom,
+  getCardGiftCountAtom,
 };

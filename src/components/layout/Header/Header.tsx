@@ -9,6 +9,8 @@ import cn from "clsx";
 import styles from "./Header.module.css";
 import { authConfig } from "@/configs/auth.config";
 import { getServerSession, Session } from "next-auth";
+import PercentageHeartIcon from "@/components/icons/PercentageHeartIcon";
+import { HeaderCTA } from "./HeaderCTA";
 
 interface Props {
   lang: Locale;
@@ -29,8 +31,8 @@ export const Header = async ({
     >
       <div className={cn("container", styles.block)}>
         {" "}
-        {/* этот класс - он для ограничения, глобальный */}
         <LogoContainer lang={lang} />
+        <HeaderCTA classNames={styles.cta_desktop} title={dict.header.cta} />
         <NavWrapper
           lang={lang}
           session={session}
@@ -38,6 +40,8 @@ export const Header = async ({
           isAuthenticated={!!session?.user?.id}
         />
       </div>
+      <HeaderCTA classNames={styles.cta_mobile} title={dict.header.cta} />
+
       <div className="container">
         <PageTitle lang={lang} />
       </div>

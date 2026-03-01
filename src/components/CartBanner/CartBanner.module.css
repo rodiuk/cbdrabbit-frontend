@@ -3,15 +3,20 @@
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 899;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.inner {
+  position: relative;
   display: flex;
   width: 100%;
-  margin: 0 auto;
   padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
-  z-index: 899;
 
   border-radius: 24px 24px 0px 0px;
   background: #fff;
@@ -19,6 +24,7 @@
 }
 
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -81,8 +87,89 @@
   color: #fff;
 }
 
+.gc_container {
+  position: absolute;
+  top: -55px;
+  left: 15px;
+  padding: 0px 10px;
+
+  height: 44px;
+  border-radius: 32px;
+  border: 1px solid #d4d4d4;
+  background-color: #ffffff;
+  box-shadow: 4px -10px 30px 0 rgba(66, 98, 59, 0.12);
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  cursor: help;
+
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+.gc_container:hover {
+  background-color: #f5faf3;
+  border-color: #9bd28f;
+}
+
+.gc_count {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: -4%;
+  color: #42623b;
+}
+
+.gc_tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    visibility 0.5s ease;
+
+  background: #69332ba3; /* brown like screenshot */
+  color: #fff;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+
+  /* white-space: nowrap; */
+  pointer-events: none;
+  text-align: center;
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+
+  width: 180px;
+}
+
+.gc_tooltipOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
 @media screen and (min-width: 768px) {
   .container {
     width: 540px;
+  }
+
+  .gc_container {
+    left: unset;
+    right: 0px;
   }
 }

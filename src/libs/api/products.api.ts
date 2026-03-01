@@ -12,6 +12,9 @@ export const getAllProducts = async (lang: string) => {
         isStock: true,
       },
       select: productSelect,
+      orderBy: {
+        orderNumber: "asc",
+      },
     });
 
     return product;

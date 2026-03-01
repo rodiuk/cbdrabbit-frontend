@@ -29,7 +29,8 @@
       "main": "Home",
       "checkout": "Checkout",
       "socials": "Social Media"
-    }
+    },
+    "cta": "Log in and get a discount"
   },
   "footer": {
     "texts": {
@@ -41,7 +42,8 @@
   "currency": "₴",
   "cartBanner": {
     "checkoutLabel": "Total amount:",
-    "checkoutButton": "Checkout"
+    "checkoutButton": "Checkout",
+    "giftLabel": "Your bonus candies for every 7 in the cart"
   },
   "recoveryPassword": {
     "titleAskNew": "Recover password",

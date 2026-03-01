@@ -16,6 +16,7 @@ export interface Localization {
 export interface HeaderLocales {
   titles: HeaderTitlesLocales;
   links: HeaderLinksLocales;
+  cta: string;
 }
 
 export interface HeaderTitlesLocales {
@@ -61,6 +62,7 @@ export interface FooterLocales {
 export interface CartBannerLocales {
   checkoutLabel: string;
   checkoutButton: string;
+  giftLabel: string;
 }
 
 export interface RecoveryPasswordLocales {

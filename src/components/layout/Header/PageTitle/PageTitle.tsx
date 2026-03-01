@@ -1,9 +1,10 @@
 "use client";
 
+import { Session } from "next-auth";
 import React, { useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { Locale } from "../../../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import { usePathname } from "next/navigation";
 import { IHeaderTitles } from "@/interfaces/headerTitles.interface";
 
 import styles from "./PageTitle.module.css";

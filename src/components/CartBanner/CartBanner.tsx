@@ -3,19 +3,21 @@
 import React from "react";
 import { useAtom } from "jotai";
 import { ArrowRightIcon } from "../icons/ArrowRight";
-import { getTotalPriceAtom } from "@/libs/store/atoms";
+import { getCardGiftCountAtom, getTotalPriceAtom } from "@/libs/store/atoms";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useProcessUpdateCart } from "@/hooks/useProcessUpdateCart";
 
 import styles from "./CartBanner.module.css";
 import Loader from "../Ui/Loader";
+import { GiftCandies } from "./GiftCandies";
 
 interface Props {
   currency: string;
   checkoutLabel: string;
   buttonLabel: string;
   lang: string;
+  giftLabel: string;
 }
 
 const excludedPaths = [
@@ -31,6 +33,7 @@ const excludedPaths = [
 const CartBanner = (props: Props): React.JSX.Element | null => {
   const { currency, checkoutLabel, buttonLabel, lang } = props;
   const [total] = useAtom(getTotalPriceAtom);
+  const [gift] = useAtom(getCardGiftCountAtom);
   const pathname = usePathname()?.split("/")?.at(-1);
 
   const navPath = `/${lang}/checkout`;
@@ -57,16 +60,20 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
           exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.4 }}
         >
-          <div className={styles.content}>
-            <h3 className={styles.label}>{checkoutLabel}</h3>
-            <p className={styles.amount}>{`${total} ${currency}`}</p>
-          </div>
-          <div
-            className={styles.button}
-            onClick={() => startTransition(() => router.replace(navPath))}
-          >
-            {state ? <Loader /> : buttonLabel}
-            {!state && <ArrowRightIcon iconStyle={styles.icon} />}
+          <div className={styles.inner}>
+            {gift > 0 && <GiftCandies count={gift} title={props.giftLabel} />}
+
+            <div className={styles.content}>
+              <h3 className={styles.label}>{checkoutLabel}</h3>
+              <p className={styles.amount}>{`${total} ${currency}`}</p>
+            </div>
+            <div
+              className={styles.button}
+              onClick={() => startTransition(() => router.replace(navPath))}
+            >
+              {state ? <Loader /> : buttonLabel}
+              {!state && <ArrowRightIcon iconStyle={styles.icon} />}
+            </div>
           </div>
         </motion.div>
       ) : null}

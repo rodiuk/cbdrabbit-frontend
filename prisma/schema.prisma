@@ -172,6 +172,8 @@ model Product {
   locale      String  @default("uk")
   isStock     Boolean @default(true)
 
+  orderNumber Int @default(0)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
