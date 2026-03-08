@@ -110,6 +110,7 @@ const Input: React.FC<InputProps> = ({
         [s.isEmpty]: isEmpty,
         [s.isEmptyCity]: isCity,
         [s.isEmptyPostPoint]: isPostPoint,
+        [s.withoutMargins]: !text,
       })}
     >
       {text && (

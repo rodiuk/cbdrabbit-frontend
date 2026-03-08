@@ -180,6 +180,8 @@ model Product {
   images     Image[]
   orderItems OrderItem[]
   properties Property[]
+
+  galleryImages Json?
 }
 
 model Property {

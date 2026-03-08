@@ -82,8 +82,9 @@
       "inputLabel": "Email",
       "inputPlaceholder": "Enter email",
       "button": "Next",
-      "buttonGoogle": "Sign in with Google",
-      "buttonDividerLabel": "or"
+      "buttonGoogle": "Continue with Google",
+      "buttonDividerLabel": "or",
+      "createAccount": "Create an account"
     },
     "signInPassword": {
       "title": "Account Sign In",
@@ -96,10 +97,12 @@
     },
     "signUpPassword": {
       "title": "Create a password for the account",
+      "secondary_title": "Fill email and password fields to create an account",
       "firstInputPlaceholder": "Enter password",
       "secondInputPlaceholder": "Confirm new password",
       "buttonSignUp": "Create Account",
-      "error": "Passwords do not match. Please try again."
+      "error": "Passwords do not match. Please try again.",
+      "inputPlaceholder": "Enter email"
     },
     "signInNotExist": {
       "title": "Email Not Registered",

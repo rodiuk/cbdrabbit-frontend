@@ -168,8 +168,9 @@
       "inputLabel": "Email",
       "inputPlaceholder": "Введіть email",
       "button": "Далі",
-      "buttonGoogle": "Ввійти через Google",
-      "buttonDividerLabel": "або"
+      "buttonGoogle": "Продовжити з Google",
+      "buttonDividerLabel": "або",
+      "createAccount": "Створити акаунт"
     },
     "signInPassword": {
       "title": "Вхід в акаунт",
@@ -182,10 +183,12 @@
     },
     "signUpPassword": {
       "title": "Придумайте пароль для акаунта",
+      "secondary_title": "Заповніть поля email та пароль, щоб створити акаунт",
       "firstInputPlaceholder": "Введи пароль",
       "secondInputPlaceholder": "Підтверди новий пароль",
       "buttonSignUp": "Створити акаунт",
-      "error": "Паролі не співпадають. Спробуйте ще раз"
+      "error": "Паролі не співпадають. Спробуйте ще раз",
+      "inputPlaceholder": "Введіть email"
     },
     "signInNotExist": {
       "title": "Такого email не зареєстровано",

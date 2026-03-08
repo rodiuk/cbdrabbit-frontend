@@ -12,6 +12,7 @@ export const productSelect: Prisma.ProductSelect = {
       url: true,
     },
   },
+  galleryImages: true,
   properties: {
     select: {
       id: true,

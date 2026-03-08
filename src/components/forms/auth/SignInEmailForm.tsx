@@ -18,8 +18,10 @@ import icon_1 from "/public/img/icon_1.svg";
 
 import styles from "./styles.module.css";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 interface Props {
+  lang: string;
   dict: ISignInEmailDict;
   hideTitle?: boolean;
   externalPath?: string;
@@ -27,6 +29,7 @@ interface Props {
 }
 
 export const SignInEmailForm = ({
+  lang,
   dict,
   hideTitle,
   externalPath,
@@ -84,33 +87,41 @@ export const SignInEmailForm = ({
         </>
       )}
 
+      <GoogleButton
+        label={dict?.buttonGoogle}
+        externalPath={externalPath}
+        className={styles.google_btn}
+      />
+
+      <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
+
       <Input
         type="email"
         name="email"
         placeholder={dict?.inputPlaceholder}
-        text={dict?.inputLabel}
+        // text={dict?.inputLabel}
         value={email}
         onInputChange={setEmail}
         errorText={showError ? "Такого корситувача не існує" : undefined}
       />
-      <div className={styles.bb}>
-        <Button
-          text={dict?.button}
-          isLoading={isLoading}
-          isDisabled={isLoading}
-          greenThemeLoader
-          handleClick={handleCheckEmail}
-        />
-      </div>
 
-      <span className={styles.divider_label}>{dict?.buttonDividerLabel}</span>
+      {email?.length > 1 && (
+        <div className={styles.bb}>
+          <Button
+            text={dict?.button}
+            isLoading={isLoading}
+            isDisabled={isLoading}
+            greenThemeLoader
+            handleClick={handleCheckEmail}
+          />
+        </div>
+      )}
 
-      <GoogleButton label={dict?.buttonGoogle} externalPath={externalPath} />
-      {/* <div className={styles.add_akk}>
-			  <Link href="/" className={styles.akk}>
-			  Створити акаунт
-			  </Link>
-		  </div> */}
+      <div className={styles.divider} />
+
+      <Link href={`/${lang}/signUp`} className={styles.create_akk}>
+        {dict?.createAccount}
+      </Link>
     </section>
   );
 };

@@ -19,6 +19,7 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const userEmail = searchParams?.get("email");
+  const [email, setEmail] = React.useState<string>(userEmail ?? "");
 
   const [password1, setPassword1] = React.useState<string>("");
   const [password2, setPassword2] = React.useState<string>("");
@@ -27,13 +28,13 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleSignUp = async () => {
-    if (!userEmail) return router.back();
+    if (!email) return;
 
     if (password1 !== password2) return setNotMatch(true);
     try {
       setIsLoading(true);
       const user = await createUser({
-        email: userEmail,
+        email: email,
         password: password1,
         phoneNumber: "",
         acceptedSignUp: true,
@@ -51,24 +52,40 @@ export const SignUpPasswordForm = ({ dict }: Props): React.JSX.Element => {
 
   return (
     <section className={styles.lay_item}>
-      <h1 className={styles.ttl}>{dict.title}</h1>
+      <h1 className={styles.ttl}>
+        {!userEmail?.length ? dict.secondary_title : dict.title}
+      </h1>
       <div className={styles.descr}>{maskEmailAddress(userEmail ?? "")}</div>
-      <Input
-        type="password"
-        placeholder={dict.firstInputPlaceholder}
-        password={true}
-        isPassword
-        value={password1}
-        onInputChange={setPassword1}
-      />
-      <Input
-        type="password"
-        placeholder={dict.secondInputPlaceholder}
-        password={true}
-        isPassword
-        value={password2}
-        onInputChange={setPassword2}
-      />
+
+      <div className={styles.input_group}>
+        {!userEmail?.length && (
+          <Input
+            type="email"
+            name="email"
+            placeholder={dict?.inputPlaceholder}
+            // text={dict?.inputLabel}
+            value={email}
+            onInputChange={setEmail}
+            // errorText={showError ? "Такого корситувача не існує" : undefined}
+          />
+        )}
+        <Input
+          type="password"
+          placeholder={dict.firstInputPlaceholder}
+          password={true}
+          isPassword
+          value={password1}
+          onInputChange={setPassword1}
+        />
+        <Input
+          type="password"
+          placeholder={dict.secondInputPlaceholder}
+          password={true}
+          isPassword
+          value={password2}
+          onInputChange={setPassword2}
+        />
+      </div>
 
       {notMatch && <p className={styles.error}>{dict.error}</p>}
       {error && <p className={styles.error}>{error}</p>}

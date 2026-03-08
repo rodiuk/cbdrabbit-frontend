@@ -13,12 +13,13 @@ import dynamic from "next/dynamic";
 
 interface AuthWrapperProps {
   dict: any;
+  lang: string;
 }
 
 export const AuthModalContent = (
   props: AuthWrapperProps
 ): React.JSX.Element => {
-  const { dict } = props;
+  const { dict, lang } = props;
 
   const searchParams = useSearchParams();
 
@@ -39,6 +40,7 @@ export const AuthModalContent = (
             hideTitle
             externalPath="/checkout"
             externalUse
+            lang={lang}
           />
         );
     }

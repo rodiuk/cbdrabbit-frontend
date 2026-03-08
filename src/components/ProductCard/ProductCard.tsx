@@ -1,11 +1,12 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IProductRes } from "@/interfaces/product.interface";
-
-import cn from "clsx";
+import { TotalCountSkeleton } from "../skeletons/TotalCountSkeleton";
+import { CurrentPriceSkeleton } from "../skeletons/CurrentPriceSkeleton";
 
 const ProductPrice = dynamic(() => import("./ProductPrice/ProductPrice"), {
   ssr: false,
@@ -16,10 +17,9 @@ const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
   loading: () => <TotalCountSkeleton />,
 });
 
+import cn from "clsx";
 import styles from "./ProductCard.module.css";
-import Link from "next/link";
-import { TotalCountSkeleton } from "../skeletons/TotalCountSkeleton";
-import { CurrentPriceSkeleton } from "../skeletons/CurrentPriceSkeleton";
+import { ProductImageWithGallery } from "./ProductImageWithGallery";
 
 interface Props {
   product: IProductRes;
@@ -58,7 +58,7 @@ export const ProductCard = async ({
 
   return (
     <li className={styles.container}>
-      <div className={styles.img_wrapper}>
+      {/* <div className={styles.img_wrapper}>
         <Image
           src={product?.images[0]?.url}
           alt={product?.productName}
@@ -66,7 +66,12 @@ export const ProductCard = async ({
           sizes="(max-width: 768px) 100vw, 50vw"
           className={styles.image}
         />
-      </div>
+      </div> */}
+      <ProductImageWithGallery
+        images={(product.galleryImages || []) as unknown as string[]}
+        mainImage={product?.images[0]?.url || ""}
+        productName={product.productName}
+      />
       <div className={styles.content}>
         <div className={styles.header}>
           <h2 className={styles.title}>

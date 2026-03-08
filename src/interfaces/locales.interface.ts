@@ -105,6 +105,7 @@ export interface AuthLocales {
     button: string;
     buttonGoogle: string;
     buttonDividerLabel: string;
+    createAccount: string;
   };
   signInPassword: {
     title: string;
@@ -117,9 +118,11 @@ export interface AuthLocales {
   };
   signUpPassword: {
     title: string;
+    secondary_title: string;
     firstInputPlaceholder: string;
     secondInputPlaceholder: string;
     buttonSignUp: string;
+    inputPlaceholder: string;
     error: string;
   };
   signInNotExist: {

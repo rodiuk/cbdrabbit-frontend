@@ -5,6 +5,7 @@ export interface ISignInEmailDict {
   button: string;
   buttonDividerLabel: string;
   buttonGoogle: string;
+  createAccount: string;
 }
 
 export interface IActivateDict {
@@ -32,8 +33,10 @@ export interface ISignInPasswordDict {
 
 export interface ISignUpPasswordDict {
   title: string;
+  secondary_title: string;
   firstInputPlaceholder: string;
   secondInputPlaceholder: string;
+  inputPlaceholder: string;
   buttonSignUp: string;
   error: string;
 }

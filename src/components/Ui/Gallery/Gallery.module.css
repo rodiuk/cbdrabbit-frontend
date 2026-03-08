@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 1400;
+  z-index: 920;
   background: rgba(25, 45, 22, 0.72);
   backdrop-filter: blur(6px);
   display: flex;
@@ -22,7 +22,7 @@
   font-size: 32px;
   line-height: 1;
   cursor: pointer;
-  z-index: 3;
+  z-index: 920;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,17 +46,19 @@
 }
 
 .mainCard {
-  position: relative;
-  height: min(calc(100dvh - 48px), 88vh);
-  width: auto;
-  aspect-ratio: 0.707;
-  max-width: min(calc(100vw - 160px), 760px);
   border-radius: 18px;
   overflow: hidden;
-  background: transparent;
+  line-height: 0;
+  max-width: min(calc(100vw - 160px), 760px);
+  max-height: min(calc(100dvh - 48px), 88vh);
 }
 
 .mainImage {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(calc(100dvh - 48px), 88vh);
   object-fit: contain;
 }
 
@@ -64,7 +66,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 3;
+  z-index: 920;
   width: 64px;
   height: 64px;
   border: none;
@@ -103,11 +105,13 @@
   }
 
   .mainCard {
-    height: min(calc(100dvh - 32px), 78vh);
-    width: auto;
-    max-width: calc(100vw - 16px);
-    aspect-ratio: 0.707;
     border-radius: 14px;
+    max-width: calc(100vw - 16px);
+    max-height: min(calc(100dvh - 32px), 78vh);
+  }
+
+  .mainImage {
+    max-height: min(calc(100dvh - 32px), 78vh);
   }
 
   .navButton {

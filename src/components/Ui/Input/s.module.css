@@ -23,7 +23,7 @@
 }
 
 .label .label_ttl {
-	font-weight: 500;
+  font-weight: 500;
   margin-bottom: 5px;
   position: relative;
   display: flex;
@@ -61,7 +61,7 @@
   border: 2px solid #d2d4df;
   left: 0;
   top: calc(50% - 10px);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .label.radio.active::before {
@@ -84,23 +84,23 @@ input[type="password"].input {
 input[type="text"].input:hover,
 input[type="email"].input:hover,
 input[type="password"].input:hover {
-	border: 1px solid #D4D4D4;
-} 
+  border: 1px solid #d4d4d4;
+}
 input[type="text"].input:active,
 input[type="email"].input:active,
 input[type="password"].input:active {
-	border: 1px solid rgba(155, 210, 143, 1);
-} 
+  border: 1px solid rgba(155, 210, 143, 1);
+}
 input[type="text"].input:focus,
 input[type="email"].input:focus,
 input[type="password"].input:focus {
-	border: 1px solid rgba(155, 210, 143, 1);
-} 
+  border: 1px solid rgba(155, 210, 143, 1);
+}
 input[type="text"].input:focus-visible,
 input[type="email"].input:focus-visible,
 input[type="password"].input:focus-visible {
-	border: 1px solid rgba(155, 210, 143, 1);
-} 
+  border: 1px solid rgba(155, 210, 143, 1);
+}
 .pass {
   position: absolute;
   right: 19px;
@@ -121,8 +121,13 @@ input[type="password"].input:focus-visible {
   position: relative;
 }
 .isEmpty input {
-	border: 1px solid red !important;
+  border: 1px solid red !important;
 }
-.isEmptyCity input, .isEmptyPostPoint input {
-	border: 1px solid transparent !important;
+.isEmptyCity input,
+.isEmptyPostPoint input {
+  border: 1px solid transparent !important;
+}
+
+.withoutMargins {
+  margin: 0 !important;
 }

@@ -89,7 +89,7 @@ export default async function About({ params, searchParams }: IMainPageProps) {
           />
         );
       default:
-        return <SignInEmailForm dict={signInEmail} />;
+        return <SignInEmailForm dict={signInEmail} lang={params.lang} />;
     }
   };
 
