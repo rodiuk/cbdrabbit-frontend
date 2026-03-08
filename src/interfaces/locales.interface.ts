@@ -165,6 +165,9 @@ export interface CheckoutLocales {
   checkoutButton: string;
   commentTitle: string;
   commentLabel: string;
+  oneCandy: string;
+  twoFourCandy: string;
+  fiveCandy: string;
 }
 
 export interface ProfileLocales {

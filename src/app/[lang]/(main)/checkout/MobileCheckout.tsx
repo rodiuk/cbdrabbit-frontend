@@ -88,7 +88,7 @@ const MobileCheckout = (props: Props) => {
         <div className={styles.checkoutBlock_h2}>
           {dict.checkout.orderTitle}
         </div>
-        <ProductsCheckout homeDict={dict.home} />
+        <ProductsCheckout homeDict={dict.home} checkoutDict={dict.checkout} />
       </div>
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>

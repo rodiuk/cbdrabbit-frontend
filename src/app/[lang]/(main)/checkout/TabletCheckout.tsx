@@ -159,7 +159,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
           <h3 className={styles.checkoutBlock_h2}>
             {dict.checkout.orderTitle}
           </h3>
-          <ProductsCheckout homeDict={dict.home} />
+          <ProductsCheckout homeDict={dict.home} checkoutDict={dict.checkout} />
         </div>
 
         <CheckoutRes

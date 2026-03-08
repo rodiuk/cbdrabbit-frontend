@@ -1,21 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
 import { cartAtom } from "@/libs/store/atoms";
 import { PresentIcon } from "@/components/icons/PresentIcon";
 import { IProductRes } from "@/interfaces/product.interface";
+import { CheckoutLocales } from "@/interfaces/locales.interface";
 import { calculateGiftCandies } from "@/utils/calculateGiftCandies";
 import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 
 import styles from "./page.module.css";
+import { pluralizeUa } from "@/utils/pluralizeUa";
 
 interface Props {
   homeDict: any;
+  checkoutDict: CheckoutLocales;
 }
 
-const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
+const ProductsCheckout = ({
+  homeDict,
+  checkoutDict,
+}: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
 
   const rendererProducts = cart?.products?.filter(product => product.count > 0);
@@ -24,6 +30,10 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
   React.useEffect(() => {
     setProduct(rendererProducts);
   }, []);
+
+  const giftCandies = useMemo(() => {
+    return calculateGiftCandies(cart?.totalCount || 0);
+  }, [cart?.totalCount]);
 
   return (
     <>
@@ -83,8 +93,13 @@ const ProductsCheckout = ({ homeDict }: Props): React.JSX.Element => {
           <div className={styles.img_client}>
             <PresentIcon />
           </div>
-          + {calculateGiftCandies(cart?.totalCount || 0)} Rabbit Classic
-          у&nbsp;подарунок за кількість
+          + {giftCandies}{" "}
+          {pluralizeUa(giftCandies, [
+            checkoutDict?.oneCandy,
+            checkoutDict?.twoFourCandy,
+            checkoutDict?.fiveCandy,
+          ])}
+          &nbsp; у&nbsp;подарунок за кількість
         </div>
       )}
 

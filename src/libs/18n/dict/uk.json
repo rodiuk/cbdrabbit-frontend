@@ -140,7 +140,10 @@
     "checkoutDisclaimer": "Натискаючи “Перейти до оплати” я підтверджую що введені мною дані вірні",
     "checkoutButton": "Перейти до оплати",
     "commentTitle": "Коментар",
-    "commentLabel": "Додаткова інформація..."
+    "commentLabel": "Додаткова інформація...",
+    "oneCandy": "цукерка",
+    "twoFourCandy": "цукерки",
+    "fiveCandy": "цукерок"
   },
   "auth": {
     "general": {

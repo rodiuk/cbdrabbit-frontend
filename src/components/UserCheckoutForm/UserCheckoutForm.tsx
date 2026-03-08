@@ -7,18 +7,17 @@ import { TabletCheckoutProps } from "@/app/[lang]/(main)/checkout/TabletCheckout
 import cn from "clsx";
 import s from "./UserCheckoutForm.module.css";
 
-interface Props
-  extends Pick<
-    TabletCheckoutProps,
-    | "setUserInfo"
-    | "validateData"
-    | "dict"
-    | "userInfo"
-    | "setUserInfo"
-    | "signUpUser"
-    | "setSignUpUser"
-    | "isAuthorized"
-  > {
+interface Props extends Pick<
+  TabletCheckoutProps,
+  | "setUserInfo"
+  | "validateData"
+  | "dict"
+  | "userInfo"
+  | "setUserInfo"
+  | "signUpUser"
+  | "setSignUpUser"
+  | "isAuthorized"
+> {
   isPopup?: boolean;
 }
 

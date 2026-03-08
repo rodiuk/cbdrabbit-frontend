@@ -116,16 +116,16 @@ const MenuDrop = (props: Props) => {
                 {candies}
               </Link>
             </li>
-            {/* <li className={s.mnu_link}>
+            <li className={s.mnu_link}>
               <Link href={`/${lang}/about-cbd`} onClick={toggleMenu}>
                 {aboutCbd}
               </Link>
             </li>
             <li className={s.mnu_link}>
-              <Link href={`/${lang}/about`} onClick={toggleMenu}>
+              <Link href={`/${lang}/about-us`} onClick={toggleMenu}>
                 {about}
               </Link>
-            </li> */}
+            </li>
             <li className={s.mnu_link}>
               <Link href={`/${lang}/checkout-info`} onClick={toggleMenu}>
                 {checkoutInfo}

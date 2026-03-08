@@ -1,56 +1,232 @@
 .main {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 15px;
-	padding-top: 150px;
-	padding-bottom: 120px;
-	min-height: calc(100vh - 293px) !important;
+  padding: 10px 15px;
+  padding-top: 150px;
+  padding-bottom: 120px;
+}
+
+.pageCard {
+  max-width: 760px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+}
+
+.section + .section {
+  margin-top: 48px;
+}
+
+.sectionTitle {
+  gap: 10px;
+  display: flex;
+  color: #476f2e;
+  align-items: center;
+
+  font-size: 24px;
+  margin: 0 0 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-family: var(--font-merriweather);
+}
+
+.icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sectionFlex {
+  gap: 24px;
+  display: flex;
+  align-items: start;
+  /* flex-direction: column; */
+}
+
+.textBlock {
+  color: #2f2f2f;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.textBlock p {
+  margin: 0;
+}
+
+.visualCBDImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+.textBlock p + p {
+  margin-top: 14px;
+}
+
+.visualCard {
+  position: relative;
+  aspect-ratio: 256 / 170;
+  max-height: 170px;
+  height: auto;
+  width: 100%;
+}
+
+.illustrationCard {
+  position: relative;
+  aspect-ratio: 289 / 160;
+  max-width: 289px;
+  width: 100%;
+  min-width: 289px;
+}
+
+.illustrationCardImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+.muted {
+  margin: 0 0 16px;
+  color: #4a4a4a;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.note {
+  color: #6c6c6c;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 24px;
+}
+
+.benefitItem {
+  color: #2f2f2f;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.benefitTitle {
+  margin-bottom: 6px;
+  color: #2d2d2d;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.list {
+  margin: 12px 0 0;
+  padding-left: 0px;
+  color: #2f2f2f;
+}
+
+.compareMediaWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 654 / 268;
+  max-width: 654px;
+  margin: 0 auto;
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.compareCard {
+  background: #f6f6f6;
+  border: 1px solid rgba(73, 119, 59, 0.1);
+  border-radius: 24px;
+  padding: 24px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.compareCard p {
+  margin: 0;
+  color: #2f2f2f;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.sources {
+  margin: 0;
+  padding-left: 0px;
+}
+
+.sources a {
+  font-size: 16px;
+  line-height: 24px;
+  color: #5f6f5a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.sources a:hover {
+  color: #476f2e;
+}
+
+@media (max-width: 900px) {
+  .pageCard {
+    padding: 22px 18px 28px;
+    border-radius: 22px;
   }
-  .wrap {
-	  width: 100%;
-	  
-	  max-width: 584px;
-	  font-size: 14px;
-	  font-weight: 500;
-	  padding: 16px 16px 24px 16px;
-	  border-radius: 20px;
-	  background: #fff;
-	  position: relative;
+
+  .sectionTitle {
+    font-size: 28px;
   }
-  .title {
-	  font-size: 28px;
-	  font-weight: 600;
-	  line-height: 1.14;
-	  color: var(--primary-color);
-	  margin-bottom: 12px;
-	  margin-bottom: 15px;
+
+  .sectionGrid,
+  .benefitsGrid,
+  .compareGrid {
+    grid-template-columns: 1fr;
   }
-  .ttl {
-	font-size: 18px;
-	font-weight: 600;
-	margin-bottom: 15px;
+
+  .vs {
+    display: none;
   }
-  .block {
-	  margin-bottom: 35px;
+
+  .textBlock,
+  .compareCard p,
+  .benefitItem {
+    font-size: 16px;
   }
-  .block:last-child {
-	  margin-bottom: 0;
+
+  .benefitTitle {
+    font-size: 16px;
   }
-  .block p {
-	  margin-bottom: 15px;
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
-  .block p:last-child {
-	  margin-bottom: 0;
+
+  .sectionTitle {
+    font-size: 24px;
   }
-  
-  @media (max-width: 767px) {
-	  .block {
-		  margin-bottom: 12px;
-	  }
-	  .block:last-child {
-		  margin-bottom: 0;
-	  }
+
+  .visualBadge {
+    font-size: 42px;
   }
-  
+}

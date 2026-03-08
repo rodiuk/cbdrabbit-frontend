@@ -18,19 +18,19 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 
 interface Props {
   lang: Locale;
-	titles?: any;
-	idLand?: string | undefined
+  titles?: any;
+  idLand?: string | undefined;
 }
 
 export const Footer = async ({
   lang,
-	titles,
-	idLand
+  titles,
+  idLand,
 }: Props): Promise<React.JSX.Element> => {
   const session = await getServerSession(authConfig);
-	const isAuth = !!session?.user.id;
-	const dict = await getDictionary(lang);
-	const {footer} = dict
+  const isAuth = !!session?.user.id;
+  const dict = await getDictionary(lang);
+  const { footer } = dict;
 
   const {
     buy,
@@ -47,17 +47,26 @@ export const Footer = async ({
   } = titles;
 
   return (
-	  <footer className={cn("footer", s.footer, {
-		[s.footer_pink]: idLand === "classic",
-		[s.footer_yellow]: idLand === "banana",
-	})}>
-		  <div className={s.figure}>
-			  {idLand === "classic" ? (
-				  <Image src={figureForFooter_pink} width={720} height={80} alt="bg" />
-			  ) : idLand === "banana" ? (
-				<Image src={figureForFooter_yellow} width={720} height={80} alt="bg" />
-			  ) : <Image src={figureForFooter} width={720} height={80} alt="bg" />}
-        
+    <footer
+      className={cn("footer", s.footer, {
+        [s.footer_pink]: idLand === "classic",
+        [s.footer_yellow]: idLand === "banana",
+      })}
+    >
+      <div className={s.figure}>
+        {idLand === "classic" ? (
+          <Image src={figureForFooter_pink} width={720} height={80} alt="bg" />
+        ) : idLand === "banana" ? (
+          <Image
+            src={figureForFooter_yellow}
+            width={720}
+            height={80}
+            alt="bg"
+          />
+        ) : (
+          <Image src={figureForFooter} width={720} height={80} alt="bg" />
+        )}
+
         <LinkToTop />
       </div>
       <div className="container">
@@ -81,12 +90,12 @@ export const Footer = async ({
             <li>
               <Link href={`/${lang}`}>{candies}</Link>
             </li>
-            {/* <li>
+            <li>
               <Link href={`/${lang}/about-cbd`}>{aboutCbd}</Link>
             </li>
             <li>
-              <Link href={`/${lang}/about`}>{about}</Link>
-            </li> */}
+              <Link href={`/${lang}/about-us`}>{about}</Link>
+            </li>
             <li>
               <Link href={`/${lang}/checkout-info`}>{checkoutInfo}</Link>
             </li>
@@ -110,7 +119,7 @@ export const Footer = async ({
                 <p>{footer.texts.text1}</p>
                 <p>{footer.texts.text2}</p>
                 <Link href="/signIn" className={s.button}>
-				{footer.texts.logIn}
+                  {footer.texts.logIn}
                 </Link>
               </>
             )}
@@ -123,10 +132,12 @@ export const Footer = async ({
               <MobileMainLogoIcon iconStyle={s.mobile_home_logo} />
             </Link>
           </div>
-				  <div className={cn(s.part, {
-			  [s.part_pink]: idLand === "classic",
-			  [s.part_yellow]: idLand === "banana",
-		  })}>
+          <div
+            className={cn(s.part, {
+              [s.part_pink]: idLand === "classic",
+              [s.part_yellow]: idLand === "banana",
+            })}
+          >
             <p>© CBDRabbit. All Rights Reserved.</p>
             <p className={s.politics}>
               <Link href={`/${lang}/privacy`}>{privacy}</Link>{" "}

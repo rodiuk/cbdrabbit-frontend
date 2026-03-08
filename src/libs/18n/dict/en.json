@@ -142,7 +142,10 @@
     "checkoutDisclaimer": "By clicking “Proceed to payment” I confirm that the entered data is true",
     "checkoutButton": "Proceed to payment",
     "commentTitle": "Comment",
-    "commentLabel": "Comment to order"
+    "commentLabel": "Comment to order",
+    "oneCandy": "candy",
+    "twoFourCandy": "candies",
+    "fiveCandy": "candies"
   },
   "profile": {
     "userPasswordTitle": "Password",
