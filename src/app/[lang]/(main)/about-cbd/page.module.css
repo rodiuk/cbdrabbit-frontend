@@ -217,11 +217,6 @@
 }
 
 @media (max-width: 640px) {
-  .main {
-    padding-top: 20px;
-    padding-bottom: 40px;
-  }
-
   .sectionTitle {
     font-size: 24px;
   }

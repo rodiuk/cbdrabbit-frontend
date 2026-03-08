@@ -95,11 +95,6 @@
 }
 
 @media (max-width: 640px) {
-  .main {
-    padding-top: 20px;
-    padding-bottom: 40px;
-  }
-
   .pageCard {
     padding: 20px 16px 24px;
     border-radius: 14px;
