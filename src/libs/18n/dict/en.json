@@ -237,6 +237,38 @@
         "101-200 шт - 74 uah/candy",
         "200+ шт - 73.5 uah/candy"
       ]
+    },
+    "moreAboutCandies": {
+      "title": "Want to know more <br /> about candies?",
+      "button": "Learn more"
+    },
+    "ourDocuments": {
+      "title": "Our documents",
+      "button": "View 👀"
+    },
+    "faqsSection": {
+      "faqs": [
+        {
+          "question": "How many candies can you eat?",
+          "answer": "From half a candy per day, for example during a course. Up to a few pieces, for improving mood, reducing anxiety, and improving sleep.<br/><br/>Although CBD is safe, we still recommend no more than 3 candies per day."
+        },
+        {
+          "question": "Is it legal?",
+          "answer": "Yes. In 2021, the government allowed the import of cannabidiol (CBD) isolate into Ukraine.<br/><br/>Since CBD has no psychoactive (narcotic) effects, it was removed from the list of prohibited substances."
+        },
+        {
+          "question": "Is it safe?",
+          "answer": "Yes. This is confirmed by research results in many countries.<br/><br/>Although no side effects have been found from using CBD, it is recommended to consult a doctor, especially if you have medical conditions or are taking other medications."
+        },
+        {
+          "question": "When is the best time to take CBD?",
+          "answer": "For better sleep — 30 minutes before bedtime.<br/>At the end of the workday to relieve stress and tension.<br/>Take in courses to balance your internal state.<br/>To reduce anxiety and panic attacks.<br/>For relaxation during massages, tattooing, etc."
+        },
+        {
+          "question": "When is it better not to use?",
+          "answer": "We recommend consulting a doctor regarding the use of CBD, especially if:<br/><br/>• you are pregnant or breastfeeding<br/>• before surgery (CBD may affect blood clotting)<br/>• you have medical conditions or are taking other medications<br/><br/>CBD relaxes and reduces focus, so it is not recommended to use it before driving or working on tasks that require concentration."
+        }
+      ]
     }
   },
   "meta": {

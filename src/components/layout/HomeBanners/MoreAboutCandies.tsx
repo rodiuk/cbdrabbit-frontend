@@ -7,15 +7,21 @@ import Button from "@/components/Ui/Button/Button";
 
 import pic from "/public/img/last.svg";
 import Image from "next/image";
-import AllIcons from "@/components/icons/AllIcons";
 import RubbitUshy from "@/components/icons/RubbitUshy";
 
 interface Props {
+  title: string;
+  buttonLabel: string;
   className?: string;
 }
 
-const HomeBaner: React.FC<Props> = ({ className }) => {
+const MoreAboutCandies = ({
+  title,
+  buttonLabel,
+  className,
+}: Props): React.JSX.Element => {
   const router = useRouter();
+
   return (
     <div className={cn(s.baner, className)}>
       <div className={s.banerWrap}>
@@ -23,13 +29,15 @@ const HomeBaner: React.FC<Props> = ({ className }) => {
           <Image src={pic} alt="pic" width={256} height={256} />
         </div>
         <div className={s.tb}>
-          <p>
-            Хочеш знати більше <br /> про цукерки?
-          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
 
           <Button
             className={s.bb}
-            text="Дізнатися"
+            text={buttonLabel}
             icon={<RubbitUshy />}
             iconRight
             handleClick={() => router.push(`/uk/classic`)}
@@ -41,4 +49,4 @@ const HomeBaner: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default HomeBaner;
+export default MoreAboutCandies;

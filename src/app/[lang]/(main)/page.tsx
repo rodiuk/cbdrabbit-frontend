@@ -6,11 +6,14 @@ import { ProductCard } from "@/components/ProductCard/ProductCard";
 import { IProductRes } from "@/interfaces/product.interface";
 import ListSales from "@/components/ListSales/ListSales";
 import { getDictionary } from "@/libs/18n/getDictionary";
-import HomeBaner from "@/components/layout/HomeBaner/HomeBaner";
+import MoreAboutCandies from "@/components/layout/HomeBanners/MoreAboutCandies";
 import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 import cn from "clsx";
 import styles from "./page.module.css";
+import { Suspense } from "react";
+import OurDocuments from "@/components/layout/HomeBanners/OurDocuments";
+import { FaqSection } from "@/components/FAQSection/FAQSection";
 
 export async function generateMetadata({
   params,
@@ -53,8 +56,20 @@ export default async function Home({ params }: IMainPageProps) {
       </div>
       <SplideSlider className="homeslider" />
 
-      <div className="container">
-        <HomeBaner />
+      <div className="container home-banners">
+        <FaqSection faqs={home?.faqsSection?.faqs} />
+      </div>
+
+      <div className="container home-banners">
+        <MoreAboutCandies
+          title={home?.moreAboutCandies.title || ""}
+          buttonLabel={home?.moreAboutCandies.button || ""}
+        />
+
+        <OurDocuments
+          title={home?.ourDocuments.title || ""}
+          buttonLabel={home?.ourDocuments.button || ""}
+        />
       </div>
     </main>
   );

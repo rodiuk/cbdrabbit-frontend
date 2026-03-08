@@ -241,6 +241,11 @@ export interface OrdersLocales {
   openEmail: string;
 }
 
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 export interface HomeLocales {
   title: string;
   product: {
@@ -248,6 +253,17 @@ export interface HomeLocales {
     notAvailable: string;
     discountLabel: string;
     discountList: string[];
+  };
+  moreAboutCandies: {
+    title: string;
+    button: string;
+  };
+  ourDocuments: {
+    title: string;
+    button: string;
+  };
+  faqsSection: {
+    faqs: FaqItem[];
   };
 }
 

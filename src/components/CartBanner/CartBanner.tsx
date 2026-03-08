@@ -2,15 +2,15 @@
 
 import React from "react";
 import { useAtom } from "jotai";
+import { GiftCandies } from "./GiftCandies";
 import { ArrowRightIcon } from "../icons/ArrowRight";
-import { getCardGiftCountAtom, getTotalPriceAtom } from "@/libs/store/atoms";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useProcessUpdateCart } from "@/hooks/useProcessUpdateCart";
+import { getCardGiftCountAtom, getTotalPriceAtom } from "@/libs/store/atoms";
 
 import styles from "./CartBanner.module.css";
 import Loader from "../Ui/Loader";
-import { GiftCandies } from "./GiftCandies";
 
 interface Props {
   currency: string;

@@ -13,6 +13,7 @@ export function ArrowRightIcon({ iconStyle }: Props): React.JSX.Element {
       width="25"
       height="24"
       fill="currentColor"
+      viewBox="0 0 25 24"
       className={cn({
         [iconStyle!]: iconStyle !== undefined,
       })}
