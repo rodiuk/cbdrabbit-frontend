@@ -38,7 +38,8 @@ const sources = [
     href: "https://www.health.harvard.edu/blog/cannabidiol-cbd-what-we-know-and-what-we-dont-know-2021082419351",
   },
   {
-    label: "🔗 NCBI / StatPearls: CBD у клінічній практиці — переваги та ризики",
+    label:
+      "🔗 NCBI / StatPearls: CBD у клінічній практиці — переваги та ризики",
     href: "https://www.ncbi.nlm.nih.gov/books/NBK556048/",
   },
   {
@@ -69,10 +70,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
       <main className={cn("container", s.main)}>
         <div className={s.pageCard}>
           <section className={s.section}>
-            <h1 className={s.sectionTitle}>
-              <span className={s.icon}>🧠</span>
-              Що таке CBD?
-            </h1>
+            <h1 className={s.sectionTitle}>🧠 Що таке CBD?</h1>
             <div className={s.sectionGrid}>
               <div>
                 <div className={s.textBlock}>
@@ -106,10 +104,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.sectionTitle}>
-              <span className={s.icon}>🌿</span>
-              Як саме він працює?
-            </h2>
+            <h2 className={s.sectionTitle}>🌿 Як саме він працює?</h2>
 
             <div className={s.sectionFlex}>
               <div className={s.illustrationCard}>
@@ -135,10 +130,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.sectionTitle}>
-              <span className={s.icon}>✅</span>
-              Можливі ефекти та користь
-            </h2>
+            <h2 className={s.sectionTitle}>✅ Можливі ефекти та користь</h2>
 
             <p className={s.muted}>
               Наукові дані вказують на наступні потенційні ефекти{" "}
@@ -188,10 +180,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.sectionTitle}>
-              <span className={s.icon}>⚠️</span>
-              Що варто знати про безпеку
-            </h2>
+            <h2 className={s.sectionTitle}>⚠️ Що варто знати про безпеку</h2>
 
             <div className={s.textBlock}>
               <p>CBD зазвичай вважають добре переносимим, але важливо:</p>
@@ -219,10 +208,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.sectionTitle}>
-              <span className={s.icon}>🧪</span>
-              Різниця між CBD і THC
-            </h2>
+            <h2 className={s.sectionTitle}>🧪 Різниця між CBD і THC</h2>
 
             <div className={s.compareMediaWrapper}>
               <Image
@@ -246,10 +232,7 @@ export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.sectionTitle}>
-              <span className={s.icon}>📌</span>
-              Список джерел
-            </h2>
+            <h2 className={s.sectionTitle}>📌 Список джерел</h2>
 
             <ul className={s.sources}>
               {sources.map(source => (
