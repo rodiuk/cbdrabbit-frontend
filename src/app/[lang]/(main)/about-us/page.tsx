@@ -33,63 +33,22 @@ export default async function AboutUS({ params }: Readonly<IMainPageProps>) {
   const { lang } = params;
   const dict = await getDictionary(lang);
   const { header } = dict;
+  const page = dict.informationalPages.aboutUs;
 
   return (
     <>
       <main className={cn("container", s.main)}>
         <div className={s.pageCard}>
           <section className={s.section}>
-            <h1 className={s.title}>Про бренд. Як усе почалося</h1>
+            <h1 className={s.title}>{page.story.title}</h1>
 
             <div className={s.content}>
-              <p>
-                Ідея <strong>Cbd Rabbit</strong> з’явилась на початку
-                повномасштабної війни, у 2022 році. Тоді я шукав для себе
-                комфортний формат CBD — і дуже швидко зрозумів, що олія мені не
-                підходить. Через гіркий смак, відчуття в роті та не зовсім
-                зрозуміле дозування.
-              </p>
-
-              <p>
-                Першим кроком стало дослідження європейського ринку. Я знайшов
-                шоколад із CBD, але в більшості випадків дозування було
-                мінімальним — близько 10 мг на 100 г плитку. Для мого запиту це
-                було занадто мало.
-              </p>
-
-              <p>
-                Я врахував український контекст і вирішив піти іншим шляхом —
-                зробити чітко відчутний формат у межах однієї цукерки. Так ми
-                стали першими, хто зробив дозування <strong>50 мг CBD</strong>{" "}
-                на одну цукерку. Згодом цей підхід почали використовувати й інші
-                бренди — сьогодні хтось уже працює і з більшими значеннями.
-              </p>
-
-              <p>
-                На старті я не мав технологічної бази — перші експерименти були
-                дуже простими: я буквально змішував CBD-олію з шоколадом.
-                Виходило цікаво, і я почав тестувати продукт на друзях.
-              </p>
-
-              <p>
-                Багато з них не вживають м’ясо та продукти тваринного
-                походження, тому для мене було важливо створити солодощі{" "}
-                <strong>без інгредієнтів тваринного походження</strong>.
-              </p>
-
-              <p>
-                Протягом наступного року я експериментував із технологіями та
-                інгредієнтами, паралельно оформлював бренд і навчався, щоб
-                зрозуміти, як правильно й легально запустити виробництво.
-              </p>
-
-              <p>
-                І вже наприкінці травня 2023 року цукерки Cod Rabbit вперше
-                з’явились у київських закладах друзів — у Tea Army та Karma Bar.
-              </p>
+              {page.story.paragraphs.map(paragraph => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
-            <p className={s.author}>— Олег Родюк, засновник бренду</p>
+            <p className={s.author}>{page.story.author}</p>
 
             <div className={s.imageWrap}>
               <Image
@@ -103,145 +62,55 @@ export default async function AboutUS({ params }: Readonly<IMainPageProps>) {
           </section>
 
           <section className={s.section}>
-            <h2 className={s.title}>Чому зайчики</h2>
+            <h2 className={s.title}>{page.rabbits.title}</h2>
 
             <div className={s.content}>
-              <p>Я люблю зайців і вірю, що це моя тотемна тварина.</p>
-
-              <p>
-                Вони дуже цікаві: унікально виглядають, в них тактичне мислення,
-                енергійні, плодючі, вони хоч і не хижаки, але можуть дати відсіч
-                навіть вовку.
-              </p>
-
-              <p>Тому питання «чому зайчики?» для мене не стояло.</p>
-
-              <p>
-                Набагато цікавішим було інше — як поєднати цей образ із
-                канабісом так, щоб це виглядало доречно, легко і без кліше.
-              </p>
-
-              <p>
-                Результат ви можете побачити у логотипі та дизайні коробочки.
-              </p>
+              {page.rabbits.paragraphs.map(paragraph => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
-            <p className={s.author}>— Олег Родюк, засновник бренду</p>
+            <p className={s.author}>{page.rabbits.author}</p>
           </section>
 
           <section className={s.section}>
-            <h2 className={s.title}>Наші цінності</h2>
+            <h2 className={s.title}>{page.values.title}</h2>
 
-            <div className={s.subsection}>
-              <h3 className={s.subTitle}>Якість інгредієнтів</h3>
+            {page.values.items.map(item => (
+              <div key={item.title} className={s.subsection}>
+                <h3 className={s.subTitle}>{item.title}</h3>
 
-              <div className={s.content}>
-                <p>Ми працюємо лише з реальними, зрозумілими складовими.</p>
+                <div className={s.content}>
+                  {item.paragraphs.map(paragraph => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
 
-                <p>
-                  Натуральне какао-масло, сублімовані фрукти без домішок, матча
-                  преміум ґрейд — усе, що ми використовуємо, має сенс не лише у
-                  смаку, а й у походженні.
-                </p>
-
-                <p>
-                  Ми свідомо не додаємо штучні барвники, підсолоджувачі чи
-                  дешеві замінники. І так — іноді це означає менш ідеальний
-                  колір або вигляд. Але для нас важливіше не те, як продукт
-                  виглядає на фото, а те, чим він насправді є. Хоча й у вигляді
-                  ми прагнемо краси, тому дуже багато експериментуємо в процесі
-                  створення кожної цукерки.
-                </p>
+                  {!!item.list?.length && (
+                    <ul className={s.list}>
+                      {item.list.map(listItem => (
+                        <li key={listItem}>- {listItem}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
-            </div>
-
-            <div className={s.subsection}>
-              <h3 className={s.subTitle}>Прозорість і відповідальність</h3>
-
-              <div className={s.content}>
-                <p>
-                  Ми приділяємо особливу увагу легальності й прозорості
-                  виробництва.
-                </p>
-
-                <p>
-                  У нас є всі необхідні документи та дозволи, щоб працювати
-                  відкрито й відповідально.
-                </p>
-
-                <p>
-                  Для нас це не формальність, а частина поваги — до продукту і
-                  до людей.
-                </p>
-              </div>
-            </div>
-
-            <div className={s.subsection}>
-              <h3 className={s.subTitle}>Україна майбутнього</h3>
-
-              <div className={s.content}>
-                <p>
-                  Ми будуємо бренд, який хочемо бачити в Україні майбутнього —
-                  відкритий, свідомий, різноманітний і людяний.
-                </p>
-
-                <p>Ми підтримуємо Україну:</p>
-
-                <ul className={s.list}>
-                  <li>- підтримуємо LGBTQ+ ком’юніті;</li>
-                  <li>- ініціативи за права людини;</li>
-                  <li>
-                    - ініціативи, щодо легалізації медичного використання
-                    канабісу;
-                  </li>
-                  <li>
-                    - ініціативи щодо кетамінових та MDMA терапій для лікування
-                    ПТСР.
-                  </li>
-                </ul>
-
-                <p>
-                  Ми платимо податки, донатимо, допомагаємо ЗСУ та волонтерам —
-                  і робимо це не частиною social media комунікації, а нашою
-                  соціальною відповідальністю.
-                </p>
-              </div>
-            </div>
+            ))}
           </section>
 
           <section className={s.section}>
-            <h2 className={s.title}>Наші цілі й місія</h2>
+            <h2 className={s.title}>{page.mission.title}</h2>
 
-            <div className={s.subsection}>
-              <h3 className={s.subTitle}>Наша ціль</h3>
+            {page.mission.items.map(item => (
+              <div key={item.title} className={s.subsection}>
+                <h3 className={s.subTitle}>{item.title}</h3>
 
-              <div className={s.content}>
-                <p>Бути поруч із людьми у складні часи.</p>
-
-                <p>
-                  Ми живемо в реальності постійної напруги, де тримати
-                  внутрішній баланс стає дедалі складніше. Хронічна втома,
-                  перевантаження, нестабільність — усе це стало фоном.
-                </p>
-
-                <p>
-                  Ми не беремо на себе роль «рятівників». Але хочемо створювати
-                  продукти, які допомагають сповільнитись, видихнути й
-                  повернутись до себе через прості, зрозумілі ритуали.
-                </p>
+                <div className={s.content}>
+                  {item.paragraphs.map(paragraph => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className={s.subsection}>
-              <h3 className={s.subTitle}>Наша місія</h3>
-
-              <div className={s.content}>
-                <p>
-                  Розвивати культуру CBD в Україні через продумані, якісні та
-                  смакові формати, які легко інтегруються в повсякденне життя.
-                </p>
-              </div>
-            </div>
+            ))}
           </section>
         </div>
       </main>

@@ -281,6 +281,170 @@
     "title": "CBD Rabbit",
     "description": "CBD Rabbit - is a store of delicious candies based on natural hemp"
   },
+  "informationalPages": {
+    "aboutCbd": {
+      "whatIs": {
+        "title": "🧠 What is CBD?",
+        "paragraphs": [
+          "CBD (cannabidiol) is a natural compound derived from the Cannabis sativa plant. Unlike THC, it does not produce a psychoactive effect and does not make you feel high or euphoric.",
+          "CBD interacts with the body's endocannabinoid system (ECS), a network of receptors involved in regulating mood, sleep, pain, and immunity."
+        ]
+      },
+      "howItWorks": {
+        "title": "🌿 How does it work?",
+        "paragraphs": [
+          "CBD does not bind directly to CB1/CB2 receptors the way THC does. Instead, it supports the body's natural balance-regulation pathways, enhances the action of endogenous cannabinoids, and interacts with other systems such as serotonin receptors."
+        ]
+      },
+      "benefits": {
+        "title": "✅ Possible effects and benefits",
+        "intro": "Scientific evidence points to the following potential effects",
+        "note": "(some findings are still preliminary and require further research)",
+        "items": [
+          {
+            "title": "✨ Reduced anxiety and stress",
+            "description": "CBD may affect serotonin receptors, which is associated with lower anxiety levels."
+          },
+          {
+            "title": "✨ Better sleep",
+            "description": "Some studies suggest that CBD may help people fall asleep more easily and reduce nighttime awakenings."
+          },
+          {
+            "title": "✨ Pain relief and anti-inflammatory action",
+            "description": "CBD may modulate pain signaling and influence inflammatory responses."
+          },
+          {
+            "title": "✨ Support in epilepsy treatment",
+            "description": "CBD is the basis of Epidiolex, a medication approved for certain forms of epilepsy."
+          }
+        ]
+      },
+      "safety": {
+        "title": "⚠️ What to know about safety",
+        "intro": "CBD is generally considered well tolerated, but it is important to remember:",
+        "items": [
+          "🔸 it may interact with other medications such as anticoagulants or antidepressants and alter their effects;",
+          "🔸 possible side effects include dry mouth, drowsiness, appetite changes, and nausea;",
+          "🔸 very high doses may affect liver markers, especially when taken together with certain medications."
+        ],
+        "outro": "CBD is not a universal cure, and its full effectiveness is still being studied."
+      },
+      "compare": {
+        "title": "🧪 The difference between CBD and THC",
+        "cbd": "CBD is non-psychoactive, does not create a high, and is widely used in wellness products.",
+        "thc": "THC is the psychoactive component of cannabis that produces euphoric effects."
+      },
+      "sources": {
+        "title": "📌 Sources",
+        "items": [
+          {
+            "label": "🔗 Harvard Health: Cannabidiol — what we know and what we still don't know",
+            "href": "https://www.health.harvard.edu/blog/cannabidiol-cbd-what-we-know-and-what-we-dont-know-2021082419351"
+          },
+          {
+            "label": "🔗 NCBI / StatPearls: CBD in clinical practice — benefits and risks",
+            "href": "https://www.ncbi.nlm.nih.gov/books/NBK556048/"
+          },
+          {
+            "label": "🔗 Forbes Health: Scientific evidence behind CBD benefits",
+            "href": "https://www.forbes.com/health/wellness/cbd-benefits/"
+          },
+          {
+            "label": "🔗 AP News — More people are using CBD products",
+            "href": "https://apnews.com/"
+          },
+          {
+            "label": "🔗 WebMD — Health benefits",
+            "href": "https://www.webmd.com/pain-management/cbd-benefits"
+          },
+          {
+            "label": "🔗 Zelena Hazeta — What CBD is and how it works",
+            "href": "#"
+          }
+        ]
+      }
+    },
+    "aboutUs": {
+      "story": {
+        "title": "About the brand. How it all started",
+        "paragraphs": [
+          "The idea for CBD Rabbit came at the beginning of the full-scale war in 2022. At that time, I was looking for a CBD format that felt comfortable for me, and I quickly realized that oil was not the right fit because of its bitter taste, the mouthfeel, and the unclear dosing.",
+          "The first step was researching the European market. I found CBD chocolate, but in most cases the dosage was minimal, around 10 mg per 100 g bar. For my needs, that was simply not enough.",
+          "Taking the Ukrainian context into account, I decided to go a different way and create a clearly noticeable format within a single candy. That is how we became the first to make a candy with 50 mg of CBD. Later, other brands began to use this approach too, and today some already work with even higher dosages.",
+          "At the start, I had no technological base. The first experiments were very simple: I was literally mixing CBD oil with chocolate. The result was interesting, so I began testing the product on friends.",
+          "Many of them do not consume meat or animal-derived products, so it was important for me to create sweets without ingredients of animal origin.",
+          "During the following year, I experimented with technologies and ingredients, while also shaping the brand and learning how to launch production properly and legally.",
+          "By the end of May 2023, Cod Rabbit candies first appeared in friends' venues in Kyiv — Tea Army and Karma Bar."
+        ],
+        "author": "— Oleh Rodiuk, founder"
+      },
+      "rabbits": {
+        "title": "Why rabbits",
+        "paragraphs": [
+          "I love rabbits and believe they are my totem animal.",
+          "They are incredibly interesting: unique-looking, tactical, energetic, fertile, and although they are not predators, they can still fight back even against a wolf.",
+          "So for me, the question \"why rabbits?\" never really existed.",
+          "What was much more interesting was how to combine that image with cannabis in a way that felt appropriate, light, and free of clichés.",
+          "You can see the result in the logo and the box design."
+        ],
+        "author": "— Oleh Rodiuk, founder"
+      },
+      "values": {
+        "title": "Our values",
+        "items": [
+          {
+            "title": "Ingredient quality",
+            "paragraphs": [
+              "We work only with real, understandable ingredients.",
+              "Natural cocoa butter, freeze-dried fruits without additives, premium-grade matcha — everything we use matters not only in taste but also in origin.",
+              "We deliberately avoid artificial colorings, sweeteners, and cheap substitutes. Yes, that sometimes means a less perfect color or appearance. But for us, what matters more is not how the product looks in a photo, but what it truly is. At the same time, we do strive for beauty, which is why we experiment a lot in the process of creating each candy."
+            ]
+          },
+          {
+            "title": "Transparency and responsibility",
+            "paragraphs": [
+              "We pay special attention to legality and transparency in production.",
+              "We have all the necessary documents and permits to work openly and responsibly.",
+              "For us, this is not a formality but part of our respect for both the product and the people."
+            ]
+          },
+          {
+            "title": "The future Ukraine",
+            "paragraphs": [
+              "We are building a brand we want to see in the future Ukraine — open, conscious, diverse, and humane.",
+              "We support Ukraine:",
+              "We pay taxes, donate, help the Armed Forces and volunteers, and we do it not as part of social media communication but as our social responsibility."
+            ],
+            "list": [
+              "we support the LGBTQ+ community;",
+              "human rights initiatives;",
+              "initiatives advocating for the legalization of medical cannabis use;",
+              "initiatives supporting ketamine and MDMA therapies for PTSD treatment."
+            ]
+          }
+        ]
+      },
+      "mission": {
+        "title": "Our goals and mission",
+        "items": [
+          {
+            "title": "Our goal",
+            "paragraphs": [
+              "To be there for people in difficult times.",
+              "We live in a reality of constant tension, where keeping inner balance becomes harder and harder. Chronic fatigue, overload, and instability have become the background of everyday life.",
+              "We do not take on the role of saviors. But we want to create products that help people slow down, exhale, and reconnect with themselves through simple, understandable rituals."
+            ]
+          },
+          {
+            "title": "Our mission",
+            "paragraphs": [
+              "To develop CBD culture in Ukraine through thoughtful, high-quality, and flavorful formats that fit naturally into everyday life."
+            ]
+          }
+        ]
+      }
+    }
+  },
   "landings": {
     "landing": [
       {

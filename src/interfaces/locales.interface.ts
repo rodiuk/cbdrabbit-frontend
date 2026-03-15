@@ -9,6 +9,7 @@ export interface Localization {
   profile: ProfileLocales;
   orders: OrdersLocales;
   home: HomeLocales;
+  informationalPages: InformationalPagesLocales;
   meta: MetaLocales;
   landings: LandingsLocales;
 }
@@ -270,6 +271,77 @@ export interface HomeLocales {
   };
   faqsSection: {
     faqs: FaqItem[];
+  };
+}
+
+export interface InformationalPagesLocales {
+  aboutCbd: AboutCbdPageLocales;
+  aboutUs: AboutUsPageLocales;
+}
+
+export interface AboutCbdPageLocales {
+  whatIs: {
+    title: string;
+    paragraphs: string[];
+  };
+  howItWorks: {
+    title: string;
+    paragraphs: string[];
+  };
+  benefits: {
+    title: string;
+    intro: string;
+    note: string;
+    items: {
+      title: string;
+      description: string;
+    }[];
+  };
+  safety: {
+    title: string;
+    intro: string;
+    items: string[];
+    outro: string;
+  };
+  compare: {
+    title: string;
+    cbd: string;
+    thc: string;
+  };
+  sources: {
+    title: string;
+    items: {
+      label: string;
+      href: string;
+    }[];
+  };
+}
+
+export interface AboutUsPageLocales {
+  story: {
+    title: string;
+    paragraphs: string[];
+    author: string;
+  };
+  rabbits: {
+    title: string;
+    paragraphs: string[];
+    author: string;
+  };
+  values: {
+    title: string;
+    items: {
+      title: string;
+      paragraphs: string[];
+      list?: string[];
+    }[];
+  };
+  mission: {
+    title: string;
+    items: {
+      title: string;
+      paragraphs: string[];
+    }[];
   };
 }
 
