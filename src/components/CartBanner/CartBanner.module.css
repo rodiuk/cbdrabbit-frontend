@@ -125,9 +125,9 @@
 
 .gc_tooltip {
   position: absolute;
-  left: 50%;
+  left: 10%;
   bottom: calc(100% + 10px);
-  transform: translateX(-50%) translateY(4px);
+  transform: translateX(-10%) translateY(4px);
   opacity: 0;
   visibility: hidden;
   transition:
@@ -160,12 +160,21 @@
 .gc_tooltipOpen {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-10%) translateY(0);
 }
 
 @media screen and (min-width: 768px) {
   .container {
     width: 540px;
+  }
+
+  .gc_tooltip {
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  .gc_tooltipOpen {
+    transform: translateX(-50%) translateY(0);
   }
 
   .gc_container {

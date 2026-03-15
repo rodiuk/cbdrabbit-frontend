@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { LogoContainer } from "./Logo/LogoContainer";
 import { Locale } from "../../../../i18n.config";
 import { PageTitle } from "./PageTitle/PageTitle";
@@ -24,15 +24,20 @@ export const Header = async ({
   const dict = await getDictionary(lang);
   const session = await getServerSession(authConfig);
 
+  console.log("Header session", session?.user);
+
   return (
     <header
       className={cn("", styles.container, styles.header, stylesName)}
       id="headerId"
     >
       <div className={cn("container", styles.block)}>
-        {" "}
         <LogoContainer lang={lang} />
-        <HeaderCTA classNames={styles.cta_desktop} title={dict.header.cta} />
+        <HeaderCTA
+          classNames={styles.cta_desktop}
+          title={dict.header.cta}
+          notAuthorized={!session?.user?.id}
+        />
         <NavWrapper
           lang={lang}
           session={session}
@@ -40,7 +45,12 @@ export const Header = async ({
           isAuthenticated={!!session?.user?.id}
         />
       </div>
-      <HeaderCTA classNames={styles.cta_mobile} title={dict.header.cta} />
+
+      <HeaderCTA
+        classNames={styles.cta_mobile}
+        title={dict.header.cta}
+        notAuthorized={!session?.user?.id}
+      />
 
       <div className="container">
         <PageTitle lang={lang} />

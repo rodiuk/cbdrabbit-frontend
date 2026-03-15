@@ -4,7 +4,7 @@ import GiftIcon from "../icons/GigtIcon";
 import Image from "next/image";
 import styles from "./CartBanner.module.css";
 
-import gift from "/public/img/cart-gift.png";
+import gift from "/public/img/svd_icon.svg";
 import InfoTooltipIcon from "../icons/InfoTooltipIcon";
 
 interface Props {

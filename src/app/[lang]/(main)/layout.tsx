@@ -48,6 +48,7 @@ export default async function RootLayout({
           className={cn(fonts.manrope.variable, fonts.merriweather.variable)}
         >
           <Header lang={params.lang} />
+
           {children}
 
           <CartBanner
