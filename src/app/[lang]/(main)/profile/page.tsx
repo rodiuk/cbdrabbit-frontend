@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import { ProfileWrapper } from "./ProfileWrapper";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";

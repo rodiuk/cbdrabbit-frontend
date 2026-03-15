@@ -1,8 +1,5 @@
 "use client"
-import React from 'react';
 
-import figureForFooter from "/public/img/figureForFooter.svg";
-import Image from 'next/image';
 import { ArrowRightIcon } from '@/components/icons/ArrowRight';
 
 import s from "./LinkToTop.module.css";

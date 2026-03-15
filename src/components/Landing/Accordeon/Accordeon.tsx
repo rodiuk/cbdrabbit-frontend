@@ -1,5 +1,4 @@
 "use client"
-import React from 'react';
 import cn from "clsx";
 
 import s from "./Accordeon.module.css";

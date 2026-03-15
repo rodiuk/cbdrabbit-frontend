@@ -1,4 +1,3 @@
-import React from "react";
 import { DiscountInfo } from "../ProductCard/DiscountInfo/DiscountInfo";
 
 interface Props {

@@ -1,4 +1,3 @@
-import React from 'react';
 import cn from "clsx";
 import s from "./Buttons.module.css";
 import Link from 'next/link';

@@ -1,4 +1,3 @@
-import React from "react";
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { openGraphBase } from "@/app/[lang]/shared-metadata";

@@ -137,7 +137,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1) Пропускаємо NextAuth API та сторінку входу
-  if (pathname.startsWith("/api/auth") || pathname === "/signin") {
+  if (pathname.startsWith("/api/auth") || pathname === "/signIn") {
     const res = NextResponse.next();
     res.headers.set("Cache-Control", "no-store, max-age=0");
     return res;

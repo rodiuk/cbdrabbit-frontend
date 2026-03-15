@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import PercentageHeartIcon from "@/components/icons/PercentageHeartIcon";
 
 import cn from "clsx";

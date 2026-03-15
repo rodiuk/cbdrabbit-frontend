@@ -1,4 +1,3 @@
-import React from "react";
 import { getServerSession } from "next-auth";
 import { OrdersWrapper } from "./OrdersWrapper";
 import { authConfig } from "@/configs/auth.config";

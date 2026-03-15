@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import Image from "next/image";
 import Input from "@/components/Ui/Input/Input";
 import Button from "@/components/Ui/Button/Button";

@@ -1,4 +1,3 @@
-import React from "react";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { SuccessAction } from "@/components/auth/SuccessAction";

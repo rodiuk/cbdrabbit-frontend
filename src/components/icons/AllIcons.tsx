@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowDownIcon } from './ArrowDown';
 import { ArrowLeftIcon } from './ArrowLeft';
 import { ArrowRightIcon } from './ArrowRight';

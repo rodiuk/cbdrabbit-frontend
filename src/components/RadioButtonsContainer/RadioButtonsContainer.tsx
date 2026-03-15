@@ -1,6 +1,5 @@
 "use client";
 import InputRadio from "@/components/Ui/InputRadio/InputRadio";
-import React from "react";
 
 interface Options {
   id: string;

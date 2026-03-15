@@ -1,6 +1,5 @@
 "use client";
 
-import { Session } from "next-auth";
 import React, { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { Locale } from "../../../../../i18n.config";

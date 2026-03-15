@@ -1,4 +1,3 @@
-import React from "react";
 import { IMainPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { SignUpPasswordForm } from "@/components/forms/auth/SignUpPasswordForm";

@@ -1,4 +1,3 @@
-import React from "react";
 import { Metadata } from "next";
 import { getPostById } from "@/libs/api/post.api";
 import { IMainPageProps } from "@/interfaces/page.interface";

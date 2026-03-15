@@ -1,4 +1,3 @@
-import React from "react";
 import cn from "clsx";
 import s from "./SelectButtons.module.css";
 import Image from "next/image";

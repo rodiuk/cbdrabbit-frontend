@@ -4,7 +4,6 @@ import { Locale } from "../../../i18n.config";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { checkVerifiedCode } from "@/libs/api/user.api";
 import { ButtonLink } from "../Ui/ButtonLink";
-import { signIn } from "next-auth/react";
 
 import ok from "/public/img/ok.jpg";
 

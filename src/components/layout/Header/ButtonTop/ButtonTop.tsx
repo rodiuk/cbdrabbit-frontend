@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 import s from "./ButtonTop.module.css";
 import { Locale } from "../../../../../i18n.config";

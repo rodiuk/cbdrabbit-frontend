@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { OrderStatus } from "@prisma/client";
 import OrderProduct from "./OrderProduct/OrderProduct";

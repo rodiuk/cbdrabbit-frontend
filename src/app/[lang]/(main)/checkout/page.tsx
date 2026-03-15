@@ -1,4 +1,3 @@
-import React from "react";
 import { getServerSession } from "next-auth";
 import { getUserInfo } from "@/libs/api/user.api";
 import { authConfig } from "@/configs/auth.config";

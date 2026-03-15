@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { IProfileDict } from "@/interfaces/i18n.interface";

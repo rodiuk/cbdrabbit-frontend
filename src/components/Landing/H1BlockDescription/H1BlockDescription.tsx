@@ -1,4 +1,3 @@
-import React from 'react';
 import s from "./H1BlockDescription.module.css";
 
 // import h1d1 from "/public/img/h1d1.png";

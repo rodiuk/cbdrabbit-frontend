@@ -11,7 +11,6 @@ import { SplideSlider } from "@/components/SplideSlider/SplideSlider";
 
 import cn from "clsx";
 import styles from "./page.module.css";
-import { Suspense } from "react";
 import OurDocuments from "@/components/layout/HomeBanners/OurDocuments";
 import { FaqSection } from "@/components/FAQSection/FAQSection";
 

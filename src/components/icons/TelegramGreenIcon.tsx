@@ -1,7 +1,3 @@
-import React from "react";
-
-import cn from "clsx";
-
 interface Props {
   iconStyle?: string;
 }
