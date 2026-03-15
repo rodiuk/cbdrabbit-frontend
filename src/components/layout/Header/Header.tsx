@@ -1,16 +1,15 @@
-import React, { Suspense } from "react";
-import { LogoContainer } from "./Logo/LogoContainer";
+import React from "react";
+import { HeaderCTA } from "./HeaderCTA";
+import { NavWrapper } from "./NavWrapper";
+import { getServerSession } from "next-auth";
 import { Locale } from "../../../../i18n.config";
 import { PageTitle } from "./PageTitle/PageTitle";
-import { NavWrapper } from "./NavWrapper";
+import { authConfig } from "@/configs/auth.config";
+import { LogoContainer } from "./Logo/LogoContainer";
 import { getDictionary } from "@/libs/18n/getDictionary";
 
 import cn from "clsx";
 import styles from "./Header.module.css";
-import { authConfig } from "@/configs/auth.config";
-import { getServerSession, Session } from "next-auth";
-import PercentageHeartIcon from "@/components/icons/PercentageHeartIcon";
-import { HeaderCTA } from "./HeaderCTA";
 
 interface Props {
   lang: Locale;
@@ -23,8 +22,6 @@ export const Header = async ({
 }: Props): Promise<React.JSX.Element> => {
   const dict = await getDictionary(lang);
   const session = await getServerSession(authConfig);
-
-  console.log("Header session", session?.user);
 
   return (
     <header
