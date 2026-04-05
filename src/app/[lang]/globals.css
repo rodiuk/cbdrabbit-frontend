@@ -176,6 +176,10 @@ a {
   padding-right: 15px;
 }
 
+.noAfter::after {
+  display: none;
+}
+
 @media (min-width: 767px) {
   .container {
     width: 750px;

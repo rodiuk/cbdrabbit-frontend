@@ -7,7 +7,7 @@ import NovaPost from "@/components/NovaPoshta/NovaPoshta";
 import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import Textarea from "@/components/Ui/Textarea/Textarea";
-import { Promocode } from "@prisma/client";
+import type { Promocode } from "@prisma/client";
 
 import styles from "./page.module.css";
 
@@ -82,7 +82,9 @@ const MobileCheckout = (props: Props) => {
 
   return (
     <section className={styles.mobile}>
-      {isAuthorized && <GreetingBlock userInfo={userInfo} />}
+      {isAuthorized && (
+        <GreetingBlock userInfo={userInfo} greeting={dict.checkout.greeting} />
+      )}
 
       <div className={styles.checkoutBlock}>
         <div className={styles.checkoutBlock_h2}>
@@ -131,6 +133,7 @@ const MobileCheckout = (props: Props) => {
           setDeliveryAddress={setDeliveryAddress}
           setDeliveryId={setDeliveryId}
           validateData={validateData}
+          dict={dict.checkout}
         />
       </div>
 
@@ -146,7 +149,7 @@ const MobileCheckout = (props: Props) => {
       </div>
 
       <div className={styles.checkoutBlock}>
-        <div className={styles.checkoutBlock_h2}>Коментар</div>
+        <div className={styles.checkoutBlock_h2}>{dict.checkout.commentTitle}</div>
         <Textarea
           placeholder={dict.checkout.commentLabel}
           value={comment}

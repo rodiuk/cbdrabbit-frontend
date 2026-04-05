@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import InputNovaPoshta from "../Ui/InputNovaPoshta/InputNovaPoshta";
 import { ArrowLeftIcon } from "../icons/ArrowLeft";
 
@@ -12,23 +13,25 @@ const LayShowFilial = ({
   arrayNpFilials,
   selectedFilial,
   close,
+  dict,
 }: {
   deliveryId: string;
   close: () => void;
   newPostNum: (e: string) => void;
   arrayNpFilials: any[];
   selectedFilial: (filial: string) => void;
+  dict: ICheckoutDict;
 }) => {
   const [emptyArray, setEmptyArray] = React.useState(false);
 
   let ttl;
   let placeholder;
   if (deliveryId === "1") {
-    ttl = "Відділення";
-    placeholder = "Введи номер відділення";
+    ttl = dict.novaPoshta.branchTitle;
+    placeholder = dict.novaPoshta.branchPlaceholder;
   } else if (deliveryId === "2") {
-    ttl = "Поштомат";
-    placeholder = "Введи номер поштомата";
+    ttl = dict.novaPoshta.parcelLockerTitle;
+    placeholder = dict.novaPoshta.parcelLockerPlaceholder;
   }
 
   const errorRes = () => {
@@ -55,7 +58,7 @@ const LayShowFilial = ({
           </div>
           <InputNovaPoshta
             type="text"
-            name="Населений пункт"
+            name="postPoint"
             placeholder={placeholder}
             newPostNum={newPostNum}
             target="filialInput"
@@ -86,12 +89,9 @@ const LayShowFilial = ({
               <div className={s.errorBlockPic}>
                 <Image src={errorRabbitIcon} className={s.image} alt="error" />
               </div>
-              <div className={s.errTtl}>
-                На жаль, за твоїм запитом нічого не знайдено
-              </div>
+              <div className={s.errTtl}>{dict.novaPoshta.noResultsTitle}</div>
               <div className={s.errDescr}>
-                Будь ласка, переконайся, що ввів все правильно, або спробуй
-                змінити запит
+                {dict.novaPoshta.noResultsDescription}
               </div>
             </div>
           ) : null}

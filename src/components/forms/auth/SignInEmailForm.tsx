@@ -102,7 +102,7 @@ export const SignInEmailForm = ({
         // text={dict?.inputLabel}
         value={email}
         onInputChange={setEmail}
-        errorText={showError ? "Такого корситувача не існує" : undefined}
+        errorText={showError ? dict?.errorUserNotFound : undefined}
       />
 
       {email?.length > 1 && (

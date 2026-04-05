@@ -34,6 +34,7 @@ export default async function Cooperation({ params }: any) {
   const { lang } = params;
   const dict = await getDictionary(lang);
   const { header } = dict;
+  const page = dict.informationalPages.cooperation;
   return (
     <>
       <main className={cn("container", s.main)}>
@@ -42,12 +43,12 @@ export default async function Cooperation({ params }: any) {
             <Image src={okIcon} width={160} height={160} alt="ok" />
           </div>
           <div className={s.ttl2}>
-            <p>Ви заклад, кавʼярня, магазин чи івент?</p>
-            <p>Це чудово!</p>
-            <p>Наші цукерочки-зайчики дуже люблять нові місця 🐇</p>
+            {page.intro.map(item => (
+              <p key={item}>{item}</p>
+            ))}
           </div>
           <div className={s.tg_block}>
-            <div className={s.tt}>Щодо співпраці пишіть нам в телеграм 🤠</div>
+            <div className={s.tt}>{page.telegramTitle}</div>
             <div className={s.linl1}>
               <Link href="https://t.me/cbdrabbit" target="_blank">
                 <TelegramGreenIcon iconStyle={s.gree_icon} />

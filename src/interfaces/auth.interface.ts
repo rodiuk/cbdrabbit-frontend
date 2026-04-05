@@ -6,6 +6,7 @@ export interface ISignInEmailDict {
   buttonDividerLabel: string;
   buttonGoogle: string;
   createAccount: string;
+  errorUserNotFound: string;
 }
 
 export interface IActivateDict {

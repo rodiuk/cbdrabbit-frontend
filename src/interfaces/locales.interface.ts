@@ -1,6 +1,7 @@
 export interface Localization {
   header: HeaderLocales;
   footer: FooterLocales;
+  common: CommonLocales;
   currency: string;
   cartBanner: CartBannerLocales;
   recoveryPassword: RecoveryPasswordLocales;
@@ -60,6 +61,18 @@ export interface FooterLocales {
   };
 }
 
+export interface CommonLocales {
+  loading: string;
+  signIn: string;
+  forgotPassword: string;
+  bonusCandiesAria: string;
+  errorPage: {
+    title: string;
+    subtitle: string;
+    button: string;
+  };
+}
+
 export interface CartBannerLocales {
   checkoutLabel: string;
   checkoutButton: string;
@@ -107,6 +120,7 @@ export interface AuthLocales {
     buttonGoogle: string;
     buttonDividerLabel: string;
     createAccount: string;
+    errorUserNotFound: string;
   };
   signInPassword: {
     title: string;
@@ -166,6 +180,33 @@ export interface CheckoutLocales {
   checkoutButton: string;
   commentTitle: string;
   commentLabel: string;
+  promocodePlaceholder: string;
+  promocodeError: string;
+  promocodeApply: string;
+  promocodeChecking: string;
+  phoneHelp: string;
+  emailHelp: string;
+  createAccountLabel: string;
+  greeting: string;
+  novaPoshta: {
+    deliveryMethodLabel: string;
+    branch: string;
+    parcelLocker: string;
+    courier: string;
+    cityTitle: string;
+    cityPlaceholder: string;
+    cityHint: string;
+    popularCitiesTitle: string;
+    addressTitle: string;
+    addressPlaceholder: string;
+    branchTitle: string;
+    branchPlaceholder: string;
+    parcelLockerTitle: string;
+    parcelLockerPlaceholder: string;
+    noResultsTitle: string;
+    noResultsDescription: string;
+    popularCities: string[];
+  };
   oneCandy: string;
   twoFourCandy: string;
   fiveCandy: string;
@@ -224,6 +265,11 @@ export interface ProfileLocales {
   step2: string;
   step3: string;
   step4: string;
+  maxDiscountTitle: string;
+  maxDiscountSubtitle: string;
+  deliveryBranchLabel: string;
+  deliveryParcelLockerLabel: string;
+  deliveryCourierLabel: string;
 }
 
 export interface OrdersLocales {
@@ -246,6 +292,19 @@ export interface OrdersLocales {
   statusSuccess: string;
   notVerifiedAccount: string;
   openEmail: string;
+  trackingNumber: string;
+  promocodeDiscount: string;
+  candyPrice: string;
+  deliveryTitle: string;
+  deliveryCarrierRate: string;
+  totalPaid: string;
+  detailsTitle: string;
+  commentTitle: string;
+  noComment: string;
+  statusTitle: string;
+  customerTitle: string;
+  closeButton: string;
+  canceledWarning: string;
 }
 
 export type FaqItem = {
@@ -277,6 +336,35 @@ export interface HomeLocales {
 export interface InformationalPagesLocales {
   aboutCbd: AboutCbdPageLocales;
   aboutUs: AboutUsPageLocales;
+  contacts: ContactsPageLocales;
+  cooperation: CooperationPageLocales;
+  checkoutInfo: CheckoutInfoPageLocales;
+  notFound: NotFoundPageLocales;
+}
+
+export interface ContactsPageLocales {
+  intro: string;
+  instagramTitle: string;
+  telegramTitle: string;
+}
+
+export interface CooperationPageLocales {
+  intro: string[];
+  telegramTitle: string;
+}
+
+export interface CheckoutInfoPageLocales {
+  blocks: {
+    title: string;
+    paragraphs: string[];
+  }[];
+}
+
+export interface NotFoundPageLocales {
+  title: string;
+  subtitle: string;
+  button: string;
+  footer: string;
 }
 
 export interface AboutCbdPageLocales {

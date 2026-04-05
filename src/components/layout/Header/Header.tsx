@@ -50,7 +50,7 @@ export const Header = async ({
       />
 
       <div className="container">
-        <PageTitle lang={lang} />
+        <PageTitle lang={lang} titles={dict.header.titles} />
       </div>
     </header>
   );

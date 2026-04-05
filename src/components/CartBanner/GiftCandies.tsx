@@ -10,9 +10,10 @@ import InfoTooltipIcon from "../icons/InfoTooltipIcon";
 interface Props {
   count: number;
   title: string;
+  ariaLabel: string;
 }
 
-export const GiftCandies = ({ count, title }: Props) => {
+export const GiftCandies = ({ count, title, ariaLabel }: Props) => {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
 
   const hideTimerRef = React.useRef<number | null>(null);
@@ -48,7 +49,7 @@ export const GiftCandies = ({ count, title }: Props) => {
       onTouchStart={triggerTooltip}
       role="button"
       tabIndex={0}
-      aria-label="Бонусні цукерки"
+      aria-label={ariaLabel}
     >
       {/* Tooltip */}
       <div

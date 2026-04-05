@@ -12,10 +12,11 @@ interface Props {
   dict: IRecoveryPasswordDict;
   email: string;
   lang: string;
+  loadingLabel?: string;
 }
 
 const LayPopupPasswordRecovery = (props: Props): React.JSX.Element => {
-  const { bottomBlock, dict, email, lang } = props;
+  const { bottomBlock, dict, email, lang, loadingLabel } = props;
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -45,6 +46,7 @@ const LayPopupPasswordRecovery = (props: Props): React.JSX.Element => {
         email={email}
         isLoading={isLoading}
         handleSendRecoveryEmail={handleSendRecoveryEmail}
+        loadingLabel={loadingLabel}
       />
     </div>
   );

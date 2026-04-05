@@ -29,6 +29,7 @@ export default async function NotFound({ params }: any) {
   const { lang } = params;
   const dict = await getDictionary(lang);
   const { header } = dict;
+  const page = dict.informationalPages.notFound;
 
   return (
     <>
@@ -38,19 +39,15 @@ export default async function NotFound({ params }: any) {
             <Image src={iconRubbit} alt="iconRubbit" width={256} height={256} />
           </div>
           <div className={s.block}>
-            <p>Це твій останній шанс. Далі вже не буде вороття...</p>
-            <p>
-              Вибереш червону цукерку - залишишся в дивокраї, <br /> вибереш
-              жовту - те ж саме, але бананова
-            </p>
+            <p>{page.title}</p>
+            <p>{page.subtitle}</p>
           </div>
           <Link href="/" className={s.button}>
-            Піти за кроликом
+            {page.button}
           </Link>
         </div>
         <div className={s.bot}>
-          <span className={s.bold}>404.</span> Сторінки не існує. А що взагалі
-          реально?
+          <span className={s.bold}>404.</span> {page.footer}
         </div>
       </main>
       <Footer lang={lang} titles={header.titles} />

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useAtom } from "jotai/react";
-import { Promocode } from "@prisma/client";
+import type { Promocode } from "@prisma/client";
 import { cartAtom } from "@/libs/store/atoms";
 import { PromocodeBlock } from "./PromocodeBlock";
 import Button from "@/components/Ui/Button/Button";
@@ -172,7 +172,11 @@ const CheckoutRes = React.memo(function CheckoutRes({
             </div>
           )}
 
-          <PromocodeBlock setPromocode={setPromocode} promocode={promocode} />
+          <PromocodeBlock
+            setPromocode={setPromocode}
+            promocode={promocode}
+            dict={dict}
+          />
         </div>
 
         {!promocode?.code && (

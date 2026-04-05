@@ -14,10 +14,11 @@ interface Props {
   dict: IProfileDict;
   lang: string;
   user: Session["user"] | null;
+  loadingLabel?: string;
 }
 
 const LayPopupEmail = (props: Props): React.JSX.Element => {
-  const { bottomBlock, dict, lang } = props;
+  const { bottomBlock, dict, lang, loadingLabel = "Loading..." } = props;
   const pathname = usePathname();
   const router = useRouter();
   const [email, setEmail] = React.useState<string>("");
@@ -101,7 +102,7 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
                 <div className={s.buttonBlock}>
                   <p className={s.bbt}>{dict.changeEmailSecondSubtitle}</p>
                   <ButtonWhite
-                    text={isLoading ? "Loading" : dict.changeEmailBtn}
+                    text={isLoading ? loadingLabel : dict.changeEmailBtn}
                     handleClick={handleChangeEmail}
                     isDisabled={isLoading}
                   />
@@ -147,7 +148,7 @@ const LayPopupEmail = (props: Props): React.JSX.Element => {
                 <div className={s.buttonBlock}>
                   <p className={s.bbt}>{dict.changeEmailSecondSubtitle}</p>
                   <ButtonWhite
-                    text={isLoading ? "Loading..." : dict.changeEmailBtn}
+                    text={isLoading ? loadingLabel : dict.changeEmailBtn}
                     handleClick={handleChangeEmail}
                     isDisabled={isLoading}
                   />

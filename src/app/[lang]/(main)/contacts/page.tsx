@@ -33,15 +33,13 @@ export default async function Contacts({ params }: any) {
   const { lang } = params;
   const dict = await getDictionary(lang);
   const { header } = dict;
+  const page = dict.informationalPages.contacts;
   return (
     <>
       <main className={cn("container", s.main)}>
         <div className={s.wrap}>
-          <div className="ttl">
-            Бажаєте залишити відгук, поділитися ідеєю, поспілкуватися про
-            цукерки?
-          </div>
-          <div className={s.ttl2}>Запрошуємо в наш інстаграм 🐇</div>
+          <div className="ttl">{page.intro}</div>
+          <div className={s.ttl2}>{page.instagramTitle}</div>
           <div className={s.linl1}>
             <Link href="https://www.instagram.com/cbdrabbit" target="_blank">
               <InstaWhiteIcon iconStyle={s.gree_icon} />
@@ -49,7 +47,7 @@ export default async function Contacts({ params }: any) {
             </Link>
           </div>
           <div className={s.tg_block}>
-            <div className={s.tt}>Щодо співпраці пишіть нам в телеграм 🤠</div>
+            <div className={s.tt}>{page.telegramTitle}</div>
             <div className={s.linl1}>
               <Link href="https://t.me/cbdrabbit" target="_blank">
                 <TelegramGreenIcon iconStyle={s.gree_icon} />

@@ -14,11 +14,16 @@ interface Props {
 
 const Cart = ({ lang }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <Link href={`/${lang}/checkout`} className={styles.container}>
       <CartIcon />
-      <div className={styles.counter}>{cart?.totalCount}</div>
+      <div className={styles.counter}>{mounted ? cart?.totalCount : null}</div>
     </Link>
   );
 };

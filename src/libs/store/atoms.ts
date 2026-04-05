@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { Product } from "@prisma/client";
+import type { Product } from "@prisma/client";
 import { constants } from "@/configs/constants";
 import { Cart } from "@/interfaces/store.interface";
 import { IProductRes } from "@/interfaces/product.interface";

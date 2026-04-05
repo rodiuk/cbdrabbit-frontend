@@ -1,4 +1,5 @@
 import React from "react";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import InputNovaPoshta from "../Ui/InputNovaPoshta/InputNovaPoshta";
 
@@ -10,24 +11,15 @@ const LayShowCities = ({
   close,
   sities,
   selectedCity,
+  dict,
 }: {
   novaposhtaCities: any;
   close: any;
   sities: any;
   selectedCity?: any;
+  dict: ICheckoutDict;
 }) => {
   const [isPopular, setIsPopular] = React.useState(false);
-
-  let citiesPopular = [
-    "Київ",
-    "Одеса",
-    "Дніпро",
-    "Харків",
-    "Львів (Львівська обл.)",
-    "Запоріжжя (Запорізька обл.,)",
-    "Кривий Ріг (Дніпропетровська обл.)",
-    "Миколаїв (Миколаївська обл)",
-  ];
 
   const onClickPopular = (city: string, e: any) => {
     setIsPopular(true);
@@ -57,19 +49,17 @@ const LayShowCities = ({
             <span className={s.close} onClick={() => close()}>
               <ArrowLeftIcon iconStyle={s.left} />
             </span>
-            <div className="ttl">Населений пункт</div>
+            <div className="ttl">{dict.novaPoshta.cityTitle}</div>
           </div>
           <InputNovaPoshta
             type="text"
-            name="Населений пункт"
-            placeholder="Введи населений пункт"
+            name="city"
+            placeholder={dict.novaPoshta.cityPlaceholder}
             novaposhtaCities={novaposhtaCities}
             setIsPopular={setIsPopular}
             target="cityInput"
           />
-          <div className={s.start}>
-            Почни вводити назву населеного пункту від 3 букв
-          </div>
+          <div className={s.start}>{dict.novaPoshta.cityHint}</div>
           <div className="list">
             {sities.length ? (
               <ul className={s.list}>
@@ -92,9 +82,11 @@ const LayShowCities = ({
               </ul>
             ) : (
               <>
-                <div className={s.listTTl}>Популярні населені пункти</div>
+                <div className={s.listTTl}>
+                  {dict.novaPoshta.popularCitiesTitle}
+                </div>
                 <ul className={s.list}>
-                  {citiesPopular.map((city, index) => (
+                  {dict.novaPoshta.popularCities.map((city, index) => (
                     <li
                       key={index}
                       data-popular={true}

@@ -8,7 +8,7 @@ import { ICheckoutDict, IProfileDict } from "@/interfaces/i18n.interface";
 import Button from "@/components/Ui/Button/Button";
 import ButtonRed from "@/components/Ui/Button/ButtonRed";
 import { getUserInfo, updateDeliveryInfo } from "@/libs/api/user.api";
-import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
+import { normalizeNpDeliveryId } from "@/components/NovaPoshta/npDelivery";
 
 import s from "./LayPopupDelivery.module.css";
 
@@ -21,10 +21,16 @@ interface Props {
   profileDict: IProfileDict;
   checkoutDict: ICheckoutDict;
   user: Session["user"] | null;
+  loadingLabel?: string;
 }
 
 const LayPopupDelivery = (props: Props): React.JSX.Element => {
-  const { bottomBlock, profileDict, checkoutDict } = props;
+  const {
+    bottomBlock,
+    profileDict,
+    checkoutDict,
+    loadingLabel = "Loading...",
+  } = props;
   const [userInfo, setUserInfo] = React.useState({
     firstName: "",
     lastName: "",
@@ -51,7 +57,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
         });
         setCity(res?.address?.city ?? "");
         setPostPoint(res?.address?.npDepartment ?? "");
-        setDeliveryId(res?.address?.npDeliveryType ?? "");
+        setDeliveryId(normalizeNpDeliveryId(res?.address?.npDeliveryType));
       } catch (error) {
         console.log(error);
       }
@@ -68,9 +74,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
         phoneNumber: userInfo.phone,
         city: city,
         npDepartment: postPoint,
-        npDeliveryType:
-          npDeliveryType.filter(item => item.id === deliveryId)[0]?.text ??
-          deliveryId,
+        npDeliveryType: deliveryId,
       };
 
       await updateDeliveryInfo(props.user.id, payload);
@@ -122,7 +126,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
             />
 
             <div className={s.checkoutBlock_np}>
-              <div className={s.lay_ttl2}>Доставка</div>
+              <div className={s.lay_ttl2}>{checkoutDict.deliveryTitle}</div>
               <Image src={np} alt="np" />
               <div className={s.checkoutBlock_ttl}>{profileDict.npLabel}</div>
             </div>
@@ -135,6 +139,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
               deliveryAddress={deliveryAddress}
               setDeliveryAddress={setDeliveryAddress}
               setDeliveryId={setDeliveryId}
+              dict={checkoutDict}
             />
             <div className={s.buttons}>
               <div className={s.buttonBlock}>
@@ -143,7 +148,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
                   handleClick={() => bottomBlock("deleteDelivery")}
                   text={
                     isLoadingReset
-                      ? "Loading..."
+                      ? loadingLabel
                       : profileDict.changeDeliveryButtonReset
                   }
                   className={s.button}
@@ -160,7 +165,7 @@ const LayPopupDelivery = (props: Props): React.JSX.Element => {
                 <Button
                   text={
                     isLoadingSave
-                      ? "Loading..."
+                      ? loadingLabel
                       : profileDict.changeDeliveryButtonSave
                   }
                   isDisabled={isLoadingSave}

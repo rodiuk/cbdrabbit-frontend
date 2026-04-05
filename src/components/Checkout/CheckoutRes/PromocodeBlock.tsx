@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Promocode } from "@prisma/client";
+import type { Promocode } from "@prisma/client";
 import ButtonWhite from "@/components/Ui/Button/ButtonWhite";
 import { findOnePromocode } from "@/libs/api/promocodes.api";
 import Input from "@/components/Ui/Input/Input";
@@ -10,15 +10,18 @@ import sale_icon from "/public/img/sale_icon.svg";
 
 import cn from "clsx";
 import s from "./s.module.css";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 interface IPromocodeProps {
   setPromocode: React.Dispatch<React.SetStateAction<Promocode | null>>;
   promocode: Promocode | null;
+  dict: ICheckoutDict;
 }
 
 export const PromocodeBlock = ({
   promocode,
   setPromocode,
+  dict,
 }: IPromocodeProps): React.JSX.Element => {
   const [code, setCode] = React.useState<string>("");
   const [error, setError] = React.useState<boolean>(false);
@@ -47,11 +50,11 @@ export const PromocodeBlock = ({
         type="text"
         value={code}
         onInputChange={setCode}
-        placeholder="Промокод"
-        errorText={error ? "Невірний промокод" : undefined}
+        placeholder={dict.promocodePlaceholder}
+        errorText={error ? dict.promocodeError : undefined}
       />
       <ButtonWhite
-        text={isLoading ? "Перевіряємо..." : "Застосувати"}
+        text={isLoading ? dict.promocodeChecking : dict.promocodeApply}
         handleClick={handleCheckPromocode}
       />
     </div>

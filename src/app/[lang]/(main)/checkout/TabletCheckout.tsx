@@ -8,7 +8,7 @@ import UserCheckoutForm from "@/components/UserCheckoutForm/UserCheckoutForm";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import Textarea from "@/components/Ui/Textarea/Textarea";
 import { IValidateData } from "./CheckoutWrapper";
-import { Promocode } from "@prisma/client";
+import type { Promocode } from "@prisma/client";
 import { GreetingBlock } from "./GreetingBlock";
 
 import cn from "clsx";
@@ -85,7 +85,12 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
   return (
     <section className={styles.tablet}>
       <div className={styles.left}>
-        {isAuthorized && <GreetingBlock userInfo={userInfo} />}
+        {isAuthorized && (
+          <GreetingBlock
+            userInfo={userInfo}
+            greeting={dict.checkout.greeting}
+          />
+        )}
 
         <div className={styles.checkoutBlock}>
           <h1 className={styles.checkoutBlock_h2}>
@@ -128,6 +133,7 @@ const TabletCheckout = (props: TabletCheckoutProps): React.JSX.Element => {
             setPostPoint={setPostPoint}
             setDeliveryId={setDeliveryId}
             validateData={validateData}
+            dict={dict.checkout}
           />
         </div>
 

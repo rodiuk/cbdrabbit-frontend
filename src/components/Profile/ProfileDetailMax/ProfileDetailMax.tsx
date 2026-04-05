@@ -13,14 +13,16 @@ interface Props {
 }
 
 const ProfileDetailMax = (props: Props) => {
+  const { dict } = props;
+
   return (
     <section className={s.details}>
       <div className={s.details_img}>
         <Image src={sale} alt="sale" />
       </div>
       <div className={s.text}>
-        <p>Це найбільша знижка що є 😍</p>
-        <p>Дякуємо, що Ви з нами 💚🐰💚</p>
+        <p>{dict.maxDiscountTitle}</p>
+        <p>{dict.maxDiscountSubtitle}</p>
       </div>
     </section>
   );

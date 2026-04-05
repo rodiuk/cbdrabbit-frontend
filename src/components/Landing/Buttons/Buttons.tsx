@@ -13,11 +13,15 @@ const Buttons = ({button1Text, button2Text, lendId}: Props) => {
 		<div className={s.buttons}>
 			<Link className={cn(s.button, {
 				  [s.pink]: lendId === "classic",
+				  [s.yellow]: lendId === "banana",
 				  [s.green]: lendId === "matcha",
+				  [s.brown]: lendId === "coffee",
 			  })} href="/">{button1Text}</Link>
 			<Link className={cn(s.button2, {
 				  [s.pink2]: lendId === "classic",
+				  [s.yellow2]: lendId === "banana",
 				  [s.green2]: lendId === "matcha",
+				  [s.brown2]: lendId === "coffee",
 			  })} href="/">{button2Text}</Link>
 		</div>
 	);

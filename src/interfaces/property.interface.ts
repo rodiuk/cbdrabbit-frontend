@@ -1,4 +1,4 @@
-import { Image, Property } from "@prisma/client";
+import type { Image, Property } from "@prisma/client";
 
 export interface IPropertyCreate {
   label: string;

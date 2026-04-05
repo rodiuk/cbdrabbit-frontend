@@ -60,6 +60,9 @@
 .part_yellow:nth-child(2), .part_yellow:nth-child(2) a {
 	color: #FEF1C8;
 }
+.part_brown:nth-child(2), .part_brown:nth-child(2) a {
+	color: #E7C9BE;
+}
 .part:nth-child(3) {
 	text-align: right;
 	font-size: 16px;
@@ -86,6 +89,9 @@ a.button {
   }
 .footer_pink {
 	background: #FD9F9A;
+}
+.footer_brown {
+	background: #69332B;
 }
 @media (max-width: 991px) {
 	.ul:last-child {

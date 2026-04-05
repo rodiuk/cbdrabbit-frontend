@@ -57,6 +57,7 @@ export const OrdersWrapper = (props: Props): React.JSX.Element => {
               >
                 <LayPopupOrderInfo
                   order={isOpenPopup}
+                  dict={dict}
                   closePoup={() => setIsOpenPopup(null)}
                   handleBadkdropClick={handleBadkdropClick}
                 />

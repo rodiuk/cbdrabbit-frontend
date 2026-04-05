@@ -1,46 +1,183 @@
 .productPage_select {
 	display: flex;
 	justify-content: center;
+	gap: 8px;
+	flex-wrap: wrap;
 }
+
 .productPage_selectButton {
-	max-width: 150px;
-	font-size: 16px;
-	color: rgba(145, 59, 15, 1);
-	padding: 5px 8px;
-	background: rgba(254, 226, 138, 1);
-	border: 4px solid rgba(254, 226, 138, 1);
-	margin: 0 6px;
+	min-height: 60px;
+	padding: 6px 14px 6px 10px;
+	margin: 0;
 	display: flex;
 	align-items: center;
-	border-radius: 80px; 
+	gap: 10px;
+	border-radius: 999px;
+	border: 4px solid transparent;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 4px 12px rgba(66, 98, 59, 0.08);
+	color: #7b5f43;
 	cursor: pointer;
-	gap: 0 8px;
+	text-decoration: none;
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		box-shadow 0.2s ease,
+		color 0.2s ease;
 }
-.productPage_selectButton.active {
-	background: rgba(251, 212, 100, 1);
-	border: 4px solid rgba(244, 148, 13, 1);
-   }
-.productPage_selectButton.red {
-	background: rgba(255, 204, 201, 0.5);
-	border: 4px solid rgba(255, 204, 201, 0.5);
-}
-.productPage_selectButton.redactive {
-	background: rgba(254, 168, 163, 1);
-	border: 4px solid rgba(243, 67, 56, 1);
-}
-.productPage_selectButton.green {
-	background: rgba(206, 234, 200, 1);
-	border: 4px solid rgba(206, 234, 200, 1);
-}
-.productPage_selectButton.greenactive {
-	background: rgba(156, 209, 143, 1);
-	border: 4px solid rgba(85, 161, 70, 1);
-}
-	
 
-	 .productPage_selectButton img {
-		min-width: 48px;
-	 }
+.productPage_selectButton span {
+	display: block;
+	max-width: 76px;
+	font-family: var(--font-manrope);
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+	letter-spacing: 0;
+	word-break: break-word;
+	overflow-wrap: anywhere;
+}
+
+.productPage_selectButton img {
+	min-width: 42px;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.themeClassic {
+	background: rgba(255, 231, 229, 0.8);
+	border-color: rgba(255, 214, 211, 0.9);
+	color: #9c2018;
+	box-shadow: 0 4px 12px rgba(156, 32, 24, 0.08);
+}
+
+.themeClassic.isActive.buttonClassic {
+	background: #ffcdc9;
+	border-color: #f34338;
+	color: #9c2018;
+	box-shadow: 0 4px 10px rgba(243, 67, 56, 0.18);
+}
+
+.themeClassic.isActive.buttonBanana {
+	background: #ffe09f;
+	border-color: #f4a11b;
+	color: #a66000;
+	box-shadow: 0 4px 10px rgba(244, 161, 27, 0.18);
+}
+
+.themeClassic.isActive.buttonMatcha {
+	background: #ceeac8;
+	border-color: #55a146;
+	color: #42623b;
+	box-shadow: 0 4px 10px rgba(85, 161, 70, 0.18);
+}
+
+.themeClassic.isActive.buttonCoffee {
+	background: #d9c1b1;
+	border-color: #8b5d44;
+	color: #5d3927;
+	box-shadow: 0 4px 10px rgba(93, 57, 39, 0.16);
+}
+
+.themeBanana {
+	background: rgba(255, 243, 199, 0.88);
+	border-color: rgba(255, 231, 161, 0.95);
+	color: #a66000;
+	box-shadow: 0 4px 12px rgba(244, 161, 27, 0.08);
+}
+
+.themeBanana.isActive.buttonClassic {
+	background: #ffd2c8;
+	border-color: #f34338;
+	color: #9c2018;
+}
+
+.themeBanana.isActive.buttonBanana {
+	background: #fbd464;
+	border-color: #f4940d;
+	color: #9a5a00;
+	box-shadow: 0 4px 10px rgba(244, 148, 13, 0.2);
+}
+
+.themeBanana.isActive.buttonMatcha {
+	background: #dff0d2;
+	border-color: #7cad4a;
+	color: #42623b;
+}
+
+.themeBanana.isActive.buttonCoffee {
+	background: #dfc6b5;
+	border-color: #8b5d44;
+	color: #5d3927;
+}
+
+.themeMatcha {
+	background: rgba(245, 249, 240, 0.92);
+	border-color: rgba(255, 255, 255, 0.92);
+	color: #7b5f43;
+	box-shadow: 0 4px 12px rgba(66, 98, 59, 0.08);
+}
+
+.themeMatcha.isActive.buttonClassic {
+	background: #ffede9;
+	border-color: #ef867c;
+	color: #9c2018;
+}
+
+.themeMatcha.isActive.buttonBanana {
+	background: #fff0bf;
+	border-color: #e0ae37;
+	color: #a66000;
+}
+
+.themeMatcha.isActive.buttonMatcha {
+	background: #ceeac8;
+	border-color: #55a146;
+	color: #42623b;
+	box-shadow: 0 4px 10px rgba(85, 161, 70, 0.18);
+}
+
+.themeMatcha.isActive.buttonCoffee {
+	background: #ead6c9;
+	border-color: #8b5d44;
+	color: #5d3927;
+}
+
+.themeCoffee {
+	background: rgba(242, 230, 221, 0.9);
+	border-color: rgba(226, 203, 189, 0.95);
+	color: #6a4430;
+	box-shadow: 0 4px 12px rgba(93, 57, 39, 0.08);
+}
+
+.themeCoffee.isActive.buttonClassic {
+	background: #efcec6;
+	border-color: #c86759;
+	color: #8f3025;
+}
+
+.themeCoffee.isActive.buttonBanana {
+	background: #f4de9b;
+	border-color: #dba139;
+	color: #8f5d0d;
+}
+
+.themeCoffee.isActive.buttonMatcha {
+	background: #d7e4c9;
+	border-color: #74905e;
+	color: #42623b;
+}
+
+.themeCoffee.isActive.buttonCoffee {
+	background: #b48264;
+	border-color: #784628;
+	color: #fff4ee;
+	box-shadow: 0 4px 10px rgba(120, 70, 40, 0.18);
+}
+
 @media (max-width: 767px) {
 	.productPage_select {
 		justify-content: flex-start;
@@ -48,8 +185,14 @@
 		overflow-x: auto;
 		scrollbar-width: none;
 		padding: 0 15px;
+		flex-wrap: nowrap;
 	}
+
 	.productPage_select::-webkit-scrollbar {
-		display: none; /* Для WebKit браузеров */
-	  }
-}  
+		display: none;
+	}
+
+	.productPage_selectButton {
+		flex: 0 0 auto;
+	}
+}

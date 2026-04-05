@@ -82,7 +82,7 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
         </div> */}
         {order?.deliveryInfo?.trackingNumber && (
           <div className={s.ttl_black}>
-            Посилка №: {order?.deliveryInfo?.trackingNumber}
+            {dict.trackingNumber} {order?.deliveryInfo?.trackingNumber}
           </div>
         )}
 
@@ -110,10 +110,14 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
               <Image src={sale_icon} width={22} height={14} alt="sale_icon" />
               <>
                 {!!order?.promocode?.percentDiscount && (
-                  <>Знижка {order?.promocode?.percentDiscount}%</>
+                  <>
+                    {dict.promocodeDiscount} {order?.promocode?.percentDiscount}%
+                  </>
                 )}
                 {!!order?.promocode?.newPrice && (
-                  <>Ціна за цукерку {order?.promocode?.newPrice}₴</>
+                  <>
+                    {dict.candyPrice} {order?.promocode?.newPrice}₴
+                  </>
                 )}
               </>
             </span>
@@ -122,14 +126,14 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
         )}
         <div className={s.orderInfo_pay}>
           <div className={s.orderInfo_ttl2}>
-            <p className={s.ttl2_2}>Доставка</p>
-            <p className={s.ttl2_2}>За тарифами перевізника</p>
+            <p className={s.ttl2_2}>{dict.deliveryTitle}</p>
+            <p className={s.ttl2_2}>{dict.deliveryCarrierRate}</p>
           </div>
         </div>
 
         <div className={s.endBlock}>
           <div className={s.endBlock_wrap}>
-            <div className={s.endBlock_o}>Усього сплачено</div>
+            <div className={s.endBlock_o}>{dict.totalPaid}</div>
             <div className={s.endBlock_t}>{order.totalSum} ₴</div>
           </div>
         </div>

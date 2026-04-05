@@ -23,6 +23,33 @@ export interface ICheckoutDict {
   checkoutButton: string;
   commentTitle: string;
   commentLabel: string;
+  promocodePlaceholder: string;
+  promocodeError: string;
+  promocodeApply: string;
+  promocodeChecking: string;
+  phoneHelp: string;
+  emailHelp: string;
+  createAccountLabel: string;
+  greeting: string;
+  novaPoshta: {
+    deliveryMethodLabel: string;
+    branch: string;
+    parcelLocker: string;
+    courier: string;
+    cityTitle: string;
+    cityPlaceholder: string;
+    cityHint: string;
+    popularCitiesTitle: string;
+    addressTitle: string;
+    addressPlaceholder: string;
+    branchTitle: string;
+    branchPlaceholder: string;
+    parcelLockerTitle: string;
+    parcelLockerPlaceholder: string;
+    noResultsTitle: string;
+    noResultsDescription: string;
+    popularCities: string[];
+  };
 }
 
 export interface IAuthActivate {
@@ -84,6 +111,11 @@ export interface IProfileDict {
   firstNameFiledTitle: string;
   deliveryFieldTitle: string;
   noInfo: string;
+  maxDiscountTitle: string;
+  maxDiscountSubtitle: string;
+  deliveryBranchLabel: string;
+  deliveryParcelLockerLabel: string;
+  deliveryCourierLabel: string;
 }
 
 export interface IHeaderDict {
@@ -133,6 +165,19 @@ export interface IOrderDict {
   statusSended: string;
   statusDelivered: string;
   statusSuccess: string;
+  trackingNumber: string;
+  promocodeDiscount: string;
+  candyPrice: string;
+  deliveryTitle: string;
+  deliveryCarrierRate: string;
+  totalPaid: string;
+  detailsTitle: string;
+  commentTitle: string;
+  noComment: string;
+  statusTitle: string;
+  customerTitle: string;
+  closeButton: string;
+  canceledWarning: string;
 }
 
 export interface IRecoveryPasswordDict {

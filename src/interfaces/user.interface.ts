@@ -1,4 +1,4 @@
-import { Address, Loyalty } from "@prisma/client";
+import type { Address, Loyalty } from "@prisma/client";
 
 export interface IUser extends IUserData {
   id: string;

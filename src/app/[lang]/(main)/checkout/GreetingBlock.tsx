@@ -6,13 +6,17 @@ import styles from "./page.module.css";
 
 interface Props {
   userInfo: IUserCheckoutForm;
+  greeting: string;
 }
 
-export const GreetingBlock = ({ userInfo }: Props): React.JSX.Element => {
+export const GreetingBlock = ({
+  userInfo,
+  greeting,
+}: Props): React.JSX.Element => {
   return (
     <div className={styles.checkoutBlock}>
       <h2 className={styles.greeting_block}>
-        Вітаємо{" "}
+        {greeting}{" "}
         {userInfo?.lastName && userInfo?.firstName
           ? `${userInfo?.firstName} ${userInfo?.lastName}`
           : userInfo?.firstName}{" "}

@@ -18,6 +18,7 @@ interface Props {
   buttonLabel: string;
   lang: string;
   giftLabel: string;
+  giftAriaLabel: string;
 }
 
 const excludedPaths = [
@@ -61,7 +62,13 @@ const CartBanner = (props: Props): React.JSX.Element | null => {
           transition={{ duration: 0.4 }}
         >
           <div className={styles.inner}>
-            {gift > 0 && <GiftCandies count={gift} title={props.giftLabel} />}
+            {gift > 0 && (
+              <GiftCandies
+                count={gift}
+                title={props.giftLabel}
+                ariaLabel={props.giftAriaLabel}
+              />
+            )}
 
             <div className={styles.content}>
               <h3 className={styles.label}>{checkoutLabel}</h3>

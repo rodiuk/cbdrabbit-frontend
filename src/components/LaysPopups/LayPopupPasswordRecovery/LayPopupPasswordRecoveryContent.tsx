@@ -13,13 +13,20 @@ interface Props {
   email: string;
   isLoading: boolean;
   handleSendRecoveryEmail: () => void;
+  loadingLabel?: string;
 }
 
 export const LayPopupPasswordRecoveryContent = (
   props: Props
 ): React.JSX.Element => {
-  const { bottomBlock, dict, email, isLoading, handleSendRecoveryEmail } =
-    props;
+  const {
+    bottomBlock,
+    dict,
+    email,
+    isLoading,
+    handleSendRecoveryEmail,
+    loadingLabel = "Loading...",
+  } = props;
 
   return (
     <div className={s.content}>
@@ -57,7 +64,7 @@ export const LayPopupPasswordRecoveryContent = (
 
             <div className={cn("button-block", s.submit)}>
               <ButtonWhite
-                text={isLoading ? "Loading..." : dict.buttonAsk}
+                text={isLoading ? loadingLabel : dict.buttonAsk}
                 handleClick={handleSendRecoveryEmail}
                 isDisabled={isLoading}
               />

@@ -29,3 +29,49 @@ export const npDeliveryType: Array<INpDelivery> = [
     value: "Кур'єром",
   },
 ];
+
+export const normalizeNpDeliveryId = (value?: string | null): string => {
+  if (!value) return "";
+
+  const normalized = value.trim();
+
+  if (["1", "2", "3"].includes(normalized)) {
+    return normalized;
+  }
+
+  if (
+    [
+      "У відділення",
+      "To branch",
+      "branch",
+      "Branch",
+    ].includes(normalized)
+  ) {
+    return "1";
+  }
+
+  if (
+    [
+      "У поштомат",
+      "Поштомат",
+      "To parcel locker",
+      "parcelLocker",
+      "Parcel locker",
+    ].includes(normalized)
+  ) {
+    return "2";
+  }
+
+  if (
+    [
+      "Кур'єром",
+      "By courier",
+      "courier",
+      "Courier",
+    ].includes(normalized)
+  ) {
+    return "3";
+  }
+
+  return normalized;
+};

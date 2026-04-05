@@ -5,7 +5,7 @@ import {
   getAllProductsAtom,
   removeProductFromCartAtom,
 } from "@/libs/store/atoms";
-import { Product } from "@prisma/client";
+import type { Product } from "@prisma/client";
 import { MinusIcon } from "@/components/icons/Minus";
 
 import cn from "clsx";

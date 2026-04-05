@@ -3,7 +3,7 @@
 import React from "react";
 import { useAtom } from "jotai";
 import { signIn } from "next-auth/react";
-import { Promocode } from "@prisma/client";
+import type { Promocode } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { cartAtom } from "@/libs/store/atoms";
 import TabletCheckout from "./TabletCheckout";
@@ -16,7 +16,7 @@ import { IOrderCreate } from "@/interfaces/order.interface";
 import { createUrlForCheckout } from "@/libs/api/checkout.api";
 import { IUserCheckoutForm } from "@/interfaces/user.interface";
 import { formatItemsForOrder } from "@/utils/formatItemsForOrder";
-import { npDeliveryType } from "@/components/NovaPoshta/npDelivery";
+import { normalizeNpDeliveryId } from "@/components/NovaPoshta/npDelivery";
 import { Session } from "next-auth";
 
 interface Props {
@@ -64,8 +64,9 @@ export const CheckoutWrapper = ({
     { name: "lastName", value: false },
     { name: "phone", value: false },
     { name: "email", value: false },
-    { name: "Населений пункт", value: false },
-    { name: "Відділення", value: false },
+    { name: "city", value: false },
+    { name: "postPoint", value: false },
+    { name: "address", value: false },
   ]);
 
   const [utmLabels] = useLocalStorage(constants.UTM_LABELS, "");
@@ -76,13 +77,6 @@ export const CheckoutWrapper = ({
   React.useEffect(() => {
     if (!userData?.id) return;
 
-    const deliveryType =
-      userData?.address?.npDeliveryType?.length === 1
-        ? npDeliveryType.filter(
-            d => d.id === userData.address?.npDeliveryType
-          )[0]?.text
-        : userData?.address?.npDeliveryType;
-
     setUserInfo({
       firstName: userData?.firstName ?? "",
       lastName: userData?.lastName ?? "",
@@ -91,8 +85,7 @@ export const CheckoutWrapper = ({
     });
     setCity(userData?.address?.city ?? "");
     setPostPoint(userData?.address?.npDepartment ?? "");
-
-    setDeliveryId(deliveryType || "");
+    setDeliveryId(normalizeNpDeliveryId(userData?.address?.npDeliveryType));
   }, [userData]);
 
   const validateInputs = () => {
@@ -101,9 +94,9 @@ export const CheckoutWrapper = ({
       { name: "lastName", value: false },
       { name: "phone", value: false },
       { name: "email", value: false },
-      { name: "Населений пункт", value: false },
-      { name: "Відділення", value: false },
-      { name: "Адреса", value: false },
+      { name: "city", value: false },
+      { name: "postPoint", value: false },
+      { name: "address", value: false },
     ]);
     if (!userInfo.firstName) {
       setValidateData(prevState =>
@@ -136,20 +129,20 @@ export const CheckoutWrapper = ({
     if (!city) {
       setValidateData(prevState =>
         prevState.map(item =>
-          item.name === "Населений пункт" ? { ...item, value: true } : item
+          item.name === "city" ? { ...item, value: true } : item
         )
       );
     }
     if (!postPoint && deliveryId !== "3") {
       setValidateData(prevState =>
         prevState.map(item =>
-          item.name === "Відділення" ? { ...item, value: true } : item
+          item.name === "postPoint" ? { ...item, value: true } : item
         )
       );
     } else if (!deliveryAddress && deliveryId === "3") {
       setValidateData(prevState =>
         prevState.map(item =>
-          item.name === "Адреса" ? { ...item, value: true } : item
+          item.name === "address" ? { ...item, value: true } : item
         )
       );
     }

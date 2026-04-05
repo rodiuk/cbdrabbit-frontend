@@ -13,13 +13,15 @@ import bg3 from "/public/img/lend3-descr2-bg.svg";
 import bg1_mobile from "/public/img/lend1-descr2-bg_mob.svg";
 import bg2_mobile from "/public/img/lend2-descr2-bg_mob.svg";
 import bg3_mobile from "/public/img/lend3-descr2-bg_mob.svg";
+import bg4 from "/public/img/lend1-descr2-bg.svg";
+import bg4_mobile from "/public/img/lend1-descr2-bg_mob.svg";
 
 import Image from "next/image";
 
 interface ITextsItem {
-	id: string
-	text1: string
-	text2: string
+  id: string;
+  text1: string;
+  text2: string;
 }
 
 interface Props {
@@ -28,7 +30,6 @@ interface Props {
 }
 
 const Description2 = ({ lendId, texts }: Props) => {
-  
   const [sizeWindow, setSizeWindow] = React.useState<number | null>(null);
   const [background, setBackground] = React.useState(bg1);
   React.useEffect(() => {
@@ -62,6 +63,12 @@ const Description2 = ({ lendId, texts }: Props) => {
       } else {
         setBackground(bg3_mobile);
       }
+    } else if (lendId === "coffee") {
+      if (sizeWindow !== null && sizeWindow > 580) {
+        setBackground(bg4);
+      } else {
+        setBackground(bg4_mobile);
+      }
     }
   }, [sizeWindow, lendId]);
 
@@ -76,10 +83,15 @@ const Description2 = ({ lendId, texts }: Props) => {
         {texts &&
           texts.map((item: any, i: number) => {
             return (
-				<div className={cn(s.item, {
-					[s.pink]: lendId === "classic",
-					[s.green]: lendId === "matcha",
-			  })} key={i}>
+              <div
+                className={cn(s.item, {
+                  [s.pink]: lendId === "classic",
+                  [s.yellow]: lendId === "banana",
+                  [s.green]: lendId === "matcha",
+                  [s.brown]: lendId === "coffee",
+                })}
+                key={i}
+              >
                 <div className={s.wrap}>
                   <div className={s.img}>
                     <Image src={icons[i]} width={160} height={160} alt="pic" />

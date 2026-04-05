@@ -15,4 +15,5 @@ export interface IHeaderTitles {
   aboutCbd: string;
   policy: string;
   privacy: string;
+  candies: string;
 }

@@ -16,10 +16,11 @@ interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
   user: IUserProfile | null;
+  loadingLabel?: string;
 }
 
 const LayPopupPassword = (props: Props): React.JSX.Element => {
-  const { bottomBlock, dict, user } = props;
+  const { bottomBlock, dict, user, loadingLabel = "Loading..." } = props;
   const [oldPassword, setOldPassword] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
   
@@ -162,7 +163,7 @@ const LayPopupPassword = (props: Props): React.JSX.Element => {
 
               <div className="button-block">
                 <ButtonWhite
-                  text={isLoading ? "Loading..." : dict.changePasswordBtn}
+                  text={isLoading ? loadingLabel : dict.changePasswordBtn}
                   handleClick={handleUpdate}
                   isDisabled={isLoading}
                 />

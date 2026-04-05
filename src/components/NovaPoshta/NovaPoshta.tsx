@@ -5,9 +5,10 @@ import axios from "axios";
 import Input from "../Ui/Input/Input";
 import LayShowCities from "./LayShowCities";
 import LayShowFilial from "./LayShowFilial";
-import { npDeliveryType } from "./npDelivery";
+import { normalizeNpDeliveryId, npDeliveryType } from "./npDelivery";
 import { appConfig } from "@/configs/app.config";
 import { AnimatePresence, motion } from "framer-motion";
+import { ICheckoutDict } from "@/interfaces/i18n.interface";
 
 import RadioButtonsContainer from "../RadioButtonsContainer/RadioButtonsContainer";
 
@@ -21,6 +22,7 @@ interface Props {
   deliveryId: string;
   setDeliveryId: (deliveryId: string) => void;
   validateData?: any;
+  dict: ICheckoutDict;
 }
 
 const NovaPost = (props: Props): React.JSX.Element => {
@@ -34,6 +36,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
     deliveryId,
     setDeliveryId,
     validateData,
+    dict,
   } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenFilial, setIsOpenFilial] = React.useState(false);
@@ -129,22 +132,48 @@ const NovaPost = (props: Props): React.JSX.Element => {
       .catch(err => console.error("Ошибка при отправке запроса:", err));
   };
 
+  const deliveryOptions = React.useMemo(
+    () => [
+      {
+        ...npDeliveryType[0],
+        name: dict.novaPoshta.deliveryMethodLabel,
+        text: dict.novaPoshta.branch,
+        value: dict.novaPoshta.branch,
+      },
+      {
+        ...npDeliveryType[1],
+        name: dict.novaPoshta.deliveryMethodLabel,
+        text: dict.novaPoshta.parcelLocker,
+        value: dict.novaPoshta.parcelLocker,
+      },
+      {
+        ...npDeliveryType[2],
+        name: dict.novaPoshta.deliveryMethodLabel,
+        text: dict.novaPoshta.courier,
+        value: dict.novaPoshta.courier,
+      },
+    ],
+    [dict]
+  );
+
+  const normalizedDeliveryId = normalizeNpDeliveryId(deliveryId);
+
   return (
     <>
       <RadioButtonsContainer
-        options={npDeliveryType}
+        options={deliveryOptions}
         handleRadioChange={handleRadioChange}
-        deliveryId={deliveryId}
+        deliveryId={normalizedDeliveryId}
       />
 
-      {deliveryId && (
+      {normalizedDeliveryId && (
         <>
           <Input
             type="text"
-            text="Населений пункт"
+            text={dict.novaPoshta.cityTitle}
             required
-            name="Населений пункт"
-            placeholder="Введи населений пункт"
+            name="city"
+            placeholder={dict.novaPoshta.cityPlaceholder}
             showLay={showLay}
             autoComplete="off"
             value={city}
@@ -153,25 +182,33 @@ const NovaPost = (props: Props): React.JSX.Element => {
             isCity={city}
           />
 
-          {deliveryId === "3" ? (
+          {normalizedDeliveryId === "3" ? (
             <Input
               type="text"
-              text="Адреса"
+              text={dict.novaPoshta.addressTitle}
               required
-              name="Адреса"
+              name="address"
               value={deliveryAddress}
               onInputChange={setDeliveryAddress}
-              placeholder="Введи адресу"
+              placeholder={dict.novaPoshta.addressPlaceholder}
               autoComplete="off"
               validateData={validateData}
             />
           ) : (
             <Input
               type="text"
-              text="Відділення"
+              text={
+                normalizedDeliveryId === "1"
+                  ? dict.novaPoshta.branchTitle
+                  : dict.novaPoshta.parcelLockerTitle
+              }
               required
-              name="Відділення"
-              placeholder="Введи номер відділення"
+              name="postPoint"
+              placeholder={
+                normalizedDeliveryId === "1"
+                  ? dict.novaPoshta.branchPlaceholder
+                  : dict.novaPoshta.parcelLockerPlaceholder
+              }
               showLay={showLayFilial}
               autoComplete="off"
               value={postPoint}
@@ -196,6 +233,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
               close={close}
               sities={sities}
               selectedCity={selectedCity}
+              dict={dict}
             />
           </motion.div>
         )}
@@ -213,6 +251,7 @@ const NovaPost = (props: Props): React.JSX.Element => {
               newPostNum={newPostNum}
               arrayNpFilials={arrayNpFilials}
               selectedFilial={selectedFilial}
+              dict={dict}
             />
           </motion.div>
         )}

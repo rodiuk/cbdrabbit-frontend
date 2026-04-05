@@ -4,9 +4,12 @@ import React from "react";
 import EyeClosed from "@/components/icons/EyeClosed";
 import EyeOpened from "@/components/icons/EyeOpened";
 import { IValidateData } from "@/app/[lang]/(main)/checkout/CheckoutWrapper";
+import { usePathname } from "next/navigation";
 
 import cn from "clsx";
 import s from "./s.module.css";
+import ukDict from "@/libs/18n/dict/uk.json";
+import enDict from "@/libs/18n/dict/en.json";
 
 interface InputProps {
   text?: string;
@@ -48,6 +51,10 @@ const Input: React.FC<InputProps> = ({
   isPostPoint,
   ...input
 }) => {
+  const pathname = usePathname();
+  const commonDict = pathname?.startsWith("/en")
+    ? enDict.common
+    : ukDict.common;
   const [type, setType] = React.useState(input.type);
   const [isEmpty, setIsEmpty] = React.useState(false);
 
@@ -123,7 +130,7 @@ const Input: React.FC<InputProps> = ({
               style={{ cursor: "pointer" }}
               onClick={handleForgot}
             >
-              Забув пароль? {password}
+              {commonDict.forgotPassword} {password}
             </span>
           )}
           {textOnTheRight && (

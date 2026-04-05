@@ -71,7 +71,7 @@ const UserCheckoutForm = ({
           placeholder="+380 (__)___-__-__"
           onInputChange={value => handleInputChange("phone", value)}
           validateData={validateData}
-          textOnTheRight="Потрібно для доставки"
+          textOnTheRight={dict.checkout.phoneHelp}
         />
         {!isPopup && (
           <Input
@@ -83,7 +83,7 @@ const UserCheckoutForm = ({
             value={userInfo?.email}
             onInputChange={value => handleInputChange("email", value)}
             validateData={validateData}
-            textOnTheRight="Сюди ми відправимо чек"
+            textOnTheRight={dict.checkout.emailHelp}
           />
         )}
 
@@ -96,7 +96,7 @@ const UserCheckoutForm = ({
                 checked={signUpUser}
                 onChange={() => setSignUpUser(!signUpUser)}
               />
-              Створити акаунт та накопичувати персональну знижку
+              {dict.checkout.createAccountLabel}
             </span>
           </label>
         )}

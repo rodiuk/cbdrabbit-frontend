@@ -9,16 +9,19 @@ import s from "./page.module.css";
 
 import iconRubbit from "/public/img/last.jpg";
 import { Header } from "../layout/Header/Header";
+import { getDictionary } from "@/libs/18n/getDictionary";
 
 interface INotFoundPageProps {
   headerLocales: HeaderLocales;
   lang: Locale;
 }
 
-export default function NotFoundPage({
+export default async function NotFoundPage({
   headerLocales,
   lang,
 }: INotFoundPageProps) {
+  const page = (await getDictionary(lang)).informationalPages.notFound;
+
   return (
     <>
       <Header lang={lang} />
@@ -29,19 +32,15 @@ export default function NotFoundPage({
             <Image src={iconRubbit} alt="iconRubbit" width={256} height={256} />
           </div>
           <div className={s.block}>
-            <p>Це твій останній шанс. Далі вже не буде вороття...</p>
-            <p>
-              Вибереш червону цукерку - залишишся в дивокраї, <br /> вибереш
-              жовту - те ж саме, але бананова
-            </p>
+            <p>{page.title}</p>
+            <p>{page.subtitle}</p>
           </div>
           <Link href="/" className={s.button}>
-            Піти за кроликом
+            {page.button}
           </Link>
         </div>
         <div className={s.bot}>
-          <span className={s.bold}>404.</span> Сторінки не існує. А що взагалі
-          реально?
+          <span className={s.bold}>404.</span> {page.footer}
         </div>
       </main>
       <Footer lang={lang} titles={headerLocales.titles} />

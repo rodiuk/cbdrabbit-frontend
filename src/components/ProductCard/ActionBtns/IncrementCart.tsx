@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai";
 import { addProductToCartAtom } from "@/libs/store/atoms";
-import { Product } from "@prisma/client";
+import type { Product } from "@prisma/client";
 import { PlusIcon } from "@/components/icons/Plus";
 
 import styles from "./buttons.module.css";

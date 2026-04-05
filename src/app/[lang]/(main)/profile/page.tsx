@@ -1,7 +1,7 @@
 import { ProfileWrapper } from "./ProfileWrapper";
-import { IMainPageProps } from "@/interfaces/page.interface";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { Footer } from "@/components/layout/Footer/Footer";
+import { IMainPageProps } from "@/interfaces/page.interface";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -26,6 +26,7 @@ export default async function Profile({ params }: IMainPageProps) {
           checkoutDict={dict.checkout}
           lang={params.lang}
           user={session?.user || null}
+          loadingLabel={dict.common.loading}
         />
         {/* </Suspense> */}
       </main>

@@ -3,25 +3,20 @@
 import React, { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { Locale } from "../../../../../i18n.config";
-import { getDictionary } from "@/libs/18n/getDictionary";
 import { IHeaderTitles } from "@/interfaces/headerTitles.interface";
 
 import styles from "./PageTitle.module.css";
 
 interface Props {
   lang: Locale;
+  titles: IHeaderTitles;
 }
 
-export const PageTitle = (props: Props): React.JSX.Element | null => {
-  const { lang } = props;
+export const PageTitle = ({
+  lang,
+  titles,
+}: Props): React.JSX.Element | null => {
   const pathname = usePathname();
-  const [titles, setTitles] = React.useState<IHeaderTitles | null>(null);
-  React.useEffect(() => {
-    (async function fetchLocale() {
-      const { titles } = (await getDictionary(lang)).header;
-      setTitles(titles as IHeaderTitles);
-    })();
-  }, [lang]);
 
   const content = useMemo(() => {
     return {
@@ -34,7 +29,7 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
       [`/${lang}/contacts`]: titles?.contacts,
       [`/${lang}/cooperation`]: titles?.cooperation,
       [`/${lang}/blog`]: titles?.blog,
-      [`/${lang}/blog/`]: titles?.post, // need fixed
+      [`/${lang}/blog/`]: titles?.post,
       [`/${lang}/about`]: titles?.about,
       [`/${lang}/whereToBuy`]: titles?.whereToBuy,
       [`/${lang}/checkout-info`]: titles?.checkoutInfo,
@@ -45,8 +40,17 @@ export const PageTitle = (props: Props): React.JSX.Element | null => {
   }, [lang, titles]);
 
   const rendererContent = content[pathname] ?? null;
+  const isLandingPage = new RegExp(`^/${lang}/(classic|banana|matcha|coffee)$`).test(
+    pathname
+  );
 
-  return !!rendererContent ? (
-    <p className={styles.container}>{rendererContent}</p>
+  return !!rendererContent || isLandingPage ? (
+    <p
+      className={`${styles.container} ${
+        isLandingPage ? styles.landingContainer : ""
+      }`}
+    >
+      {rendererContent ?? titles?.candies}
+    </p>
   ) : null;
 };

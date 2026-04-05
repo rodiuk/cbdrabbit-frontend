@@ -39,6 +39,17 @@
       "logIn": "Registration / Login"
     }
   },
+  "common": {
+    "loading": "Loading...",
+    "signIn": "Sign In",
+    "forgotPassword": "Forgot password?",
+    "bonusCandiesAria": "Bonus candies",
+    "errorPage": {
+      "title": "Something went wrong 🙅",
+      "subtitle": "Please try again later",
+      "button": "Reload"
+    }
+  },
   "currency": "₴",
   "cartBanner": {
     "checkoutLabel": "Total amount:",
@@ -84,7 +95,8 @@
       "button": "Next",
       "buttonGoogle": "Continue with Google",
       "buttonDividerLabel": "or",
-      "createAccount": "Create an account"
+      "createAccount": "Create an account",
+      "errorUserNotFound": "No user with this email was found"
     },
     "signInPassword": {
       "title": "Account Sign In",
@@ -143,6 +155,42 @@
     "checkoutButton": "Proceed to payment",
     "commentTitle": "Comment",
     "commentLabel": "Comment to order",
+    "promocodePlaceholder": "Promo code",
+    "promocodeError": "Invalid promo code",
+    "promocodeApply": "Apply",
+    "promocodeChecking": "Checking...",
+    "phoneHelp": "Required for delivery",
+    "emailHelp": "We will send your receipt here",
+    "createAccountLabel": "Create an account and accumulate a personal discount",
+    "greeting": "Welcome",
+    "novaPoshta": {
+      "deliveryMethodLabel": "Delivery method",
+      "branch": "To branch",
+      "parcelLocker": "To parcel locker",
+      "courier": "By courier",
+      "cityTitle": "City",
+      "cityPlaceholder": "Enter city",
+      "cityHint": "Start typing the city name with at least 3 letters",
+      "popularCitiesTitle": "Popular cities",
+      "addressTitle": "Address",
+      "addressPlaceholder": "Enter address",
+      "branchTitle": "Branch",
+      "branchPlaceholder": "Enter branch number",
+      "parcelLockerTitle": "Parcel locker",
+      "parcelLockerPlaceholder": "Enter parcel locker number",
+      "noResultsTitle": "Unfortunately, nothing was found for your request",
+      "noResultsDescription": "Please make sure you entered everything correctly or try changing the query",
+      "popularCities": [
+        "Kyiv",
+        "Odesa",
+        "Dnipro",
+        "Kharkiv",
+        "Lviv (Lviv region)",
+        "Zaporizhzhia (Zaporizhzhia region)",
+        "Kryvyi Rih (Dnipropetrovsk region)",
+        "Mykolaiv (Mykolaiv region)"
+      ]
+    },
     "oneCandy": "candy",
     "twoFourCandy": "candies",
     "fiveCandy": "candies"
@@ -200,7 +248,12 @@
     "step1": "From 1000₴",
     "step2": "From 3000₴",
     "step3": "From 5000₴",
-    "step4": "From 7000₴"
+    "step4": "From 7000₴",
+    "maxDiscountTitle": "This is the highest discount available 😍",
+    "maxDiscountSubtitle": "Thank you for being with us 💚🐰💚",
+    "deliveryBranchLabel": "To branch",
+    "deliveryParcelLockerLabel": "To parcel locker",
+    "deliveryCourierLabel": "By courier"
   },
   "orders": {
     "successPayed": "Successfully paid!",
@@ -222,7 +275,20 @@
     "statusCompleted": "Completed",
     "statusSuccess": "Success",
     "notVerifiedAccount": "Account created — check your email to verify your account and set a password",
-    "openEmail": "Open email"
+    "openEmail": "Open email",
+    "trackingNumber": "Tracking number:",
+    "promocodeDiscount": "Discount",
+    "candyPrice": "Price per candy",
+    "deliveryTitle": "Delivery",
+    "deliveryCarrierRate": "Carrier rates apply",
+    "totalPaid": "Total paid",
+    "detailsTitle": "Order details",
+    "commentTitle": "Comment",
+    "noComment": "None",
+    "statusTitle": "Status",
+    "customerTitle": "Order recipient",
+    "closeButton": "Close",
+    "canceledWarning": "The parcel has been returned. If the order was prepaid, the funds will be refunded within 7 days"
   },
   "home": {
     "title": "Hello, we are CBD Rabbit",
@@ -443,30 +509,78 @@
           }
         ]
       }
+    },
+    "contacts": {
+      "intro": "Want to leave feedback, share an idea, or just chat about candies?",
+      "instagramTitle": "Join us on Instagram 🐇",
+      "telegramTitle": "For collaboration, message us on Telegram 🤠"
+    },
+    "cooperation": {
+      "intro": [
+        "Are you a venue, coffee shop, store, or event project?",
+        "That is wonderful!",
+        "Our bunny candies really love discovering new places 🐇"
+      ],
+      "telegramTitle": "For collaboration, message us on Telegram 🤠"
+    },
+    "checkoutInfo": {
+      "blocks": [
+        {
+          "title": "Payment for goods",
+          "paragraphs": [
+            "Payment for goods is made online through the website using the Plata by mono payment system to the Seller's account."
+          ]
+        },
+        {
+          "title": "Delivery across Ukraine",
+          "paragraphs": [
+            "Delivery is carried out by the Nova Poshta logistics company according to its available options and rates."
+          ]
+        },
+        {
+          "title": "Product return conditions",
+          "paragraphs": [
+            "According to current legislation, the Buyer has the right to return goods of proper quality within 14 days from the date of purchase. After this period, the decision on returning the goods is made at the discretion of the store.",
+            "Only goods of proper quality in the original packaging in which they were delivered to the Buyer are eligible for return. Used goods cannot be returned. Returns are processed in accordance with the Law of Ukraine 'On Consumer Protection'."
+          ]
+        },
+        {
+          "title": "Refund conditions",
+          "paragraphs": [
+            "Refunds are made to the Buyer's bank card from which the payment for the goods was made. The Seller transfers the funds within 10 days from the moment the returned goods arrive at the warehouse and the return is confirmed. To receive a refund by another method, if another payment method was used besides a bank card, please contact cbd.rabbit.ua@gmail.com."
+          ]
+        }
+      ]
+    },
+    "notFound": {
+      "title": "This is your last chance. There is no turning back after this...",
+      "subtitle": "Choose the red candy and stay in wonderland, choose the yellow one and it is the same story, just banana-flavored",
+      "button": "Follow the rabbit",
+      "footer": "This page does not exist. But what actually does?"
     }
   },
   "landings": {
     "landing": [
       {
         "id": "classic",
-        "title1": "DARK CHOCOLATE",
-        "title2": "STRAWBERRY 50mg\u00A0CBD",
+        "title1": "Calmberry",
+        "title2": "",
         "title3": "",
         "description": [
           {
             "id": 1,
-            "descr": "Бельгійський black шоколад"
+            "descr": "Belgian vegan dark chocolate"
           },
           {
             "id": 2,
-            "descr": "Українські сублімовані полуниці"
+            "descr": "Freeze-dried strawberry"
           },
           {
             "id": 3,
-            "descr": "50 мг СBD Ізолят канабідіолу"
+            "descr": "50 mg CBD Isolate"
           }
         ],
-        "weightCandy": "1 candy  - 8g",
+        "weightCandy": "Belgian dark chocolate with freeze-dried strawberry",
         "accordeon": [
           { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
           {
@@ -484,24 +598,24 @@
       {
         "id": "banana",
 
-        "title1": "БІЛИЙ ШОКОЛАД",
-        "title2": "КОКОСОВЕ МОЛОКО",
-        "title3": "БАНАН 50mg\u00A0CBD",
+        "title1": "Banana",
+        "title2": "Chill",
+        "title3": "",
         "description": [
           {
             "id": 1,
-            "descr": "Крафтовий білий шоколад на кокосовому молоці"
+            "descr": "Freeze-dried bananas"
           },
           {
             "id": 2,
-            "descr": "Cублімовані банани"
+            "descr": "Craft white chocolate on coconut milk"
           },
           {
             "id": 3,
-            "descr": "50 мг СBD Ізолят канабідіолу"
+            "descr": "50 mg CBD Isolate"
           }
         ],
-        "weightCandy": "1 candy  - 8g",
+        "weightCandy": "Craft white chocolate on coconut milk with freeze-dried banana",
         "accordeon": [
           { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
           {
@@ -519,30 +633,34 @@
       {
         "id": "matcha",
 
-        "title1": "БІЛИЙ ШОКОЛАД",
-        "title2": "КОКОСОВЕ МОЛОКО",
-        "title3": "MANGO MATCHA 50mg\u00A0CBD",
+        "title1": "Matcha",
+        "title2": "Focus",
+        "title3": "",
         "description": [
           {
             "id": 1,
-            "descr": "Крафтовий білий шоколад на кокосовому молоці"
+            "descr": "Craft white chocolate on coconut-almond milk"
           },
           {
             "id": 2,
-            "descr": "Матча Японський тонізуючий чай"
+            "descr": "Premium matcha from matchati.com"
           },
           {
             "id": 3,
-            "descr": "Cублімований манго"
+            "descr": "Freeze-dried raspberry"
           },
           {
             "id": 4,
-            "descr": "50 мг СBD Ізолят канабідіолу"
+            "descr": "50 mg CBD Isolate"
           }
         ],
-        "weightCandy": "1 candy  - 8g",
+        "weightCandy": "Craft chocolate on coconut-almond milk with premium matcha and freeze-dried raspberry",
         "accordeon": [
-          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "1",
+            "title": "Benefits",
+            "text": "<p><strong>CBD + matcha + raspberry = focus, energy and balance</strong></p><p>Our CBD chocolate candies are not just sweets — they combine pleasure and wellness. Matcha provides gentle energy and concentration, raspberry adds antioxidants, and cannabidiol helps you relax without drowsiness.</p><p><strong>Why it works?</strong></p><ul><li>🍵 Matcha + CBD = clean focus without anxiety</li><li>🧘‍♂️ Less stress, more calm – CBD reduces anxiety and improves mood.</li><li>😴 Better sleep – promotes faster sleep onset and deeper rest.</li><li>🛡️ Body support – positively affects the immune system.</li></ul><p>👉 Before using CBD products, it is recommended to consult a doctor if you have chronic diseases or are taking medication.</p>"
+          },
           {
             "id": "2",
             "title": "Storage",
@@ -550,8 +668,50 @@
           },
           {
             "id": "3",
-            "title": "Сomposition",
-            "text": "composition composition composition"
+            "title": "Composition",
+            "text": "<p>Cocoa butter, freeze-dried raspberry at least 20%, coconut-almond milk powder, fructose, premium matcha, CBD isolate 50mg, maltodextrin, soy lecithin emulsifier.</p> <p>Nutritional value per 1 candy 8±1g: Protein – 0.32g; Fat – 3.6g; Carbohydrates – 3.3g; Energy – 45.7 kcal, 191.34 kJ.</p>"
+          }
+        ]
+      },
+      {
+        "id": "coffee",
+        "title1": "Coffee",
+        "title2": "Break",
+        "title3": "",
+        "description": [
+          {
+            "id": 1,
+            "descr": "Belgian vegan dark chocolate"
+          },
+          {
+            "id": 2,
+            "descr": "Coffee from CafeBoutique with Ceylon cinnamon"
+          },
+          {
+            "id": 3,
+            "descr": "Almond milk"
+          },
+          {
+            "id": 4,
+            "descr": "50 mg CBD Isolate"
+          }
+        ],
+        "weightCandy": "Belgian dark chocolate with coffee, Ceylon cinnamon and coconut-almond milk",
+        "accordeon": [
+          {
+            "id": "1",
+            "title": "Benefits",
+            "text": "<p><strong>CBD + coffee + cinnamon = balance, flavor and gentle focus</strong></p><p>Our CBD chocolate candies combine deep dark chocolate flavor, rich coffee notes, aromatic cinnamon and cannabidiol. This blend gives pleasure, helps you focus and keeps the mood calm.</p><p><strong>Why it works?</strong></p><ul><li>☕ Coffee and cinnamon add bright taste and tone.</li><li>🧘‍♂️ CBD promotes relaxation without sharp mood swings.</li><li>😌 Dark chocolate supports a sense of comfort and satisfaction.</li><li>🛡️ A balanced formula helps combine benefit with flavor.</li></ul><p>👉 Before using CBD products, it is recommended to consult a doctor if you have chronic diseases or are taking medication.</p>"
+          },
+          {
+            "id": "2",
+            "title": "Storage",
+            "text": "Store in a dry place from 4° to 20°C and relative air humidity no more than 75%. Shelf life: 10 months from the date of manufacture"
+          },
+          {
+            "id": "3",
+            "title": "Composition",
+            "text": "<p>Cocoa liquor, cocoa butter, coffee, Ceylon cinnamon, coconut-almond milk powder, CBD isolate 50 mg, soy lecithin emulsifier. May contain traces of nuts, gluten, milk and soy.</p><p>Nutritional value per 1 candy 8±1 g: values are being updated.</p>"
           }
         ]
       }

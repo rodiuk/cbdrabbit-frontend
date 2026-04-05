@@ -2,9 +2,9 @@ import React from "react";
 import { format } from "date-fns";
 import { OrderStatus } from "@prisma/client";
 import Button from "@/components/Ui/Button/Button";
+import { IOrderDict } from "@/interfaces/i18n.interface";
 import CheckIcon from "@/components/icons/CheckIcon";
 import { IUserOrder } from "@/interfaces/order.interface";
-import { CloseRedIcon } from "@/components/icons/CloseRedIcon";
 import { formatDisplayedCheckId } from "@/utils/formatDisplayedCheckId";
 
 import s from "./LayPopupOrderInfo.module.css";
@@ -13,12 +13,14 @@ import { appConfig } from "@/configs/app.config";
 
 interface Props {
   order: IUserOrder;
+  dict: IOrderDict;
   closePoup: () => void;
   handleBadkdropClick: any;
 }
 
 const LayPopupOrderInfo = ({
   order,
+  dict,
   closePoup,
   handleBadkdropClick,
 }: Props): React.JSX.Element => {
@@ -56,8 +58,6 @@ const LayPopupOrderInfo = ({
     };
   }, [order]);
 
-  console.log("statuses", statuses);
-
   return (
     <div className={s.overl} onClick={e => handleBadkdropClick(e)}>
       <div className={s.content}>
@@ -66,7 +66,7 @@ const LayPopupOrderInfo = ({
             <div className={s.flexLay}>
               <div className={s.lay_ttl}>
                 <p>
-                  Деталі замовлення
+                  {dict.detailsTitle}
                   <span className={s.close} onClick={() => closePoup()}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -90,24 +90,24 @@ const LayPopupOrderInfo = ({
                 № {formatDisplayedCheckId(order?.checkId)}
               </div>
               <div className="comment_block">
-                <div className={s.comment_ttl}>Коментар</div>
+                <div className={s.comment_ttl}>{dict.commentTitle}</div>
                 <div className={s.comment_context}>
-                  {order?.comment || "Відсутній"}
+                  {order?.comment || dict.noComment}
                 </div>
               </div>
 
               {order?.deliveryInfo?.trackingNumber && (
                 <div className={s.number_pos}>
-                  Посилка №: {order?.deliveryInfo?.trackingNumber}
+                  {dict.trackingNumber} {order?.deliveryInfo?.trackingNumber}
                 </div>
               )}
               <div className={s.bdr}>
-                <div className={s.st_ttl}>Статус</div>
+                <div className={s.st_ttl}>{dict.statusTitle}</div>
                 <div className="statuses">
                   {statuses?.created && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Створений
+                        <CheckIcon /> {dict.statusCreated}
                       </div>
                       <div className={s.status2}>
                         {format(
@@ -123,7 +123,7 @@ const LayPopupOrderInfo = ({
                   {statuses?.paid?.updatedAt && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Оплачений
+                        <CheckIcon /> {dict.statusPaid}
                       </div>
                       <div className={s.status2}>
                         {format(
@@ -140,7 +140,7 @@ const LayPopupOrderInfo = ({
                   {statuses?.completed?.updatedAt && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Комплектується
+                        <CheckIcon /> {dict.statusCompleted}
                       </div>
                       <div className={s.status2}>
                         {format(
@@ -157,7 +157,7 @@ const LayPopupOrderInfo = ({
                   {statuses?.sended?.updatedAt && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Відправлено
+                        <CheckIcon /> {dict.statusSended}
                       </div>
                       <div className={s.status2}>
                         {format(
@@ -174,7 +174,7 @@ const LayPopupOrderInfo = ({
                   {statuses?.delivered?.updatedAt && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Доставлено
+                        <CheckIcon /> {dict.statusDelivered}
                       </div>
                       <div className={s.status2}>
                         {format(
@@ -188,7 +188,7 @@ const LayPopupOrderInfo = ({
                   {statuses?.success?.updatedAt && (
                     <div className={s.status}>
                       <div className={s.status1}>
-                        <CheckIcon /> Отримано
+                        <CheckIcon /> {dict.statusSuccess}
                       </div>
                       <div className={s.status2}>
                         {format(statuses?.success.updatedAt, "dd.MM.yy, HH:mm")}
@@ -215,15 +215,12 @@ const LayPopupOrderInfo = ({
 
                   {/* <div className={s.grey_info}>Отримано </div> */}
                   {statuses?.canceled && (
-                    <div className={s.warning}>
-                      Посилку повернуто назад. Якщо за товар було оплачено
-                      кошти, їх буде повернено впродовж 7 днів
-                    </div>
+                    <div className={s.warning}>{dict.canceledWarning}</div>
                   )}
                 </div>
               </div>
               <div className={s.bdr}>
-                <div className={s.st_ttl}>Отримувач замовлення</div>
+                <div className={s.st_ttl}>{dict.customerTitle}</div>
                 <div className={s.info}>
                   <p>
                     {order?.user?.firstName} {order?.user?.lastName}
@@ -238,7 +235,7 @@ const LayPopupOrderInfo = ({
                 </div>
               </div>
               <div className={s.buttonBlock} onClick={() => closePoup()}>
-                <Button text="Закрити" className={s.button} />
+                <Button text={dict.closeButton} className={s.button} />
               </div>
             </div>
           </div>

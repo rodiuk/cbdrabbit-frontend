@@ -16,9 +16,15 @@ interface Props {
   bottomBlock: (e: string) => void;
   dict: IProfileDict;
   user: Session["user"] | null;
+  loadingLabel?: string;
 }
 
-const LayPopupDeleteAkk = ({ bottomBlock, dict, user }: Props) => {
+const LayPopupDeleteAkk = ({
+  bottomBlock,
+  dict,
+  user,
+  loadingLabel = "Loading...",
+}: Props) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget === e.target) {
@@ -78,7 +84,7 @@ const LayPopupDeleteAkk = ({ bottomBlock, dict, user }: Props) => {
                   handleClick={() => bottomBlock("")}
                 />
                 <ButtonRed
-                  text={isLoading ? "Loading..." : dict.confirmDeleteAccount}
+                  text={isLoading ? loadingLabel : dict.confirmDeleteAccount}
                   handleClick={handleDeleteAccount}
                   isDisabled={isLoading}
                 />

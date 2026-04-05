@@ -6,16 +6,10 @@ import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
 import { Menu } from "./Menu/Menu";
 import MenuDrop from "./MenuDrop/MenuDrop";
 import { IHeaderDict } from "@/interfaces/i18n.interface";
-import dynamic from "next/dynamic";
-
-const Cart = dynamic(() => import("@/components/layout/Header/Cart/Cart"), {
-  ssr: false,
-  loading: () => <CartCounterSkeleton />,
-});
+import Cart from "@/components/layout/Header/Cart/Cart";
 
 import styles from "./Header.module.css";
 import LoginButton from "./ButtonTop/ButtonTop";
-import { CartCounterSkeleton } from "@/components/skeletons/CartCounterSkeleton";
 import { Session } from "next-auth";
 
 interface Props {
@@ -40,7 +34,11 @@ export const NavWrapper = ({
   return (
     <>
       <nav className={styles.navigation}>
-        <LoginButton lang={lang} isAuthenticated={isAuthenticated} />
+        <LoginButton
+          lang={lang}
+          isAuthenticated={isAuthenticated}
+          label={dict.titles.signIn}
+        />
         <div className={styles.headerSwitcher}>
           <LocaleSwitcher current={lang} />
         </div>

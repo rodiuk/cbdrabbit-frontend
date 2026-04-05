@@ -18,7 +18,14 @@
 .pink {
 	background: #FFE8E7;
 }
+.yellow {
+	background: #FEF1C8;
+	color: #6F3D00;
+}
 .green {
 	background: #E7F5E2;
 }
-
+.brown {
+	background: #F3DFD4;
+	color: #69332B;
+}

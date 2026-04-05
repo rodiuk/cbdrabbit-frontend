@@ -19,7 +19,9 @@ const Accordeon = ({content, lendId}: Props) => {
 		<div className={s.accordeon}>
 			<div className={cn(s.accordeon_container, {
 			[s.pink]: lendId === "classic",
+			[s.yellow]: lendId === "banana",
 			[s.green]: lendId === "matcha",
+			[s.brown]: lendId === "coffee",
 	  })}>
 				<ul>
 				{content.map((item, index) => {

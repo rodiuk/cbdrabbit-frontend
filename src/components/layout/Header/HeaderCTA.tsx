@@ -15,7 +15,7 @@ interface Props {
 export const HeaderCTA = ({ title, notAuthorized, classNames }: Props) => {
   const pathname = usePathname();
 
-  if ((typeof window !== "undefined" && pathname?.length > 3) || !notAuthorized)
+  if (pathname?.length > 3 || !notAuthorized)
     return <></>;
 
   return (

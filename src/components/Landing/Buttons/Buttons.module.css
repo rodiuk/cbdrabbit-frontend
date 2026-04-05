@@ -14,6 +14,7 @@
 	font-size: 16px;
 	color: rgba(105, 51, 43, 1);
 	font-weight: 500;
+	font-family: var(--font-merriweather);
 	border-radius: 30px;
 	min-width: 218px;
 	text-align: center;
@@ -21,8 +22,16 @@
 .button.pink  {
 	outline:  3px solid #FFCCC980;
 }
+.button.yellow  {
+	outline:  3px solid #FEF1C880;
+	color: #8A5617;
+}
 .button.green  {
 	outline:  3px solid #CEEAC880;
+}
+.button.brown  {
+	outline: 3px solid rgba(105, 51, 43, 0.5);
+	color: #69332B;
 }
 .button2 {
 	background: #913B0F;
@@ -31,6 +40,7 @@
 	font-size: 16px;
 	color: #fff;
 	font-weight: 500;
+	font-family: var(--font-merriweather);
 	border-radius: 30px;
 	min-width: 218px;
 	text-align: center;
@@ -42,6 +52,14 @@
 .green2  {
 	background: #42623B;
 	outline:  3px solid #CEEAC880;
+}
+.yellow2 {
+	background: #A94E10;
+	outline: 3px solid #FEF1C880;
+}
+.brown2 {
+	background: #69332B;
+	outline: 3px solid rgba(105, 51, 43, 0.5);
 }
 
 @media (max-width: 580px) {

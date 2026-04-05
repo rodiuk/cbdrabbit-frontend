@@ -57,6 +57,7 @@ export default async function RootLayout({
             checkoutLabel={dict.cartBanner.checkoutLabel}
             buttonLabel={dict.cartBanner.checkoutButton}
             giftLabel={dict.cartBanner.giftLabel}
+            giftAriaLabel={dict.common.bonusCandiesAria}
           />
 
           <Suspense fallback={null}>

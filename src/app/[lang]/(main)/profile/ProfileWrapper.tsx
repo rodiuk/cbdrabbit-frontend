@@ -21,10 +21,18 @@ interface Props {
   checkoutDict: ICheckoutDict;
   lang: string;
   user: Session["user"] | null;
+  loadingLabel: string;
 }
 
 export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
-  const { currency, profileDict, checkoutDict, recoveryDict, lang } = props;
+  const {
+    currency,
+    profileDict,
+    checkoutDict,
+    recoveryDict,
+    lang,
+    loadingLabel,
+  } = props;
   const [user, setUser] = React.useState<IUserProfile | null>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [actualLay, setActualLay] = React.useState("");
@@ -74,6 +82,7 @@ export const ProfileWrapper = (props: Props): React.JSX.Element | null => {
         user={user}
         lang={lang}
         userSession={props.user}
+        loadingLabel={loadingLabel}
       />
     </>
   );

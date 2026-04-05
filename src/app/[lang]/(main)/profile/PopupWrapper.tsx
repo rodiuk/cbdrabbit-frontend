@@ -30,6 +30,7 @@ interface Props {
   user: IUserProfile | null;
   userSession: Session["user"] | null;
   lang: string;
+  loadingLabel: string;
 }
 
 export const PopupWrapper = (props: Props): React.JSX.Element => {
@@ -43,6 +44,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
     recoveryDict,
     lang,
     userSession,
+    loadingLabel,
   } = props;
 
   return (
@@ -62,6 +64,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               bottomBlock={handleInfo}
               dict={profileDict}
               lang={lang}
+              loadingLabel={loadingLabel}
             />
           )}
 
@@ -70,6 +73,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               bottomBlock={handleInfo}
               dict={profileDict}
               user={user}
+              loadingLabel={loadingLabel}
             />
           )}
 
@@ -79,6 +83,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               email={user?.email ?? ""}
               bottomBlock={handleInfo}
               lang={lang}
+              loadingLabel={loadingLabel}
             />
           )}
 
@@ -103,6 +108,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               bottomBlock={handleInfo}
               profileDict={profileDict}
               checkoutDict={checkoutDict}
+              loadingLabel={loadingLabel}
             />
           )}
 
@@ -111,6 +117,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               user={userSession}
               bottomBlock={handleInfo}
               dict={profileDict}
+              loadingLabel={loadingLabel}
             />
           )}
 
@@ -119,6 +126,7 @@ export const PopupWrapper = (props: Props): React.JSX.Element => {
               user={userSession}
               bottomBlock={handleInfo}
               dict={profileDict}
+              loadingLabel={loadingLabel}
             />
           )}
         </motion.div>

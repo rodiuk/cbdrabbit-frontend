@@ -2,7 +2,7 @@ import React from "react";
 import { InfoField } from "./InfoField/InfoField";
 import { IUserProfile } from "@/interfaces/user.interface";
 import { IProfileDict } from "@/interfaces/i18n.interface";
-import { npDeliveryType } from "../NovaPoshta/npDelivery";
+import { normalizeNpDeliveryId } from "../NovaPoshta/npDelivery";
 
 import styles from "./UserDeliveryInfoSection.module.css";
 
@@ -19,10 +19,15 @@ export const UserDeliveryInfoSection = (props: Props): React.JSX.Element => {
     : profileDict.noInfo;
 
   const lastName = user?.lastName ? user.lastName : profileDict.noInfo;
+  const normalizedDeliveryType = normalizeNpDeliveryId(user?.address?.npDeliveryType);
   const deliveryType = user?.address?.npDeliveryType
-    ? npDeliveryType.filter(
-        item => item.id === user?.address?.npDeliveryType
-      )[0]?.text ?? user?.address?.npDeliveryType
+    ? normalizedDeliveryType === "1"
+      ? profileDict.deliveryBranchLabel
+      : normalizedDeliveryType === "2"
+        ? profileDict.deliveryParcelLockerLabel
+        : normalizedDeliveryType === "3"
+          ? profileDict.deliveryCourierLabel
+          : user?.address?.npDeliveryType
     : profileDict.noInfo;
 
   return (

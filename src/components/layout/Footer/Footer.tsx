@@ -14,6 +14,7 @@ import s from "./Footer.module.css";
 import figureForFooter from "/public/img/figureForFooter.svg";
 import figureForFooter_pink from "/public/img/figureForFooter_pink.svg";
 import figureForFooter_yellow from "/public/img/figureForFooter_yellow.svg";
+import figureForFooter_brown from "/public/img/figureForFooter_brown.svg";
 import { getDictionary } from "@/libs/18n/getDictionary";
 
 interface Props {
@@ -51,6 +52,7 @@ export const Footer = async ({
       className={cn("footer", s.footer, {
         [s.footer_pink]: idLand === "classic",
         [s.footer_yellow]: idLand === "banana",
+        [s.footer_brown]: idLand === "coffee",
       })}
     >
       <div className={s.figure}>
@@ -59,6 +61,13 @@ export const Footer = async ({
         ) : idLand === "banana" ? (
           <Image
             src={figureForFooter_yellow}
+            width={720}
+            height={80}
+            alt="bg"
+          />
+        ) : idLand === "coffee" ? (
+          <Image
+            src={figureForFooter_brown}
             width={720}
             height={80}
             alt="bg"
@@ -133,9 +142,10 @@ export const Footer = async ({
             </Link>
           </div>
           <div
-            className={cn(s.part, {
+          className={cn(s.part, {
               [s.part_pink]: idLand === "classic",
               [s.part_yellow]: idLand === "banana",
+              [s.part_brown]: idLand === "coffee",
             })}
           >
             <p>© CBDRabbit. All Rights Reserved.</p>
