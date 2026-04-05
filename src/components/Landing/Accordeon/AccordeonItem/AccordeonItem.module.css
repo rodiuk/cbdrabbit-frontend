@@ -2,6 +2,11 @@
 	border-bottom: 1px solid rgba(212, 212, 212, 1);
 	padding-bottom: 8px;
 }
+
+.li:last-child {
+	border-bottom: none;
+}
+
 .ttl {
 	font-size: 18px;
 	font-weight: 600;

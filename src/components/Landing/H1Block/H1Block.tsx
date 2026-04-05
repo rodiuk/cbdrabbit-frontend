@@ -48,46 +48,154 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
   const classicTags =
     lang === "uk"
       ? [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "vegan" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "vegan",
+          },
         ]
       : [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "vegan" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "vegan",
+          },
         ];
   const matchaTags =
     lang === "uk"
       ? [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
-          { id: "sugar-free", iconSrc: "/img/badge-sugar-free.svg", iconAlt: "Sugar free", label: "Sugar free" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
+          {
+            id: "sugar-free",
+            iconSrc: "/img/badge-sugar-free.svg",
+            iconAlt: "Sugar free",
+            label: "Sugar free",
+          },
         ]
       : [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
-          { id: "sugar-free", iconSrc: "/img/badge-sugar-free.svg", iconAlt: "Sugar free", label: "Sugar free" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
+          {
+            id: "sugar-free",
+            iconSrc: "/img/badge-sugar-free.svg",
+            iconAlt: "Sugar free",
+            label: "Sugar free",
+          },
         ];
   const bananaTags =
     lang === "uk"
       ? [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
-          { id: "sugar-free", iconSrc: "/img/badge-sugar-free.svg", iconAlt: "Sugar free", label: "Sugar free" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
+          {
+            id: "sugar-free",
+            iconSrc: "/img/badge-sugar-free.svg",
+            iconAlt: "Sugar free",
+            label: "Sugar free",
+          },
         ]
       : [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
-          { id: "sugar-free", iconSrc: "/img/badge-sugar-free.svg", iconAlt: "Sugar free", label: "Sugar free" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
+          {
+            id: "sugar-free",
+            iconSrc: "/img/badge-sugar-free.svg",
+            iconAlt: "Sugar free",
+            label: "Sugar free",
+          },
         ];
   const coffeeTags =
     lang === "uk"
       ? [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
         ]
       : [
-          { id: "cbd", iconSrc: "/img/badge-cbd.svg", iconAlt: "CBD", primary: "50mg", secondary: "CBD" },
-          { id: "vegan", iconSrc: "/img/badge-vegan.svg", iconAlt: "vegan", label: "Vegan" },
+          {
+            id: "cbd",
+            iconSrc: "/img/badge-cbd.svg",
+            iconAlt: "CBD",
+            primary: "50mg",
+            secondary: "CBD",
+          },
+          {
+            id: "vegan",
+            iconSrc: "/img/badge-vegan.svg",
+            iconAlt: "vegan",
+            label: "Vegan",
+          },
         ];
 
   const styledTags = isClassic
@@ -189,7 +297,7 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
 
   return (
     <div
-        className={cn(s.h1Block, {
+      className={cn(s.h1Block, {
         [s.matchaBlock]: isMatcha,
         [s.classicBlock]: isClassic,
         [s.bananaBlock]: isBanana,
@@ -198,7 +306,7 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
     >
       <SelectButtons lang={lang} langId={productFined.id} />
       <div
-          className={cn("", s.row, {
+        className={cn("", s.row, {
           [s.matchaRow]: isMatcha,
           [s.classicRow]: isClassic,
           [s.bananaRow]: isBanana,
@@ -207,7 +315,7 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
       >
         {sizeWindow !== null && sizeWindow <= 992 ? (
           <div
-              className={cn(s.h1block_content, {
+            className={cn(s.h1block_content, {
               [s.matchaContent]: isMatcha,
               [s.classicContent]: isClassic,
               [s.bananaContent]: isBanana,
@@ -275,7 +383,9 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
                     ) : (
                       <>
                         <span className={s.badgePrimary}>{tag.primary}</span>
-                        <span className={s.badgeSecondary}>{tag.secondary}</span>
+                        <span className={s.badgeSecondary}>
+                          {tag.secondary}
+                        </span>
                       </>
                     )}
                   </span>
@@ -449,7 +559,9 @@ const H1Block = ({ productFined, lang, imagesFined, textButton }: Props) => {
                     ) : (
                       <>
                         <span className={s.badgePrimary}>{tag.primary}</span>
-                        <span className={s.badgeSecondary}>{tag.secondary}</span>
+                        <span className={s.badgeSecondary}>
+                          {tag.secondary}
+                        </span>
                       </>
                     )}
                   </span>

@@ -168,20 +168,24 @@
 }
 .matchaItem .img img {
   width: 100%;
+  max-width: 240px;
   height: auto;
   aspect-ratio: 240 / 342;
 }
 .classicItem .img img {
+  max-width: 240px;
   width: 100%;
   height: auto;
   aspect-ratio: 240 / 342;
 }
 .bananaItem .img img {
+  max-width: 240px;
   width: 100%;
   height: auto;
   aspect-ratio: 240 / 342;
 }
 .coffeeItem .img img {
+  max-width: 240px;
   width: 100%;
   height: auto;
   aspect-ratio: 240 / 342;
@@ -314,41 +318,41 @@
 @media (max-width: 580px) {
   .descBlock {
     flex-direction: column;
-    gap: 40px;
-    padding: 0 40px;
+    gap: 42px;
+    padding: 0 16px;
     margin-top: 80px;
   }
   .matchaDescBlock {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 8px;
     margin-top: 28px;
-    gap: 20px;
+    gap: 42px;
   }
   .classicDescBlock {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 8px;
     margin-top: 28px;
-    gap: 20px;
+    gap: 42px;
   }
   .bananaDescBlock {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 8px;
     margin-top: 28px;
-    gap: 20px;
+    gap: 42px;
   }
   .coffeeDescBlock {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 8px;
     margin-top: 28px;
-    gap: 20px;
+    gap: 42px;
   }
   .matchaItem {
     flex: 0 0 auto;
@@ -382,39 +386,55 @@
     align-self: center;
   }
   .matchaDescBlock .item:nth-child(odd) {
-    transform: translateX(-32px);
+    transform: translateX(-42px);
   }
   .matchaDescBlock .item:nth-child(even) {
-    transform: translateX(32px);
+    transform: translateX(42px);
+  }
+  .matchaDescBlock .item:last-child:nth-child(odd) {
+    align-self: center;
+    transform: translateX(0);
   }
   .classicDescBlock .item:nth-child(odd),
   .classicDescBlock .item:nth-child(even) {
     align-self: center;
   }
   .classicDescBlock .item:nth-child(odd) {
-    transform: translateX(-32px);
+    transform: translateX(-42px);
   }
   .classicDescBlock .item:nth-child(even) {
-    transform: translateX(32px);
+    transform: translateX(42px);
+  }
+  .classicDescBlock .item:last-child:nth-child(odd) {
+    align-self: center;
+    transform: translateX(0);
   }
   .bananaDescBlock .item:nth-child(odd),
   .bananaDescBlock .item:nth-child(even) {
     align-self: center;
   }
   .bananaDescBlock .item:nth-child(odd) {
-    transform: translateX(-32px);
+    transform: translateX(-42px);
   }
   .bananaDescBlock .item:nth-child(even) {
-    transform: translateX(32px);
+    transform: translateX(42px);
+  }
+  .bananaDescBlock .item:last-child:nth-child(odd) {
+    align-self: center;
+    transform: translateX(0);
   }
   .coffeeDescBlock .item:nth-child(odd),
   .coffeeDescBlock .item:nth-child(even) {
     align-self: center;
   }
   .coffeeDescBlock .item:nth-child(odd) {
-    transform: translateX(-32px);
+    transform: translateX(-42px);
   }
   .coffeeDescBlock .item:nth-child(even) {
-    transform: translateX(32px);
+    transform: translateX(42px);
+  }
+  .coffeeDescBlock .item:last-child:nth-child(odd) {
+    align-self: center;
+    transform: translateX(0);
   }
 }

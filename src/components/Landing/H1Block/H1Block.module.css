@@ -31,6 +31,7 @@
   row-gap: 0;
   justify-content: center;
   align-items: center;
+  padding-bottom: 120px;
 }
 .classicRow {
   margin-top: 24px;
@@ -38,6 +39,7 @@
   row-gap: 0;
   justify-content: center;
   align-items: center;
+  padding-bottom: 120px;
 }
 .bananaRow {
   margin-top: 24px;
@@ -45,6 +47,7 @@
   row-gap: 0;
   justify-content: center;
   align-items: center;
+  padding-bottom: 120px;
 }
 .coffeeRow {
   margin-top: 24px;
@@ -52,6 +55,7 @@
   row-gap: 0;
   justify-content: center;
   align-items: center;
+  padding-bottom: 120px;
 }
 .h1_pic {
   width: 480px;
@@ -63,26 +67,30 @@
 .matchaPic {
   width: 480px;
   min-width: 480px;
-  height: 760px;
+  height: 520px;
   margin: 0;
+  overflow: visible;
 }
 .classicPic {
   width: 480px;
   min-width: 480px;
-  height: 760px;
+  height: 520px;
   margin: 0;
+  overflow: visible;
 }
 .bananaPic {
   width: 480px;
   min-width: 480px;
-  height: 760px;
+  height: 520px;
   margin: 0;
+  overflow: visible;
 }
 .coffeePic {
   width: 480px;
   min-width: 480px;
-  height: 760px;
+  height: 520px;
   margin: 0;
+  overflow: visible;
 }
 .banana {
   z-index: 21;
@@ -172,12 +180,11 @@
   padding: 90px 0 60px 30px;
 }
 .matchaContent {
-	max-width: 360px;
-	padding: 0;
-	align-self: center;
-	justify-content: center;
-	min-height: 520px;
-	transform: translateY(-48px);
+  max-width: 360px;
+  padding: 0;
+  align-self: center;
+  justify-content: center;
+  min-height: 520px;
 }
 .classicContent {
   max-width: 320px;
@@ -185,7 +192,6 @@
   align-self: center;
   justify-content: center;
   min-height: 520px;
-  transform: translateY(-28px);
 }
 .bananaContent {
   max-width: 320px;
@@ -193,7 +199,6 @@
   align-self: center;
   justify-content: center;
   min-height: 520px;
-  transform: translateY(-28px);
 }
 .coffeeContent {
   max-width: 320px;
@@ -201,14 +206,13 @@
   align-self: center;
   justify-content: center;
   min-height: 520px;
-  transform: translateY(-28px);
 }
 .matchaIngredientsRow {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 920px;
-  margin: -118px auto 0;
+  max-width: 1080px;
+  margin: -88px auto 0;
   padding-top: 0;
   position: relative;
   z-index: 3;
@@ -218,7 +222,7 @@
   justify-content: center;
   width: 100%;
   max-width: 760px;
-  margin: -118px auto 0;
+  margin: -88px auto 0;
   padding-top: 0;
   position: relative;
   z-index: 3;
@@ -228,7 +232,7 @@
   justify-content: center;
   width: 100%;
   max-width: 760px;
-  margin: -118px auto 0;
+  margin: -88px auto 0;
   padding-top: 0;
   position: relative;
   z-index: 3;
@@ -237,8 +241,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 920px;
-  margin: -118px auto 0;
+  max-width: 1080px;
+  margin: -88px auto 0;
   padding-top: 0;
   position: relative;
   z-index: 3;
@@ -451,7 +455,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 8px color-mix(in srgb, var(--button-theme-color) 50%, transparent);
+  box-shadow: 0 0 0 8px
+    color-mix(in srgb, var(--button-theme-color) 50%, transparent);
 }
 .pink {
   --button-theme-color: #9c2018;
@@ -469,45 +474,47 @@
   .h1block_content {
     margin-right: 30px;
   }
-	.matchaContent {
-		max-width: 340px;
-		padding: 0;
-		min-height: 480px;
-		transform: translateY(-32px);
-	}
+  .matchaContent {
+    max-width: 340px;
+    padding: 0;
+    min-height: 480px;
+  }
   .classicContent {
     max-width: 320px;
     padding: 0;
     min-height: 480px;
-    transform: translateY(-20px);
   }
   .bananaContent {
     max-width: 320px;
     padding: 0;
     min-height: 480px;
-    transform: translateY(-20px);
   }
   .coffeeContent {
     max-width: 320px;
     padding: 0;
     min-height: 480px;
-    transform: translateY(-20px);
   }
   .matchaIngredientsRow {
     max-width: 860px;
-    margin-top: -88px;
+    margin-top: -56px;
   }
   .classicIngredientsRow {
     max-width: 720px;
-    margin-top: -88px;
+    margin-top: -56px;
   }
   .bananaIngredientsRow {
     max-width: 720px;
-    margin-top: -88px;
+    margin-top: -56px;
   }
   .coffeeIngredientsRow {
     max-width: 860px;
-    margin-top: -88px;
+    margin-top: -56px;
+  }
+  .matchaPic,
+  .classicPic,
+  .bananaPic,
+  .coffeePic {
+    height: 520px;
   }
 }
 
@@ -517,10 +524,12 @@
     align-items: center;
   }
   .h1block_content {
+    width: 100%;
+    box-sizing: border-box;
     margin-right: 0;
     align-items: center;
     text-align: center;
-    padding: 0px 15px 40px;
+    padding: 0 16px 40px;
   }
   .matchaContent {
     max-width: 720px;
@@ -546,7 +555,7 @@
   }
   .h1_conte {
     position: relative;
-    width: 100vw;
+    width: 100%;
   }
   .matchaConte {
     display: flex;
@@ -561,6 +570,8 @@
     align-items: center;
   }
   .h1block_content2 {
+    width: 100%;
+    box-sizing: border-box;
     position: absolute;
     right: 45px;
     top: 570px;
@@ -587,6 +598,12 @@
   .coffeeIngredientsRow {
     display: none;
   }
+  .matchaRow,
+  .classicRow,
+  .bananaRow,
+  .coffeeRow {
+    padding-bottom: 0;
+  }
   .badges {
     grid-template-columns: repeat(2, max-content);
     justify-content: center;
@@ -594,15 +611,31 @@
 }
 @media (max-width: 767px) {
   .h1 {
-    font-size: 8vw;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .h1 span {
+    display: inline;
+  }
+  .h1_1,
+  .h1_2,
+  .h1_3 {
+    left: 0;
+    right: 0;
+  }
+  .h1_1::after,
+  .h1_2::after {
+    content: " ";
   }
   .matchaPic,
   .classicPic,
   .bananaPic,
   .coffeePic {
     height: auto;
-    min-width: calc(100% - 30px);
-    width: calc(100% - 30px);
+    min-width: calc(100% - 32px);
+    width: calc(100% - 32px);
   }
   .matchaShadow,
   .classicShadow,
@@ -622,16 +655,16 @@
 
 @media (max-width: 580px) {
   .h1_pic {
-    min-width: calc(100% - 30px);
-    width: calc(100% - 30px);
+    min-width: calc(100% - 32px);
+    width: calc(100% - 32px);
     height: auto;
   }
   .matchaPic,
   .classicPic,
   .bananaPic,
   .coffeePic {
-    min-width: calc(100% - 30px);
-    width: calc(100% - 30px);
+    min-width: calc(100% - 32px);
+    width: calc(100% - 32px);
   }
   .matchaCandy,
   .classicCandy,
@@ -658,9 +691,14 @@
     padding-bottom: 20px;
   }
   .badges {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
     gap: 8px;
     margin-bottom: 22px;
+  }
+  .badges > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
   .badge {
     font-size: 13px;
