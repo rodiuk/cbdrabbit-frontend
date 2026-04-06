@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import styles from "./page.module.css";
@@ -8,19 +8,12 @@ import styles from "./page.module.css";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/terms`,
-      languages: {
-        en: `/en/terms`,
-        uk: `/uk/terms`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/terms",
+    title: "Terms",
+    description: "Terms and conditions for CBD Rabbit.",
+  });
 }
 
 export default function Terms() {

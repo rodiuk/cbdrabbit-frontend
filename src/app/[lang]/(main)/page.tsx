@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getAllProducts } from "@/libs/api/products.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 import { ProductCard } from "@/components/ProductCard/ProductCard";
 import { IProductRes } from "@/interfaces/product.interface";
 import ListSales from "@/components/ListSales/ListSales";
@@ -17,19 +17,11 @@ import { FaqSection } from "@/components/FAQSection/FAQSection";
 export async function generateMetadata({
   params,
 }: IMainPageProps): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/`,
-      languages: {
-        en: `/en`,
-        uk: `/uk`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/",
+    imageSubtitle: "Natural CBD candies for calm, focus and a playful mood.",
+  });
 }
 
 export default async function Home({ params }: IMainPageProps) {

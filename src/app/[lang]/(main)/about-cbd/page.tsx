@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -16,19 +16,16 @@ import l3 from "/public/img/landing3.webp";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/about-cbd`,
-      languages: {
-        en: `/en/about-cbd`,
-        uk: `/uk/about-cbd`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+  const page = dict.informationalPages.aboutCbd;
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/about-cbd",
+    title: dict.header.titles.aboutCbd,
+    description: page.whatIs.paragraphs[0],
+    imageSubtitle: page.howItWorks.title,
+  });
 }
 
 export default async function AboutCBD({ params }: Readonly<IMainPageProps>) {

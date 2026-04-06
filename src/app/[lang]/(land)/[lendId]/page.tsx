@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -47,19 +47,21 @@ import NotFoundPage from "@/components/NotFoundPage/page";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/${params?.["landId"]}`,
-      languages: {
-        en: `/en/${params?.["landId"]}`,
-        uk: `/uk/${params?.["landId"]}`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+  const lendId = params.lendId;
+  const product = dict.landings.landing.find(item => item.id === lendId);
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: `/${lendId}`,
+    title:
+      [product?.title1, product?.title2, product?.title3]
+        .filter(Boolean)
+        .join(" ")
+        .trim() || "CBD Candy",
+    description: product?.weightCandy,
+    imageSubtitle: product?.description?.map(item => item.descr).join(" • "),
+  });
 }
 
 const landingsPictures: ILandingsPictures[] = [

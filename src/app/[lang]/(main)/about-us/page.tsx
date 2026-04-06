@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { getDictionary } from "@/libs/18n/getDictionary";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -14,19 +14,16 @@ import l1 from "/public/img/landing4.webp";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/about-us`,
-      languages: {
-        en: `/en/about-us`,
-        uk: `/uk/about-us`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+  const page = dict.informationalPages.aboutUs;
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/about-us",
+    title: dict.header.titles.about,
+    description: page.story.paragraphs[0],
+    imageSubtitle: page.story.author,
+  });
 }
 
 export default async function AboutUS({ params }: Readonly<IMainPageProps>) {

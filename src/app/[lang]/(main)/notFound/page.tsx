@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -14,15 +14,16 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/notfound`,
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+  const page = dict.informationalPages.notFound;
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/notFound",
+    title: page.title,
+    description: page.subtitle,
+    imageSubtitle: page.footer,
+  });
 }
 
 export default async function NotFound({ params }: any) {

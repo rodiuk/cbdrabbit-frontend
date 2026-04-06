@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getPostById } from "@/libs/api/post.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import styles from "./page.module.css";
@@ -16,23 +16,12 @@ export async function generateMetadata({
 }: IMainPageProps): Promise<Metadata> {
   const post = await getPostById(params.postId);
 
-  return {
-    ...(!!post?.metaTitle && { title: post.metaTitle }),
-    ...(!!post?.metaDescription && { description: post.metaDescription }),
-    alternates: {
-      canonical: `/blog/${params.postId}`,
-      languages: {
-        en: `/en/blog/${params.postId}`,
-        uk: `/uk/blog/${params.postId}`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      ...(!!post?.metaTitle && { title: post.metaTitle }),
-      ...(!!post?.metaDescription && { description: post.metaDescription }),
-      locale: params.lang,
-    },
-  };
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: `/blog/${params.postId}`,
+    title: post?.metaTitle || post?.title || "Blog Post",
+    description: post?.metaDescription || post?.title,
+  });
 }
 
 interface Props {}

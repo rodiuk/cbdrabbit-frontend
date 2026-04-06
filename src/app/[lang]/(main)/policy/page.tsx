@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { getDictionary } from "@/libs/18n/getDictionary";
 
@@ -11,19 +11,14 @@ import styles from "./page.module.css";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/policy`,
-      languages: {
-        en: `/en/policy`,
-        uk: `/uk/policy`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/policy",
+    title: dict.header.titles.policy,
+    description: "Public offer agreement and purchase terms for CBD Rabbit.",
+  });
 }
 
 export default async function Policy({

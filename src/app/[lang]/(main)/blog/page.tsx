@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { getAllPosts } from "@/libs/api/post.api";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { getDictionary } from "@/libs/18n/getDictionary";
 
@@ -12,19 +12,14 @@ import styles from "./page.module.css";
 export async function generateMetadata({
   params,
 }: IMainPageProps): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/blog`,
-      languages: {
-        en: `/en/blog`,
-        uk: `/uk/blog`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/blog",
+    title: dict.header.titles.blog,
+    imageSubtitle: "Stories, updates and materials from CBD Rabbit.",
+  });
 }
 
 export default async function Blog({ params }: any) {

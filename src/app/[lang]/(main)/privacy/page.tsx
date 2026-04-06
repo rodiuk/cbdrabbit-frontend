@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import styles from "./page.module.css";
@@ -10,19 +10,15 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 export async function generateMetadata({
   params,
 }: Readonly<IMainPageProps>): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/privacy`,
-      languages: {
-        en: `/en/privacy`,
-        uk: `/uk/privacy`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/privacy",
+    title: dict.header.titles.privacy,
+    description:
+      "Rules for privacy, personal data processing and protection at CBD Rabbit.",
+  });
 }
 
 export default async function Policy({ params }: IMainPageProps) {

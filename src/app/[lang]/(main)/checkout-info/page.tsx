@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { IMainPageProps } from "@/interfaces/page.interface";
-import { openGraphBase } from "@/app/[lang]/shared-metadata";
+import { buildPageMetadata } from "@/app/[lang]/shared-metadata";
 
 import cn from "clsx";
 import s from "./page.module.css";
@@ -10,19 +10,16 @@ import { getDictionary } from "@/libs/18n/getDictionary";
 export async function generateMetadata({
   params,
 }: IMainPageProps): Promise<Metadata> {
-  return {
-    alternates: {
-      canonical: `/contact`,
-      languages: {
-        en: `/en/contact`,
-        uk: `/uk/contact`,
-      },
-    },
-    openGraph: {
-      ...openGraphBase,
-      locale: params.lang,
-    },
-  };
+  const dict = await getDictionary(params.lang);
+  const page = dict.informationalPages.checkoutInfo;
+
+  return buildPageMetadata({
+    lang: params.lang,
+    canonical: "/checkout-info",
+    title: dict.header.titles.checkoutInfo,
+    description: page.blocks[0]?.paragraphs[0],
+    imageSubtitle: page.blocks[0]?.title,
+  });
 }
 
 export default async function CheckoutInfo({ params }: any) {
