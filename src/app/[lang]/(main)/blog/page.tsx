@@ -18,7 +18,10 @@ export async function generateMetadata({
     lang: params.lang,
     canonical: "/blog",
     title: dict.header.titles.blog,
-    imageSubtitle: "Stories, updates and materials from CBD Rabbit.",
+    imageSubtitle:
+      params.lang === "uk"
+        ? "Історії, оновлення та матеріали від CBD Rabbit."
+        : "Stories, updates and materials from CBD Rabbit.",
   });
 }
 

@@ -17,7 +17,10 @@ export async function generateMetadata({
     lang: params.lang,
     canonical: "/policy",
     title: dict.header.titles.policy,
-    description: "Public offer agreement and purchase terms for CBD Rabbit.",
+    description:
+      params.lang === "uk"
+        ? "Публічний договір оферти та умови покупки у CBD Rabbit."
+        : "Public offer agreement and purchase terms for CBD Rabbit.",
   });
 }
 

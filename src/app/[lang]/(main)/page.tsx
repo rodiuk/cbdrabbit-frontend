@@ -20,7 +20,6 @@ export async function generateMetadata({
   return buildPageMetadata({
     lang: params.lang,
     canonical: "/",
-    imageSubtitle: "Natural CBD candies for calm, focus and a playful mood.",
   });
 }
 

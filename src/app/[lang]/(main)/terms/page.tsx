@@ -11,8 +11,11 @@ export async function generateMetadata({
   return buildPageMetadata({
     lang: params.lang,
     canonical: "/terms",
-    title: "Terms",
-    description: "Terms and conditions for CBD Rabbit.",
+    title: params.lang === "uk" ? "Умови" : "Terms",
+    description:
+      params.lang === "uk"
+        ? "Умови та правила користування CBD Rabbit."
+        : "Terms and conditions for CBD Rabbit.",
   });
 }
 

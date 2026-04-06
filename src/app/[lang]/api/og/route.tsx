@@ -111,7 +111,7 @@ export async function GET(
                 letterSpacing: "0.08em",
               }}
             >
-              {lang === "uk" ? "українська" : "english"}
+              {lang === "uk" ? "українська" : "англійська"}
             </div>
           </div>
 

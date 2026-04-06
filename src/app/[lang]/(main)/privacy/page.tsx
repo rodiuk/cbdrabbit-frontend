@@ -17,7 +17,9 @@ export async function generateMetadata({
     canonical: "/privacy",
     title: dict.header.titles.privacy,
     description:
-      "Rules for privacy, personal data processing and protection at CBD Rabbit.",
+      params.lang === "uk"
+        ? "Правила конфіденційності, обробки та захисту персональних даних у CBD Rabbit."
+        : "Rules for privacy, personal data processing and protection at CBD Rabbit.",
   });
 }
 
