@@ -22,11 +22,12 @@ export async function GET(
 ) {
   const { lang } = await params;
   const { searchParams } = new URL(request.url);
+  const logoUrl = new URL("/img/logoHome.svg", request.url).toString();
 
   const title = searchParams.get("title") || "CBD Rabbit";
   const subtitle =
     searchParams.get("subtitle") ||
-    "Thoughtful CBD candies with a calm, playful brand voice.";
+    "Натуральні CBD-цукерки для спокою, фокусу та щоденного балансу.";
 
   return new ImageResponse(
     (
@@ -84,28 +85,18 @@ export async function GET(
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 18,
-                fontSize: 30,
-                fontWeight: 700,
-                letterSpacing: "-0.03em",
+                gap: 20,
               }}
             >
-              <div
+              <img
+                src={logoUrl}
+                alt="CBD Rabbit"
                 style={{
                   display: "flex",
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "#fff3d6",
-                  border: "3px solid rgba(74,36,21,0.15)",
-                  fontSize: 30,
+                  width: 264,
+                  height: 60,
                 }}
-              >
-                R
-              </div>
-              CBD Rabbit
+              />
             </div>
 
             <div
@@ -114,13 +105,13 @@ export async function GET(
                 padding: "10px 18px",
                 borderRadius: 999,
                 background: "rgba(255,255,255,0.22)",
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
               }}
             >
-              {lang}
+              {lang === "uk" ? "українська" : "english"}
             </div>
           </div>
 
@@ -171,7 +162,7 @@ export async function GET(
             }}
           >
             <div style={{ display: "flex" }}>cbdrabbit.shop</div>
-            <div style={{ display: "flex" }}>Natural CBD candies</div>
+            <div style={{ display: "flex" }}>натуральні CBD-цукерки</div>
           </div>
         </div>
       </div>
