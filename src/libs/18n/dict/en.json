@@ -405,27 +405,27 @@
         "items": [
           {
             "label": "🔗 Harvard Health: Cannabidiol — what we know and what we still don't know",
-            "href": "https://www.health.harvard.edu/blog/cannabidiol-cbd-what-we-know-and-what-we-dont-know-2021082419351"
+            "href": "https://www.health.harvard.edu/blog/cannabidiol-cbd-what-we-know-and-what-we-dont-201808242496"
           },
           {
             "label": "🔗 NCBI / StatPearls: CBD in clinical practice — benefits and risks",
-            "href": "https://www.ncbi.nlm.nih.gov/books/NBK556048/"
+            "href": "https://www.ncbi.nlm.nih.gov/sites/books/NBK556048/"
           },
           {
             "label": "🔗 Forbes Health: Scientific evidence behind CBD benefits",
-            "href": "https://www.forbes.com/health/wellness/cbd-benefits/"
+            "href": "https://www.forbes.com/health/cbd/cbd-oil-benefits/"
           },
           {
             "label": "🔗 AP News — More people are using CBD products",
-            "href": "https://apnews.com/"
+            "href": "https://apnews.com/article/marijuana-cbd-cannabis-delta-8-thc-690dcbbd118371ed20a2871bab35c57d"
           },
           {
             "label": "🔗 WebMD — Health benefits",
-            "href": "https://www.webmd.com/pain-management/cbd-benefits"
+            "href": "https://www.webmd.com/diet/health-benefits-cbd"
           },
           {
             "label": "🔗 Zelena Hazeta — What CBD is and how it works",
-            "href": "#"
+            "href": "https://www.zelenagazeta.com/shho-take-cbd-ta-yak-vin-praczyuye/"
           }
         ]
       }
@@ -582,7 +582,11 @@
         ],
         "weightCandy": "Belgian dark chocolate with freeze-dried strawberry",
         "accordeon": [
-          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "1",
+            "title": "Benefits",
+            "text": "<p><strong>CBD + chocolate = flavor, relaxation and balance</strong></p><p>Our CBD chocolate candies are not just sweets, but a combination of pleasure and benefit. Thanks to natural ingredients and cannabidiol, they help you relax, reduce stress levels and support overall well-being.</p><p><strong>Why it works?</strong></p><ul><li>🧘‍♂️ Less stress, more calm — CBD may help reduce anxiety and improve mood.</li><li>😴 Better sleep — promotes faster falling asleep and deeper rest.</li><li>💆 Relaxation for the body — has pain-relieving and anti-inflammatory properties.</li><li>🛡️ Body support — positively affects the immune system.</li></ul><p>👉 Before using CBD products, it is recommended to consult a doctor if you have chronic diseases or are taking medication.</p>"
+          },
           {
             "id": "2",
             "title": "Storage",
@@ -590,8 +594,8 @@
           },
           {
             "id": "3",
-            "title": "Сomposition",
-            "text": "composition composition composition"
+            "title": "Composition",
+            "text": "<p>Cocoa butter, sugar, cocoa liquor, freeze-dried strawberry 2%, soy and sunflower lecithin emulsifier, cannabidiol isolate 50 mg, vanilla flavoring. May contain traces of nuts, gluten, milk and soy.</p> <p>Nutritional and energy value per 1 candy 8±1 g: Protein – 0.4 g; Fat – 3.3 g; Carbohydrates – 3.5 g; Energy – 45.2 kcal, 189 kJ.</p>"
           }
         ]
       },
@@ -617,7 +621,11 @@
         ],
         "weightCandy": "Craft white chocolate on coconut milk with freeze-dried banana",
         "accordeon": [
-          { "id": "1", "title": "Benefit", "text": "Benefit Benefit Benefit" },
+          {
+            "id": "1",
+            "title": "Benefits",
+            "text": "<p><strong>CBD + chocolate = flavor, relaxation and balance</strong></p><p>Our CBD chocolate candies are not just sweets, but a combination of pleasure and benefit. Thanks to natural ingredients and cannabidiol, they help you relax, reduce stress levels and support overall well-being.</p><p><strong>Why it works?</strong></p><ul><li>🧘‍♂️ Less stress, more calm — CBD may help reduce anxiety and improve mood.</li><li>😴 Better sleep — promotes faster falling asleep and deeper rest.</li><li>💆 Relaxation for the body — has pain-relieving and anti-inflammatory properties.</li><li>🛡️ Body support — positively affects the immune system.</li></ul><p>👉 Before using CBD products, it is recommended to consult a doctor if you have chronic diseases or are taking medication.</p>"
+          },
           {
             "id": "2",
             "title": "Storage",
@@ -625,8 +633,8 @@
           },
           {
             "id": "3",
-            "title": "Сomposition",
-            "text": "composition composition composition"
+            "title": "Composition",
+            "text": "<p>Cocoa butter, freeze-dried banana at least 30%, coconut milk powder, fructose, cannabidiol isolate 50 mg, maltodextrin, soy lecithin emulsifier.</p> <p>Nutritional and energy value per 1 candy 8±1 g: Protein – 0.13 g; Fat – 2.5 g; Carbohydrates – 3.9 g; Energy – 37.3 kcal, 156.2 kJ.</p>"
           }
         ]
       },
@@ -722,7 +730,7 @@
         "text1": "VEGAN",
         "text2": "The product does not contain milk powder"
       },
-      { "id": "2", "text1": "USEFUL", "text2": "Candy to relax" },
+      { "id": "2", "text1": "HEALTHY", "text2": "Candy to relax" },
       {
         "id": "3",
         "text1": "HOW TO EAT?",
