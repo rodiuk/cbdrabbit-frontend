@@ -4,8 +4,8 @@ import { i18n, Locale } from "../../../i18n.config";
 export const SITE_NAME = "CBD Rabbit";
 
 const DEFAULT_DESCRIPTIONS: Record<Locale, string> = {
-  en: "Time to deliciously relax",
-  uk: "Час смачненько розслабитися",
+  en: "Relax with flavor",
+  uk: "Релакс зі смаком",
 };
 
 const buildLocalizedPath = (lang: Locale, canonical: string) => {
