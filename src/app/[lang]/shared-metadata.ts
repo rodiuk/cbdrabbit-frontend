@@ -4,8 +4,8 @@ import { i18n, Locale } from "../../../i18n.config";
 export const SITE_NAME = "CBD Rabbit";
 
 const DEFAULT_DESCRIPTIONS: Record<Locale, string> = {
-  en: "CBD Rabbit is a store of delicious candies made with natural hemp.",
-  uk: "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
+  en: "Time to deliciously relax",
+  uk: "Час смачненько розслабитися",
 };
 
 const buildLocalizedPath = (lang: Locale, canonical: string) => {
