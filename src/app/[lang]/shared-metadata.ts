@@ -8,42 +8,22 @@ const DEFAULT_DESCRIPTIONS: Record<Locale, string> = {
   uk: "CBD Rabbit - магазин смачних цукерок на основі натуральної коноплі",
 };
 
-const trimText = (text: string, maxLength: number) =>
-  text.length > maxLength ? `${text.slice(0, maxLength - 1).trim()}...` : text;
-
 const buildLocalizedPath = (lang: Locale, canonical: string) => {
   if (canonical === "/") return `/${lang}`;
 
   return `/${lang}${canonical}`;
 };
 
-export const createOgImageUrl = ({
-  lang,
-  title,
-  subtitle,
-}: {
-  lang: Locale;
-  title: string;
-  subtitle?: string;
-}) => {
-  const searchParams = new URLSearchParams({
-    title: trimText(title, 80),
-  });
-
-  if (subtitle) {
-    searchParams.set("subtitle", trimText(subtitle, 140));
-  }
-
-  return `/${lang}/api/og?${searchParams.toString()}`;
-};
+const OG_LARGE = "/img/og/og_large.webp";
+const OG_SMALL = "/img/og/og_small.webp";
 
 export const buildPageMetadata = ({
   lang,
   canonical,
   title,
   description,
-  imageTitle,
-  imageSubtitle,
+  imageTitle: _imageTitle,
+  imageSubtitle: _imageSubtitle,
 }: {
   lang: Locale;
   canonical: string;
@@ -54,11 +34,6 @@ export const buildPageMetadata = ({
 }): Metadata => {
   const resolvedTitle = title || SITE_NAME;
   const resolvedDescription = description || DEFAULT_DESCRIPTIONS[lang];
-  const imageUrl = createOgImageUrl({
-    lang,
-    title: imageTitle || resolvedTitle,
-    subtitle: imageSubtitle || resolvedDescription,
-  });
 
   return {
     title: resolvedTitle,
@@ -66,7 +41,10 @@ export const buildPageMetadata = ({
     alternates: {
       canonical,
       languages: Object.fromEntries(
-        i18n.locales.map(locale => [locale, buildLocalizedPath(locale, canonical)])
+        i18n.locales.map(locale => [
+          locale,
+          buildLocalizedPath(locale, canonical),
+        ])
       ),
     },
     openGraph: {
@@ -78,9 +56,15 @@ export const buildPageMetadata = ({
       description: resolvedDescription,
       images: [
         {
-          url: imageUrl,
+          url: OG_LARGE,
           width: 1200,
           height: 630,
+          alt: resolvedTitle,
+        },
+        {
+          url: OG_SMALL,
+          width: 600,
+          height: 315,
           alt: resolvedTitle,
         },
       ],
@@ -89,7 +73,7 @@ export const buildPageMetadata = ({
       card: "summary_large_image",
       title: resolvedTitle,
       description: resolvedDescription,
-      images: [imageUrl],
+      images: [OG_SMALL],
     },
   };
 };
