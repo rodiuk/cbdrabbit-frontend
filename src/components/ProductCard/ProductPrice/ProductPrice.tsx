@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAtom } from "jotai";
-import { getProductNewPriceAtom } from "@/libs/store/atoms";
+import { useCandyPromotion } from "@/hooks/useCandyPromotion";
 
 import cn from "clsx";
 import styles from "./ProductPrice.module.css";
@@ -16,11 +15,8 @@ const ProductPrice = ({
   currentPrice: defaultPrice,
   currency,
 }: Props): React.JSX.Element | null => {
-  const [newPrice] = useAtom(getProductNewPriceAtom);
-
-  const hasPriceChange = React.useMemo(() => {
-    return newPrice !== 90 && newPrice !== 0;
-  }, [newPrice]);
+  const { isActive, promotionalPrice } = useCandyPromotion();
+  const hasPriceChange = isActive && promotionalPrice < defaultPrice;
 
   return (
     <div className={styles.container} suppressHydrationWarning>
@@ -32,7 +28,7 @@ const ProductPrice = ({
       >
         {defaultPrice}
       </p>
-      {hasPriceChange && <p className={styles.sale}>{newPrice}</p>}
+      {hasPriceChange && <p className={styles.sale}>{promotionalPrice}</p>}
     </div>
   );
 };

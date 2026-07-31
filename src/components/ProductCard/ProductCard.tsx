@@ -16,6 +16,9 @@ const ActionBar = dynamic(() => import("./ActionBar/ActionBar"), {
   ssr: false,
   loading: () => <TotalCountSkeleton />,
 });
+const CandyPromotionNote = dynamic(() => import("./CandyPromotionNote"), {
+  ssr: false,
+});
 
 import cn from "clsx";
 import styles from "./ProductCard.module.css";
@@ -39,7 +42,9 @@ export const ProductCard = async ({
     property.label?.includes("CBD")
   );
 
-  const currency = (await getDictionary(lang))?.currency;
+  const dictionary = await getDictionary(lang);
+  const currency = dictionary.currency;
+  const promotionLabel = dictionary.home.product.promotionLabel;
   let idProuct;
   let valLang = "";
   if (product.productName === "🍓 Calmberry") {
@@ -132,6 +137,8 @@ export const ProductCard = async ({
             </li>
           ))}
         </ul>
+
+        <CandyPromotionNote label={promotionLabel} />
 
         <div className={styles.divider} />
 

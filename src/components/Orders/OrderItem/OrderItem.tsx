@@ -11,6 +11,7 @@ import s from "./OrderItem.module.css";
 import sale_icon from "/public/img/sale_icon.svg";
 import { InfoIcon } from "@/components/icons/InfoIcon";
 import { appConfig } from "@/configs/app.config";
+import { getCandyUnitPrice } from "@/configs/candyPromotion";
 
 interface Prop {
   menu?: boolean;
@@ -46,7 +47,9 @@ const OrderItemCard = ({ menu, order, dict, currency, openPoup }: Prop) => {
     (acc, item) => acc + (item?.quantity || 0),
     0
   );
-  const sale = totalQuantity * 90 - order?.totalSum;
+  const sale =
+    totalQuantity * getCandyUnitPrice(new Date(order.createdAt)) -
+    order?.totalSum;
 
   return (
     <>

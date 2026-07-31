@@ -12,6 +12,7 @@ import ActionBar from "@/components/ProductCard/ActionBar/ActionBar";
 
 import styles from "./page.module.css";
 import { pluralizeUa } from "@/utils/pluralizeUa";
+import { getCandyUnitPrice } from "@/configs/candyPromotion";
 
 interface Props {
   homeDict: any;
@@ -23,13 +24,12 @@ const ProductsCheckout = ({
   checkoutDict,
 }: Props): React.JSX.Element => {
   const [cart] = useAtom(cartAtom);
+  const currentPrice = getCandyUnitPrice();
 
-  const rendererProducts = cart?.products?.filter(product => product.count > 0);
-  const [products, setProduct] = React.useState(rendererProducts);
-
-  React.useEffect(() => {
-    setProduct(rendererProducts);
-  }, []);
+  const products = React.useMemo(
+    () => cart?.products?.filter(product => product.count > 0),
+    [cart?.products]
+  );
 
   const giftCandies = useMemo(() => {
     return calculateGiftCandies(cart?.totalCount || 0);
@@ -58,7 +58,7 @@ const ProductsCheckout = ({
                 <>
                   <div className={styles.productCheckout_count}>
                     {/* <span className={styles.grey}>{product.price}</span> */}
-                    {cart?.newPrice} ₴<span className={styles.elem}>/шт</span>
+                    {currentPrice} ₴<span className={styles.elem}>/шт</span>
                   </div>
                   <div className={styles.checkout_actions}>
                     <ActionBar

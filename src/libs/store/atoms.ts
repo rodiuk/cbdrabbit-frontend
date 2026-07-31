@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import type { Product } from "@prisma/client";
-import { constants } from "@/configs/constants";
+import { getCandyUnitPrice } from "@/configs/candyPromotion";
 import { Cart } from "@/interfaces/store.interface";
 import { IProductRes } from "@/interfaces/product.interface";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
@@ -56,7 +56,7 @@ const addProductToCartAtom = atom(
     }
 
     // const newPrice = calculatePrice(totalCount);
-    const newPrice = constants.DEFAULT_PRICE;
+    const newPrice = getCandyUnitPrice();
 
     cart.totalAmount = newPrice * totalCount;
 
@@ -77,7 +77,7 @@ const removeProductFromCartAtom = atom(
     const existingProduct = updatedProducts.find(p => p.id === update.id);
     let totalCount = cart.totalCount;
     // let newPrice = calculatePrice(cart.totalCount);
-    const newPrice = constants.DEFAULT_PRICE;
+    const newPrice = getCandyUnitPrice();
 
     if (existingProduct && existingProduct.count > 0) {
       existingProduct.count -= 1;
@@ -104,7 +104,7 @@ const changeProductCountAtom = atom(
     const existingProduct = updatedProducts.find(p => p.id === product.id);
     let totalCount = cart.totalCount;
     // let newPrice = calculatePrice(cart.totalCount);
-    let newPrice = constants.DEFAULT_PRICE;
+    const newPrice = getCandyUnitPrice();
     let totalAmount = cart.totalAmount;
     countValue = countValue >= 500 ? 500 : countValue;
 

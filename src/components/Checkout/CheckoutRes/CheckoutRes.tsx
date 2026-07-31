@@ -9,6 +9,7 @@ import { PromocodeBlock } from "./PromocodeBlock";
 import Button from "@/components/Ui/Button/Button";
 import { ICheckoutDict } from "@/interfaces/i18n.interface";
 import { calculateTotalUserPrice } from "@/utils/calculateTotalUserprice";
+import { getCandyUnitPrice } from "@/configs/candyPromotion";
 
 import no_sum from "/public/img/no_sum.svg";
 import sale_icon from "/public/img/sale_icon.svg";
@@ -42,34 +43,31 @@ const CheckoutRes = React.memo(function CheckoutRes({
   const [cart] = useAtom(cartAtom);
   const [userDiscount, setUserDiscount] = React.useState<number>(0);
 
-  const currentPrice = 90;
+  const currentPrice = getCandyUnitPrice();
+  const baseTotalAmount = cart.totalCount * currentPrice;
   const freeDelivery = 2200; // это если сумма достаточна для безкошновної доставки
 
-  const saleDiff = cart?.totalCount * currentPrice - cart?.totalAmount;
-  let salePercent = Math.round((saleDiff / cart?.totalAmount) * 100);
+  const saleDiff = baseTotalAmount - cart?.totalAmount;
+  let salePercent = Math.round((saleDiff / baseTotalAmount) * 100);
   salePercent = salePercent > 0 ? salePercent : 0;
 
   const userDiscountSum = cart?.fromCheckout
     ? 0
-    : (cart?.totalAmount / 100) * userDiscount;
+    : (baseTotalAmount / 100) * userDiscount;
 
   const promocodeDiscount = promocode?.percentDiscount
-    ? (cart.totalAmount / 100) * promocode?.percentDiscount
+    ? (baseTotalAmount / 100) * promocode?.percentDiscount
     : 0;
 
   const promocodeDiscountLabel = promocode?.newPrice
-    ? cart.totalCount * currentPrice - cart.totalCount * promocode?.newPrice
+    ? baseTotalAmount - cart.totalCount * promocode?.newPrice
     : promocodeDiscount;
-
-  const percentPromoDiscount =
-    promocode?.percentDiscount &&
-    ((cart.totalCount * currentPrice) / 100) * promocode?.percentDiscount;
 
   const totalAmount = promocode?.newPrice
     ? cart.totalCount * promocode.newPrice
-    : promocode?.percentDiscount && percentPromoDiscount
-      ? cart.totalCount * currentPrice - percentPromoDiscount
-      : cart?.totalAmount;
+    : promocode?.percentDiscount && promocodeDiscount
+      ? baseTotalAmount - promocodeDiscount
+      : baseTotalAmount;
 
   const finalPrice = React.useMemo(() => {
     return totalAmount - (!!promocode?.code ? 0 : userDiscountSum);
@@ -92,12 +90,19 @@ const CheckoutRes = React.memo(function CheckoutRes({
       setUserDiscount(userData?.loyalty?.percentDiscount);
       setFinalPrice(
         calculateTotalUserPrice(
-          cart?.totalAmount,
+          baseTotalAmount,
           userData?.loyalty?.percentDiscount
         )
       );
     })();
-  }, [userData, cart, setFinalPrice, promocode, finalPrice]);
+  }, [
+    userData,
+    cart,
+    setFinalPrice,
+    promocode,
+    finalPrice,
+    baseTotalAmount,
+  ]);
 
   return (
     <div className={s.checkoutRes}>

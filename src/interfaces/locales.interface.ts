@@ -318,6 +318,7 @@ export interface HomeLocales {
     firstOrder: string;
     notAvailable: string;
     discountLabel: string;
+    promotionLabel: string;
     discountList: string[];
   };
   moreAboutCandies: {
